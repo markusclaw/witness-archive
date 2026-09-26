@@ -1,141 +1,150 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import Link from "next/link";
+import type { User } from "@supabase/supabase-js";
 import { supabase } from "@/lib/supabase";
+import type { Comment } from "@/lib/types";
+import { timeAgo } from "@/lib/format";
+import { displayNameFor } from "@/lib/user";
 
-interface Comment {
-  id: string;
-  author: string;
-  content: string;
-  created_at: string;
-  user_id: string;
-}
+const MAX_LENGTH = 2000;
 
 export default function Comments({ testimonyId }: { testimonyId: string }) {
   const [comments, setComments] = useState<Comment[]>([]);
-  const [newComment, setNewComment] = useState("");
-  const [user, setUser] = useState<any>(null);
-  const [loading, setLoading] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+  const [loadError, setLoadError] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+  const [draft, setDraft] = useState("");
+  const [posting, setPosting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    // Check if user is logged in
-    const checkUser = async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      setUser(user);
-    };
-
-    checkUser();
-
-    // Fetch existing comments
-    const fetchComments = async () => {
+  const load = useCallback(async () => {
+    try {
       const { data, error } = await supabase
         .from("comments")
         .select("*")
         .eq("testimony_id", testimonyId)
         .order("created_at", { ascending: true });
-
-      if (error) {
-        console.error("Error fetching comments:", error);
-      } else {
-        setComments(data || []);
-      }
-    };
-
-    fetchComments();
+      if (error) throw error;
+      setComments((data ?? []) as Comment[]);
+      setLoadError(false);
+    } catch (err) {
+      console.error("comments:", err instanceof Error ? err.message : err);
+      setLoadError(true);
+    } finally {
+      setLoaded(true);
+    }
   }, [testimonyId]);
 
-  const handleSubmitComment = async (e: React.FormEvent) => {
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data }) => setUser(data.user));
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_e, session) => setUser(session?.user ?? null));
+    void Promise.resolve().then(load);
+    return () => subscription.unsubscribe();
+  }, [load]);
+
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!user) {
-      alert("Please sign in to comment");
+    if (!user) return;
+    const content = draft.trim();
+    if (!content) return;
+    setPosting(true);
+    setError(null);
+    const { error } = await supabase.from("comments").insert({
+      testimony_id: testimonyId,
+      user_id: user.id,
+      author: displayNameFor(user),
+      content,
+    });
+    if (error) {
+      setError("Your response could not be posted. Please try again.");
+      console.error("post comment:", error.message);
+    } else {
+      setDraft("");
+      await load();
+    }
+    setPosting(false);
+  };
+
+  const remove = async (id: string) => {
+    const { error } = await supabase.from("comments").delete().eq("id", id);
+    if (error) {
+      console.error("delete comment:", error.message);
       return;
     }
-
-    if (!newComment.trim()) return;
-
-    setLoading(true);
-
-    try {
-      const { error } = await supabase.from("comments").insert([
-        {
-          testimony_id: testimonyId,
-          user_id: user.id,
-          author: user.email,
-          content: newComment,
-        },
-      ]);
-
-      if (error) throw error;
-
-      setNewComment("");
-      // Refresh comments
-      const { data } = await supabase
-        .from("comments")
-        .select("*")
-        .eq("testimony_id", testimonyId)
-        .order("created_at", { ascending: true });
-
-      setComments(data || []);
-    } catch (err) {
-      console.error("Error posting comment:", err);
-    } finally {
-      setLoading(false);
-    }
+    setComments((c) => c.filter((x) => x.id !== id));
   };
 
   return (
-    <div className="space-y-8">
-      {/* Comment Form */}
+    <div className="space-y-10">
       {user ? (
-        <form onSubmit={handleSubmitComment} className="space-y-4">
+        <form onSubmit={submit} className="card p-5">
+          <label htmlFor="comment" className="mb-2 block text-sm text-parchment-500">
+            Responding as <span className="text-parchment-100">{displayNameFor(user)}</span>
+          </label>
           <textarea
-            value={newComment}
-            onChange={(e) => setNewComment(e.target.value)}
-            placeholder="Share your thoughts or questions..."
-            className="w-full px-4 py-3 bg-slate-600 text-white rounded border border-slate-500 focus:outline-none focus:border-blue-500 resize-none"
+            id="comment"
+            value={draft}
+            onChange={(e) => setDraft(e.target.value.slice(0, MAX_LENGTH))}
+            placeholder="A question, a reflection, or your own experience…"
             rows={4}
+            className="input resize-y"
           />
-          <button
-            type="submit"
-            disabled={loading || !newComment.trim()}
-            className="px-6 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-600 text-white rounded font-semibold transition"
-          >
-            {loading ? "Posting..." : "Post Comment"}
-          </button>
+          <div className="mt-3 flex items-center justify-between gap-4">
+            <span className="text-xs text-parchment-700">
+              {draft.length}/{MAX_LENGTH}
+            </span>
+            <button type="submit" disabled={posting || !draft.trim()} className="btn btn-primary !py-2">
+              {posting ? "Posting…" : "Post response"}
+            </button>
+          </div>
+          {error && <p className="mt-3 text-sm text-ember-500">{error}</p>}
         </form>
       ) : (
-        <div className="p-4 bg-slate-700/50 rounded">
-          <p className="text-slate-300">
-            <a href="/auth" className="text-blue-400 hover:text-blue-300">
-              Sign in
-            </a>{" "}
-            to leave a comment.
-          </p>
+        <div className="card flex flex-col items-start gap-3 p-5 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-parchment-300">Sign in to join the conversation.</p>
+          <Link href="/auth" className="btn btn-ghost !py-2 text-sm">
+            Sign in or create an account
+          </Link>
         </div>
       )}
 
-      {/* Comments List */}
-      <div className="space-y-4">
-        {comments.length === 0 ? (
-          <p className="text-slate-400">
-            No comments yet. Be the first to share your thoughts!
-          </p>
-        ) : (
-          comments.map((comment) => (
-            <div key={comment.id} className="bg-slate-700/50 p-4 rounded">
-              <div className="flex justify-between items-start mb-2">
-                <h4 className="font-semibold text-white">{comment.author}</h4>
-                <span className="text-xs text-slate-400">
-                  {new Date(comment.created_at).toLocaleDateString()}
-                </span>
+      {!loaded ? (
+        <p className="text-sm text-parchment-700">Loading responses…</p>
+      ) : loadError ? (
+        <p className="text-sm text-parchment-500">
+          Responses couldn&apos;t be loaded right now.{" "}
+          <button type="button" onClick={() => void load()} className="underline hover:text-gold-300">
+            Try again
+          </button>
+        </p>
+      ) : comments.length === 0 ? (
+        <p className="text-parchment-500">No responses yet. Be the first to acknowledge this story.</p>
+      ) : (
+        <ol className="space-y-6">
+          {comments.map((c) => (
+            <li key={c.id} className="border-l-2 border-ink-600 pl-5">
+              <div className="flex items-baseline justify-between gap-4">
+                <p className="font-medium text-parchment-50">{c.author}</p>
+                <div className="flex items-center gap-3 text-xs text-parchment-700">
+                  <time dateTime={c.created_at} title={new Date(c.created_at).toLocaleString()}>
+                    {timeAgo(c.created_at)}
+                  </time>
+                  {user?.id === c.user_id && (
+                    <button type="button" onClick={() => remove(c.id)} className="hover:text-ember-500">
+                      Delete
+                    </button>
+                  )}
+                </div>
               </div>
-              <p className="text-slate-300">{comment.content}</p>
-            </div>
-          ))
-        )}
-      </div>
+              <p className="mt-2 whitespace-pre-wrap leading-relaxed text-parchment-300">{c.content}</p>
+            </li>
+          ))}
+        </ol>
+      )}
     </div>
   );
 }

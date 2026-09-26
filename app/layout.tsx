@@ -1,49 +1,45 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import "./globals.css";
-import AuthNav from "@/components/AuthNav";
+import SiteHeader from "@/components/SiteHeader";
+import SiteFooter from "@/components/SiteFooter";
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://witnessarchive.org";
 
 export const metadata: Metadata = {
-  title: "Witness Archive - Testimonies of the Supernatural",
-  description: "A curated collection of life-changing testimonies from people who have experienced the supernatural.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Witness Archive — Testimonies of the Supernatural",
+    template: "%s · Witness Archive",
+  },
+  description:
+    "A curated archive of first-hand testimonies from people whose lives were changed by encounters with heaven, hell, and the divine.",
+  openGraph: {
+    type: "website",
+    siteName: "Witness Archive",
+    title: "Witness Archive — Testimonies of the Supernatural",
+    description:
+      "A curated archive of first-hand testimonies from people whose lives were changed by encounters with heaven, hell, and the divine.",
+  },
+  twitter: { card: "summary_large_image" },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="bg-slate-950 text-white">
-        {/* Navigation */}
-        <nav className="bg-slate-900/80 backdrop-blur border-b border-slate-700">
-          <div className="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-            <Link href="/" className="text-2xl font-bold">
-              Witness Archive
-            </Link>
-            <ul className="flex gap-6">
-              <li>
-                <Link href="/archive" className="hover:text-blue-400 transition">
-                  Archive
-                </Link>
-              </li>
-              <li>
-                <AuthNav />
-              </li>
-            </ul>
-          </div>
-        </nav>
-
-        {/* Main content */}
-        {children}
-
-        {/* Footer */}
-        <footer className="bg-slate-900 border-t border-slate-700 mt-20 py-8">
-          <div className="max-w-5xl mx-auto px-6 text-center text-slate-400">
-            <p>&copy; 2026 Witness Archive. All testimonies are shared with permission.</p>
-          </div>
-        </footer>
+      <head>
+        {/* Fonts load at runtime so builds never depend on network access. */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* eslint-disable-next-line @next/next/no-page-custom-font -- root app-router layout applies to every page */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="min-h-screen flex flex-col">
+        <SiteHeader />
+        <div className="flex-1">{children}</div>
+        <SiteFooter />
       </body>
     </html>
   );

@@ -1,53 +1,140 @@
 import Link from "next/link";
+import TestimonyCard from "@/components/TestimonyCard";
+import { CATEGORIES } from "@/lib/categories";
+import { getCategoryCounts, getRecentTestimonies } from "@/lib/queries";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const [recent, counts] = await Promise.all([getRecentTestimonies(3), getCategoryCounts()]);
+  const total = Object.values(counts).reduce((a, b) => a + b, 0);
+
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800">
-      <div className="max-w-5xl mx-auto px-6 py-20">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-white mb-4">Witness Archive</h1>
-          <p className="text-xl text-slate-300 mb-8">
-            A curated collection of life-changing testimonies from people who have experienced the supernatural.
+    <main>
+      {/* Hero */}
+      <section className="relative overflow-hidden">
+        <div className="mx-auto max-w-6xl px-5 pb-20 pt-24 text-center sm:pt-32">
+          <p className="eyebrow fade-up mb-6">A record of the unexplainable</p>
+          <h1 className="font-display fade-up mx-auto max-w-4xl text-5xl font-light leading-[1.05] tracking-tight text-parchment-50 sm:text-7xl">
+            They came back <em className="text-gold-400 not-italic">changed.</em>
+            <br />
+            These are their words.
+          </h1>
+          <p className="fade-up mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-parchment-300">
+            Witness Archive gathers first-hand testimonies of heaven, hell, healing, and divine encounter —
+            stories scattered across the internet — into one place where they can be found, heard, and
+            discussed with care.
           </p>
-          <div className="flex gap-4 justify-center">
-            <Link
-              href="/archive"
-              className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition"
-            >
-              Browse Testimonies
+          <div className="fade-up mt-10 flex flex-wrap items-center justify-center gap-4">
+            <Link href="/archive" className="btn btn-primary">
+              Browse the archive
+              <span aria-hidden>→</span>
             </Link>
-            <Link
-              href="/auth"
-              className="px-8 py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-lg font-semibold transition"
-            >
-              Sign In
+            <Link href="/about" className="btn btn-ghost">
+              Why this exists
             </Link>
           </div>
+          {total > 0 && (
+            <p className="mt-8 text-xs tracking-[0.2em] text-parchment-700 uppercase">
+              {total} {total === 1 ? "testimony" : "testimonies"} · {Object.keys(counts).length} collections
+            </p>
+          )}
+        </div>
+        <div className="hairline mx-auto max-w-4xl" />
+      </section>
+
+      {/* Recent */}
+      <section className="mx-auto max-w-6xl px-5 py-20">
+        <div className="mb-10 flex items-end justify-between gap-6">
+          <div>
+            <p className="eyebrow mb-3">Recently added</p>
+            <h2 className="font-display text-3xl text-parchment-50 sm:text-4xl">Latest entries</h2>
+          </div>
+          <Link href="/archive" className="hidden text-sm text-gold-400 hover:text-gold-300 sm:block">
+            View all →
+          </Link>
         </div>
 
-        {/* Features */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-          <div className="bg-slate-700/50 p-6 rounded-lg">
-            <h3 className="text-xl font-semibold text-white mb-3">Curated Stories</h3>
-            <p className="text-slate-300">
-              Hand-selected testimonies from people who have genuinely encountered the supernatural and the divine.
-            </p>
+        {recent.length === 0 ? (
+          <div className="card p-12 text-center text-parchment-500">
+            The archive is being assembled. The first testimonies will appear here soon.
           </div>
-          <div className="bg-slate-700/50 p-6 rounded-lg">
-            <h3 className="text-xl font-semibold text-white mb-3">Community Discussions</h3>
-            <p className="text-slate-300">
-              Join conversations, ask questions, and engage with others in our community of seekers and believers.
-            </p>
+        ) : (
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {recent.map((t, i) => (
+              <TestimonyCard key={t.id} testimony={t} priority={i === 0} />
+            ))}
           </div>
-          <div className="bg-slate-700/50 p-6 rounded-lg">
-            <h3 className="text-xl font-semibold text-white mb-3">Accessible Archive</h3>
-            <p className="text-slate-300">
-              No more hunting for scattered videos. Find meaningful testimonies in one organized, searchable place.
-            </p>
+        )}
+      </section>
+
+      {/* Collections */}
+      <section className="border-y border-ink-700 bg-ink-900/60">
+        <div className="mx-auto max-w-6xl px-5 py-20">
+          <p className="eyebrow mb-3">Collections</p>
+          <h2 className="font-display mb-10 text-3xl text-parchment-50 sm:text-4xl">Explore by encounter</h2>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {CATEGORIES.map((c) => (
+              <Link
+                key={c.slug}
+                href={`/archive?category=${c.slug}`}
+                className="card group flex flex-col p-6"
+              >
+                <div className="flex items-baseline justify-between">
+                  <h3 className="font-display text-xl text-parchment-50 group-hover:text-gold-300">{c.name}</h3>
+                  <span className="text-xs text-parchment-700">{counts[c.name] ?? 0}</span>
+                </div>
+                <p className="mt-2 text-sm leading-relaxed text-parchment-500">{c.blurb}</p>
+              </Link>
+            ))}
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* How it works */}
+      <section className="mx-auto max-w-6xl px-5 py-20">
+        <div className="grid gap-12 md:grid-cols-3">
+          {[
+            {
+              n: "01",
+              title: "Gathered",
+              body: "We track down testimonies that live in old uploads, obscure channels, and forgotten interviews, and give each one a permanent home.",
+            },
+            {
+              n: "02",
+              title: "Contextualized",
+              body: "Every entry is catalogued by the kind of encounter, credited to its original creator, and paired with a readable written account where one exists.",
+            },
+            {
+              n: "03",
+              title: "Discussed",
+              body: "Members can respond to each testimony — with questions, their own experiences, or simply the acknowledgment that they were heard.",
+            },
+          ].map((s) => (
+            <div key={s.n}>
+              <p className="font-display text-4xl text-gold-500/60">{s.n}</p>
+              <h3 className="font-display mt-3 text-2xl text-parchment-50">{s.title}</h3>
+              <p className="mt-3 leading-relaxed text-parchment-500">{s.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="mx-auto max-w-6xl px-5 pb-8">
+        <div className="card relative overflow-hidden p-10 text-center sm:p-16">
+          <p className="eyebrow mb-4">Have a story?</p>
+          <h2 className="font-display mx-auto max-w-2xl text-3xl text-parchment-50 sm:text-4xl">
+            If something happened to you that you cannot explain, it belongs here.
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-parchment-500">
+            Submit a video or a written account. Every submission is read by a person before it is published.
+          </p>
+          <Link href="/submit" className="btn btn-primary mt-8">
+            Submit a testimony
+          </Link>
+        </div>
+      </section>
     </main>
   );
 }

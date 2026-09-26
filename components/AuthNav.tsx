@@ -5,9 +5,10 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import type { User } from "@supabase/supabase-js";
+import { displayNameFor } from "@/lib/user";
 
 export default function AuthNav() {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null | undefined>(undefined);
   const router = useRouter();
 
   useEffect(() => {
@@ -20,25 +21,32 @@ export default function AuthNav() {
     return () => subscription.unsubscribe();
   }, []);
 
+  // Reserve the space while the session resolves to avoid layout shift.
+  if (user === undefined) {
+    return <span className="inline-block h-8 w-16" aria-hidden />;
+  }
+
   if (!user) {
     return (
-      <Link href="/auth" className="hover:text-blue-400 transition">
-        Sign In
+      <Link href="/auth" className="btn btn-ghost !px-4 !py-1.5 text-sm">
+        Sign in
       </Link>
     );
   }
 
   return (
-    <div className="flex items-center gap-4">
-      <span className="text-sm text-slate-400 hidden sm:inline">{user.email}</span>
+    <div className="flex items-center gap-3">
+      <span className="hidden text-sm text-parchment-500 sm:inline">{displayNameFor(user)}</span>
       <button
+        type="button"
         onClick={async () => {
           await supabase.auth.signOut();
           router.push("/");
+          router.refresh();
         }}
-        className="hover:text-blue-400 transition"
+        className="btn btn-ghost !px-4 !py-1.5 text-sm"
       >
-        Sign Out
+        Sign out
       </button>
     </div>
   );
