@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { languageByCode } from "@/lib/languages";
+import { selectVoices, voiceLabel } from "@/lib/voices";
 
 /**
  * Read-or-listen body. "Listen" uses the browser's speech synthesis, reads
@@ -29,12 +30,11 @@ export default function TestimonyBody({ paragraphs, title, lang = "en" }: { para
     if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
     queueMicrotask(() => setSupported(true));
     const loadVoices = () => {
-      const all = window.speechSynthesis.getVoices().filter((v) => v.lang.toLowerCase().startsWith(speechPrefix));
+      const all = selectVoices(window.speechSynthesis.getVoices(), speechPrefix);
       setVoices(all);
-      if (!voiceRef.current && all.length) {
-        const preferred = all.find((v) => /natural|premium|enhanced|neural/i.test(v.name)) ?? all.find((v) => v.default) ?? all[0];
-        setVoiceURI(preferred.voiceURI);
-        voiceRef.current = preferred.voiceURI;
+      if ((!voiceRef.current || !all.some((v) => v.voiceURI === voiceRef.current)) && all.length) {
+        setVoiceURI(all[0].voiceURI);
+        voiceRef.current = all[0].voiceURI;
       }
     };
     loadVoices();
@@ -167,7 +167,7 @@ export default function TestimonyBody({ paragraphs, title, lang = "en" }: { para
                   {ui.voice}
                   <select value={voiceURI} onChange={(e) => changeVoice(e.target.value)} className="input !w-auto max-w-[12rem] !py-1 !text-xs">
                     {voices.map((v) => (
-                      <option key={v.voiceURI} value={v.voiceURI}>{v.name}</option>
+                      <option key={v.voiceURI} value={v.voiceURI}>{voiceLabel(v)}</option>
                     ))}
                   </select>
                 </label>
