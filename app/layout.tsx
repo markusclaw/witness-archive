@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import Analytics from "@/components/Analytics";
+import { Suspense } from "react";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://witnessarchive.org";
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-BTC45VG71W";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -40,6 +43,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteHeader />
         <div className="flex-1">{children}</div>
         <SiteFooter />
+        {GA_ID && (
+          <Suspense>
+            <Analytics id={GA_ID} />
+          </Suspense>
+        )}
       </body>
     </html>
   );
