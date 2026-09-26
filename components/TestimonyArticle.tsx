@@ -170,51 +170,47 @@ export default async function TestimonyArticle({ param, lang, prefixed = false }
     ],
   };
 
+  const facts: string[] = [];
+  if (testimony.experienced_on) facts.push(formatExperienced(testimony.experienced_on, testimony.experienced_precision));
+  const place = formatLocation(testimony);
+  if (place) facts.push(place);
+  facts.push(formatDate(testimony.created_at));
+  if (minutes) facts.push(minutes);
+  if (testimony.view_count > 0) facts.push(`${compactNumber(testimony.view_count)} ${testimony.view_count === 1 ? "view" : "views"}`);
+
   const metaRow = (
-    <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-parchment-500">
-      <span itemProp="author" itemScope itemType="https://schema.org/Person" className="flex items-center gap-2">
-        {!testimony.is_anonymous && <Avatar name={author} src={authorProfile?.avatar_url} seed={testimony.author_id ?? author} size="xs" />}
-        <span>
-          {ui.sharedBy}{" "}
-          {!testimony.is_anonymous && testimony.author_id ? (
-            <Link href={`/author/${testimony.author_id}`} className="text-parchment-100 hover:text-gold-300" itemProp="url">
-              <span itemProp="name">{author}</span>
-            </Link>
-          ) : (
-            <span className="text-parchment-100" itemProp="name">{author}</span>
-          )}
+    <div className="mt-6 space-y-3 text-sm text-parchment-500">
+      <div className="flex flex-wrap items-center gap-3">
+        <span itemProp="author" itemScope itemType="https://schema.org/Person" className="flex items-center gap-2">
+          {!testimony.is_anonymous && <Avatar name={author} src={authorProfile?.avatar_url} seed={testimony.author_id ?? author} size="xs" />}
+          <span>
+            {ui.sharedBy}{" "}
+            {!testimony.is_anonymous && testimony.author_id ? (
+              <Link href={`/author/${testimony.author_id}`} className="text-parchment-100 hover:text-gold-300" itemProp="url">
+                <span itemProp="name">{author}</span>
+              </Link>
+            ) : (
+              <span className="text-parchment-100" itemProp="name">{author}</span>
+            )}
+          </span>
         </span>
         {!testimony.is_anonymous && testimony.author_id && <FollowButton userId={testimony.author_id} />}
-      </span>
-      {testimony.experienced_on && (
-        <>
-          <span aria-hidden>·</span>
-          <span title="When it happened">{formatExperienced(testimony.experienced_on, testimony.experienced_precision)}</span>
-        </>
-      )}
-      {formatLocation(testimony) && (
-        <>
-          <span aria-hidden>·</span>
-          <span title="Where it happened">{formatLocation(testimony)}</span>
-        </>
-      )}
-      <span aria-hidden>·</span>
-      <time dateTime={testimony.created_at} itemProp="datePublished">{formatDate(testimony.created_at)}</time>
-      {minutes && (
-        <>
-          <span aria-hidden>·</span>
-          <span>{minutes}</span>
-        </>
-      )}
-      {testimony.view_count > 0 && (
-        <>
-          <span aria-hidden>·</span>
-          <span title="Views">{compactNumber(testimony.view_count)} {testimony.view_count === 1 ? "view" : "views"}</span>
-        </>
-      )}
-      <span className="ml-auto">
-        <ShareButton title={shown.title} />
-      </span>
+        <span className="ml-auto">
+          <ShareButton title={shown.title} />
+        </span>
+      </div>
+      <p className="leading-relaxed">
+        {facts.map((f, i) => (
+          <span key={i}>
+            <span className="whitespace-nowrap">
+              {f}
+              {i < facts.length - 1 && <span aria-hidden className="ml-2 text-parchment-700">·</span>}
+            </span>
+            {i < facts.length - 1 && " "}
+          </span>
+        ))}
+        <time dateTime={testimony.created_at} itemProp="datePublished" className="sr-only">{testimony.created_at}</time>
+      </p>
     </div>
   );
 

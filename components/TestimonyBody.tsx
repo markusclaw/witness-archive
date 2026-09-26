@@ -129,7 +129,7 @@ export default function TestimonyBody({ paragraphs, title, lang = "en" }: { para
   return (
     <section aria-label="Written account">
       {supported && (
-        <div className="mb-8 flex flex-wrap items-center gap-3">
+        <div className={`mb-8 flex flex-wrap items-center gap-3 ${mode === "listen" ? "listen-bar" : ""}`}>
           <div className="flex gap-1 rounded-full border border-ink-600 p-0.5 text-sm">
             <button type="button" onClick={leaveListen} className={`rounded-full px-4 py-1.5 ${mode === "read" ? "bg-ink-600 text-parchment-50" : "text-parchment-500 hover:text-parchment-100"}`}>
               {ui.read}

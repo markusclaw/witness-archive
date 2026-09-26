@@ -24,7 +24,7 @@ export default function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-full px-2.5 py-1.5 text-sm text-parchment-300 sm:px-3 transition hover:bg-ink-800 hover:text-parchment-50"
+              className="rounded-full px-2.5 py-2 text-sm text-parchment-300 sm:px-3 sm:py-1.5 transition hover:bg-ink-800 hover:text-parchment-50"
             >
               {item.label}
             </Link>

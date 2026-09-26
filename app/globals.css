@@ -221,6 +221,42 @@ body::before {
   color: var(--color-parchment-100);
 }
 
+@media (max-width: 640px) {
+  .prose-testimony {
+    font-size: 1.02rem;
+    line-height: 1.75;
+  }
+  .paper-body,
+  .paper-review {
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+}
+
+/* Listen controls stay reachable while reading along on a phone. */
+.listen-bar {
+  position: sticky;
+  top: 3.6rem;
+  z-index: 30;
+  margin-left: -1.25rem;
+  margin-right: -1.25rem;
+  padding: 0.6rem 1.25rem;
+  background: rgb(10 9 8 / 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-ink-700);
+}
+
+@media (min-width: 640px) {
+  .listen-bar {
+    position: static;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    backdrop-filter: none;
+  }
+}
+
 .prose-testimony p {
   margin-bottom: 1.4em;
 }

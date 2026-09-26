@@ -72,7 +72,7 @@ export default function MyTestimonies() {
     <div className="space-y-8">
       {justSaved && <p className="rounded-lg border border-gold-500/40 bg-gold-500/10 p-3 text-sm text-parchment-100">Draft saved. It&apos;s private until you publish it.</p>}
 
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm text-parchment-500">
           {rows.length} {rows.length === 1 ? "testimony" : "testimonies"} · {rows.filter((r) => r.status === "published").length} published
         </p>
