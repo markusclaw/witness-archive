@@ -3,7 +3,7 @@ import type { Testimony } from "@/lib/types";
 import { youtubeThumbnail } from "@/lib/youtube";
 import { catalogNumber, formatDate } from "@/lib/format";
 import { testimonyPath } from "@/lib/seo";
-import { compactNumber, formatLocation } from "@/lib/format";
+import { compactNumber, formatLocation, isTruncatedExcerpt } from "@/lib/format";
 
 export default function TestimonyCard({ testimony, priority = false }: { testimony: Testimony; priority?: boolean }) {
   const thumb = youtubeThumbnail(testimony.video_url);
@@ -36,13 +36,16 @@ export default function TestimonyCard({ testimony, priority = false }: { testimo
         <h3 className="font-display text-xl leading-snug text-parchment-50 group-hover:text-gold-300">
           {testimony.title}
         </h3>
-        <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-parchment-500">{testimony.description}</p>
+        {!isTruncatedExcerpt(testimony.description, testimony.content) && (
+          <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-parchment-500">{testimony.description}</p>
+        )}
         <div className="mt-auto flex items-center justify-between pt-5 text-xs text-parchment-700">
           <span className="truncate">
             {testimony.is_anonymous ? "Anonymous" : testimony.creator}
             {testimony.part_number > 1 && <span className="ml-2 text-gold-500">· Part {testimony.part_number}</span>}
           </span>
           <span className="truncate pl-3 text-right">
+            {testimony.heart_count > 0 && <span className="mr-2 text-parchment-700">♥ {compactNumber(testimony.heart_count)}</span>}
             {testimony.view_count > 0 && <span className="mr-2 text-parchment-700">{compactNumber(testimony.view_count)} views</span>}
             {formatLocation(testimony) ?? formatDate(testimony.created_at)}
           </span>

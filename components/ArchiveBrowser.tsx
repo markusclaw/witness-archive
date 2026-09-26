@@ -6,7 +6,7 @@ import TestimonyCard from "@/components/TestimonyCard";
 import { CATEGORIES, categoryBySlug } from "@/lib/categories";
 import type { Testimony } from "@/lib/types";
 
-type Sort = "newest" | "oldest" | "title" | "views";
+type Sort = "newest" | "oldest" | "title" | "views" | "hearts";
 
 export default function ArchiveBrowser({
   testimonies,
@@ -55,6 +55,7 @@ export default function ArchiveBrowser({
     list = [...list].sort((a, b) => {
       if (sort === "title") return a.title.localeCompare(b.title);
       if (sort === "views") return (b.view_count ?? 0) - (a.view_count ?? 0);
+      if (sort === "hearts") return (b.heart_count ?? 0) - (a.heart_count ?? 0);
       const d = new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
       return sort === "newest" ? -d : d;
     });
@@ -98,6 +99,7 @@ export default function ArchiveBrowser({
             <option value="newest">Newest first</option>
             <option value="oldest">Oldest first</option>
             <option value="views">Most viewed</option>
+            <option value="hearts">Most loved</option>
             <option value="title">Title A–Z</option>
           </select>
         </div>

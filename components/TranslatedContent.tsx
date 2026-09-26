@@ -21,12 +21,14 @@ export default function TranslatedContent({
   initial,
   meta,
   between,
+  hideDescription = false,
 }: {
   testimony: Testimony;
   lang: string;
   initial: Translation | null;
   meta: React.ReactNode;
   between: React.ReactNode;
+  hideDescription?: boolean;
 }) {
   const isTranslated = lang !== testimony.language;
   const language = languageByCode(lang)!;
@@ -68,7 +70,9 @@ export default function TranslatedContent({
         <h1 className="font-display text-4xl font-light leading-tight text-parchment-50 sm:text-5xl" itemProp="headline">
           {shown.title}
         </h1>
-        <p className="mt-5 text-lg leading-relaxed text-parchment-300" itemProp="description">{shown.description}</p>
+        {!(hideDescription && !translation) && shown.description && (
+          <p className="mt-5 text-lg leading-relaxed text-parchment-300" itemProp="description">{shown.description}</p>
+        )}
         {meta}
         {isTranslated && (
           <p className="mt-4 rounded-lg border border-ink-600 bg-ink-900/60 px-4 py-2 text-xs text-parchment-500">

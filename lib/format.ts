@@ -71,3 +71,14 @@ export function compactNumber(n: number): string {
   if (n < 1_000_000) return `${(n / 1000).toFixed(n < 10_000 ? 1 : 0).replace(/\.0$/, "")}k`;
   return `${(n / 1_000_000).toFixed(1).replace(/\.0$/, "")}M`;
 }
+
+/**
+ * True when a description is just the opening of the body (the old auto-fill),
+ * so pages can hide it instead of showing a cut-off duplicate.
+ */
+export function isTruncatedExcerpt(description: string | null | undefined, content: string | null | undefined): boolean {
+  if (!description || !content) return false;
+  const d = description.replace(/\s+/g, " ").replace(/…$/, "").trim().toLowerCase();
+  const c = content.replace(/\s+/g, " ").trim().toLowerCase();
+  return d.length > 40 && c.startsWith(d.slice(0, Math.min(d.length, 120)));
+}

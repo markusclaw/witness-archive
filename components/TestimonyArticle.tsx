@@ -14,7 +14,8 @@ import VideoEmbed from "@/components/VideoEmbed";
 import ViewPing from "@/components/ViewPing";
 import FollowButton from "@/components/FollowButton";
 import { slugForCategoryName } from "@/lib/categories";
-import { catalogNumber, compactNumber, formatDate, formatExperienced, formatLocation, readingTime } from "@/lib/format";
+import { catalogNumber, compactNumber, formatDate, formatExperienced, formatLocation, isTruncatedExcerpt, readingTime } from "@/lib/format";
+import HeartButton from "@/components/HeartButton";
 import { LANGUAGES, languageByCode } from "@/lib/languages";
 import { getProfile, getRelatedTestimonies, getSeriesParts, getTestimonyById } from "@/lib/queries";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL, absoluteUrl, collectionPath, localizedTestimonyPath, metaDescription, parseTestimonyParam, testimonyPath } from "@/lib/seo";
@@ -42,7 +43,8 @@ export async function testimonyMetadata(param: string, lang: string): Promise<Me
   const author = t.is_anonymous ? "Anonymous" : t.creator;
   const image = youtubeThumbnail(t.video_url, "maxres") ?? absoluteUrl(DEFAULT_OG_IMAGE);
   const title = t.part_number > 1 ? `${shown.title} (Part ${t.part_number})` : shown.title;
-  const description = metaDescription(`${shown.description} — ${t.category}, ${author}.`);
+  const base = isTruncatedExcerpt(t.description, t.content) && !translation ? `A first-hand ${t.category.toLowerCase()} testimony by ${author}.` : shown.description;
+  const description = metaDescription(`${base} — ${t.category}, ${author}.`);
   const languages: Record<string, string> = {};
   for (const l of LANGUAGES) languages[l.code] = absoluteUrl(localizedTestimonyPath(t, l.code));
   languages["x-default"] = absoluteUrl(testimonyPath(t));
@@ -176,7 +178,7 @@ export default async function TestimonyArticle({ param, lang, prefixed = false }
   if (place) facts.push(place);
   facts.push(formatDate(testimony.created_at));
   if (minutes) facts.push(minutes);
-  if (testimony.view_count > 0) facts.push(`${compactNumber(testimony.view_count)} ${testimony.view_count === 1 ? "view" : "views"}`);
+  facts.push(`${compactNumber(testimony.view_count ?? 0)} ${testimony.view_count === 1 ? "view" : "views"}`);
 
   const metaRow = (
     <div className="mt-6 space-y-3 text-sm text-parchment-500">
@@ -195,7 +197,8 @@ export default async function TestimonyArticle({ param, lang, prefixed = false }
           </span>
         </span>
         {!testimony.is_anonymous && testimony.author_id && <FollowButton userId={testimony.author_id} />}
-        <span className="ml-auto">
+        <span className="ml-auto flex items-center gap-2">
+          <HeartButton testimonyId={testimony.id} initialCount={testimony.heart_count ?? 0} />
           <ShareButton title={shown.title} />
         </span>
       </div>
@@ -255,7 +258,7 @@ export default async function TestimonyArticle({ param, lang, prefixed = false }
           </span>
         </div>
 
-        <TranslatedContent testimony={testimony} lang={lang} initial={translation} meta={metaRow} between={between} />
+        <TranslatedContent testimony={testimony} lang={lang} initial={translation} meta={metaRow} between={between} hideDescription={isTruncatedExcerpt(testimony.description, testimony.content)} />
 
         {!testimony.is_anonymous && testimony.author_bio && (
           <aside className="mt-10 flex gap-4 rounded-xl border border-ink-600 bg-ink-900/60 p-5">

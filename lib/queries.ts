@@ -2,7 +2,7 @@ import { createServerSupabase } from "@/lib/supabase-server";
 import type { Testimony } from "@/lib/types";
 
 export const TESTIMONY_COLUMNS =
-  "id, title, description, video_url, creator, category, content, created_at, updated_at, author_id, is_anonymous, author_bio, experienced_on, series_id, part_number, status, language, experienced_precision, location_text, location_city, location_region, location_country, location_country_code, view_count";
+  "id, title, description, video_url, creator, category, content, created_at, updated_at, author_id, is_anonymous, author_bio, experienced_on, series_id, part_number, status, language, experienced_precision, location_text, location_city, location_region, location_country, location_country_code, view_count, heart_count";
 
 // RLS already hides drafts from the anon server client; the explicit filter
 // keeps intent obvious and protects against a policy change.

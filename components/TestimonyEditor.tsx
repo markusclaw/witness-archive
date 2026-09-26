@@ -15,7 +15,7 @@ import { cleanTranscript, looksLikeTranscript } from "@/lib/transcript";
 import { testimonyPath } from "@/lib/seo";
 import { fetchMyProfile } from "@/lib/profiles";
 import type { DatePrecision, ExtractedDetails, FormatSuggestion, Testimony } from "@/lib/types";
-import { formatExperienced } from "@/lib/format";
+import { formatExperienced, isTruncatedExcerpt } from "@/lib/format";
 
 type SeriesOption = { series_id: string; title: string; nextPart: number };
 
@@ -35,6 +35,7 @@ const PROMPTS = [
 interface LocalDraft {
   title: string;
   content: string;
+  description?: string;
   category: string;
   creator: string;
   isAnonymous: boolean;
@@ -52,6 +53,7 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
   // ---- content ----
   const [title, setTitle] = useState(existing?.title ?? "");
   const [content, setContent] = useState(existing?.content ?? "");
+  const [description, setDescription] = useState(existing && !isTruncatedExcerpt(existing.description, existing.content) ? existing.description : "");
   const [prompt] = useState(() => PROMPTS[Math.floor(Math.random() * PROMPTS.length)]);
 
   // ---- details ----
@@ -153,7 +155,7 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
     if (!content.trim() && !title.trim()) return;
     const t = window.setTimeout(() => {
       try {
-        const d: LocalDraft = { title, content, category, creator, isAnonymous, authorBio, experiencedOn, videoUrl, savedAt: Date.now() };
+        const d: LocalDraft = { title, content, description, category, creator, isAnonymous, authorBio, experiencedOn, videoUrl, savedAt: Date.now() };
         window.localStorage.setItem(localKey, JSON.stringify(d));
         setLocalSavedAt(d.savedAt);
       } catch {
@@ -161,12 +163,13 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
       }
     }, 800);
     return () => window.clearTimeout(t);
-  }, [title, content, category, creator, isAnonymous, authorBio, experiencedOn, videoUrl, localKey]);
+  }, [title, content, description, category, creator, isAnonymous, authorBio, experiencedOn, videoUrl, localKey]);
 
   const restoreLocal = () => {
     if (!restored) return;
     setTitle(restored.title);
     setContent(restored.content);
+    setDescription(restored.description ?? "");
     setCategory(restored.category);
     setCreator(restored.creator);
     setIsAnonymous(restored.isAnonymous);
@@ -268,6 +271,7 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
       setExtractedFor(key);
       // Fill only what's empty; the author's own entries always win.
       if (!title.trim() && json.titles[0]) setTitle(json.titles[0]);
+      if (!description.trim() && json.description) setDescription(json.description);
       if (json.category && category === CATEGORIES[0].name && !existing) setCategory(json.category);
       if (!experiencedOn && json.experienced) {
         setExperiencedOn(json.experienced.date);
@@ -307,7 +311,7 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
 
     const row = {
       title: title.trim(),
-      description: makeDescription(content),
+      description: description.trim() || makeDescription(content),
       video_url: videoUrl.trim() || null,
       creator: isAnonymous ? "Anonymous" : creator.trim(),
       category,
@@ -499,6 +503,9 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
                       ))}
                     </div>
                   )}
+                  {extracted.description && (
+                    <Suggestion label="Summary" value={extracted.description} applied={description === extracted.description} onUse={() => setDescription(extracted.description!)} />
+                  )}
                   {extracted.experienced && (
                     <Suggestion label="When" value={formatExperienced(extracted.experienced.date, extracted.experienced.precision)} evidence={extracted.experienced.evidence} applied={experiencedOn === extracted.experienced.date} onUse={() => { setExperiencedOn(extracted.experienced!.date); setPrecision(extracted.experienced!.precision); }} />
                   )}
@@ -512,6 +519,10 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
                 </div>
               )}
             </div>
+
+            <Field label="One-line summary" htmlFor="description" hint="Shown under the title, on cards, and in search results. The assistant can write it from your text.">
+              <textarea id="description" className="input resize-y" rows={2} value={description} onChange={(e) => setDescription(e.target.value.slice(0, 200))} placeholder="What happened, in a sentence." />
+            </Field>
 
             <div className="grid gap-6 sm:grid-cols-2">
               <Field label="Kind of encounter" htmlFor="category">
