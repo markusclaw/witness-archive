@@ -50,17 +50,24 @@ export default function AboutPage() {
 
       <div className="hairline my-14" />
 
-      <h2 className="font-display text-3xl text-parchment-50">How testimonies are chosen</h2>
+      <h2 className="font-display text-3xl text-parchment-50">How testimonies get here</h2>
       <div className="mt-4 space-y-4 leading-relaxed text-parchment-300">
         <p>
-          We are curators, not judges. We cannot verify what happened to someone on the other side of
-          death, and we don&apos;t pretend to. What we do look for is sincerity, a clear first-person account,
-          and a life that was visibly changed by the experience.
+          Anyone with an account can write and publish their own testimony, under their name or anonymously.
+          We are not judges: we cannot verify what happened to someone on the other side of death, and we
+          don&apos;t pretend to. What we ask for is a sincere, first-person account of something that
+          happened to you.
         </p>
         <p>
-          Every submission is read by a person before it is published. We credit the original creator,
-          embed the video from its public source rather than re-uploading it, and take entries down at a
-          creator&apos;s request.
+          Writing is hard, and an experience like this is harder still to put into words. So we offer an
+          assistant that tidies grammar, punctuation, and paragraph breaks — and nothing else. It never
+          changes what you said, every edit is shown to you before it&apos;s applied, and you can keep your
+          original. Long testimonies can be published in parts so they&apos;re read the way they were told.
+        </p>
+        <p>
+          Videos are embedded from their public source rather than re-uploaded, and any entry comes down at
+          its author&apos;s request. Accounts that publish content mocking others or plainly not a testimony will be
+          removed.
         </p>
       </div>
 
@@ -75,7 +82,7 @@ export default function AboutPage() {
 
       <div className="mt-14 flex flex-wrap gap-4">
         <Link href="/archive" className="btn btn-primary">Browse the archive</Link>
-        <Link href="/submit" className="btn btn-ghost">Submit a testimony</Link>
+        <Link href="/submit" className="btn btn-ghost">Write your testimony</Link>
       </div>
     </main>
   );

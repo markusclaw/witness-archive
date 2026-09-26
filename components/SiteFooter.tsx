@@ -35,7 +35,7 @@ export default function SiteFooter() {
           <ul className="space-y-2 text-sm">
             <li><Link href="/archive" className="text-parchment-300 hover:text-gold-300">Browse all</Link></li>
             <li><Link href="/about" className="text-parchment-300 hover:text-gold-300">About the project</Link></li>
-            <li><Link href="/submit" className="text-parchment-300 hover:text-gold-300">Submit a testimony</Link></li>
+            <li><Link href="/submit" className="text-parchment-300 hover:text-gold-300">Write your testimony</Link></li>
             <li><Link href="/auth" className="text-parchment-300 hover:text-gold-300">Sign in</Link></li>
           </ul>
         </div>

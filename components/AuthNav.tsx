@@ -36,7 +36,9 @@ export default function AuthNav() {
 
   return (
     <div className="flex items-center gap-3">
-      <span className="hidden text-sm text-parchment-500 sm:inline">{displayNameFor(user)}</span>
+      <Link href="/me" className="hidden text-sm text-parchment-300 transition hover:text-gold-300 sm:inline" title="My testimonies">
+        {displayNameFor(user)}
+      </Link>
       <button
         type="button"
         onClick={async () => {

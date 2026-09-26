@@ -107,8 +107,8 @@ export default async function Home() {
             },
             {
               n: "03",
-              title: "Discussed",
-              body: "Members can respond to each testimony — with questions, their own experiences, or simply the acknowledgment that they were heard.",
+              title: "Shared",
+              body: "Members write and publish their own testimonies — in parts if the story is long — and respond to one another with questions, their own experiences, or simply the acknowledgment that they were heard.",
             },
           ].map((s) => (
             <div key={s.n}>
@@ -128,10 +128,11 @@ export default async function Home() {
             If something happened to you that you cannot explain, it belongs here.
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-parchment-500">
-            Submit a video or a written account. Every submission is read by a person before it is published.
+            Write it in your own words. An assistant can tidy the grammar and paragraphs — never the meaning — and you
+            publish when it feels right. Anonymously, if you prefer.
           </p>
           <Link href="/submit" className="btn btn-primary mt-8">
-            Submit a testimony
+            Write your testimony
           </Link>
         </div>
       </section>

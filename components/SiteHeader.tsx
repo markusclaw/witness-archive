@@ -5,7 +5,7 @@ import Logo from "@/components/Logo";
 const NAV = [
   { href: "/archive", label: "Archive" },
   { href: "/about", label: "About" },
-  { href: "/submit", label: "Submit" },
+  { href: "/submit", label: "Write" },
 ];
 
 export default function SiteHeader() {

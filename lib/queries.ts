@@ -1,13 +1,17 @@
 import { createServerSupabase } from "@/lib/supabase-server";
 import type { Testimony } from "@/lib/types";
 
-const TESTIMONY_COLUMNS = "id, title, description, video_url, creator, category, content, created_at";
+export const TESTIMONY_COLUMNS =
+  "id, title, description, video_url, creator, category, content, created_at, updated_at, author_id, is_anonymous, author_bio, experienced_on, series_id, part_number, status";
 
+// RLS already hides drafts from the anon server client; the explicit filter
+// keeps intent obvious and protects against a policy change.
 export async function getAllTestimonies(): Promise<Testimony[]> {
   const supabase = createServerSupabase();
   const { data, error } = await supabase
     .from("testimonies")
     .select(TESTIMONY_COLUMNS)
+    .eq("status", "published")
     .order("created_at", { ascending: false });
   if (error) {
     console.error("getAllTestimonies:", error.message);
@@ -21,6 +25,7 @@ export async function getRecentTestimonies(limit = 3): Promise<Testimony[]> {
   const { data, error } = await supabase
     .from("testimonies")
     .select(TESTIMONY_COLUMNS)
+    .eq("status", "published")
     .order("created_at", { ascending: false })
     .limit(limit);
   if (error) {
@@ -31,14 +36,9 @@ export async function getRecentTestimonies(limit = 3): Promise<Testimony[]> {
 }
 
 export async function getTestimonyById(id: string): Promise<Testimony | null> {
-  // Guard against garbage ids before hitting Postgres (avoids uuid cast errors in logs).
   if (!/^[0-9a-f-]{36}$/i.test(id)) return null;
   const supabase = createServerSupabase();
-  const { data, error } = await supabase
-    .from("testimonies")
-    .select(TESTIMONY_COLUMNS)
-    .eq("id", id)
-    .maybeSingle();
+  const { data, error } = await supabase.from("testimonies").select(TESTIMONY_COLUMNS).eq("id", id).maybeSingle();
   if (error) {
     console.error("getTestimonyById:", error.message);
     return null;
@@ -46,17 +46,31 @@ export async function getTestimonyById(id: string): Promise<Testimony | null> {
   return (data as Testimony) ?? null;
 }
 
-export async function getRelatedTestimonies(
-  category: string,
-  excludeId: string,
-  limit = 3
-): Promise<Testimony[]> {
+/** Every published part of a series, in order. */
+export async function getSeriesParts(seriesId: string): Promise<Testimony[]> {
+  const supabase = createServerSupabase();
+  const { data, error } = await supabase
+    .from("testimonies")
+    .select(TESTIMONY_COLUMNS)
+    .eq("series_id", seriesId)
+    .eq("status", "published")
+    .order("part_number", { ascending: true });
+  if (error) {
+    console.error("getSeriesParts:", error.message);
+    return [];
+  }
+  return (data ?? []) as Testimony[];
+}
+
+export async function getRelatedTestimonies(category: string, excludeSeriesId: string, limit = 3): Promise<Testimony[]> {
   const supabase = createServerSupabase();
   const { data, error } = await supabase
     .from("testimonies")
     .select(TESTIMONY_COLUMNS)
     .eq("category", category)
-    .neq("id", excludeId)
+    .eq("status", "published")
+    .eq("part_number", 1)
+    .neq("series_id", excludeSeriesId)
     .order("created_at", { ascending: false })
     .limit(limit);
   if (error) {
@@ -68,14 +82,12 @@ export async function getRelatedTestimonies(
 
 export async function getCategoryCounts(): Promise<Record<string, number>> {
   const supabase = createServerSupabase();
-  const { data, error } = await supabase.from("testimonies").select("category");
+  const { data, error } = await supabase.from("testimonies").select("category").eq("status", "published");
   if (error) {
     console.error("getCategoryCounts:", error.message);
     return {};
   }
   const counts: Record<string, number> = {};
-  for (const row of data ?? []) {
-    counts[row.category] = (counts[row.category] ?? 0) + 1;
-  }
+  for (const row of data ?? []) counts[row.category] = (counts[row.category] ?? 0) + 1;
   return counts;
 }

@@ -36,7 +36,10 @@ export default function TestimonyCard({ testimony, priority = false }: { testimo
         </h3>
         <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-parchment-500">{testimony.description}</p>
         <div className="mt-auto flex items-center justify-between pt-5 text-xs text-parchment-700">
-          <span className="truncate">{testimony.creator}</span>
+          <span className="truncate">
+            {testimony.is_anonymous ? "Anonymous" : testimony.creator}
+            {testimony.part_number > 1 && <span className="ml-2 text-gold-500">· Part {testimony.part_number}</span>}
+          </span>
           <time dateTime={testimony.created_at}>{formatDate(testimony.created_at)}</time>
         </div>
       </div>
