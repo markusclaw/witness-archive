@@ -375,3 +375,9 @@ body:has(.writing-focus) .writing-chrome {
 body:has(.writing-focus)::before {
   background: radial-gradient(900px 500px at 50% 0%, rgb(201 163 90 / 0.05), transparent 60%);
 }
+
+/* Underline-style inputs (comment composer): the underline is the focus cue. */
+.quiet-input:focus-visible {
+  outline: none;
+  border-bottom-color: var(--color-gold-500);
+}

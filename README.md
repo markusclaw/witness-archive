@@ -15,6 +15,7 @@ A curated archive of first-hand testimonies of the supernatural — heaven, hell
    - `supabase/migrations/003_member_authoring.sql` — author fields, series, draft/published status, RLS for self-publishing
    - `supabase/migrations/004_profiles.sql` — member profiles (auto-created on sign-up) and the public `avatars` storage bucket
    - `supabase/migrations/005_languages.sql` — original-language column and the cached `testimony_translations` table
+   - `supabase/migrations/006_comment_replies.sql` — one-level threaded replies on comments
 2. Copy `.env.example` to `.env.local` and fill in the URL and anon key from *Project Settings → API*. Add an `ANTHROPIC_API_KEY` to enable the formatting assistant (the site works without it; the button just reports it isn't configured).
 3. `npm install && npm run dev`, then open http://localhost:3000.
 

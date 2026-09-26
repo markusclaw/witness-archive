@@ -45,6 +45,7 @@ export interface Comment {
   author: string;
   content: string;
   created_at: string;
+  parent_id: string | null;
 }
 
 /** What the formatting assistant returns. */
