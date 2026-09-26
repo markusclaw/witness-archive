@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import Comments from "@/components/Comments";
 
@@ -18,8 +18,9 @@ interface Testimony {
 export default function TestimonyPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = use(params);
   const [testimony, setTestimony] = useState<Testimony | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -28,7 +29,7 @@ export default function TestimonyPage({
       const { data, error } = await supabase
         .from("testimonies")
         .select("*")
-        .eq("id", params.id)
+        .eq("id", id)
         .single();
 
       if (error) {
@@ -40,7 +41,7 @@ export default function TestimonyPage({
     };
 
     fetchTestimony();
-  }, [params.id]);
+  }, [id]);
 
   if (loading) {
     return (
@@ -115,7 +116,7 @@ export default function TestimonyPage({
         {/* Comments Section */}
         <div className="border-t border-slate-700 pt-12">
           <h2 className="text-2xl font-bold text-white mb-8">Comments</h2>
-          <Comments testimonyId={params.id} />
+          <Comments testimonyId={id} />
         </div>
       </div>
     </main>

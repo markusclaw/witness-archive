@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
+import AuthNav from "@/components/AuthNav";
 
 export const metadata: Metadata = {
   title: "Witness Archive - Testimonies of the Supernatural",
@@ -28,9 +29,7 @@ export default function RootLayout({
                 </Link>
               </li>
               <li>
-                <Link href="/auth" className="hover:text-blue-400 transition">
-                  Sign In
-                </Link>
+                <AuthNav />
               </li>
             </ul>
           </div>
