@@ -9,9 +9,9 @@ const PREMIUM = /\b(premium|enhanced|natural|neural|siri|online|wavenet|studio|j
 
 /** Known good defaults per platform, in preference order. */
 const FAVORITES: Record<string, RegExp[]> = {
-  en: [/samantha/i, /\bava\b/i, /\balex\b/i, /daniel/i, /karen/i, /moira/i, /tessa/i, /google (us|uk) english/i, /microsoft (aria|jenny|guy|ryan|sonia)/i],
-  es: [/m[oó]nica/i, /paulina/i, /jorge/i, /juan/i, /google español/i, /microsoft (elvira|alvaro|dalia|jorge)/i],
-  pt: [/luciana/i, /joana/i, /felipe/i, /google português/i, /microsoft (francisca|antonio|raquel)/i],
+  en: [/^google (us|uk) english/i, /samantha/i, /\bava\b/i, /\balex\b/i, /daniel/i, /karen/i, /moira/i, /tessa/i, /google (us|uk) english/i, /microsoft (aria|jenny|guy|ryan|sonia)/i],
+  es: [/^google español/i, /m[oó]nica/i, /paulina/i, /jorge/i, /juan/i, /google español/i, /microsoft (elvira|alvaro|dalia|jorge)/i],
+  pt: [/^google português/i, /luciana/i, /joana/i, /felipe/i, /google português/i, /microsoft (francisca|antonio|raquel)/i],
 };
 
 export function selectVoices(all: SpeechSynthesisVoice[], lang: string, max = 4): SpeechSynthesisVoice[] {
@@ -47,4 +47,9 @@ export function selectVoices(all: SpeechSynthesisVoice[], lang: string, max = 4)
 /** "Samantha (English (United States))" -> "Samantha" */
 export function voiceLabel(v: SpeechSynthesisVoice): string {
   return v.name.replace(/\s*\((English|Español|Spanish|Português|Portuguese)[^)]*\)\s*/i, "").trim();
+}
+
+/** The one voice we use for a language: Google's when the browser has it, otherwise the best local one. */
+export function pickVoice(all: SpeechSynthesisVoice[], lang: string): SpeechSynthesisVoice | undefined {
+  return selectVoices(all, lang, 1)[0];
 }

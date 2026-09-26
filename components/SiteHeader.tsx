@@ -15,7 +15,7 @@ export default function SiteHeader() {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-5 sm:py-4">
         <Link href="/" className="flex items-center gap-3 group">
           <Logo className="h-7 w-7 text-gold-500 transition group-hover:text-gold-300" />
-          <span className="font-display hidden text-xl tracking-tight text-parchment-50 min-[420px]:inline">
+          <span className="font-display hidden text-xl tracking-tight text-parchment-50 sm:inline">
             Witness Archive
           </span>
         </Link>

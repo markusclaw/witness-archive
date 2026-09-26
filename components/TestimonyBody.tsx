@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { languageByCode } from "@/lib/languages";
-import { selectVoices, voiceLabel } from "@/lib/voices";
+import { pickVoice } from "@/lib/voices";
 
 /**
  * Read-or-listen body. "Listen" uses the browser's speech synthesis, reads
@@ -18,7 +18,6 @@ export default function TestimonyBody({ paragraphs, title, lang = "en" }: { para
   const [playing, setPlaying] = useState(false);
   const [current, setCurrent] = useState<number>(-1);
   const [rate, setRate] = useState(1);
-  const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
   const [voiceURI, setVoiceURI] = useState<string>("");
   const rateRef = useRef(rate);
   const voiceRef = useRef(voiceURI);
@@ -30,11 +29,10 @@ export default function TestimonyBody({ paragraphs, title, lang = "en" }: { para
     if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
     queueMicrotask(() => setSupported(true));
     const loadVoices = () => {
-      const all = selectVoices(window.speechSynthesis.getVoices(), speechPrefix);
-      setVoices(all);
-      if ((!voiceRef.current || !all.some((v) => v.voiceURI === voiceRef.current)) && all.length) {
-        setVoiceURI(all[0].voiceURI);
-        voiceRef.current = all[0].voiceURI;
+      const best = pickVoice(window.speechSynthesis.getVoices(), speechPrefix);
+      if (best && voiceRef.current !== best.voiceURI) {
+        setVoiceURI(best.voiceURI);
+        voiceRef.current = best.voiceURI;
       }
     };
     loadVoices();
@@ -114,12 +112,6 @@ export default function TestimonyBody({ paragraphs, title, lang = "en" }: { para
     if (playing && current >= 0) speakFrom(current);
   };
 
-  const changeVoice = (uri: string) => {
-    setVoiceURI(uri);
-    voiceRef.current = uri;
-    if (playing && current >= 0) speakFrom(current);
-  };
-
   const leaveListen = () => {
     stop();
     setCurrent(-1);
@@ -162,16 +154,6 @@ export default function TestimonyBody({ paragraphs, title, lang = "en" }: { para
                   ))}
                 </select>
               </label>
-              {voices.length > 1 && (
-                <label className="flex items-center gap-2 text-xs text-parchment-500">
-                  {ui.voice}
-                  <select value={voiceURI} onChange={(e) => changeVoice(e.target.value)} className="input !w-auto max-w-[12rem] !py-1 !text-xs">
-                    {voices.map((v) => (
-                      <option key={v.voiceURI} value={v.voiceURI}>{voiceLabel(v)}</option>
-                    ))}
-                  </select>
-                </label>
-              )}
               <span className="sr-only" aria-live="polite">{playing ? `Reading ${title}, paragraph ${current + 1} of ${paragraphs.length}` : ""}</span>
             </div>
           )}
