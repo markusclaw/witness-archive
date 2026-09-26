@@ -11,8 +11,10 @@ import ShareButton from "@/components/ShareButton";
 import TestimonyCard from "@/components/TestimonyCard";
 import TranslatedContent from "@/components/TranslatedContent";
 import VideoEmbed from "@/components/VideoEmbed";
+import ViewPing from "@/components/ViewPing";
+import FollowButton from "@/components/FollowButton";
 import { slugForCategoryName } from "@/lib/categories";
-import { catalogNumber, formatDate, formatExperienced, formatLocation, readingTime } from "@/lib/format";
+import { catalogNumber, compactNumber, formatDate, formatExperienced, formatLocation, readingTime } from "@/lib/format";
 import { LANGUAGES, languageByCode } from "@/lib/languages";
 import { getProfile, getRelatedTestimonies, getSeriesParts, getTestimonyById } from "@/lib/queries";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL, absoluteUrl, collectionPath, localizedTestimonyPath, metaDescription, parseTestimonyParam, testimonyPath } from "@/lib/seo";
@@ -173,8 +175,16 @@ export default async function TestimonyArticle({ param, lang, prefixed = false }
       <span itemProp="author" itemScope itemType="https://schema.org/Person" className="flex items-center gap-2">
         {!testimony.is_anonymous && <Avatar name={author} src={authorProfile?.avatar_url} seed={testimony.author_id ?? author} size="xs" />}
         <span>
-          {ui.sharedBy} <span className="text-parchment-100" itemProp="name">{author}</span>
+          {ui.sharedBy}{" "}
+          {!testimony.is_anonymous && testimony.author_id ? (
+            <Link href={`/author/${testimony.author_id}`} className="text-parchment-100 hover:text-gold-300" itemProp="url">
+              <span itemProp="name">{author}</span>
+            </Link>
+          ) : (
+            <span className="text-parchment-100" itemProp="name">{author}</span>
+          )}
         </span>
+        {!testimony.is_anonymous && testimony.author_id && <FollowButton userId={testimony.author_id} />}
       </span>
       {testimony.experienced_on && (
         <>
@@ -194,6 +204,12 @@ export default async function TestimonyArticle({ param, lang, prefixed = false }
         <>
           <span aria-hidden>·</span>
           <span>{minutes}</span>
+        </>
+      )}
+      {testimony.view_count > 0 && (
+        <>
+          <span aria-hidden>·</span>
+          <span title="Views">{compactNumber(testimony.view_count)} {testimony.view_count === 1 ? "view" : "views"}</span>
         </>
       )}
       <span className="ml-auto">
@@ -222,6 +238,7 @@ export default async function TestimonyArticle({ param, lang, prefixed = false }
   return (
     <main lang={lang}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <ViewPing id={testimony.id} />
       {prev && <link rel="prev" href={absoluteUrl(localizedTestimonyPath(prev, lang))} />}
       {next && <link rel="next" href={absoluteUrl(localizedTestimonyPath(next, lang))} />}
 
@@ -247,9 +264,12 @@ export default async function TestimonyArticle({ param, lang, prefixed = false }
         {!testimony.is_anonymous && testimony.author_bio && (
           <aside className="mt-10 flex gap-4 rounded-xl border border-ink-600 bg-ink-900/60 p-5">
             <Avatar name={author} src={authorProfile?.avatar_url} seed={testimony.author_id ?? author} size="lg" />
-            <div>
-              <p className="eyebrow mb-1">{testimony.creator}</p>
+            <div className="flex-1">
+              <p className="eyebrow mb-1">
+                {testimony.author_id ? <Link href={`/author/${testimony.author_id}`} className="hover:text-gold-300">{testimony.creator}</Link> : testimony.creator}
+              </p>
               <p className="text-sm text-parchment-300">{linkify(testimony.author_bio)}</p>
+              {testimony.author_id && <div className="mt-3"><FollowButton userId={testimony.author_id} /></div>}
             </div>
           </aside>
         )}

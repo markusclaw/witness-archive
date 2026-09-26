@@ -95,6 +95,7 @@ export default function AuthNav() {
             </div>
           </div>
           <div className="py-1">
+            <MenuLink href="/following" label="Following" />
             <MenuLink href="/me" label="My testimonies" />
             <MenuLink href="/submit" label="Write a testimony" />
             <MenuLink href="/settings" label="Settings" />

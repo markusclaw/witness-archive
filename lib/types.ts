@@ -24,6 +24,7 @@ export interface Testimony {
   location_region: string | null;
   location_country: string | null;
   location_country_code: string | null;
+  view_count: number;
 }
 
 export type DatePrecision = "day" | "month" | "year" | "approx";

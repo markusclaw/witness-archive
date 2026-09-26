@@ -1,7 +1,7 @@
 import Link from "next/link";
 import TestimonyCard from "@/components/TestimonyCard";
 import { CATEGORIES } from "@/lib/categories";
-import { getCategoryCounts, getRecentTestimonies } from "@/lib/queries";
+import { getCategoryCounts, getRecentTestimonies, getTrending } from "@/lib/queries";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = { alternates: { canonical: "/" } };
@@ -9,7 +9,7 @@ export const metadata: Metadata = { alternates: { canonical: "/" } };
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const [recent, counts] = await Promise.all([getRecentTestimonies(3), getCategoryCounts()]);
+  const [recent, counts, trending] = await Promise.all([getRecentTestimonies(3), getCategoryCounts(), getTrending(7, 3)]);
   const total = Object.values(counts).reduce((a, b) => a + b, 0);
 
   return (
@@ -70,6 +70,19 @@ export default async function Home() {
           </div>
         )}
       </section>
+
+      {/* Trending */}
+      {trending.length > 0 && (
+        <section className="mx-auto max-w-6xl px-5 pb-20">
+          <p className="eyebrow mb-3">Most read this week</p>
+          <h2 className="font-display mb-10 text-3xl text-parchment-50 sm:text-4xl">What people are turning to</h2>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {trending.map((t) => (
+              <TestimonyCard key={t.id} testimony={t} />
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Collections */}
       <section className="border-y border-ink-700 bg-ink-900/60">

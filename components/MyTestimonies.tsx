@@ -7,7 +7,7 @@ import type { User } from "@supabase/supabase-js";
 import { supabase } from "@/lib/supabase";
 import { TESTIMONY_COLUMNS } from "@/lib/queries";
 import type { Testimony } from "@/lib/types";
-import { formatDate } from "@/lib/format";
+import { compactNumber, formatDate } from "@/lib/format";
 import { testimonyPath } from "@/lib/seo";
 
 export default function MyTestimonies() {
@@ -100,7 +100,7 @@ export default function MyTestimonies() {
                     </div>
                     <p className="font-display mt-2 truncate text-xl text-parchment-50">{row.title}</p>
                     <p className="mt-1 text-xs text-parchment-700">
-                      {row.category} · updated {formatDate(row.updated_at)}
+                      {row.category} · updated {formatDate(row.updated_at)}{row.view_count > 0 && <> · {compactNumber(row.view_count)} views</>}
                     </p>
                   </div>
                   <div className="flex flex-wrap gap-2 text-sm">

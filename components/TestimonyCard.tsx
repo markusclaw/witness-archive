@@ -3,7 +3,7 @@ import type { Testimony } from "@/lib/types";
 import { youtubeThumbnail } from "@/lib/youtube";
 import { catalogNumber, formatDate } from "@/lib/format";
 import { testimonyPath } from "@/lib/seo";
-import { formatLocation } from "@/lib/format";
+import { compactNumber, formatLocation } from "@/lib/format";
 
 export default function TestimonyCard({ testimony, priority = false }: { testimony: Testimony; priority?: boolean }) {
   const thumb = youtubeThumbnail(testimony.video_url);
@@ -42,7 +42,10 @@ export default function TestimonyCard({ testimony, priority = false }: { testimo
             {testimony.is_anonymous ? "Anonymous" : testimony.creator}
             {testimony.part_number > 1 && <span className="ml-2 text-gold-500">· Part {testimony.part_number}</span>}
           </span>
-          <span className="truncate pl-3 text-right">{formatLocation(testimony) ?? formatDate(testimony.created_at)}</span>
+          <span className="truncate pl-3 text-right">
+            {testimony.view_count > 0 && <span className="mr-2 text-parchment-700">{compactNumber(testimony.view_count)} views</span>}
+            {formatLocation(testimony) ?? formatDate(testimony.created_at)}
+          </span>
         </div>
       </div>
     </Link>

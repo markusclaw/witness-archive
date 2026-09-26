@@ -17,6 +17,7 @@ A curated archive of first-hand testimonies of the supernatural — heaven, hell
    - `supabase/migrations/005_languages.sql` — original-language column and the cached `testimony_translations` table
    - `supabase/migrations/006_comment_replies.sql` — one-level threaded replies on comments
    - `supabase/migrations/007_metadata.sql` — where it happened and how precise the date is
+   - `supabase/migrations/008_follows_views.sql` — follows, view counts (total + per day) and the `record_view` function
 2. Copy `.env.example` to `.env.local` and fill in the URL and anon key from *Project Settings → API*. Add an `ANTHROPIC_API_KEY` to enable the formatting assistant (the site works without it; the button just reports it isn't configured).
 3. `npm install && npm run dev`, then open http://localhost:3000.
 
@@ -40,6 +41,8 @@ The app runs on Cloudflare Workers via the OpenNext adapter (`wrangler.jsonc`, `
 | `app/submit/` | The editor: write, polish with the assistant (diff review), save draft, publish; `?series=<id>` adds the next part |
 | `app/testimony/[id]/edit/` | Same editor, prefilled, for the author |
 | `app/settings/` | Display name, bio, avatar upload (resized in the browser to 256px), password reset |
+| `app/author/[id]/` | Public author page: bio, follower count, Follow button, their published testimonies |
+| `app/following/` | Feed of the latest testimonies from people you follow |
 | `app/me/` | The member's drafts and published testimonies, grouped by series: publish/unpublish, edit, delete, add part |
 | `app/api/format/` | Server route calling the Claude API with a strict "readability only" prompt; requires a signed-in member |
 | `app/api/extract/` | Reads a testimony and proposes title, category, when (with precision) and where, each with its supporting quote; nothing is applied without the author |
@@ -59,6 +62,10 @@ Members write at `/submit`. The content goes through an optional **Polish** pass
 A testimony is saved as a **draft** (private, visible only to its author) or **published** (live immediately). Long testimonies can be split into a **series**: every part shares a `series_id` and has a `part_number`; the detail page shows Part 1 → Part 2 navigation. Authors can publish anonymously; their account is still linked so they can edit later, but no name is shown.
 
 Moderation is by hand for now: any row can be flipped to `draft` (hidden) or deleted from the Supabase dashboard. The `status` column is there so an approval step can be added later without a migration.
+
+## Views and follows
+
+A view is counted once per visitor per testimony per day, by a small client ping (`ViewPing`) that calls the `record_view` function 1.5s after render — so crawlers and bounces don't count. Totals live on `testimonies.view_count`; per-day rows in `testimony_views_daily` power "Most read this week" on the homepage and can be aggregated for any window. The archive can sort by most viewed. Follows are a simple `(follower, followee)` table with public counts; anonymous testimonies never link to an author page.
 
 ## Languages
 
