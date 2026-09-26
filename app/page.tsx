@@ -2,6 +2,9 @@ import Link from "next/link";
 import TestimonyCard from "@/components/TestimonyCard";
 import { CATEGORIES } from "@/lib/categories";
 import { getCategoryCounts, getRecentTestimonies } from "@/lib/queries";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 export const dynamic = "force-dynamic";
 
@@ -77,7 +80,7 @@ export default async function Home() {
             {CATEGORIES.map((c) => (
               <Link
                 key={c.slug}
-                href={`/archive?category=${c.slug}`}
+                href={`/collections/${c.slug}`}
                 className="card group flex flex-col p-6"
               >
                 <div className="flex items-baseline justify-between">

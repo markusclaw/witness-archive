@@ -22,7 +22,7 @@ export default function SiteFooter() {
           <ul className="space-y-2 text-sm">
             {CATEGORIES.slice(0, 6).map((c) => (
               <li key={c.slug}>
-                <Link href={`/archive?category=${c.slug}`} className="text-parchment-300 hover:text-gold-300">
+                <Link href={`/collections/${c.slug}`} className="text-parchment-300 hover:text-gold-300">
                   {c.name}
                 </Link>
               </li>

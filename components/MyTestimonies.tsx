@@ -8,6 +8,7 @@ import { supabase } from "@/lib/supabase";
 import { TESTIMONY_COLUMNS } from "@/lib/queries";
 import type { Testimony } from "@/lib/types";
 import { formatDate } from "@/lib/format";
+import { testimonyPath } from "@/lib/seo";
 
 export default function MyTestimonies() {
   const params = useSearchParams();
@@ -103,7 +104,7 @@ export default function MyTestimonies() {
                   </div>
                   <div className="flex flex-wrap gap-2 text-sm">
                     {row.status === "published" && (
-                      <Link href={`/testimony/${row.id}`} className="btn btn-ghost !px-3 !py-1.5">
+                      <Link href={testimonyPath(row)} className="btn btn-ghost !px-3 !py-1.5">
                         View
                       </Link>
                     )}

@@ -11,6 +11,7 @@ import { extractYouTubeId } from "@/lib/youtube";
 import { displayNameFor } from "@/lib/user";
 import { TESTIMONY_COLUMNS } from "@/lib/queries";
 import { cleanTranscript, looksLikeTranscript } from "@/lib/transcript";
+import { testimonyPath } from "@/lib/seo";
 import type { FormatSuggestion, Testimony } from "@/lib/types";
 
 type SeriesOption = { series_id: string; title: string; nextPart: number };
@@ -279,7 +280,7 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
     }
     setSavedId(id);
     setSaving(null);
-    router.push(status === "published" ? `/testimony/${id}` : `/me?saved=${id}`);
+    router.push(status === "published" ? testimonyPath({ id, title: title.trim() }) : `/me?saved=${id}`);
     router.refresh();
   };
 

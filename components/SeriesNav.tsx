@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Testimony } from "@/lib/types";
+import { testimonyPath } from "@/lib/seo";
 
 export default function SeriesNav({ parts, currentId, position = "top" }: { parts: Testimony[]; currentId: string; position?: "top" | "bottom" }) {
   if (parts.length < 2) return null;
@@ -17,7 +18,7 @@ export default function SeriesNav({ parts, currentId, position = "top" }: { part
               {p.id === currentId ? (
                 <span className="chip chip-active" aria-current="page">Part {p.part_number}</span>
               ) : (
-                <Link href={`/testimony/${p.id}`} className="chip chip-interactive" title={p.title}>
+                <Link href={testimonyPath(p)} className="chip chip-interactive" title={p.title}>
                   Part {p.part_number}
                 </Link>
               )}
@@ -31,7 +32,7 @@ export default function SeriesNav({ parts, currentId, position = "top" }: { part
   return (
     <nav aria-label="Continue the series" className="mt-12 grid gap-4 sm:grid-cols-2">
       {prev ? (
-        <Link href={`/testimony/${prev.id}`} className="card p-5">
+        <Link href={testimonyPath(prev)} className="card p-5">
           <p className="text-xs text-parchment-700">← Part {prev.part_number}</p>
           <p className="font-display mt-1 text-lg text-parchment-50">{prev.title}</p>
         </Link>
@@ -39,7 +40,7 @@ export default function SeriesNav({ parts, currentId, position = "top" }: { part
         <span />
       )}
       {next && (
-        <Link href={`/testimony/${next.id}`} className="card p-5 text-right sm:col-start-2">
+        <Link href={testimonyPath(next)} className="card p-5 text-right sm:col-start-2">
           <p className="text-xs text-gold-400">Continue to Part {next.part_number} →</p>
           <p className="font-display mt-1 text-lg text-parchment-50">{next.title}</p>
         </Link>

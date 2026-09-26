@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import MyTestimonies from "@/components/MyTestimonies";
 
-export const metadata: Metadata = { title: "My testimonies" };
+export const metadata: Metadata = { title: "My testimonies", robots: { index: false, follow: false } };
 
 export default function MePage() {
   return (

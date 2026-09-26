@@ -54,6 +54,14 @@ A testimony is saved as a **draft** (private, visible only to its author) or **p
 
 Moderation is by hand for now: any row can be flipped to `draft` (hidden) or deleted from the Supabase dashboard. The `status` column is there so an approval step can be added later without a migration.
 
+## SEO and discoverability
+
+- **URLs**: testimonies live at `/testimony/<title-slug>-<uuid>`; bare-UUID or stale-slug links 308 to the canonical form. Categories are real pages at `/collections/<slug>` (`/archive?category=` redirects there).
+- **Metadata**: canonical, Open Graph and Twitter tags on every page; a default social image at `/og-default.png` for pages without a video; private pages (`/submit`, `/me`, `/auth`, edit) are `noindex`.
+- **Structured data**: `Organization` + `WebSite` (with `SearchAction`) site-wide; `Article` + `VideoObject` + `BreadcrumbList` on testimonies (with `CreativeWorkSeries` for parts); `CollectionPage` + `ItemList` on collections; `FAQPage` on About.
+- **Crawl files**: `/robots.txt`, `/sitemap.xml` (generated from the database), and `/llms.txt` — a plain-text site summary for AI assistants and answer engines.
+- **Set `NEXT_PUBLIC_SITE_URL`** to the production origin in Cloudflare; canonical URLs, the sitemap and structured data are all built from it.
+
 ## Roadmap
 
 - Stored, high-quality audio (hosted TTS → Supabase Storage) as an upgrade over browser voices

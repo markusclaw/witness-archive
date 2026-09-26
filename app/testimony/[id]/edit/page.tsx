@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import EditEntry from "@/components/EditEntry";
 
-export const metadata: Metadata = { title: "Edit testimony" };
+export const metadata: Metadata = { title: "Edit testimony", robots: { index: false, follow: false } };
 
 export default async function EditPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;

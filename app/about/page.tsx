@@ -3,13 +3,49 @@ import Link from "next/link";
 import { CATEGORIES } from "@/lib/categories";
 
 export const metadata: Metadata = {
-  title: "About",
-  description: "Why Witness Archive exists, what we collect, and how testimonies are chosen.",
+  title: "About — what Witness Archive is and how it works",
+  description:
+    "Witness Archive is a community archive of first-person testimonies about near-death experiences, heaven, hell, healing, and divine encounters. What we collect, how publishing works, and answers to common questions.",
+  alternates: { canonical: "/about" },
+};
+
+const FAQ: { q: string; a: string }[] = [
+  {
+    q: "What is Witness Archive?",
+    a: "Witness Archive is a free, searchable archive of first-hand testimonies from people who describe supernatural experiences: near-death experiences, visions of heaven or hell, healings, angelic and divine encounters, prophetic dreams, and deliverance. Testimonies are written and published by their authors, credited to the original creator when they come from a video, and organized by the kind of encounter.",
+  },
+  {
+    q: "Are the testimonies verified?",
+    a: "No. We cannot verify what happened to someone on the other side of death, and we do not claim to. Every entry is presented as a first-person account, in the author's own words, with the author's name (or Anonymous) and the date it was added. Readers are trusted to weigh them for themselves.",
+  },
+  {
+    q: "Who can publish a testimony?",
+    a: "Anyone with a free account. You write it on the site, optionally attach a YouTube video, and publish under your name or anonymously. You can edit or unpublish it at any time, and long testimonies can be published in parts.",
+  },
+  {
+    q: "Does AI write or change the testimonies?",
+    a: "No. An optional assistant can fix grammar, punctuation, and paragraph breaks, and remove leftover transcript timestamps. It is instructed never to add, remove, or reinterpret anything. Every proposed edit is shown to the author as a highlighted comparison, and nothing is applied unless the author accepts it.",
+  },
+  {
+    q: "Can I listen instead of read?",
+    a: "Yes. Every written testimony has a Listen mode that reads it aloud using your device's built-in voice, with speed and voice controls and the current paragraph highlighted.",
+  },
+  {
+    q: "How do I get my testimony removed, or report one?",
+    a: "Authors can unpublish or delete their own testimonies from their account page. Original creators of embedded videos can request removal at any time. Content that mocks others or is plainly not a testimony is removed.",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQ.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
 };
 
 export default function AboutPage() {
   return (
     <main className="mx-auto max-w-3xl px-5 py-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <p className="eyebrow mb-3">About the project</p>
       <h1 className="font-display text-4xl font-light leading-tight text-parchment-50 sm:text-5xl">
         Some stories are too important to be lost in an algorithm.
@@ -40,7 +76,7 @@ export default function AboutPage() {
       <ul className="mt-6 grid gap-3 sm:grid-cols-2">
         {CATEGORIES.map((c) => (
           <li key={c.slug} className="card p-4">
-            <Link href={`/archive?category=${c.slug}`} className="font-display text-lg text-parchment-50 hover:text-gold-300">
+            <Link href={`/collections/${c.slug}`} className="font-display text-lg text-parchment-50 hover:text-gold-300">
               {c.name}
             </Link>
             <p className="mt-1 text-sm text-parchment-500">{c.blurb}</p>
@@ -79,6 +115,18 @@ export default function AboutPage() {
         questions, share your own experience, disagree if you must — but do it the way you would across a
         kitchen table. Responses that mock or harass will be removed.
       </p>
+
+      <div className="hairline my-14" />
+
+      <h2 className="font-display text-3xl text-parchment-50">Common questions</h2>
+      <dl className="mt-6 space-y-6">
+        {FAQ.map((f) => (
+          <div key={f.q} className="card p-5">
+            <dt className="font-display text-xl text-parchment-50">{f.q}</dt>
+            <dd className="mt-2 leading-relaxed text-parchment-300">{f.a}</dd>
+          </div>
+        ))}
+      </dl>
 
       <div className="mt-14 flex flex-wrap gap-4">
         <Link href="/archive" className="btn btn-primary">Browse the archive</Link>

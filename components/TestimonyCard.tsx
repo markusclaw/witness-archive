@@ -2,17 +2,18 @@ import Link from "next/link";
 import type { Testimony } from "@/lib/types";
 import { youtubeThumbnail } from "@/lib/youtube";
 import { catalogNumber, formatDate } from "@/lib/format";
+import { testimonyPath } from "@/lib/seo";
 
 export default function TestimonyCard({ testimony, priority = false }: { testimony: Testimony; priority?: boolean }) {
   const thumb = youtubeThumbnail(testimony.video_url);
   return (
-    <Link href={`/testimony/${testimony.id}`} className="card group flex flex-col overflow-hidden">
+    <Link href={testimonyPath(testimony)} className="card group flex flex-col overflow-hidden">
       <div className="relative aspect-video w-full overflow-hidden bg-ink-800">
         {thumb ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={thumb}
-            alt=""
+            alt={`${testimony.title} — video thumbnail`}
             loading={priority ? "eager" : "lazy"}
             className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
           />

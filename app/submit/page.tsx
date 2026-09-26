@@ -5,6 +5,8 @@ import SubmitEntry from "@/components/SubmitEntry";
 export const metadata: Metadata = {
   title: "Write your testimony",
   description: "Write and publish your own first-hand testimony on the Witness Archive.",
+  robots: { index: false, follow: true },
+  alternates: { canonical: "/submit" },
 };
 
 export default function SubmitPage() {
