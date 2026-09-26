@@ -110,6 +110,12 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
   const [view, setView] = useState<"diff" | "preview">("diff");
   const [cleanedNotice, setCleanedNotice] = useState<string | null>(null);
 
+  // ---- transcript import ----
+  const [importUrl, setImportUrl] = useState("");
+  const [importing, setImporting] = useState(false);
+  const [importError, setImportError] = useState<{ message: string; fallback: boolean } | null>(null);
+  const [importNotice, setImportNotice] = useState<string | null>(null);
+
   // ---- save ----
   const [saving, setSaving] = useState<"draft" | "publish" | null>(null);
   const [saveError, setSaveError] = useState<string | null>(null);
@@ -256,6 +262,45 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
       setCleanedNotice("Timestamps and caption breaks removed. Your words are untouched.");
     }
     window.setTimeout(() => setCleanedNotice(null), 4000);
+  };
+
+  const importTranscript = async (url: string) => {
+    const id = extractYouTubeId(url);
+    if (!id) {
+      setImportError({ message: "That doesn't look like a YouTube link.", fallback: false });
+      return;
+    }
+    setImporting(true);
+    setImportError(null);
+    setImportNotice(null);
+    try {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      const res = await fetch("/api/transcript", {
+        method: "POST",
+        headers: { "content-type": "application/json", authorization: `Bearer ${session?.access_token ?? ""}` },
+        body: JSON.stringify({ url, lang }),
+      });
+      const json = (await res.json()) as { text?: string; language?: string; kind?: "manual" | "auto"; videoTitle?: string | null; error?: string; fallback?: boolean };
+      if (!res.ok || !json.text) {
+        setImportError({ message: json.error || "Couldn't fetch the transcript.", fallback: json.fallback !== false });
+        return;
+      }
+      if (!videoUrl.trim()) setVideoUrl(url.trim());
+      if (content.trim() && !window.confirm("Replace what you've written with the video transcript?")) return;
+      setContent(json.text);
+      if (json.language && LANGUAGES.some((l) => l.code === json.language)) setLang(json.language);
+      if (!title.trim() && json.videoTitle) setGhostTitle(json.videoTitle.replace(/\s*[|\-–—]\s*[^|\-–—]{0,40}$/, "").trim() || json.videoTitle);
+      lastAutoWordsRef.current = 0; // let the details pass run on the imported text
+      setImportNotice(`Transcript imported${json.kind === "auto" ? " (YouTube's auto-captions — worth a read-through)" : ""}. Timestamps removed; your words untouched.`);
+      window.setTimeout(() => setImportNotice(null), 8000);
+      window.setTimeout(autosize, 50);
+    } catch {
+      setImportError({ message: "Couldn't reach the importer.", fallback: true });
+    } finally {
+      setImporting(false);
+    }
   };
 
   const polish = async () => {
@@ -531,6 +576,26 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
         </div>
       </section>
       {polishError && <p className="mt-3 text-sm text-ember-500">{polishError}</p>}
+      {importNotice && <p className="mt-3 text-xs text-gold-300">{importNotice}</p>}
+      {wordCount === 0 && !suggestion && (
+        <div className="mt-4 rounded-xl border border-ink-600 bg-ink-900/60 p-4">
+          <p className="text-sm text-parchment-300">Told this story on video? Paste the YouTube link and we&apos;ll bring the transcript in for you.</p>
+          <form
+            className="mt-3 flex flex-col gap-2 sm:flex-row"
+            onSubmit={(e) => {
+              e.preventDefault();
+              void importTranscript(importUrl);
+            }}
+          >
+            <input className="input" value={importUrl} onChange={(e) => setImportUrl(e.target.value)} placeholder="https://www.youtube.com/watch?v=…" inputMode="url" aria-label="YouTube link to import" />
+            <button type="submit" disabled={importing || !extractYouTubeId(importUrl)} className="btn btn-primary whitespace-nowrap !py-2">
+              {importing ? "Fetching…" : "Import transcript"}
+            </button>
+          </form>
+          <p className="mt-2 text-xs text-parchment-700">For your own video, or one you have permission to share. You can edit everything before publishing.</p>
+          {importError && <ImportFallback error={importError} />}
+        </div>
+      )}
       {transcripty && !suggestion && (
         <p className="mt-3 text-xs text-parchment-700">
           This looks like a pasted video transcript. <button type="button" onClick={cleanUp} className="underline hover:text-gold-300">Clean up transcript</button> strips the timestamps and rejoins the lines without touching a word — then Polish can handle the rest.
@@ -666,7 +731,15 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
             </Field>
 
             <Field label="YouTube link" htmlFor="video" hint="Optional. If you told this story on video, it's embedded above the text." error={!videoOk ? "That doesn't look like a YouTube link." : undefined}>
-              <input id="video" className="input" value={videoUrl} onChange={(e) => setVideoUrl(e.target.value)} placeholder="https://www.youtube.com/watch?v=…" inputMode="url" />
+              <div className="flex flex-col gap-2 sm:flex-row">
+                <input id="video" className="input" value={videoUrl} onChange={(e) => setVideoUrl(e.target.value)} placeholder="https://www.youtube.com/watch?v=…" inputMode="url" />
+                {extractYouTubeId(videoUrl) && (
+                  <button type="button" onClick={() => void importTranscript(videoUrl)} disabled={importing} className="btn btn-ghost whitespace-nowrap !py-2 text-sm">
+                    {importing ? "Fetching…" : content.trim() ? "Replace with transcript" : "Import transcript"}
+                  </button>
+                )}
+              </div>
+              {importError && wordCount > 0 && <ImportFallback error={importError} />}
             </Field>
 
             <div className="border-t border-ink-700 pt-6">
@@ -826,6 +899,19 @@ function makeDescription(content: string): string {
   const cut = flat.slice(0, 180);
   const lastSpace = cut.lastIndexOf(" ");
   return `${cut.slice(0, lastSpace > 100 ? lastSpace : 180)}…`;
+}
+
+function ImportFallback({ error }: { error: { message: string; fallback: boolean } }) {
+  return (
+    <div className="mt-3 rounded-lg border border-ink-600 bg-ink-900 p-3 text-xs text-parchment-300">
+      <p className="text-ember-500">{error.message}</p>
+      {error.fallback && (
+        <p className="mt-2 text-parchment-500">
+          YouTube sometimes refuses automated requests. The manual way takes thirty seconds: open the video, click <span className="text-parchment-300">…more</span> under the title, then <span className="text-parchment-300">Show transcript</span>, select all of it, and paste it here — the timestamps are cleaned up automatically.
+        </p>
+      )}
+    </div>
+  );
 }
 
 function Sparkle() {
