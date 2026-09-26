@@ -13,6 +13,7 @@ A curated archive of first-hand testimonies of the supernatural — heaven, hell
 1. Create a Supabase project and run the migrations in order from the SQL Editor:
    - `supabase/migrations/001_initial_schema.sql` — tables, RLS, indexes, seed rows
    - `supabase/migrations/003_member_authoring.sql` — author fields, series, draft/published status, RLS for self-publishing
+   - `supabase/migrations/004_profiles.sql` — member profiles (auto-created on sign-up) and the public `avatars` storage bucket
 2. Copy `.env.example` to `.env.local` and fill in the URL and anon key from *Project Settings → API*. Add an `ANTHROPIC_API_KEY` to enable the formatting assistant (the site works without it; the button just reports it isn't configured).
 3. `npm install && npm run dev`, then open http://localhost:3000.
 
@@ -35,6 +36,7 @@ The app runs on Cloudflare Workers via the OpenNext adapter (`wrangler.jsonc`, `
 | `app/testimony/[id]/` | Testimony detail: click-to-play video, written account, comments, related entries, OG + JSON-LD metadata |
 | `app/submit/` | The editor: write, polish with the assistant (diff review), save draft, publish; `?series=<id>` adds the next part |
 | `app/testimony/[id]/edit/` | Same editor, prefilled, for the author |
+| `app/settings/` | Display name, bio, avatar upload (resized in the browser to 256px), password reset |
 | `app/me/` | The member's drafts and published testimonies, grouped by series: publish/unpublish, edit, delete, add part |
 | `app/api/format/` | Server route calling the Claude API with a strict "readability only" prompt; requires a signed-in member |
 | `app/about/` | Mission, collections, curation policy |

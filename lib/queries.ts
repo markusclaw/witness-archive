@@ -91,3 +91,15 @@ export async function getCategoryCounts(): Promise<Record<string, number>> {
   for (const row of data ?? []) counts[row.category] = (counts[row.category] ?? 0) + 1;
   return counts;
 }
+
+/** Server-side: public profile for an author (null if anonymous / missing). */
+export async function getProfile(userId: string | null): Promise<import("@/lib/types").Profile | null> {
+  if (!userId) return null;
+  const supabase = createServerSupabase();
+  const { data, error } = await supabase.from("profiles").select("*").eq("id", userId).maybeSingle();
+  if (error) {
+    console.error("getProfile:", error.message);
+    return null;
+  }
+  return (data as import("@/lib/types").Profile | null) ?? null;
+}

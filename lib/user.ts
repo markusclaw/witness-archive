@@ -12,3 +12,18 @@ export function displayNameFor(user: User | null | undefined): string {
   const local = user.email?.split("@")[0] ?? "member";
   return local.length > 2 ? local : "member";
 }
+
+/** "Greg Anthony" -> "GA", "greganthony" -> "G". */
+export function initialsFor(name: string): string {
+  const parts = name.trim().split(/[\s._-]+/).filter(Boolean);
+  if (parts.length === 0) return "?";
+  if (parts.length === 1) return parts[0][0].toUpperCase();
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+}
+
+/** Deterministic hue from a string so initials avatars are stable per person. */
+export function hueFor(seed: string): number {
+  let h = 0;
+  for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0;
+  return h % 360;
+}

@@ -76,9 +76,10 @@ export default function MyTestimonies() {
         <p className="text-sm text-parchment-500">
           {rows.length} {rows.length === 1 ? "testimony" : "testimonies"} · {rows.filter((r) => r.status === "published").length} published
         </p>
-        <Link href="/submit" className="btn btn-primary !py-2">
-          Write a new one
-        </Link>
+        <div className="flex gap-2">
+          <Link href="/settings" className="btn btn-ghost !py-2">Settings</Link>
+          <Link href="/submit" className="btn btn-primary !py-2">Write a new one</Link>
+        </div>
       </div>
 
       {rows.length === 0 ? (

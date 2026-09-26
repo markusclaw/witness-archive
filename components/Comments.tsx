@@ -7,6 +7,9 @@ import { supabase } from "@/lib/supabase";
 import type { Comment } from "@/lib/types";
 import { timeAgo } from "@/lib/format";
 import { displayNameFor } from "@/lib/user";
+import { fetchProfiles } from "@/lib/profiles";
+import type { Profile } from "@/lib/types";
+import Avatar from "@/components/Avatar";
 
 const MAX_LENGTH = 2000;
 
@@ -14,6 +17,7 @@ export default function Comments({ testimonyId }: { testimonyId: string }) {
   const [comments, setComments] = useState<Comment[]>([]);
   const [loaded, setLoaded] = useState(false);
   const [loadError, setLoadError] = useState(false);
+  const [profiles, setProfiles] = useState<Record<string, Profile>>({});
   const [user, setUser] = useState<User | null>(null);
   const [draft, setDraft] = useState("");
   const [posting, setPosting] = useState(false);
@@ -27,8 +31,10 @@ export default function Comments({ testimonyId }: { testimonyId: string }) {
         .eq("testimony_id", testimonyId)
         .order("created_at", { ascending: true });
       if (error) throw error;
-      setComments((data ?? []) as Comment[]);
+      const rows = (data ?? []) as Comment[];
+      setComments(rows);
       setLoadError(false);
+      fetchProfiles(rows.map((r) => r.user_id)).then((p) => setProfiles((prev) => ({ ...prev, ...p })));
     } catch (err) {
       console.error("comments:", err instanceof Error ? err.message : err);
       setLoadError(true);
@@ -38,7 +44,10 @@ export default function Comments({ testimonyId }: { testimonyId: string }) {
   }, [testimonyId]);
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => setUser(data.user));
+    supabase.auth.getUser().then(({ data }) => {
+      setUser(data.user);
+      if (data.user) fetchProfiles([data.user.id]).then((p) => setProfiles((prev) => ({ ...prev, ...p })));
+    });
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_e, session) => setUser(session?.user ?? null));
@@ -56,7 +65,7 @@ export default function Comments({ testimonyId }: { testimonyId: string }) {
     const { error } = await supabase.from("comments").insert({
       testimony_id: testimonyId,
       user_id: user.id,
-      author: displayNameFor(user),
+      author: profiles[user.id]?.display_name ?? displayNameFor(user),
       content,
     });
     if (error) {
@@ -82,8 +91,9 @@ export default function Comments({ testimonyId }: { testimonyId: string }) {
     <div className="space-y-10">
       {user ? (
         <form onSubmit={submit} className="card p-5">
-          <label htmlFor="comment" className="mb-2 block text-sm text-parchment-500">
-            Responding as <span className="text-parchment-100">{displayNameFor(user)}</span>
+          <label htmlFor="comment" className="mb-3 flex items-center gap-3 text-sm text-parchment-500">
+            <Avatar name={profiles[user.id]?.display_name ?? displayNameFor(user)} src={profiles[user.id]?.avatar_url} seed={user.id} size="sm" />
+            <span>Responding as <span className="text-parchment-100">{profiles[user.id]?.display_name ?? displayNameFor(user)}</span></span>
           </label>
           <textarea
             id="comment"
@@ -126,9 +136,11 @@ export default function Comments({ testimonyId }: { testimonyId: string }) {
       ) : (
         <ol className="space-y-6">
           {comments.map((c) => (
-            <li key={c.id} className="border-l-2 border-ink-600 pl-5">
+            <li key={c.id} className="flex gap-4">
+              <Avatar name={profiles[c.user_id]?.display_name ?? c.author} src={profiles[c.user_id]?.avatar_url} seed={c.user_id} size="md" className="mt-0.5" />
+              <div className="min-w-0 flex-1">
               <div className="flex items-baseline justify-between gap-4">
-                <p className="font-medium text-parchment-50">{c.author}</p>
+                <p className="font-medium text-parchment-50">{profiles[c.user_id]?.display_name ?? c.author}</p>
                 <div className="flex items-center gap-3 text-xs text-parchment-700">
                   <time dateTime={c.created_at} title={new Date(c.created_at).toLocaleString()}>
                     {timeAgo(c.created_at)}
@@ -141,6 +153,7 @@ export default function Comments({ testimonyId }: { testimonyId: string }) {
                 </div>
               </div>
               <p className="mt-2 whitespace-pre-wrap leading-relaxed text-parchment-300">{c.content}</p>
+              </div>
             </li>
           ))}
         </ol>

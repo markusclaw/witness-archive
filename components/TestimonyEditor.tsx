@@ -12,6 +12,7 @@ import { displayNameFor } from "@/lib/user";
 import { TESTIMONY_COLUMNS } from "@/lib/queries";
 import { cleanTranscript, looksLikeTranscript } from "@/lib/transcript";
 import { testimonyPath } from "@/lib/seo";
+import { fetchMyProfile } from "@/lib/profiles";
 import type { FormatSuggestion, Testimony } from "@/lib/types";
 
 type SeriesOption = { series_id: string; title: string; nextPart: number };
@@ -87,7 +88,12 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
       setUser(data.user);
-      if (data.user && !existing && !continueSeries) setCreator((c) => c || displayNameFor(data.user));
+      if (data.user && !existing && !continueSeries) {
+        fetchMyProfile(data.user.id).then((p) => {
+          setCreator((c) => c || p?.display_name || displayNameFor(data.user));
+          if (p?.bio) setAuthorBio((b) => b || p.bio || "");
+        });
+      }
     });
     const {
       data: { subscription },

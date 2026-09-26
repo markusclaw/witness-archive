@@ -11,7 +11,8 @@ import TestimonyCard from "@/components/TestimonyCard";
 import VideoEmbed from "@/components/VideoEmbed";
 import { slugForCategoryName } from "@/lib/categories";
 import { catalogNumber, formatDate, readingTime, toParagraphs } from "@/lib/format";
-import { getRelatedTestimonies, getSeriesParts, getTestimonyById } from "@/lib/queries";
+import { getProfile, getRelatedTestimonies, getSeriesParts, getTestimonyById } from "@/lib/queries";
+import Avatar from "@/components/Avatar";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL, absoluteUrl, collectionPath, metaDescription, parseTestimonyParam, testimonyPath } from "@/lib/seo";
 import { extractYouTubeId, youtubeThumbnail, youtubeWatchUrl } from "@/lib/youtube";
 
@@ -65,9 +66,10 @@ export default async function TestimonyPage({ params }: { params: Params }) {
   const canonicalPath = testimonyPath(testimony);
   if (`/testimony/${param}` !== canonicalPath) permanentRedirect(canonicalPath);
 
-  const [related, parts] = await Promise.all([
+  const [related, parts, authorProfile] = await Promise.all([
     getRelatedTestimonies(testimony.category, testimony.series_id, 3),
     getSeriesParts(testimony.series_id),
+    testimony.is_anonymous ? Promise.resolve(null) : getProfile(testimony.author_id),
   ]);
   const paragraphs = toParagraphs(testimony.content);
   const watchUrl = youtubeWatchUrl(testimony.video_url);
@@ -159,8 +161,11 @@ export default async function TestimonyPage({ params }: { params: Params }) {
           </h1>
           <p className="mt-5 text-lg leading-relaxed text-parchment-300" itemProp="description">{testimony.description}</p>
           <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-parchment-500">
-            <span itemProp="author" itemScope itemType="https://schema.org/Person">
-              Shared by <span className="text-parchment-100" itemProp="name">{author}</span>
+            <span itemProp="author" itemScope itemType="https://schema.org/Person" className="flex items-center gap-2">
+              {!testimony.is_anonymous && <Avatar name={author} src={authorProfile?.avatar_url} seed={testimony.author_id ?? author} size="xs" />}
+              <span>
+                Shared by <span className="text-parchment-100" itemProp="name">{author}</span>
+              </span>
             </span>
             {testimony.experienced_on && (
               <>
@@ -209,9 +214,12 @@ export default async function TestimonyPage({ params }: { params: Params }) {
         )}
 
         {!testimony.is_anonymous && testimony.author_bio && (
-          <aside className="mt-10 rounded-xl border border-ink-600 bg-ink-900/60 p-5">
-            <p className="eyebrow mb-1">About {testimony.creator}</p>
-            <p className="text-sm text-parchment-300">{linkify(testimony.author_bio)}</p>
+          <aside className="mt-10 flex gap-4 rounded-xl border border-ink-600 bg-ink-900/60 p-5">
+            <Avatar name={author} src={authorProfile?.avatar_url} seed={testimony.author_id ?? author} size="lg" />
+            <div>
+              <p className="eyebrow mb-1">About {testimony.creator}</p>
+              <p className="text-sm text-parchment-300">{linkify(testimony.author_bio)}</p>
+            </div>
           </aside>
         )}
 
