@@ -18,6 +18,7 @@ A curated archive of first-hand testimonies of the supernatural — heaven, hell
    - `supabase/migrations/006_comment_replies.sql` — one-level threaded replies on comments
    - `supabase/migrations/007_metadata.sql` — where it happened and how precise the date is
    - `supabase/migrations/008_follows_views.sql` — follows, view counts (total + per day) and the `record_view` function
+   - `supabase/migrations/009_search_ask.sql` — full-text search column/function and the cached-answers table for Ask
 2. Copy `.env.example` to `.env.local` and fill in the URL and anon key from *Project Settings → API*. Add an `ANTHROPIC_API_KEY` to enable the formatting assistant (the site works without it; the button just reports it isn't configured).
 3. `npm install && npm run dev`, then open http://localhost:3000.
 
@@ -45,6 +46,7 @@ The app runs on Cloudflare Workers via the OpenNext adapter (`wrangler.jsonc`, `
 | `app/following/` | Feed of the latest testimonies from people you follow |
 | `app/me/` | The member's drafts and published testimonies, grouped by series: publish/unpublish, edit, delete, add part |
 | `app/api/format/` | Server route calling the Claude API with a strict "readability only" prompt; requires a signed-in member |
+| `app/ask/` + `app/api/ask/` | Ask the archive: full-text retrieval → Claude answers only from the matched testimonies, every sentence cited; answers cached per question |
 | `app/api/extract/` | Reads a testimony and proposes title, category, when (with precision) and where, each with its supporting quote; nothing is applied without the author |
 | `app/about/` | Mission, collections, curation policy |
 | `app/auth/` | Sign in / sign up (with display name) / password reset |
@@ -62,6 +64,10 @@ Members write at `/submit`. The content goes through an optional **Polish** pass
 A testimony is saved as a **draft** (private, visible only to its author) or **published** (live immediately). Long testimonies can be split into a **series**: every part shares a `series_id` and has a `part_number`; the detail page shows Part 1 → Part 2 navigation. Authors can publish anonymously; their account is still linked so they can edit later, but no name is shown.
 
 Moderation is by hand for now: any row can be flipped to `draft` (hidden) or deleted from the Supabase dashboard. The `status` column is there so an approval step can be added later without a migration.
+
+## Ask the archive
+
+The hero search box goes to `/ask?q=…`. The route ranks published testimonies with Postgres full-text search (`search_testimonies`, with an ILIKE fallback before the migration is run), sends the top matches as numbered excerpts to Claude under a prompt that forbids outside knowledge and requires a citation on every paragraph, and returns the answer with the cited sources and the keyword matches. Answers are cached in `archive_answers` by normalized question (service role writes; `hits` counts repeat asks). If nothing matches, no model call is made. Without `ANTHROPIC_API_KEY` the page still works as plain search.
 
 ## Views and follows
 

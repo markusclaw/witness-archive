@@ -61,7 +61,7 @@ export default function AuthNav() {
 
   if (!user) {
     return (
-      <Link href={`/auth?next=${encodeURIComponent(pathname)}`} className="btn btn-ghost !px-4 !py-1.5 text-sm">
+      <Link href={`/auth?next=${encodeURIComponent(pathname)}`} className="btn btn-ghost !px-3 !py-1.5 text-sm sm:!px-4">
         Sign in
       </Link>
     );
@@ -95,6 +95,7 @@ export default function AuthNav() {
             </div>
           </div>
           <div className="py-1">
+            <MenuLink href="/about" label="About" />
             <MenuLink href="/following" label="Following" />
             <MenuLink href="/me" label="My testimonies" />
             <MenuLink href="/submit" label="Write a testimony" />

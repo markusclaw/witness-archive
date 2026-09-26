@@ -2,10 +2,11 @@ import Link from "next/link";
 import AuthNav from "@/components/AuthNav";
 import Logo from "@/components/Logo";
 
-const NAV = [
-  { href: "/archive", label: "Archive" },
-  { href: "/about", label: "About" },
-  { href: "/submit", label: "Write" },
+const NAV: { href: string; label: string; mobile?: boolean }[] = [
+  { href: "/ask", label: "Ask", mobile: true },
+  { href: "/archive", label: "Archive", mobile: true },
+  { href: "/about", label: "About", mobile: false },
+  { href: "/submit", label: "Write", mobile: true },
 ];
 
 export default function SiteHeader() {
@@ -24,7 +25,7 @@ export default function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-full px-2.5 py-2 text-sm text-parchment-300 sm:px-3 sm:py-1.5 transition hover:bg-ink-800 hover:text-parchment-50"
+              className={`rounded-full px-2.5 py-2 text-sm text-parchment-300 sm:px-3 sm:py-1.5 transition hover:bg-ink-800 hover:text-parchment-50 ${item.mobile ? "" : "hidden sm:inline-block"}`}
             >
               {item.label}
             </Link>

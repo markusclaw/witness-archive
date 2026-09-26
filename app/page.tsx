@@ -1,5 +1,7 @@
 import Link from "next/link";
 import TestimonyCard from "@/components/TestimonyCard";
+import AskBox from "@/components/AskBox";
+import { SUGGESTED_QUESTIONS } from "@/lib/ask";
 import { CATEGORIES } from "@/lib/categories";
 import { getCategoryCounts, getRecentTestimonies, getTrending } from "@/lib/queries";
 import type { Metadata } from "next";
@@ -28,14 +30,18 @@ export default async function Home() {
             stories scattered across the internet — into one place where they can be found, heard, and
             discussed with care.
           </p>
-          <div className="fade-up mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Link href="/archive" className="btn btn-primary">
-              Browse the archive
-              <span aria-hidden>→</span>
-            </Link>
-            <Link href="/about" className="btn btn-ghost">
-              Why this exists
-            </Link>
+          <div className="fade-up mx-auto mt-10 max-w-2xl">
+            <AskBox />
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
+              {SUGGESTED_QUESTIONS.slice(0, 3).map((s) => (
+                <Link key={s} href={`/ask?q=${encodeURIComponent(s)}`} className="rounded-full border border-ink-600 px-3 py-1 text-xs text-parchment-500 transition hover:border-gold-500/40 hover:text-parchment-100">
+                  {s}
+                </Link>
+              ))}
+              <Link href="/archive" className="rounded-full px-3 py-1 text-xs text-gold-400 hover:text-gold-300">
+                Browse all →
+              </Link>
+            </div>
           </div>
           {total > 0 && (
             <p className="mt-8 text-xs tracking-[0.2em] text-parchment-700 uppercase">

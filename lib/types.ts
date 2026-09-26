@@ -99,3 +99,23 @@ export interface Translation {
   created_at: string;
   updated_at: string;
 }
+
+export interface AskSource {
+  n: number;
+  id: string;
+  title: string;
+  author: string;
+  category: string;
+  path: string;
+  snippet: string;
+}
+
+export interface AskResult {
+  question: string;
+  answer: string;
+  sources: AskSource[];
+  matches: Testimony[];
+  cached: boolean;
+  /** No testimony addressed the question; `matches` may still hold keyword hits. */
+  empty: boolean;
+}
