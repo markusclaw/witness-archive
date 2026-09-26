@@ -15,6 +15,7 @@ You MAY:
 - break wall-of-text into paragraphs at natural pauses (separate paragraphs with a blank line)
 - untangle a run-on sentence when the meaning is unambiguous
 - remove accidental duplicated words or transcription artifacts ("um", "uh", repeated phrases)
+- remove leftover video-transcript artifacts: timestamps such as "0:1515 seconds" or "[1:02]", caption cue numbers, and line breaks that fall mid-sentence (join them back into sentences)
 - normalize quotation marks and capitalization
 
 You MUST NOT:
@@ -26,10 +27,17 @@ You MUST NOT:
 
 If a passage is unclear and you cannot fix it without guessing at the meaning, leave it as written and mention it in a note instead.
 
-Respond with ONLY a JSON object, no prose before or after, in this exact shape:
-{"formatted": "<the full edited text>", "notes": ["<short, warm, specific observation or suggestion for the author>", ...]}
+Respond in exactly this format and nothing else:
 
-Notes are optional and should be few (0–4). They are for things you deliberately did not change: a passage that might read clearer if the author restructured it, an ambiguity only they can resolve, or a place where the timeline was hard to follow. Never be critical of the experience itself.`;
+<formatted>
+the full edited text, with blank lines between paragraphs
+</formatted>
+<notes>
+- one short, warm, specific observation or suggestion for the author
+- another, if needed
+</notes>
+
+Notes are optional and should be few (0–4); leave the notes block empty if there is nothing worth saying. They are for things you deliberately did not change: a passage that might read clearer if the author restructured it, an ambiguity only they can resolve, or a place where the timeline was hard to follow. Never be critical of the experience itself.`;
 
 interface AnthropicResponse {
   content?: { type: string; text?: string }[];
@@ -75,7 +83,7 @@ export async function POST(req: Request) {
       },
       body: JSON.stringify({
         model,
-        max_tokens: 16_000,
+        max_tokens: 24_000,
         temperature: 0,
         system: SYSTEM_PROMPT,
         messages: [{ role: "user", content: `Here is the testimony text:\n\n<testimony>\n${content}\n</testimony>` }],
@@ -108,17 +116,17 @@ export async function POST(req: Request) {
 }
 
 function parseSuggestion(text: string): { formatted: string; notes: string[] } | null {
-  const start = text.indexOf("{");
-  const end = text.lastIndexOf("}");
-  if (start < 0 || end <= start) return null;
-  try {
-    const obj = JSON.parse(text.slice(start, end + 1)) as { formatted?: unknown; notes?: unknown };
-    if (typeof obj.formatted !== "string" || !obj.formatted.trim()) return null;
-    const notes = Array.isArray(obj.notes) ? obj.notes.filter((n): n is string => typeof n === "string" && n.trim().length > 0).slice(0, 6) : [];
-    return { formatted: obj.formatted.trim(), notes };
-  } catch {
-    return null;
-  }
+  const f = text.match(/<formatted>\s*([\s\S]*?)\s*<\/formatted>/i);
+  if (!f || !f[1].trim()) return null;
+  const n = text.match(/<notes>\s*([\s\S]*?)\s*<\/notes>/i);
+  const notes = n
+    ? n[1]
+        .split(/\n/)
+        .map((l) => l.replace(/^\s*[-•*]\s*/, "").trim())
+        .filter(Boolean)
+        .slice(0, 6)
+    : [];
+  return { formatted: f[1].trim(), notes };
 }
 
 function normalize(s: string) {
