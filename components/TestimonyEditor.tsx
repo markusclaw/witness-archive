@@ -76,6 +76,20 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
   const [extracting, setExtracting] = useState(false);
   const [extractError, setExtractError] = useState<string | null>(null);
   const [extractedFor, setExtractedFor] = useState<string>("");
+  type SuggestedField = "title" | "description" | "category" | "experienced" | "location";
+  const [suggested, setSuggested] = useState<Set<SuggestedField>>(new Set());
+  const [ghostTitle, setGhostTitle] = useState<string>("");
+  const lastAutoWordsRef = useRef<number>(0);
+  const autoTimerRef = useRef<number | null>(null);
+  const suggestDetailsRef = useRef<(force?: boolean) => Promise<void>>(async () => {});
+  const markSuggested = (f: SuggestedField) => setSuggested((prev) => new Set(prev).add(f));
+  const unmark = (f: SuggestedField) =>
+    setSuggested((prev) => {
+      if (!prev.has(f)) return prev;
+      const next = new Set(prev);
+      next.delete(f);
+      return next;
+    });
   const [seriesId, setSeriesId] = useState<string>(existing?.series_id ?? continueSeries?.series_id ?? "");
   const [partNumber, setPartNumber] = useState<number>(existing?.part_number ?? continueSeries?.nextPart ?? 1);
   const [seriesOptions, setSeriesOptions] = useState<SeriesOption[]>([]);
@@ -198,13 +212,31 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
     autosize();
   }, [content, suggestion, autosize]);
 
+  /* ---------------- details assistant: run on pause ---------------- */
+  useEffect(() => {
+    if (suggestion || extracting) return;
+    const words = content.trim().split(/\s+/).filter(Boolean).length;
+    if (words < 80) return;
+    const changed = Math.abs(words - lastAutoWordsRef.current);
+    const firstRun = lastAutoWordsRef.current === 0;
+    if (!firstRun && changed < 40) return;
+    if (autoTimerRef.current) window.clearTimeout(autoTimerRef.current);
+    autoTimerRef.current = window.setTimeout(() => {
+      void suggestDetailsRef.current();
+    }, 2500);
+    return () => {
+      if (autoTimerRef.current) window.clearTimeout(autoTimerRef.current);
+    };
+  }, [content, suggestion, extracting]);
+
   /* ---------------- derived ---------------- */
   const videoOk = !videoUrl.trim() || !!extractYouTubeId(videoUrl);
   const wordCount = useMemo(() => content.trim().split(/\s+/).filter(Boolean).length, [content]);
   const minutes = Math.max(1, Math.round(wordCount / 220));
   const transcripty = useMemo(() => looksLikeTranscript(content), [content]);
   const missing: string[] = [];
-  if (title.trim().length < 3) missing.push("a title");
+  const effectiveTitle = title.trim() || ghostTitle.trim();
+  if (effectiveTitle.length < 3) missing.push("a title");
   if (content.trim().length < 40) missing.push("your testimony");
   if (!isAnonymous && creator.trim().length < 2) missing.push("your name (or choose anonymous)");
   if (!videoOk) missing.push("a valid YouTube link");
@@ -251,8 +283,16 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
     }
   };
 
+  const applyLocation = (l: NonNullable<ExtractedDetails["location"]>) => {
+    setLocationText(l.text);
+    setLocationCity(l.city ?? "");
+    setLocationRegion(l.region ?? "");
+    setLocationCountry(l.country ?? "");
+    setLocationCode(l.country_code ?? "");
+  };
+
   const suggestDetails = async (force = false) => {
-    const key = content.trim().slice(0, 4000);
+    const key = `${content.trim().slice(0, 4000)}|${content.trim().length}`;
     if (!force && (extracting || extractedFor === key || content.trim().length < 200)) return;
     setExtracting(true);
     setExtractError(null);
@@ -270,14 +310,25 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
       setExtracted(json);
       setExtractedFor(key);
       // Fill only what's empty; the author's own entries always win.
-      if (!title.trim() && json.titles[0]) setTitle(json.titles[0]);
-      if (!description.trim() && json.description) setDescription(json.description);
-      if (json.category && category === CATEGORIES[0].name && !existing) setCategory(json.category);
+      if (!title.trim() && json.titles[0]) setGhostTitle(json.titles[0]);
+      if (!description.trim() && json.description) {
+        setDescription(json.description);
+        markSuggested("description");
+      }
+      if (json.category && category === CATEGORIES[0].name && !existing && !suggested.has("category")) {
+        setCategory(json.category);
+        markSuggested("category");
+      }
       if (!experiencedOn && json.experienced) {
         setExperiencedOn(json.experienced.date);
         setPrecision(json.experienced.precision);
+        markSuggested("experienced");
       }
-      if (!locationText.trim() && !locationCity.trim() && !locationCountry.trim() && json.location) applyLocation(json.location);
+      if (!locationText.trim() && !locationCity.trim() && !locationCountry.trim() && json.location) {
+        applyLocation(json.location);
+        markSuggested("location");
+      }
+      lastAutoWordsRef.current = content.trim().split(/\s+/).filter(Boolean).length;
     } catch (err) {
       setExtractError(err instanceof Error ? err.message : "Something went wrong.");
     } finally {
@@ -285,13 +336,9 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
     }
   };
 
-  const applyLocation = (l: NonNullable<ExtractedDetails["location"]>) => {
-    setLocationText(l.text);
-    setLocationCity(l.city ?? "");
-    setLocationRegion(l.region ?? "");
-    setLocationCountry(l.country ?? "");
-    setLocationCode(l.country_code ?? "");
-  };
+  useEffect(() => {
+    suggestDetailsRef.current = suggestDetails;
+  });
 
   const acceptSuggestion = () => {
     if (suggestion) setContent(suggestion.formatted);
@@ -310,7 +357,7 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
     setSaveError(null);
 
     const row = {
-      title: title.trim(),
+      title: effectiveTitle,
       description: description.trim() || makeDescription(content),
       video_url: videoUrl.trim() || null,
       creator: isAnonymous ? "Anonymous" : creator.trim(),
@@ -354,7 +401,7 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
     }
     setSavedId(id);
     setSaving(null);
-    router.push(status === "published" ? testimonyPath({ id, title: title.trim() }) : `/me?saved=${id}`);
+    router.push(status === "published" ? testimonyPath({ id, title: effectiveTitle }) : `/me?saved=${id}`);
     router.refresh();
   };
 
@@ -393,15 +440,41 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
       {/* ================= Writing canvas ================= */}
       <section className="paper">
         <div className="paper-inner">
-          <textarea
-            value={title}
-            onChange={(e) => setTitle(e.target.value.replace(/\n/g, ""))}
-            placeholder="Untitled testimony"
-            rows={1}
-            maxLength={120}
-            aria-label="Title"
-            className="paper-title"
-          />
+          <div className="relative">
+            <textarea
+              value={title}
+              onChange={(e) => {
+                setTitle(e.target.value.replace(/\n/g, ""));
+                unmark("title");
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Tab" && !title.trim() && ghostTitle) {
+                  e.preventDefault();
+                  setTitle(ghostTitle);
+                  markSuggested("title");
+                }
+              }}
+              placeholder={ghostTitle && !title.trim() ? "" : "Untitled testimony"}
+              rows={1}
+              maxLength={120}
+              aria-label="Title"
+              className="paper-title"
+            />
+            {ghostTitle && !title.trim() && (
+              <button
+                type="button"
+                onClick={() => {
+                  setTitle(ghostTitle);
+                  markSuggested("title");
+                }}
+                className="paper-title paper-title-ghost absolute inset-x-0 top-0 flex items-baseline gap-3 text-left"
+                title="Use this title (or press Tab)"
+              >
+                <span className="min-w-0 truncate">{ghostTitle}</span>
+                <span className="shrink-0 font-body text-xs not-italic tracking-wide text-gold-500/80">suggested · Tab to keep</span>
+              </button>
+            )}
+          </div>
 
           {suggestion ? (
             <AssistantReview suggestion={suggestion} diff={diff!} stats={stats!} view={view} setView={setView} onAccept={acceptSuggestion} onReject={() => setSuggestion(null)} />
@@ -429,6 +502,16 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
             </span>
             {localSavedAt && <span className="text-parchment-700">Saved in this browser {new Date(localSavedAt).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })}</span>}
             {cleanedNotice && <span className="text-gold-300">{cleanedNotice}</span>}
+            {extracting && (
+              <span className="flex items-center gap-1.5 text-gold-500/80">
+                <Sparkle /> Reading for details…
+              </span>
+            )}
+            {!extracting && suggested.size > 0 && (
+              <span className="text-parchment-700">
+                {suggested.size} {suggested.size === 1 ? "detail" : "details"} suggested from your text
+              </span>
+            )}
           </div>
           {!suggestion && (
             <div className="flex flex-wrap items-center gap-2">
@@ -484,10 +567,10 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <span className="flex items-center gap-2 text-gold-300">
                   <Sparkle />
-                  {extracting ? "Reading your testimony for details…" : extracted ? "Details found in your testimony" : "The assistant can fill these in from your text"}
+                  {extracting ? "Reading your testimony for details…" : extracted ? "Filled in from your testimony — edit anything that's off" : "Details fill in on their own as you write"}
                 </span>
                 <button type="button" onClick={() => void suggestDetails(true)} disabled={extracting || content.trim().length < 200} className="btn btn-ghost !px-3 !py-1 text-xs">
-                  {extracted ? "Look again" : "Suggest details"}
+                  {extracted ? "Look again" : "Read now"}
                 </button>
               </div>
               {extractError && <p className="mt-2 text-xs text-ember-500">{extractError}</p>}
@@ -521,12 +604,12 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
             </div>
 
             <Field label="One-line summary" htmlFor="description" hint="Shown under the title, on cards, and in search results. The assistant can write it from your text.">
-              <textarea id="description" className="input resize-y" rows={2} value={description} onChange={(e) => setDescription(e.target.value.slice(0, 200))} placeholder="What happened, in a sentence." />
+              <textarea id="description" className={`input resize-y ${suggested.has("description") ? "input-suggested" : ""}`} rows={2} value={description} onChange={(e) => { setDescription(e.target.value.slice(0, 200)); unmark("description"); }} placeholder="What happened, in a sentence." />
             </Field>
 
             <div className="grid gap-6 sm:grid-cols-2">
               <Field label="Kind of encounter" htmlFor="category">
-                <select id="category" className="input" value={category} onChange={(e) => setCategory(e.target.value)}>
+                <select id="category" className={`input ${suggested.has("category") ? "input-suggested" : ""}`} value={category} onChange={(e) => { setCategory(e.target.value); unmark("category"); }}>
                   {CATEGORIES.map((c) => (
                     <option key={c.slug} value={c.name}>{c.name}</option>
                   ))}
@@ -534,7 +617,7 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
               </Field>
               <Field label="When did it happen?" htmlFor="experienced" hint="Optional. Approximate is fine — choose how exact it is.">
                 <div className="flex gap-2">
-                  <input id="experienced" type="date" className="input" value={experiencedOn} onChange={(e) => setExperiencedOn(e.target.value)} max={new Date().toISOString().slice(0, 10)} />
+                  <input id="experienced" type="date" className={`input ${suggested.has("experienced") ? "input-suggested" : ""}`} value={experiencedOn} onChange={(e) => { setExperiencedOn(e.target.value); unmark("experienced"); }} max={new Date().toISOString().slice(0, 10)} />
                   <select aria-label="How exact is the date" className="input !w-auto" value={precision} onChange={(e) => setPrecision(e.target.value as DatePrecision)} disabled={!experiencedOn}>
                     <option value="day">Exact day</option>
                     <option value="month">That month</option>
@@ -566,11 +649,11 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
             <div>
               <p className="mb-1.5 block text-sm font-medium text-parchment-100">Where did it happen?</p>
               <div className="grid gap-3 sm:grid-cols-3">
-                <input aria-label="City" className="input" placeholder="City" value={locationCity} onChange={(e) => setLocationCity(e.target.value)} maxLength={80} />
-                <input aria-label="State or region" className="input" placeholder="State / region" value={locationRegion} onChange={(e) => setLocationRegion(e.target.value)} maxLength={80} />
-                <input aria-label="Country" className="input" placeholder="Country" value={locationCountry} onChange={(e) => { setLocationCountry(e.target.value); setLocationCode(""); }} maxLength={80} />
+                <input aria-label="City" className="input" placeholder="City" value={locationCity} onChange={(e) => { setLocationCity(e.target.value); unmark("location"); }} maxLength={80} />
+                <input aria-label="State or region" className="input" placeholder="State / region" value={locationRegion} onChange={(e) => { setLocationRegion(e.target.value); unmark("location"); }} maxLength={80} />
+                <input aria-label="Country" className="input" placeholder="Country" value={locationCountry} onChange={(e) => { setLocationCountry(e.target.value); setLocationCode(""); unmark("location"); }} maxLength={80} />
               </div>
-              <input aria-label="Place in your own words" className="input mt-3" placeholder="Or in your own words — e.g. a hospital outside Lagos" value={locationText} onChange={(e) => setLocationText(e.target.value)} maxLength={160} />
+              <input aria-label="Place in your own words" className="input mt-3" placeholder="Or in your own words — e.g. a hospital outside Lagos" value={locationText} onChange={(e) => { setLocationText(e.target.value); unmark("location"); }} maxLength={160} />
               <p className="mt-1.5 text-xs text-parchment-700">Optional. Lets readers find testimonies from their part of the world.</p>
             </div>
 

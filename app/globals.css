@@ -417,3 +417,20 @@ body:has(.writing-focus)::before {
   outline: none;
   border-bottom-color: var(--color-gold-500);
 }
+
+/* Assistant-suggested values: a quiet gold tint until the author edits them. */
+.input-suggested {
+  border-color: rgb(201 163 90 / 0.45);
+  box-shadow: inset 3px 0 0 rgb(201 163 90 / 0.6);
+}
+
+.paper-title-ghost {
+  color: var(--color-parchment-700);
+  font-style: italic;
+  cursor: text;
+  pointer-events: auto;
+}
+
+.paper-title-ghost:hover {
+  color: var(--color-parchment-500);
+}
