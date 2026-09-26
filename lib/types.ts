@@ -18,6 +18,23 @@ export interface Testimony {
   part_number: number;
   status: TestimonyStatus;
   language: string;
+  experienced_precision: DatePrecision;
+  location_text: string | null;
+  location_city: string | null;
+  location_region: string | null;
+  location_country: string | null;
+  location_country_code: string | null;
+}
+
+export type DatePrecision = "day" | "month" | "year" | "approx";
+
+/** What the details assistant proposes from the text of a testimony. */
+export interface ExtractedDetails {
+  titles: string[];
+  description: string | null;
+  category: string | null;
+  experienced: { date: string; precision: DatePrecision; evidence: string } | null;
+  location: { text: string; city: string | null; region: string | null; country: string | null; country_code: string | null; evidence: string } | null;
 }
 
 /** The subset a member edits; everything else is derived or server-managed. */
@@ -36,6 +53,12 @@ export type TestimonyDraft = Pick<
   | "part_number"
   | "status"
   | "language"
+  | "experienced_precision"
+  | "location_text"
+  | "location_city"
+  | "location_region"
+  | "location_country"
+  | "location_country_code"
 >;
 
 export interface Comment {

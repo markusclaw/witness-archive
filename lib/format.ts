@@ -48,3 +48,19 @@ export function catalogNumber(id: string): string {
   const hex = id.replace(/-/g, "").slice(0, 6).toUpperCase();
   return `WA-${hex}`;
 }
+
+/** "April 1999", "1999", "around 1999", or a full date, depending on how precise the author was. */
+export function formatExperienced(iso: string, precision: "day" | "month" | "year" | "approx" = "day"): string {
+  const d = new Date(iso.length === 10 ? `${iso}T12:00:00` : iso);
+  if (precision === "day") return d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+  if (precision === "month") return d.toLocaleDateString("en-US", { year: "numeric", month: "long" });
+  if (precision === "year") return String(d.getFullYear());
+  return `around ${d.getFullYear()}`;
+}
+
+/** "Queens, New York, United States" from whatever parts exist. */
+export function formatLocation(t: { location_city?: string | null; location_region?: string | null; location_country?: string | null; location_text?: string | null }): string | null {
+  const parts = [t.location_city, t.location_region, t.location_country].filter((p): p is string => !!p && p.trim().length > 0);
+  if (parts.length) return parts.join(", ");
+  return t.location_text?.trim() || null;
+}

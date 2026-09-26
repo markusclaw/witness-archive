@@ -14,7 +14,8 @@ import { TESTIMONY_COLUMNS } from "@/lib/queries";
 import { cleanTranscript, looksLikeTranscript } from "@/lib/transcript";
 import { testimonyPath } from "@/lib/seo";
 import { fetchMyProfile } from "@/lib/profiles";
-import type { FormatSuggestion, Testimony } from "@/lib/types";
+import type { DatePrecision, ExtractedDetails, FormatSuggestion, Testimony } from "@/lib/types";
+import { formatExperienced } from "@/lib/format";
 
 type SeriesOption = { series_id: string; title: string; nextPart: number };
 
@@ -61,6 +62,18 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
   const [category, setCategory] = useState(existing?.category ?? continueSeries?.category ?? CATEGORIES[0].name);
   const [videoUrl, setVideoUrl] = useState(existing?.video_url ?? "");
   const [lang, setLang] = useState(existing?.language ?? "en");
+  const [precision, setPrecision] = useState<DatePrecision>(existing?.experienced_precision ?? "day");
+  const [locationText, setLocationText] = useState(existing?.location_text ?? "");
+  const [locationCity, setLocationCity] = useState(existing?.location_city ?? "");
+  const [locationRegion, setLocationRegion] = useState(existing?.location_region ?? "");
+  const [locationCountry, setLocationCountry] = useState(existing?.location_country ?? "");
+  const [locationCode, setLocationCode] = useState(existing?.location_country_code ?? "");
+
+  // ---- details assistant ----
+  const [extracted, setExtracted] = useState<ExtractedDetails | null>(null);
+  const [extracting, setExtracting] = useState(false);
+  const [extractError, setExtractError] = useState<string | null>(null);
+  const [extractedFor, setExtractedFor] = useState<string>("");
   const [seriesId, setSeriesId] = useState<string>(existing?.series_id ?? continueSeries?.series_id ?? "");
   const [partNumber, setPartNumber] = useState<number>(existing?.part_number ?? continueSeries?.nextPart ?? 1);
   const [seriesOptions, setSeriesOptions] = useState<SeriesOption[]>([]);
@@ -235,6 +248,47 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
     }
   };
 
+  const suggestDetails = async (force = false) => {
+    const key = content.trim().slice(0, 4000);
+    if (!force && (extracting || extractedFor === key || content.trim().length < 200)) return;
+    setExtracting(true);
+    setExtractError(null);
+    try {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      const res = await fetch("/api/extract", {
+        method: "POST",
+        headers: { "content-type": "application/json", authorization: `Bearer ${session?.access_token ?? ""}` },
+        body: JSON.stringify({ content, title }),
+      });
+      const json = (await res.json()) as ExtractedDetails & { error?: string };
+      if (!res.ok) throw new Error(json.error || "Something went wrong.");
+      setExtracted(json);
+      setExtractedFor(key);
+      // Fill only what's empty; the author's own entries always win.
+      if (!title.trim() && json.titles[0]) setTitle(json.titles[0]);
+      if (json.category && category === CATEGORIES[0].name && !existing) setCategory(json.category);
+      if (!experiencedOn && json.experienced) {
+        setExperiencedOn(json.experienced.date);
+        setPrecision(json.experienced.precision);
+      }
+      if (!locationText.trim() && !locationCity.trim() && !locationCountry.trim() && json.location) applyLocation(json.location);
+    } catch (err) {
+      setExtractError(err instanceof Error ? err.message : "Something went wrong.");
+    } finally {
+      setExtracting(false);
+    }
+  };
+
+  const applyLocation = (l: NonNullable<ExtractedDetails["location"]>) => {
+    setLocationText(l.text);
+    setLocationCity(l.city ?? "");
+    setLocationRegion(l.region ?? "");
+    setLocationCountry(l.country ?? "");
+    setLocationCode(l.country_code ?? "");
+  };
+
   const acceptSuggestion = () => {
     if (suggestion) setContent(suggestion.formatted);
     setSuggestion(null);
@@ -244,6 +298,7 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
     if (!user) return;
     if (!canSave) {
       setDetailsOpen(true);
+      void suggestDetails();
       window.setTimeout(() => detailsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
       return;
     }
@@ -262,6 +317,12 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
       author_bio: isAnonymous ? null : authorBio.trim() || null,
       experienced_on: experiencedOn || null,
       language: lang,
+      experienced_precision: experiencedOn ? precision : "day",
+      location_text: locationText.trim() || null,
+      location_city: locationCity.trim() || null,
+      location_region: locationRegion.trim() || null,
+      location_country: locationCountry.trim() || null,
+      location_country_code: locationCode.trim().toUpperCase() || null,
       part_number: partNumber,
       status,
       ...(seriesId ? { series_id: seriesId } : {}),
@@ -307,7 +368,7 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
     );
   }
 
-  const detailsSummary = [category, isAnonymous ? "Anonymous" : creator.trim() || "no name yet", videoUrl.trim() ? "video attached" : null, partNumber > 1 ? `Part ${partNumber}` : null]
+  const detailsSummary = [category, isAnonymous ? "Anonymous" : creator.trim() || "no name yet", experiencedOn ? formatExperienced(experiencedOn, precision) : null, locationCity || locationCountry || locationText || null, videoUrl.trim() ? "video attached" : null, partNumber > 1 ? `Part ${partNumber}` : null]
     .filter(Boolean)
     .join(" · ");
 
@@ -396,7 +457,15 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
 
       {/* ================= Details (collapsed) ================= */}
       <section ref={detailsRef} className="card mt-10 overflow-hidden">
-        <button type="button" onClick={() => setDetailsOpen((o) => !o)} className="flex w-full items-center justify-between gap-4 p-5 text-left" aria-expanded={detailsOpen}>
+        <button
+          type="button"
+          onClick={() => {
+            setDetailsOpen((o) => !o);
+            if (!detailsOpen) void suggestDetails();
+          }}
+          className="flex w-full items-center justify-between gap-4 p-5 text-left"
+          aria-expanded={detailsOpen}
+        >
           <div>
             <p className="eyebrow">Before you publish</p>
             <p className="mt-1 text-sm text-parchment-300">{detailsSummary}</p>
@@ -406,6 +475,44 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
 
         {detailsOpen && (
           <div className="space-y-6 border-t border-ink-700 p-5 sm:p-6">
+            {/* Details assistant */}
+            <div className="rounded-lg border border-gold-500/30 bg-gold-500/5 px-4 py-3 text-sm">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <span className="flex items-center gap-2 text-gold-300">
+                  <Sparkle />
+                  {extracting ? "Reading your testimony for details…" : extracted ? "Details found in your testimony" : "The assistant can fill these in from your text"}
+                </span>
+                <button type="button" onClick={() => void suggestDetails(true)} disabled={extracting || content.trim().length < 200} className="btn btn-ghost !px-3 !py-1 text-xs">
+                  {extracted ? "Look again" : "Suggest details"}
+                </button>
+              </div>
+              {extractError && <p className="mt-2 text-xs text-ember-500">{extractError}</p>}
+              {extracted && (
+                <div className="mt-3 space-y-2 text-xs text-parchment-300">
+                  {extracted.titles.length > 0 && (
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="text-parchment-500">Title ideas:</span>
+                      {extracted.titles.map((t) => (
+                        <button key={t} type="button" onClick={() => setTitle(t)} className={`rounded-full border px-3 py-1 text-xs transition ${title === t ? "border-gold-500 bg-gold-500 text-ink-950" : "border-gold-500/40 text-gold-300 hover:bg-gold-500/10"}`}>
+                          {t}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                  {extracted.experienced && (
+                    <Suggestion label="When" value={formatExperienced(extracted.experienced.date, extracted.experienced.precision)} evidence={extracted.experienced.evidence} applied={experiencedOn === extracted.experienced.date} onUse={() => { setExperiencedOn(extracted.experienced!.date); setPrecision(extracted.experienced!.precision); }} />
+                  )}
+                  {extracted.location && (
+                    <Suggestion label="Where" value={[extracted.location.city, extracted.location.region, extracted.location.country].filter(Boolean).join(", ") || extracted.location.text} evidence={extracted.location.evidence} applied={locationText === extracted.location.text} onUse={() => applyLocation(extracted.location!)} />
+                  )}
+                  {extracted.category && (
+                    <Suggestion label="Kind" value={extracted.category} applied={category === extracted.category} onUse={() => setCategory(extracted.category!)} />
+                  )}
+                  {!extracted.experienced && !extracted.location && <p className="text-parchment-700">No date or place is mentioned in the text — add them below if you&apos;d like.</p>}
+                </div>
+              )}
+            </div>
+
             <div className="grid gap-6 sm:grid-cols-2">
               <Field label="Kind of encounter" htmlFor="category">
                 <select id="category" className="input" value={category} onChange={(e) => setCategory(e.target.value)}>
@@ -414,8 +521,16 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
                   ))}
                 </select>
               </Field>
-              <Field label="When did it happen?" htmlFor="experienced" hint="Optional. Approximate is fine.">
-                <input id="experienced" type="date" className="input" value={experiencedOn} onChange={(e) => setExperiencedOn(e.target.value)} max={new Date().toISOString().slice(0, 10)} />
+              <Field label="When did it happen?" htmlFor="experienced" hint="Optional. Approximate is fine — choose how exact it is.">
+                <div className="flex gap-2">
+                  <input id="experienced" type="date" className="input" value={experiencedOn} onChange={(e) => setExperiencedOn(e.target.value)} max={new Date().toISOString().slice(0, 10)} />
+                  <select aria-label="How exact is the date" className="input !w-auto" value={precision} onChange={(e) => setPrecision(e.target.value as DatePrecision)} disabled={!experiencedOn}>
+                    <option value="day">Exact day</option>
+                    <option value="month">That month</option>
+                    <option value="year">That year</option>
+                    <option value="approx">Around then</option>
+                  </select>
+                </div>
               </Field>
             </div>
 
@@ -436,6 +551,17 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
                 <input id="bio" className="input" value={authorBio} onChange={(e) => setAuthorBio(e.target.value)} maxLength={200} placeholder="e.g. Nurse in Ohio. More at example.com" />
               </Field>
             )}
+
+            <div>
+              <p className="mb-1.5 block text-sm font-medium text-parchment-100">Where did it happen?</p>
+              <div className="grid gap-3 sm:grid-cols-3">
+                <input aria-label="City" className="input" placeholder="City" value={locationCity} onChange={(e) => setLocationCity(e.target.value)} maxLength={80} />
+                <input aria-label="State or region" className="input" placeholder="State / region" value={locationRegion} onChange={(e) => setLocationRegion(e.target.value)} maxLength={80} />
+                <input aria-label="Country" className="input" placeholder="Country" value={locationCountry} onChange={(e) => { setLocationCountry(e.target.value); setLocationCode(""); }} maxLength={80} />
+              </div>
+              <input aria-label="Place in your own words" className="input mt-3" placeholder="Or in your own words — e.g. a hospital outside Lagos" value={locationText} onChange={(e) => setLocationText(e.target.value)} maxLength={160} />
+              <p className="mt-1.5 text-xs text-parchment-700">Optional. Lets readers find testimonies from their part of the world.</p>
+            </div>
 
             <Field label="Written in" htmlFor="lang" hint="The language of your text. Readers can view it in other languages; the original is always kept.">
               <select id="lang" className="input" value={lang} onChange={(e) => setLang(e.target.value)}>
@@ -630,6 +756,19 @@ function Field({ label, htmlFor, hint, error, children }: { label: string; htmlF
       <label htmlFor={htmlFor} className="mb-1.5 block text-sm font-medium text-parchment-100">{label}</label>
       {children}
       {error ? <p className="mt-1.5 text-xs text-ember-500">{error}</p> : hint ? <p className="mt-1.5 text-xs text-parchment-700">{hint}</p> : null}
+    </div>
+  );
+}
+
+function Suggestion({ label, value, evidence, applied, onUse }: { label: string; value: string; evidence?: string; applied: boolean; onUse: () => void }) {
+  return (
+    <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+      <span className="text-parchment-500">{label}:</span>
+      <span className="text-parchment-100">{value}</span>
+      {evidence && <span className="text-parchment-700">— from “{evidence.length > 90 ? `${evidence.slice(0, 90)}…` : evidence}”</span>}
+      {applied ? <span className="text-gold-400">✓ used</span> : (
+        <button type="button" onClick={onUse} className="rounded-full border border-gold-500/40 px-2 py-0.5 text-gold-300 hover:bg-gold-500/10">Use</button>
+      )}
     </div>
   );
 }

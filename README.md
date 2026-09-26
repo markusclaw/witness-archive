@@ -16,6 +16,7 @@ A curated archive of first-hand testimonies of the supernatural — heaven, hell
    - `supabase/migrations/004_profiles.sql` — member profiles (auto-created on sign-up) and the public `avatars` storage bucket
    - `supabase/migrations/005_languages.sql` — original-language column and the cached `testimony_translations` table
    - `supabase/migrations/006_comment_replies.sql` — one-level threaded replies on comments
+   - `supabase/migrations/007_metadata.sql` — where it happened and how precise the date is
 2. Copy `.env.example` to `.env.local` and fill in the URL and anon key from *Project Settings → API*. Add an `ANTHROPIC_API_KEY` to enable the formatting assistant (the site works without it; the button just reports it isn't configured).
 3. `npm install && npm run dev`, then open http://localhost:3000.
 
@@ -41,6 +42,7 @@ The app runs on Cloudflare Workers via the OpenNext adapter (`wrangler.jsonc`, `
 | `app/settings/` | Display name, bio, avatar upload (resized in the browser to 256px), password reset |
 | `app/me/` | The member's drafts and published testimonies, grouped by series: publish/unpublish, edit, delete, add part |
 | `app/api/format/` | Server route calling the Claude API with a strict "readability only" prompt; requires a signed-in member |
+| `app/api/extract/` | Reads a testimony and proposes title, category, when (with precision) and where, each with its supporting quote; nothing is applied without the author |
 | `app/about/` | Mission, collections, curation policy |
 | `app/auth/` | Sign in / sign up (with display name) / password reset |
 | `components/` | UI: cards, header/footer, comments, video facade, forms |

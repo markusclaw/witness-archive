@@ -12,7 +12,7 @@ import TestimonyCard from "@/components/TestimonyCard";
 import TranslatedContent from "@/components/TranslatedContent";
 import VideoEmbed from "@/components/VideoEmbed";
 import { slugForCategoryName } from "@/lib/categories";
-import { catalogNumber, formatDate, readingTime } from "@/lib/format";
+import { catalogNumber, formatDate, formatExperienced, formatLocation, readingTime } from "@/lib/format";
 import { LANGUAGES, languageByCode } from "@/lib/languages";
 import { getProfile, getRelatedTestimonies, getSeriesParts, getTestimonyById } from "@/lib/queries";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL, absoluteUrl, collectionPath, localizedTestimonyPath, metaDescription, parseTestimonyParam, testimonyPath } from "@/lib/seo";
@@ -124,6 +124,17 @@ export default async function TestimonyArticle({ param, lang, prefixed = false }
         keywords: [testimony.category, "testimony", "first-hand account", "supernatural experience"].join(", "),
         inLanguage: lang,
         isAccessibleForFree: true,
+        ...(formatLocation(testimony)
+          ? {
+              contentLocation: {
+                "@type": "Place",
+                name: formatLocation(testimony),
+                ...(testimony.location_country
+                  ? { address: { "@type": "PostalAddress", addressLocality: testimony.location_city ?? undefined, addressRegion: testimony.location_region ?? undefined, addressCountry: testimony.location_country_code ?? testimony.location_country } }
+                  : {}),
+              },
+            }
+          : {}),
         ...(isTranslated ? { translationOfWork: { "@type": "Article", "@id": `${absoluteUrl(canonicalPath)}#article`, inLanguage: testimony.language } } : {}),
         ...(wordCount ? { wordCount } : {}),
         ...(shown.content ? { articleBody: shown.content } : {}),
@@ -168,7 +179,13 @@ export default async function TestimonyArticle({ param, lang, prefixed = false }
       {testimony.experienced_on && (
         <>
           <span aria-hidden>·</span>
-          <span>{formatDate(testimony.experienced_on + "T12:00:00")}</span>
+          <span title="When it happened">{formatExperienced(testimony.experienced_on, testimony.experienced_precision)}</span>
+        </>
+      )}
+      {formatLocation(testimony) && (
+        <>
+          <span aria-hidden>·</span>
+          <span title="Where it happened">{formatLocation(testimony)}</span>
         </>
       )}
       <span aria-hidden>·</span>

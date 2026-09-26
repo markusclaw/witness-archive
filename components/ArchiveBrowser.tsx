@@ -48,6 +48,7 @@ export default function ArchiveBrowser({
         t.title.toLowerCase().includes(needle) ||
         t.description.toLowerCase().includes(needle) ||
         t.creator.toLowerCase().includes(needle) ||
+        [t.location_city, t.location_region, t.location_country, t.location_text].some((v) => (v ?? "").toLowerCase().includes(needle)) ||
         (t.content ?? "").toLowerCase().includes(needle)
       );
     });
@@ -80,7 +81,7 @@ export default function ArchiveBrowser({
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search titles, names, keywords…"
+            placeholder="Search titles, names, places, keywords…"
             className="input !pl-9"
           />
         </label>
