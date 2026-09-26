@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
 import { CATEGORIES } from "@/lib/categories";
 import { getAllTestimonies } from "@/lib/queries";
-import { absoluteUrl, collectionPath, testimonyPath } from "@/lib/seo";
+import { absoluteUrl, collectionPath, localizedTestimonyPath, testimonyPath } from "@/lib/seo";
+import { createServerSupabase } from "@/lib/supabase-server";
 
 export const dynamic = "force-dynamic";
 
@@ -25,12 +26,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     };
   });
 
-  const entries: MetadataRoute.Sitemap = testimonies.map((t) => ({
-    url: absoluteUrl(testimonyPath(t)),
-    lastModified: t.updated_at,
-    changeFrequency: "monthly",
-    priority: t.part_number === 1 ? 0.7 : 0.6,
-  }));
+  // Cached translations get their own sitemap entries; hreflang alternates link every version.
+  const { data: tr } = await createServerSupabase().from("testimony_translations").select("testimony_id, language, updated_at");
+  const byId = new Map<string, { language: string; updated_at: string }[]>();
+  for (const r of tr ?? []) byId.set(r.testimony_id, [...(byId.get(r.testimony_id) ?? []), r]);
+
+  const entries: MetadataRoute.Sitemap = [];
+  for (const t of testimonies) {
+    const langs = [t.language, ...(byId.get(t.id) ?? []).map((r) => r.language)];
+    const alternates = { languages: Object.fromEntries(langs.map((l) => [l, absoluteUrl(localizedTestimonyPath(t, l))])) };
+    entries.push({ url: absoluteUrl(testimonyPath(t)), lastModified: t.updated_at, changeFrequency: "monthly", priority: t.part_number === 1 ? 0.7 : 0.6, alternates });
+    for (const r of byId.get(t.id) ?? []) {
+      entries.push({ url: absoluteUrl(localizedTestimonyPath(t, r.language)), lastModified: r.updated_at, changeFrequency: "monthly", priority: 0.5, alternates });
+    }
+  }
 
   return [...staticPages, ...collections, ...entries];
 }

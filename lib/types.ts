@@ -17,6 +17,7 @@ export interface Testimony {
   series_id: string;
   part_number: number;
   status: TestimonyStatus;
+  language: string;
 }
 
 /** The subset a member edits; everything else is derived or server-managed. */
@@ -34,6 +35,7 @@ export type TestimonyDraft = Pick<
   | "series_id"
   | "part_number"
   | "status"
+  | "language"
 >;
 
 export interface Comment {
@@ -57,6 +59,18 @@ export interface Profile {
   display_name: string;
   avatar_url: string | null;
   bio: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Translation {
+  testimony_id: string;
+  language: string;
+  title: string;
+  description: string;
+  content: string | null;
+  source: "machine" | "author" | "reviewed";
+  model: string | null;
   created_at: string;
   updated_at: string;
 }

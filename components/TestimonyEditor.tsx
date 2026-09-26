@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import type { User } from "@supabase/supabase-js";
 import { supabase } from "@/lib/supabase";
 import { CATEGORIES } from "@/lib/categories";
+import { LANGUAGES } from "@/lib/languages";
 import { diffStats, diffWords } from "@/lib/diff";
 import { extractYouTubeId } from "@/lib/youtube";
 import { displayNameFor } from "@/lib/user";
@@ -59,6 +60,7 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
   const [authorBio, setAuthorBio] = useState(existing?.author_bio ?? continueSeries?.author_bio ?? "");
   const [category, setCategory] = useState(existing?.category ?? continueSeries?.category ?? CATEGORIES[0].name);
   const [videoUrl, setVideoUrl] = useState(existing?.video_url ?? "");
+  const [lang, setLang] = useState(existing?.language ?? "en");
   const [seriesId, setSeriesId] = useState<string>(existing?.series_id ?? continueSeries?.series_id ?? "");
   const [partNumber, setPartNumber] = useState<number>(existing?.part_number ?? continueSeries?.nextPart ?? 1);
   const [seriesOptions, setSeriesOptions] = useState<SeriesOption[]>([]);
@@ -259,6 +261,7 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
       is_anonymous: isAnonymous,
       author_bio: isAnonymous ? null : authorBio.trim() || null,
       experienced_on: experiencedOn || null,
+      language: lang,
       part_number: partNumber,
       status,
       ...(seriesId ? { series_id: seriesId } : {}),
@@ -433,6 +436,14 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
                 <input id="bio" className="input" value={authorBio} onChange={(e) => setAuthorBio(e.target.value)} maxLength={200} placeholder="e.g. Nurse in Ohio. More at example.com" />
               </Field>
             )}
+
+            <Field label="Written in" htmlFor="lang" hint="The language of your text. Readers can view it in other languages; the original is always kept.">
+              <select id="lang" className="input" value={lang} onChange={(e) => setLang(e.target.value)}>
+                {LANGUAGES.map((l) => (
+                  <option key={l.code} value={l.code}>{l.nativeName}</option>
+                ))}
+              </select>
+            </Field>
 
             <Field label="YouTube link" htmlFor="video" hint="Optional. If you told this story on video, it's embedded above the text." error={!videoOk ? "That doesn't look like a YouTube link." : undefined}>
               <input id="video" className="input" value={videoUrl} onChange={(e) => setVideoUrl(e.target.value)} placeholder="https://www.youtube.com/watch?v=…" inputMode="url" />

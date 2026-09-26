@@ -56,3 +56,9 @@ export function metaDescription(text: string, max = 158): string {
   const cut = flat.slice(0, max);
   return `${cut.slice(0, cut.lastIndexOf(" "))}…`;
 }
+
+/** Path for a testimony in a display language. The original language has no prefix. */
+export function localizedTestimonyPath(t: Pick<Testimony, "id" | "title" | "language">, lang: string): string {
+  const base = testimonyPath(t);
+  return lang === t.language ? base : `/${lang}${base}`;
+}

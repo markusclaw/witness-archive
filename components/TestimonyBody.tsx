@@ -1,13 +1,17 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { languageByCode } from "@/lib/languages";
 
 /**
  * Read-or-listen body. "Listen" uses the browser's speech synthesis, reads
  * paragraph by paragraph, and highlights the one being spoken. No audio is
  * stored or sent anywhere.
  */
-export default function TestimonyBody({ paragraphs, title }: { paragraphs: string[]; title: string }) {
+export default function TestimonyBody({ paragraphs, title, lang = "en" }: { paragraphs: string[]; title: string; lang?: string }) {
+  const language = languageByCode(lang) ?? languageByCode("en")!;
+  const ui = language.ui;
+  const speechPrefix = language.speech;
   const [supported, setSupported] = useState(false);
   const [mode, setMode] = useState<"read" | "listen">("read");
   const [playing, setPlaying] = useState(false);
@@ -25,7 +29,7 @@ export default function TestimonyBody({ paragraphs, title }: { paragraphs: strin
     if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
     queueMicrotask(() => setSupported(true));
     const loadVoices = () => {
-      const all = window.speechSynthesis.getVoices().filter((v) => v.lang.toLowerCase().startsWith("en"));
+      const all = window.speechSynthesis.getVoices().filter((v) => v.lang.toLowerCase().startsWith(speechPrefix));
       setVoices(all);
       if (!voiceRef.current && all.length) {
         const preferred = all.find((v) => /natural|premium|enhanced|neural/i.test(v.name)) ?? all.find((v) => v.default) ?? all[0];
@@ -39,7 +43,7 @@ export default function TestimonyBody({ paragraphs, title }: { paragraphs: strin
       window.speechSynthesis.removeEventListener("voiceschanged", loadVoices);
       window.speechSynthesis.cancel();
     };
-  }, []);
+  }, [speechPrefix]);
 
   useEffect(() => {
     rateRef.current = rate;
@@ -59,6 +63,7 @@ export default function TestimonyBody({ paragraphs, title }: { paragraphs: strin
         return;
       }
       const u = new SpeechSynthesisUtterance(paragraphs[index]);
+      u.lang = speechPrefix;
       u.rate = rateRef.current;
       const v = synth.getVoices().find((x) => x.voiceURI === voiceRef.current);
       if (v) u.voice = v;
@@ -75,7 +80,7 @@ export default function TestimonyBody({ paragraphs, title }: { paragraphs: strin
       synth.speak(u);
       setPlaying(true);
     },
-    [paragraphs]
+    [paragraphs, speechPrefix]
   );
   useEffect(() => {
     speakFromRef.current = speakFrom;
@@ -127,10 +132,10 @@ export default function TestimonyBody({ paragraphs, title }: { paragraphs: strin
         <div className="mb-8 flex flex-wrap items-center gap-3">
           <div className="flex gap-1 rounded-full border border-ink-600 p-0.5 text-sm">
             <button type="button" onClick={leaveListen} className={`rounded-full px-4 py-1.5 ${mode === "read" ? "bg-ink-600 text-parchment-50" : "text-parchment-500 hover:text-parchment-100"}`}>
-              Read
+              {ui.read}
             </button>
             <button type="button" onClick={() => setMode("listen")} className={`rounded-full px-4 py-1.5 ${mode === "listen" ? "bg-ink-600 text-parchment-50" : "text-parchment-500 hover:text-parchment-100"}`}>
-              Listen
+              {ui.listen}
             </button>
           </div>
 
@@ -142,15 +147,15 @@ export default function TestimonyBody({ paragraphs, title }: { paragraphs: strin
                 ) : (
                   <svg viewBox="0 0 24 24" className="ml-0.5 h-4 w-4" fill="currentColor" aria-hidden><path d="M8 5v14l11-7z" /></svg>
                 )}
-                {playing ? "Pause" : current >= 0 ? "Resume" : "Play"}
+                {playing ? ui.pause : current >= 0 ? ui.resume : ui.play}
               </button>
               {(playing || current >= 0) && (
                 <button type="button" onClick={() => { stop(); setCurrent(-1); }} className="btn btn-ghost !px-3 !py-1.5 text-sm">
-                  Stop
+                  {ui.stop}
                 </button>
               )}
               <label className="flex items-center gap-2 text-xs text-parchment-500">
-                Speed
+                {ui.speed}
                 <select value={rate} onChange={(e) => changeRate(Number(e.target.value))} className="input !w-auto !py-1 !text-xs">
                   {[0.8, 0.9, 1, 1.1, 1.25, 1.5].map((r) => (
                     <option key={r} value={r}>{r}×</option>
@@ -159,7 +164,7 @@ export default function TestimonyBody({ paragraphs, title }: { paragraphs: strin
               </label>
               {voices.length > 1 && (
                 <label className="flex items-center gap-2 text-xs text-parchment-500">
-                  Voice
+                  {ui.voice}
                   <select value={voiceURI} onChange={(e) => changeVoice(e.target.value)} className="input !w-auto max-w-[12rem] !py-1 !text-xs">
                     {voices.map((v) => (
                       <option key={v.voiceURI} value={v.voiceURI}>{v.name}</option>
@@ -190,7 +195,7 @@ export default function TestimonyBody({ paragraphs, title }: { paragraphs: strin
           </p>
         ))}
       </div>
-      {mode === "listen" && <p className="mt-6 text-xs text-parchment-700">Audio is generated by your device&apos;s built-in voice. Click any paragraph to start from there.</p>}
+      {mode === "listen" && <p className="mt-6 text-xs text-parchment-700">{ui.audioHint}</p>}
     </section>
   );
 }

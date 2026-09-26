@@ -14,6 +14,7 @@ A curated archive of first-hand testimonies of the supernatural — heaven, hell
    - `supabase/migrations/001_initial_schema.sql` — tables, RLS, indexes, seed rows
    - `supabase/migrations/003_member_authoring.sql` — author fields, series, draft/published status, RLS for self-publishing
    - `supabase/migrations/004_profiles.sql` — member profiles (auto-created on sign-up) and the public `avatars` storage bucket
+   - `supabase/migrations/005_languages.sql` — original-language column and the cached `testimony_translations` table
 2. Copy `.env.example` to `.env.local` and fill in the URL and anon key from *Project Settings → API*. Add an `ANTHROPIC_API_KEY` to enable the formatting assistant (the site works without it; the button just reports it isn't configured).
 3. `npm install && npm run dev`, then open http://localhost:3000.
 
@@ -25,7 +26,7 @@ The app runs on Cloudflare Workers via the OpenNext adapter (`wrangler.jsonc`, `
 
 - Build command: `npm run build:cf` · Deploy command: `npx wrangler deploy`
 - Build variables: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` (and optionally `NEXT_PUBLIC_SITE_URL`)
-- Runtime secret (Settings → Variables and Secrets, type *Secret*): `ANTHROPIC_API_KEY`
+- Runtime secrets (Settings → Variables and Secrets, type *Secret*): `ANTHROPIC_API_KEY` (Polish + translations) and `SUPABASE_SERVICE_ROLE_KEY` (lets the translate route write to the cache)
 
 ## How it's organized
 
@@ -55,6 +56,10 @@ Members write at `/submit`. The content goes through an optional **Polish** pass
 A testimony is saved as a **draft** (private, visible only to its author) or **published** (live immediately). Long testimonies can be split into a **series**: every part shares a `series_id` and has a `part_number`; the detail page shows Part 1 → Part 2 navigation. Authors can publish anonymously; their account is still linked so they can edit later, but no name is shown.
 
 Moderation is by hand for now: any row can be flipped to `draft` (hidden) or deleted from the Supabase dashboard. The `status` column is there so an approval step can be added later without a migration.
+
+## Languages
+
+Every testimony has an original `language` (chosen in the editor; English, Spanish, and Portuguese today — add one in `lib/languages.ts`). Readers switch language on the testimony page; the translated version lives at `/<lang>/testimony/<slug>-<uuid>` with `hreflang` alternates, and Listen picks a voice for that language. The first request for a language sends the testimony to Claude with a faithful-translation prompt and caches the result in `testimony_translations`; everyone after that gets it instantly. Translated pages are labeled as machine translations and link to the original. Authors can replace a machine translation with their own (`source = author`) via the table's RLS.
 
 ## SEO and discoverability
 
