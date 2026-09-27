@@ -71,6 +71,8 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
   const [relationship, setRelationship] = useState<WitnessRelationship>(existing?.witness_relationship ?? "self");
   const [witnessName, setWitnessName] = useState(existing?.witness_name ?? "");
   const [sourceCredit, setSourceCredit] = useState(existing?.source_credit ?? "");
+  const [sourceUrl, setSourceUrl] = useState(existing?.source_url ?? "");
+  const videoMetaForRef = useRef<string>("");
 
   // ---- repeat detection ----
   const [dupes, setDupes] = useState<DuplicateMatch[]>([]);
@@ -250,6 +252,38 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
       if (autoTimerRef.current) window.clearTimeout(autoTimerRef.current);
     };
   }, [content, suggestion, extracting]);
+
+  /* ---------------- video details from the link (channel, title) ---------------- */
+  useEffect(() => {
+    if (!user) return;
+    const vid = extractYouTubeId(videoUrl);
+    if (!vid || videoMetaForRef.current === vid) return;
+    videoMetaForRef.current = vid;
+    const run = async () => {
+      try {
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
+        const res = await fetch("/api/video-meta", {
+          method: "POST",
+          headers: { "content-type": "application/json", authorization: `Bearer ${session?.access_token ?? ""}` },
+          body: JSON.stringify({ url: videoUrl }),
+        });
+        if (!res.ok) return;
+        const m = (await res.json()) as { title?: string | null; author?: string | null; authorUrl?: string | null };
+        if (m.author && !sourceCredit.trim()) {
+          setSourceCredit(`${m.author} (YouTube)`);
+          markSuggested("source");
+        }
+        if (m.authorUrl && !sourceUrl.trim()) setSourceUrl(m.authorUrl);
+        if (m.title && !title.trim() && !ghostTitle) setGhostTitle(m.title.replace(/\s*[|\-–—]\s*[^|\-–—]{0,40}$/, "").trim() || m.title);
+      } catch {
+        /* advisory only */
+      }
+    };
+    void run();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user, videoUrl]);
 
   /* ---------------- repeat detection: same video, same text, same witness ---------------- */
   useEffect(() => {
@@ -488,6 +522,7 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
       witness_relationship: relationship,
       witness_name: relationship === "self" ? (isAnonymous ? null : creator.trim() || null) : witnessName.trim() || null,
       source_credit: sourceCredit.trim() || null,
+      source_url: sourceUrl.trim() || null,
       retelling_of: retellingOf,
       experienced_precision: experiencedOn ? precision : "day",
       location_text: locationText.trim() || null,
@@ -881,16 +916,16 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
                   </label>
                 ))}
               </div>
-              {relationship === "shared" && (
-                <div className="mt-4 grid gap-4 sm:grid-cols-2">
+              <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                {relationship === "shared" && (
                   <Field label="The witness" htmlFor="witness" hint="The person it happened to, as they should be credited. Filled in automatically when the text says “My name is…”. Leave blank if they shouldn't be named.">
                     <input id="witness" className={`input ${suggested.has("witness") ? "input-suggested" : ""}`} value={witnessName} onChange={(e) => { setWitnessName(e.target.value); unmark("witness"); }} maxLength={80} placeholder="e.g. Maria Santoso" />
                   </Field>
-                  <Field label="Source" htmlFor="source" hint="Optional. Where it came from — a ministry, channel, interview, or book.">
-                    <input id="source" className={`input ${suggested.has("source") ? "input-suggested" : ""}`} value={sourceCredit} onChange={(e) => { setSourceCredit(e.target.value); unmark("source"); }} maxLength={120} placeholder="e.g. Grace Chapel (YouTube)" />
-                  </Field>
-                </div>
-              )}
+                )}
+                <Field label="Source" htmlFor="source" hint={sourceUrl ? "Filled in from the video's channel. Edit if it should read differently." : "Optional. A ministry, channel, interview, or book. Fills in automatically from a YouTube link."}>
+                  <input id="source" className={`input ${suggested.has("source") ? "input-suggested" : ""}`} value={sourceCredit} onChange={(e) => { setSourceCredit(e.target.value); unmark("source"); }} maxLength={120} placeholder="e.g. Grace Chapel (YouTube)" />
+                </Field>
+              </div>
             </div>
 
             <Field label="One-line summary" htmlFor="description" hint="Shown under the title, on cards, and in search results. The assistant can write it from your text.">

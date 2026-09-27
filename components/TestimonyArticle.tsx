@@ -129,7 +129,7 @@ export default async function TestimonyArticle({ param, lang, prefixed = false }
         dateModified: testimony.updated_at,
         author: { "@type": "Person", name: author },
         ...(shared ? { contributor: { "@type": "Person", name: contributor, ...(testimony.author_id && !testimony.is_anonymous ? { url: absoluteUrl(`/author/${testimony.author_id}`) } : {}) } } : {}),
-        ...(testimony.source_credit ? { sourceOrganization: { "@type": "Organization", name: testimony.source_credit } } : {}),
+        ...(testimony.source_credit ? { sourceOrganization: { "@type": "Organization", name: testimony.source_credit, ...(testimony.source_url ? { url: testimony.source_url } : {}) } } : {}),
         publisher: { "@id": `${SITE_URL}/#organization` },
         articleSection: testimony.category,
         keywords: [testimony.category, "testimony", "first-hand account", "supernatural experience"].join(", "),
@@ -194,7 +194,12 @@ export default async function TestimonyArticle({ param, lang, prefixed = false }
           <span className="text-parchment-500">{ui.testimonyOf}</span> <span itemProp="name">{author}</span>
           {testimony.source_credit && (
             <span className="text-sm text-parchment-500">
-              {" "}· {ui.via} {testimony.source_credit}
+              {" "}· {ui.via}{" "}
+              {testimony.source_url ? (
+                <a href={testimony.source_url} target="_blank" rel="noopener noreferrer nofollow" className="underline hover:text-gold-300">{testimony.source_credit}</a>
+              ) : (
+                testimony.source_credit
+              )}
             </span>
           )}
         </p>
