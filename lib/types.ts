@@ -21,6 +21,7 @@ export interface Testimony {
   witness_name: string | null;
   witness_relationship: WitnessRelationship;
   source_credit: string | null;
+  retelling_of: string | null;
   experienced_precision: DatePrecision;
   location_text: string | null;
   location_city: string | null;

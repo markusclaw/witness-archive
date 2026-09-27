@@ -15,3 +15,14 @@ export function createServerSupabase(): SupabaseClient {
     auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
   });
 }
+
+/** Server client acting as a signed-in member (their JWT is forwarded), so RLS and RPC grants apply as in the browser. */
+export function createUserSupabase(accessToken: string): SupabaseClient {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  if (!url || !key) throw new Error("Missing Supabase environment variables on the server.");
+  return createClient(url, key, {
+    global: { headers: { Authorization: `Bearer ${accessToken}` } },
+    auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
+  });
+}

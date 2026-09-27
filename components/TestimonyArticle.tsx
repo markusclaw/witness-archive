@@ -17,7 +17,7 @@ import { slugForCategoryName } from "@/lib/categories";
 import { catalogNumber, compactNumber, formatDate, formatExperienced, formatLocation, isTruncatedExcerpt, readingTime } from "@/lib/format";
 import HeartButton from "@/components/HeartButton";
 import { LANGUAGES, languageByCode } from "@/lib/languages";
-import { getProfile, getRelatedTestimonies, getSeriesParts, getTestimonyById } from "@/lib/queries";
+import { getProfile, getRelatedTestimonies, getRetellings, getSeriesParts, getTestimonyById } from "@/lib/queries";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL, absoluteUrl, collectionPath, localizedTestimonyPath, metaDescription, parseTestimonyParam, testimonyPath } from "@/lib/seo";
 import { getTranslation } from "@/lib/translate";
 import type { Translation } from "@/lib/types";
@@ -90,10 +90,11 @@ export default async function TestimonyArticle({ param, lang, prefixed = false }
   const actual = prefixed ? `/${lang}/testimony/${param}` : `/testimony/${param}`;
   if (actual !== expected) permanentRedirect(expected);
 
-  const [related, parts, authorProfile] = await Promise.all([
+  const [related, parts, authorProfile, retellings] = await Promise.all([
     getRelatedTestimonies(testimony.category, testimony.series_id, 3),
     getSeriesParts(testimony.series_id),
     testimony.is_anonymous ? Promise.resolve(null) : getProfile(testimony.author_id),
+    getRetellings(testimony.id),
   ]);
 
   const ui = language.ui;
@@ -299,6 +300,21 @@ export default async function TestimonyArticle({ param, lang, prefixed = false }
           <Comments testimonyId={testimony.id} />
         </section>
       </article>
+
+      {retellings.length > 0 && (
+        <section className="mx-auto mt-20 max-w-6xl px-5">
+          <p className="eyebrow mb-3">The same testimony, told again</p>
+          <h2 className="font-display mb-2 text-3xl text-parchment-50">Other tellings</h2>
+          <p className="mb-8 max-w-2xl text-sm text-parchment-500">
+            This experience has been shared more than once — in another interview, from another source, or in the witness&apos;s own later words. Each telling is kept.
+          </p>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {retellings.map((t) => (
+              <TestimonyCard key={t.id} testimony={t} />
+            ))}
+          </div>
+        </section>
+      )}
 
       {related.length > 0 && (
         <section className="mx-auto mt-24 max-w-6xl px-5">

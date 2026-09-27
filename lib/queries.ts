@@ -2,7 +2,7 @@ import { createServerSupabase } from "@/lib/supabase-server";
 import type { Testimony } from "@/lib/types";
 
 export const TESTIMONY_COLUMNS =
-  "id, title, description, video_url, creator, category, content, created_at, updated_at, author_id, is_anonymous, author_bio, experienced_on, series_id, part_number, status, language, witness_name, witness_relationship, source_credit, experienced_precision, location_text, location_city, location_region, location_country, location_country_code, view_count, heart_count";
+  "id, title, description, video_url, creator, category, content, created_at, updated_at, author_id, is_anonymous, author_bio, experienced_on, series_id, part_number, status, language, witness_name, witness_relationship, source_credit, retelling_of, experienced_precision, location_text, location_city, location_region, location_country, location_country_code, view_count, heart_count";
 
 // RLS already hides drafts from the anon server client; the explicit filter
 // keeps intent obvious and protects against a policy change.
@@ -139,4 +139,15 @@ export async function getTrending(days = 7, limit = 3): Promise<Testimony[]> {
   const { data } = await supabase.from("testimonies").select(TESTIMONY_COLUMNS).in("id", ids).eq("status", "published");
   const byId = new Map((data ?? []).map((t) => [t.id, t as Testimony]));
   return ids.map((id) => byId.get(id)).filter((t): t is Testimony => !!t);
+}
+
+/** Other published tellings of the same testimony (linked via retelling_of, either direction). */
+export async function getRetellings(id: string): Promise<Testimony[]> {
+  const supabase = createServerSupabase();
+  const { data, error } = await supabase.rpc("retellings_of", { p_id: id });
+  if (error) {
+    console.warn("retellings_of:", error.message);
+    return [];
+  }
+  return (data ?? []) as Testimony[];
 }

@@ -15,6 +15,7 @@ import { cleanTranscript, looksLikeTranscript } from "@/lib/transcript";
 import { testimonyPath } from "@/lib/seo";
 import { fetchMyProfile } from "@/lib/profiles";
 import type { DatePrecision, ExtractedDetails, FormatSuggestion, Testimony, WitnessRelationship } from "@/lib/types";
+import type { DuplicateMatch, DuplicateReason } from "@/app/api/duplicates/route";
 import { formatExperienced, isTruncatedExcerpt } from "@/lib/format";
 
 type SeriesOption = { series_id: string; title: string; nextPart: number };
@@ -67,6 +68,14 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
   const [relationship, setRelationship] = useState<WitnessRelationship>(existing?.witness_relationship ?? "self");
   const [witnessName, setWitnessName] = useState(existing?.witness_name ?? "");
   const [sourceCredit, setSourceCredit] = useState(existing?.source_credit ?? "");
+
+  // ---- repeat detection ----
+  const [dupes, setDupes] = useState<DuplicateMatch[]>([]);
+  const [dupesChecking, setDupesChecking] = useState(false);
+  const [dismissedDupes, setDismissedDupes] = useState<Set<string>>(new Set());
+  const [retellingOf, setRetellingOf] = useState<string | null>(existing?.retelling_of ?? null);
+  const dupeKeyRef = useRef<string>("");
+  const dupeTimerRef = useRef<number | null>(null);
   const [precision, setPrecision] = useState<DatePrecision>(existing?.experienced_precision ?? "day");
   const [locationText, setLocationText] = useState(existing?.location_text ?? "");
   const [locationCity, setLocationCity] = useState(existing?.location_city ?? "");
@@ -237,6 +246,44 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
       if (autoTimerRef.current) window.clearTimeout(autoTimerRef.current);
     };
   }, [content, suggestion, extracting]);
+
+  /* ---------------- repeat detection: same video, same text, same witness ---------------- */
+  useEffect(() => {
+    if (!user) return;
+    const vid = extractYouTubeId(videoUrl);
+    const body = content.trim();
+    const wn = relationship === "shared" ? witnessName.trim() : "";
+    if (!vid && body.length < 400 && !wn) return;
+    const key = `${vid ?? ""}|${body.slice(0, 1500)}|${wn.toLowerCase()}|${category}`;
+    if (key === dupeKeyRef.current) return;
+    if (dupeTimerRef.current) window.clearTimeout(dupeTimerRef.current);
+    dupeTimerRef.current = window.setTimeout(async () => {
+      dupeKeyRef.current = key;
+      setDupesChecking(true);
+      try {
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
+        const res = await fetch("/api/duplicates", {
+          method: "POST",
+          headers: { "content-type": "application/json", authorization: `Bearer ${session?.access_token ?? ""}` },
+          body: JSON.stringify({ videoUrl: vid ? videoUrl : "", content: body.slice(0, 4000), witnessName: wn, category, excludeId: existing?.id ?? null }),
+        });
+        const json = (await res.json()) as { matches?: DuplicateMatch[] };
+        setDupes(json.matches ?? []);
+      } catch {
+        /* silent — this is advisory */
+      } finally {
+        setDupesChecking(false);
+      }
+    }, 1500);
+    return () => {
+      if (dupeTimerRef.current) window.clearTimeout(dupeTimerRef.current);
+    };
+  }, [user, videoUrl, content, witnessName, relationship, category, existing]);
+
+  const visibleDupes = dupes.filter((d) => !dismissedDupes.has(d.id) && d.id !== retellingOf);
+  const linkedDupe = dupes.find((d) => d.id === retellingOf) ?? null;
 
   /* ---------------- derived ---------------- */
   const videoOk = !videoUrl.trim() || !!extractYouTubeId(videoUrl);
@@ -436,6 +483,7 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
       witness_relationship: relationship,
       witness_name: relationship === "self" ? (isAnonymous ? null : creator.trim() || null) : witnessName.trim() || null,
       source_credit: sourceCredit.trim() || null,
+      retelling_of: retellingOf,
       experienced_precision: experiencedOn ? precision : "day",
       location_text: locationText.trim() || null,
       location_city: locationCity.trim() || null,
@@ -632,6 +680,67 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
           <span className="text-parchment-500">Polish</span> fixes grammar, punctuation, and paragraph breaks. It never changes what you said, and you approve every edit.
         </p>
       )}
+
+      {/* ================= Repeat check ================= */}
+      {(visibleDupes.length > 0 || linkedDupe || retellingOf) && (
+        <section className="mt-8 rounded-xl border border-gold-500/40 bg-gold-500/5 p-5">
+          {visibleDupes.length > 0 && (
+            <>
+              <p className="eyebrow mb-1">Already in the archive?</p>
+              <p className="text-sm text-parchment-300">
+                {visibleDupes.some((d) => d.reasons.includes("same_video"))
+                  ? "This video is already in the archive."
+                  : "This looks like it may already be here. Take a look before publishing."}
+              </p>
+              <ul className="mt-4 space-y-3">
+                {visibleDupes.map((d) => (
+                  <li key={d.id} className="rounded-lg border border-ink-600 bg-ink-900 p-4">
+                    <div className="flex flex-wrap items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <a href={d.path} target="_blank" rel="noopener" className="font-display text-lg text-parchment-50 hover:text-gold-300">
+                          {d.title}
+                        </a>
+                        <p className="mt-1 text-xs text-parchment-500">
+                          {d.witness_name ? `Testimony of ${d.witness_name}` : d.is_anonymous ? "Anonymous" : d.creator} · {d.category} · added {new Date(d.created_at).toLocaleDateString()}
+                        </p>
+                        <div className="mt-2 flex flex-wrap gap-1.5">
+                          {d.reasons.map((r) => (
+                            <span key={r} className="chip">{reasonLabel(r)}</span>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        <button type="button" onClick={() => setRetellingOf(d.id)} className="btn btn-ghost !px-3 !py-1.5 text-xs">
+                          Same testimony — link it
+                        </button>
+                        <button type="button" onClick={() => setDismissedDupes((s) => new Set(s).add(d.id))} className="btn btn-ghost !px-3 !py-1.5 text-xs">
+                          Not the same
+                        </button>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-3 text-xs text-parchment-700">
+                Linking keeps both entries and shows them to readers as “other tellings” of one testimony. If it&apos;s the exact same video or transcript, consider not publishing a second copy.
+              </p>
+            </>
+          )}
+          {retellingOf && (
+            <p className={`text-sm text-parchment-300 ${visibleDupes.length > 0 ? "mt-4 border-t border-ink-700 pt-4" : ""}`}>
+              <span className="text-gold-300">Linked</span> as another telling of{" "}
+              {linkedDupe ? (
+                <a href={linkedDupe.path} target="_blank" rel="noopener" className="text-parchment-50 underline hover:text-gold-300">{linkedDupe.title}</a>
+              ) : (
+                "an existing testimony"
+              )}
+              .{" "}
+              <button type="button" onClick={() => setRetellingOf(null)} className="underline hover:text-gold-300">Unlink</button>
+            </p>
+          )}
+        </section>
+      )}
+      {dupesChecking && visibleDupes.length === 0 && <p className="mt-3 text-xs text-parchment-700">Checking the archive for this testimony…</p>}
 
       {/* ================= Details (collapsed) ================= */}
       <section ref={detailsRef} className="card mt-10 overflow-hidden">
@@ -966,6 +1075,19 @@ function makeDescription(content: string): string {
   const cut = flat.slice(0, 180);
   const lastSpace = cut.lastIndexOf(" ");
   return `${cut.slice(0, lastSpace > 100 ? lastSpace : 180)}…`;
+}
+
+function reasonLabel(r: DuplicateReason): string {
+  switch (r) {
+    case "same_video":
+      return "Same video";
+    case "same_text":
+      return "Same text";
+    case "same_witness":
+      return "Same witness";
+    case "same_witness_other_category":
+      return "Same witness, different collection";
+  }
 }
 
 function ImportFallback({ error }: { error: { message: string; fallback: boolean } }) {
