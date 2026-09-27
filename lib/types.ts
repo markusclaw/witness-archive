@@ -115,8 +115,18 @@ export interface Translation {
   content: string | null;
   source: "machine" | "author" | "reviewed";
   model: string | null;
+  /** Rows the browser sees are always finished; jobs in flight are reported as TranslationJob. */
+  status: "ready";
   created_at: string;
   updated_at: string;
+}
+
+/** A translation still being generated (or one that failed), as reported to the browser. */
+export interface TranslationJob {
+  status: "pending" | "failed";
+  progress_done: number;
+  progress_total: number;
+  error?: string | null;
 }
 
 export interface AskSource {

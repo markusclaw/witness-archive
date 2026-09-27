@@ -28,7 +28,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   });
 
   // Cached translations get their own sitemap entries; hreflang alternates link every version.
-  const { data: tr } = await createServerSupabase().from("testimony_translations").select("testimony_id, language, updated_at");
+  const { data: tr } = await createServerSupabase().from("testimony_translations").select("testimony_id, language, updated_at").eq("status", "ready");
   const byId = new Map<string, { language: string; updated_at: string }[]>();
   for (const r of tr ?? []) byId.set(r.testimony_id, [...(byId.get(r.testimony_id) ?? []), r]);
 

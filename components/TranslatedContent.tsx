@@ -6,7 +6,7 @@ import TestimonyBody from "@/components/TestimonyBody";
 import { toParagraphs } from "@/lib/format";
 import { languageByCode, languageNameIn } from "@/lib/languages";
 import { testimonyPath } from "@/lib/seo";
-import type { Testimony, Translation } from "@/lib/types";
+import type { Testimony, Translation, TranslationJob } from "@/lib/types";
 
 type Shown = Pick<Translation, "title" | "description" | "content"> & { source?: Translation["source"] };
 
@@ -34,10 +34,40 @@ export default function TranslatedContent({
   const language = languageByCode(lang)!;
   const [translation, setTranslation] = useState<Translation | null>(initial);
   const [status, setStatus] = useState<"idle" | "loading" | "failed">(isTranslated && !initial ? "loading" : "idle");
+  const [progress, setProgress] = useState<{ done: number; total: number } | null>(null);
 
+  // Ask the server for the translation. A cached one comes back at once; otherwise
+  // the server starts a background job and we poll its progress until it is ready.
   useEffect(() => {
     if (!isTranslated || translation) return;
     let cancelled = false;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+
+    const handle = (res: Response, data: Translation | TranslationJob) => {
+      if (cancelled) return;
+      if (res.status === 200 && data.status === "ready") {
+        setTranslation(data);
+        setStatus("idle");
+        return;
+      }
+      if (res.status === 202 && data.status === "pending") {
+        setProgress({ done: data.progress_done, total: data.progress_total });
+        timer = setTimeout(poll, 3000);
+        return;
+      }
+      setStatus("failed");
+    };
+
+    const poll = async () => {
+      try {
+        const res = await fetch(`/api/translate?id=${encodeURIComponent(testimony.id)}&language=${encodeURIComponent(lang)}`, { cache: "no-store" });
+        if (res.status === 404) throw new Error("gone");
+        handle(res, (await res.json()) as Translation | TranslationJob);
+      } catch {
+        if (!cancelled) setStatus("failed");
+      }
+    };
+
     (async () => {
       try {
         const res = await fetch("/api/translate", {
@@ -45,18 +75,15 @@ export default function TranslatedContent({
           headers: { "content-type": "application/json" },
           body: JSON.stringify({ id: testimony.id, language: lang }),
         });
-        if (!res.ok) throw new Error(String(res.status));
-        const data = (await res.json()) as Translation;
-        if (!cancelled) {
-          setTranslation(data);
-          setStatus("idle");
-        }
+        if (res.status !== 200 && res.status !== 202) throw new Error(String(res.status));
+        handle(res, (await res.json()) as Translation | TranslationJob);
       } catch {
         if (!cancelled) setStatus("failed");
       }
     })();
     return () => {
       cancelled = true;
+      if (timer) clearTimeout(timer);
     };
   }, [isTranslated, translation, testimony.id, lang]);
 
@@ -77,7 +104,10 @@ export default function TranslatedContent({
         {isTranslated && (
           <p className="mt-4 rounded-lg border border-ink-600 bg-ink-900/60 px-4 py-2 text-xs text-parchment-500">
             {status === "loading" ? (
-              <span className="text-gold-300">{language.ui.translating}</span>
+              <span className="text-gold-300">
+                {language.ui.translating}
+                {progress && progress.total > 1 && ` ${Math.min(progress.done, progress.total)}/${progress.total}`}
+              </span>
             ) : status === "failed" ? (
               <>Translation isn&apos;t available right now — showing the original.</>
             ) : (
@@ -96,6 +126,11 @@ export default function TranslatedContent({
 
       {status === "loading" ? (
         <div className="space-y-4" aria-busy="true" aria-live="polite">
+          {progress && progress.total > 1 && (
+            <div className="h-1 w-full overflow-hidden rounded-full bg-ink-700" role="progressbar" aria-valuemin={0} aria-valuemax={progress.total} aria-valuenow={progress.done}>
+              <div className="h-full bg-gold-500 transition-[width] duration-700" style={{ width: `${Math.max(4, (100 * progress.done) / progress.total)}%` }} />
+            </div>
+          )}
           {[95, 100, 88, 97, 60].map((w, i) => (
             <div key={i} className="h-5 animate-pulse rounded bg-ink-700" style={{ width: `${w}%` }} />
           ))}
