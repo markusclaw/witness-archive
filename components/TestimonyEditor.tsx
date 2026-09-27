@@ -134,7 +134,6 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
   const [pasteUndo, setPasteUndo] = useState<string | null>(null);
 
   // ---- transcript import ----
-  const [importUrl, setImportUrl] = useState("");
   const [importing, setImporting] = useState(false);
   const [importError, setImportError] = useState<{ message: string; fallback: boolean } | null>(null);
   const [importNotice, setImportNotice] = useState<string | null>(null);
@@ -737,33 +736,6 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
       </section>
       {polishError && <p className="mt-3 text-sm text-ember-500">{polishError}</p>}
       {importNotice && <p className="mt-3 text-xs text-gold-300">{importNotice}</p>}
-      {wordCount === 0 && !suggestion && !TRANSCRIPT_IMPORT && (
-        <div className="mt-4 rounded-xl border border-ink-600 bg-ink-900/60 p-4">
-          <p className="text-sm text-parchment-300">Told this story on video? Bring the transcript over in thirty seconds.</p>
-          <p className="mt-2 text-xs leading-relaxed text-parchment-500">
-            On YouTube, open the video, click <span className="text-parchment-300">…more</span> under the title, then <span className="text-parchment-300">Show transcript</span>. Select all of it, copy, and paste it here — the timestamps are stripped automatically, and the details below fill themselves in. Add the video link in “Before you publish” so it&apos;s embedded above the text.
-          </p>
-        </div>
-      )}
-      {wordCount === 0 && !suggestion && TRANSCRIPT_IMPORT && (
-        <div className="mt-4 rounded-xl border border-ink-600 bg-ink-900/60 p-4">
-          <p className="text-sm text-parchment-300">Told this story on video? Paste the YouTube link and we&apos;ll bring the transcript in for you.</p>
-          <form
-            className="mt-3 flex flex-col gap-2 sm:flex-row"
-            onSubmit={(e) => {
-              e.preventDefault();
-              void importTranscript(importUrl);
-            }}
-          >
-            <input className="input" value={importUrl} onChange={(e) => setImportUrl(e.target.value)} placeholder="https://www.youtube.com/watch?v=…" inputMode="url" aria-label="YouTube link to import" />
-            <button type="submit" disabled={importing || !extractYouTubeId(importUrl)} className="btn btn-primary whitespace-nowrap !py-2">
-              {importing ? "Fetching…" : "Import transcript"}
-            </button>
-          </form>
-          <p className="mt-2 text-xs text-parchment-700">For your own video, or one you have permission to share. You can edit everything before publishing.</p>
-          {importError && <ImportFallback error={importError} />}
-        </div>
-      )}
       {transcripty && !suggestion && (
         <p className="mt-3 text-xs text-parchment-700">
           This looks like a pasted video transcript. <button type="button" onClick={cleanUp} className="underline hover:text-gold-300">Clean up transcript</button> strips the timestamps and rejoins the lines without touching a word — then Polish can handle the rest.
@@ -774,6 +746,55 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
           <span className="text-parchment-500">Polish</span> fixes grammar, punctuation, and paragraph breaks. It never changes what you said, and you approve every edit.
         </p>
       )}
+
+      {/* ================= Video ================= */}
+      <section className="card mt-8 p-5">
+        <div className="flex flex-wrap items-baseline justify-between gap-2">
+          <p className="eyebrow">Video</p>
+          {videoOk && extractYouTubeId(videoUrl) && (
+            <span className="text-xs text-parchment-700">Embedded above the text on the published page.</span>
+          )}
+        </div>
+        <div className="mt-3 flex flex-col gap-2 sm:flex-row">
+          <input
+            id="video"
+            className={`input ${!videoOk ? "!border-ember-500/60" : ""}`}
+            value={videoUrl}
+            onChange={(e) => setVideoUrl(e.target.value.trim())}
+            placeholder="Paste the YouTube link — https://www.youtube.com/watch?v=…"
+            inputMode="url"
+            aria-label="YouTube link"
+          />
+          {TRANSCRIPT_IMPORT && extractYouTubeId(videoUrl) && (
+            <button type="button" onClick={() => void importTranscript(videoUrl)} disabled={importing} className="btn btn-ghost whitespace-nowrap !py-2 text-sm">
+              {importing ? "Fetching…" : content.trim() ? "Replace with transcript" : "Import transcript"}
+            </button>
+          )}
+        </div>
+        {!videoOk && <p className="mt-2 text-xs text-ember-500">That doesn&apos;t look like a YouTube link.</p>}
+
+        {videoOk && extractYouTubeId(videoUrl) && (
+          <div className="mt-4 flex gap-4">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={`https://i.ytimg.com/vi/${extractYouTubeId(videoUrl)}/mqdefault.jpg`} alt="" className="h-20 w-36 shrink-0 rounded-lg object-cover ring-1 ring-ink-600" />
+            <div className="min-w-0 text-sm">
+              <p className="truncate text-parchment-50">{videoMeta?.title ?? "Reading video details…"}</p>
+              <p className="mt-0.5 truncate text-xs text-parchment-500">
+                {[videoMeta?.author, videoMeta?.durationSeconds ? `${Math.max(1, Math.round(videoMeta.durationSeconds / 60))} min` : null, videoMeta?.publishedAt ? new Date(videoMeta.publishedAt).toLocaleDateString(undefined, { year: "numeric", month: "short" }) : null].filter(Boolean).join(" · ")}
+              </p>
+              {wordCount === 0 && (
+                <p className="mt-2 text-xs leading-relaxed text-parchment-700">
+                  Now the transcript: on YouTube click <span className="text-parchment-400">…more</span> under the title, then <span className="text-parchment-400">Show transcript</span>, select all, copy, and paste it into the page above. Timestamps are stripped automatically.
+                </p>
+              )}
+            </div>
+          </div>
+        )}
+        {videoOk && !extractYouTubeId(videoUrl) && (
+          <p className="mt-2 text-xs text-parchment-700">Optional. If this testimony was told on video, the link fills in the source and title, and the video is embedded above the text.</p>
+        )}
+        {importError && <ImportFallback error={importError} />}
+      </section>
 
       {/* ================= Repeat check ================= */}
       {(visibleDupes.length > 0 || linkedDupe || retellingOf) && (
@@ -1000,18 +1021,6 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
                   <option key={l.code} value={l.code}>{l.nativeName}</option>
                 ))}
               </select>
-            </Field>
-
-            <Field label="YouTube link" htmlFor="video" hint="Optional. If you told this story on video, it's embedded above the text." error={!videoOk ? "That doesn't look like a YouTube link." : undefined}>
-              <div className="flex flex-col gap-2 sm:flex-row">
-                <input id="video" className="input" value={videoUrl} onChange={(e) => setVideoUrl(e.target.value)} placeholder="https://www.youtube.com/watch?v=…" inputMode="url" />
-                {TRANSCRIPT_IMPORT && extractYouTubeId(videoUrl) && (
-                  <button type="button" onClick={() => void importTranscript(videoUrl)} disabled={importing} className="btn btn-ghost whitespace-nowrap !py-2 text-sm">
-                    {importing ? "Fetching…" : content.trim() ? "Replace with transcript" : "Import transcript"}
-                  </button>
-                )}
-              </div>
-              {importError && wordCount > 0 && <ImportFallback error={importError} />}
             </Field>
 
             <div className="border-t border-ink-700 pt-6">
