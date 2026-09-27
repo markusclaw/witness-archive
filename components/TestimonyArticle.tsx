@@ -40,7 +40,8 @@ export async function testimonyMetadata(param: string, lang: string): Promise<Me
   if (!data) return { title: "Testimony not found", robots: { index: false } };
   const { testimony: t, translation } = data;
   const shown = translation ?? t;
-  const author = t.is_anonymous ? "Anonymous" : t.creator;
+  const contributor = t.is_anonymous ? "Anonymous" : t.creator;
+  const author = t.witness_relationship === "shared" ? t.witness_name || contributor : contributor;
   const image = youtubeThumbnail(t.video_url, "maxres") ?? absoluteUrl(DEFAULT_OG_IMAGE);
   const title = t.part_number > 1 ? `${shown.title} (Part ${t.part_number})` : shown.title;
   const base = isTruncatedExcerpt(t.description, t.content) && !translation ? `A first-hand ${t.category.toLowerCase()} testimony by ${author}.` : shown.description;
@@ -100,7 +101,10 @@ export default async function TestimonyArticle({ param, lang, prefixed = false }
   const watchUrl = youtubeWatchUrl(testimony.video_url);
   const videoId = extractYouTubeId(testimony.video_url);
   const minutes = readingTime(testimony.content);
-  const author = testimony.is_anonymous ? "Anonymous" : testimony.creator;
+  const contributor = testimony.is_anonymous ? "Anonymous" : testimony.creator;
+  const shared = testimony.witness_relationship === "shared";
+  const witness = shared ? testimony.witness_name?.trim() || null : null;
+  const author = shared ? witness ?? ui.unnamedWitness : contributor;
   const url = absoluteUrl(expected);
   const image = youtubeThumbnail(testimony.video_url, "maxres") ?? absoluteUrl(DEFAULT_OG_IMAGE);
   const wordCount = testimony.content ? testimony.content.trim().split(/\s+/).length : 0;
@@ -123,6 +127,8 @@ export default async function TestimonyArticle({ param, lang, prefixed = false }
         datePublished: testimony.created_at,
         dateModified: testimony.updated_at,
         author: { "@type": "Person", name: author },
+        ...(shared ? { contributor: { "@type": "Person", name: contributor, ...(testimony.author_id && !testimony.is_anonymous ? { url: absoluteUrl(`/author/${testimony.author_id}`) } : {}) } } : {}),
+        ...(testimony.source_credit ? { sourceOrganization: { "@type": "Organization", name: testimony.source_credit } } : {}),
         publisher: { "@id": `${SITE_URL}/#organization` },
         articleSection: testimony.category,
         keywords: [testimony.category, "testimony", "first-hand account", "supernatural experience"].join(", "),
@@ -182,17 +188,27 @@ export default async function TestimonyArticle({ param, lang, prefixed = false }
 
   const metaRow = (
     <div className="mt-6 space-y-3 text-sm text-parchment-500">
+      {shared && (
+        <p className="font-display text-lg text-parchment-100" itemProp="author" itemScope itemType="https://schema.org/Person">
+          <span className="text-parchment-500">{ui.testimonyOf}</span> <span itemProp="name">{author}</span>
+          {testimony.source_credit && (
+            <span className="text-sm text-parchment-500">
+              {" "}· {ui.via} {testimony.source_credit}
+            </span>
+          )}
+        </p>
+      )}
       <div className="flex flex-wrap items-center gap-3">
-        <span itemProp="author" itemScope itemType="https://schema.org/Person" className="flex items-center gap-2">
-          {!testimony.is_anonymous && <Avatar name={author} src={authorProfile?.avatar_url} seed={testimony.author_id ?? author} size="xs" />}
+        <span {...(shared ? { itemProp: "contributor" } : { itemProp: "author" })} itemScope itemType="https://schema.org/Person" className="flex items-center gap-2">
+          {!testimony.is_anonymous && <Avatar name={contributor} src={authorProfile?.avatar_url} seed={testimony.author_id ?? contributor} size="xs" />}
           <span>
             {ui.sharedBy}{" "}
             {!testimony.is_anonymous && testimony.author_id ? (
               <Link href={`/author/${testimony.author_id}`} className="text-parchment-100 hover:text-gold-300" itemProp="url">
-                <span itemProp="name">{author}</span>
+                <span itemProp="name">{contributor}</span>
               </Link>
             ) : (
-              <span className="text-parchment-100" itemProp="name">{author}</span>
+              <span className="text-parchment-100" itemProp="name">{contributor}</span>
             )}
           </span>
         </span>
@@ -262,7 +278,7 @@ export default async function TestimonyArticle({ param, lang, prefixed = false }
 
         {!testimony.is_anonymous && testimony.author_bio && (
           <aside className="mt-10 flex gap-4 rounded-xl border border-ink-600 bg-ink-900/60 p-5">
-            <Avatar name={author} src={authorProfile?.avatar_url} seed={testimony.author_id ?? author} size="lg" />
+            <Avatar name={contributor} src={authorProfile?.avatar_url} seed={testimony.author_id ?? contributor} size="lg" />
             <div className="flex-1">
               <p className="eyebrow mb-1">
                 {testimony.author_id ? <Link href={`/author/${testimony.author_id}`} className="hover:text-gold-300">{testimony.creator}</Link> : testimony.creator}

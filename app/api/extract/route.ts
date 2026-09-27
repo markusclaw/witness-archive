@@ -11,6 +11,8 @@ const SYSTEM_PROMPT = `You read a first-person testimony for Witness Archive and
 
 Return ONLY a JSON object with exactly these keys:
 {
+  "witness": { "name": "<the person the experience happened to, as named in the text — e.g. from 'My name is Maria Santoso'>", "first_person": true|false, "evidence": "<quoted phrase>" } or null,
+  "source": "<ministry, church, channel, interviewer or book credited in the text>" or null,
   "titles": [three short title options, 3–8 words each, plain and specific, no clickbait, no quotation marks, Title Case],
   "description": one sentence (max 160 characters) summarizing what happened, in third person, no spoilers about the ending,
   "category": one of ${JSON.stringify(CATEGORIES.map((c) => c.name))} or null,
@@ -20,6 +22,8 @@ Return ONLY a JSON object with exactly these keys:
 
 Rules for "experienced": this is when the experience happened, not when it was written. "April of 1999" → date "1999-04-01", precision "month". "in 1987" → "1987-01-01", precision "year". "about twenty years ago" with no anchor → null. "the summer I turned 30" with no year → null. Only use "day" when the day is stated.
 Rules for "location": where the experience happened, not where the author lives now unless it is the same. Infer region/country only when unambiguous (e.g. "Houston" → Texas, United States, US). A hospital name alone is not a location unless its city is known from the text.
+Rules for "witness": this is the person who LIVED the experience, not a narrator, interviewer, or the person posting. Use the name exactly as the text gives it (first name only is fine). "first_person" is true when the account is told in the first person by the witness themselves ("I died…"), false when it is retold about someone else ("my grandmother told me…", "this is the story of…"). If no name is given, return null even when first person.
+Rules for "source": only when the text itself credits where it came from ("interviewed by…", "as told on…", a channel or ministry name). Never guess.
 Category: pick the single best fit for the central experience. Near-death with a heaven vision → "Heaven" if heaven is the focus, otherwise "Near-Death Experience".`;
 
 interface AnthropicResponse {
@@ -119,7 +123,17 @@ function parse(text: string): ExtractedDetails | null {
       }
     }
 
-    return { titles, description: str(o.description, 200), category, experienced, location };
+    let witness: ExtractedDetails["witness"] = null;
+    if (o.witness && typeof o.witness === "object") {
+      const w = o.witness as Record<string, unknown>;
+      const name = str(w.name, 80);
+      if (name && !/^(unknown|anonymous|null|none)$/i.test(name)) {
+        witness = { name, first_person: w.first_person !== false, evidence: str(w.evidence) ?? "" };
+      }
+    }
+    const source = str(o.source, 120);
+
+    return { titles, witness, source, description: str(o.description, 200), category, experienced, location };
   } catch {
     return null;
   }

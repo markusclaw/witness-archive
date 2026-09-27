@@ -32,7 +32,7 @@ export async function GET() {
     "",
     "## Recent testimonies",
     "",
-    ...testimonies.slice(0, 50).map((t) => `- [${t.title}](${absoluteUrl(testimonyPath(t))}): ${t.description} — ${t.category}, by ${t.is_anonymous ? "Anonymous" : t.creator}${t.part_number > 1 ? `, Part ${t.part_number}` : ""}`),
+    ...testimonies.slice(0, 50).map((t) => `- [${t.title}](${absoluteUrl(testimonyPath(t))}): ${t.description} — ${t.category}, by ${t.witness_relationship === "shared" ? `${t.witness_name ?? "an unnamed witness"} (shared by ${t.is_anonymous ? "Anonymous" : t.creator})` : t.is_anonymous ? "Anonymous" : t.creator}${t.part_number > 1 ? `, Part ${t.part_number}` : ""}`),
     "",
     "## Attribution",
     "",

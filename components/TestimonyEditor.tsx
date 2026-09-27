@@ -14,7 +14,7 @@ import { TESTIMONY_COLUMNS } from "@/lib/queries";
 import { cleanTranscript, looksLikeTranscript } from "@/lib/transcript";
 import { testimonyPath } from "@/lib/seo";
 import { fetchMyProfile } from "@/lib/profiles";
-import type { DatePrecision, ExtractedDetails, FormatSuggestion, Testimony } from "@/lib/types";
+import type { DatePrecision, ExtractedDetails, FormatSuggestion, Testimony, WitnessRelationship } from "@/lib/types";
 import { formatExperienced, isTruncatedExcerpt } from "@/lib/format";
 
 type SeriesOption = { series_id: string; title: string; nextPart: number };
@@ -64,6 +64,9 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
   const [category, setCategory] = useState(existing?.category ?? continueSeries?.category ?? CATEGORIES[0].name);
   const [videoUrl, setVideoUrl] = useState(existing?.video_url ?? "");
   const [lang, setLang] = useState(existing?.language ?? "en");
+  const [relationship, setRelationship] = useState<WitnessRelationship>(existing?.witness_relationship ?? "self");
+  const [witnessName, setWitnessName] = useState(existing?.witness_name ?? "");
+  const [sourceCredit, setSourceCredit] = useState(existing?.source_credit ?? "");
   const [precision, setPrecision] = useState<DatePrecision>(existing?.experienced_precision ?? "day");
   const [locationText, setLocationText] = useState(existing?.location_text ?? "");
   const [locationCity, setLocationCity] = useState(existing?.location_city ?? "");
@@ -76,7 +79,7 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
   const [extracting, setExtracting] = useState(false);
   const [extractError, setExtractError] = useState<string | null>(null);
   const [extractedFor, setExtractedFor] = useState<string>("");
-  type SuggestedField = "title" | "description" | "category" | "experienced" | "location";
+  type SuggestedField = "title" | "description" | "category" | "experienced" | "location" | "witness" | "source";
   const [suggested, setSuggested] = useState<Set<SuggestedField>>(new Set());
   const [ghostTitle, setGhostTitle] = useState<string>("");
   const lastAutoWordsRef = useRef<number>(0);
@@ -282,12 +285,16 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
         headers: { "content-type": "application/json", authorization: `Bearer ${session?.access_token ?? ""}` },
         body: JSON.stringify({ url, lang }),
       });
-      const json = (await res.json()) as { text?: string; language?: string; kind?: "manual" | "auto"; videoTitle?: string | null; error?: string; fallback?: boolean };
+      const json = (await res.json()) as { text?: string; language?: string; kind?: "manual" | "auto"; videoTitle?: string | null; author?: string | null; error?: string; fallback?: boolean };
       if (!res.ok || !json.text) {
         setImportError({ message: json.error || "Couldn't fetch the transcript.", fallback: json.fallback !== false });
         return;
       }
       if (!videoUrl.trim()) setVideoUrl(url.trim());
+      if (!sourceCredit.trim() && json.author) {
+        setSourceCredit(`${json.author} (YouTube)`);
+        markSuggested("source");
+      }
       if (content.trim() && !window.confirm("Replace what you've written with the video transcript?")) return;
       setContent(json.text);
       if (json.language && LANGUAGES.some((l) => l.code === json.language)) setLang(json.language);
@@ -373,6 +380,19 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
         applyLocation(json.location);
         markSuggested("location");
       }
+      if (json.witness && !witnessName.trim()) {
+        setWitnessName(json.witness.name);
+        markSuggested("witness");
+        // A named witness who isn't the contributor, or a third-person retelling, means this is a shared testimony.
+        const mine = creator.trim().toLowerCase();
+        const theirs = json.witness.name.toLowerCase();
+        const looksLikeMe = !!mine && (theirs.includes(mine) || mine.includes(theirs.split(" ")[0]));
+        if (!existing && (!json.witness.first_person || !looksLikeMe)) setRelationship("shared");
+      }
+      if (json.source && !sourceCredit.trim()) {
+        setSourceCredit(json.source);
+        markSuggested("source");
+      }
       lastAutoWordsRef.current = content.trim().split(/\s+/).filter(Boolean).length;
     } catch (err) {
       setExtractError(err instanceof Error ? err.message : "Something went wrong.");
@@ -413,6 +433,9 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
       author_bio: isAnonymous ? null : authorBio.trim() || null,
       experienced_on: experiencedOn || null,
       language: lang,
+      witness_relationship: relationship,
+      witness_name: relationship === "self" ? (isAnonymous ? null : creator.trim() || null) : witnessName.trim() || null,
+      source_credit: sourceCredit.trim() || null,
       experienced_precision: experiencedOn ? precision : "day",
       location_text: locationText.trim() || null,
       location_city: locationCity.trim() || null,
@@ -464,7 +487,10 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
     );
   }
 
-  const detailsSummary = [category, isAnonymous ? "Anonymous" : creator.trim() || "no name yet", experiencedOn ? formatExperienced(experiencedOn, precision) : null, locationCity || locationCountry || locationText || null, videoUrl.trim() ? "video attached" : null, partNumber > 1 ? `Part ${partNumber}` : null]
+  const detailsSummary = [
+    category,
+    relationship === "shared" ? `testimony of ${witnessName.trim() || "an unnamed witness"}` : null,
+    `${relationship === "shared" ? "shared by " : ""}${isAnonymous ? "Anonymous" : creator.trim() || "no name yet"}`, experiencedOn ? formatExperienced(experiencedOn, precision) : null, locationCity || locationCountry || locationText || null, videoUrl.trim() ? "video attached" : null, partNumber > 1 ? `Part ${partNumber}` : null]
     .filter(Boolean)
     .join(" · ");
 
@@ -663,7 +689,48 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
                   {extracted.category && (
                     <Suggestion label="Kind" value={extracted.category} applied={category === extracted.category} onUse={() => setCategory(extracted.category!)} />
                   )}
+                  {extracted.witness && (
+                    <p>
+                      <span className="text-parchment-500">Witness:</span> {extracted.witness.name}
+                      {extracted.witness.evidence && <span className="text-parchment-700"> — from “{extracted.witness.evidence}”</span>}
+                      {!extracted.witness.first_person && <span className="text-parchment-700"> · told about them, not by them</span>}
+                    </p>
+                  )}
+                  {extracted.source && (
+                    <p>
+                      <span className="text-parchment-500">Source:</span> {extracted.source}
+                    </p>
+                  )}
                   {!extracted.experienced && !extracted.location && <p className="text-parchment-700">No date or place is mentioned in the text — add them below if you&apos;d like.</p>}
+                </div>
+              )}
+            </div>
+
+            {/* Whose testimony is this? */}
+            <div className="rounded-xl border border-ink-600 bg-ink-900/40 p-4">
+              <p className="mb-3 text-sm font-medium text-parchment-100">Whose testimony is this?</p>
+              <div className="grid gap-2 sm:grid-cols-2">
+                {(
+                  [
+                    { v: "self", t: "It happened to me", d: "You are the witness. You'll be credited by the name below." },
+                    { v: "shared", t: "I'm sharing someone else's", d: "Preserving a testimony that isn't yours. The witness is credited; you're listed as the contributor." },
+                  ] as { v: WitnessRelationship; t: string; d: string }[]
+                ).map((o) => (
+                  <label key={o.v} className={`cursor-pointer rounded-lg border p-3 transition ${relationship === o.v ? "border-gold-500 bg-gold-500/10" : "border-ink-600 hover:border-ink-500"}`}>
+                    <input type="radio" name="relationship" value={o.v} checked={relationship === o.v} onChange={() => setRelationship(o.v)} className="sr-only" />
+                    <span className="block text-sm text-parchment-50">{o.t}</span>
+                    <span className="mt-1 block text-xs text-parchment-700">{o.d}</span>
+                  </label>
+                ))}
+              </div>
+              {relationship === "shared" && (
+                <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                  <Field label="The witness" htmlFor="witness" hint="The person it happened to, as they should be credited. Filled in automatically when the text says “My name is…”. Leave blank if they shouldn't be named.">
+                    <input id="witness" className={`input ${suggested.has("witness") ? "input-suggested" : ""}`} value={witnessName} onChange={(e) => { setWitnessName(e.target.value); unmark("witness"); }} maxLength={80} placeholder="e.g. Maria Santoso" />
+                  </Field>
+                  <Field label="Source" htmlFor="source" hint="Optional. Where it came from — a ministry, channel, interview, or book.">
+                    <input id="source" className={`input ${suggested.has("source") ? "input-suggested" : ""}`} value={sourceCredit} onChange={(e) => { setSourceCredit(e.target.value); unmark("source"); }} maxLength={120} placeholder="e.g. Grace Chapel (YouTube)" />
+                  </Field>
                 </div>
               )}
             </div>
@@ -694,7 +761,7 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
             </div>
 
             <div className="grid gap-6 sm:grid-cols-2">
-              <Field label="Your name as it should appear" htmlFor="creator" hint={isAnonymous ? "Hidden — this will be published as Anonymous." : "First name, full name, or a pen name."}>
+              <Field label={relationship === "shared" ? "Your name, as the contributor" : "Your name as it should appear"} htmlFor="creator" hint={isAnonymous ? "Hidden — this will be published as Anonymous." : "First name, full name, or a pen name."}>
                 <input id="creator" className="input" value={creator} onChange={(e) => setCreator(e.target.value)} maxLength={80} disabled={isAnonymous} />
               </Field>
               <div className="flex items-end">

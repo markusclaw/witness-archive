@@ -72,7 +72,7 @@ export async function POST(req: Request) {
   hits.slice(0, 6).forEach((h, i) => {
     const t = h.testimony;
     const n = i + 1;
-    const author = t.is_anonymous ? "Anonymous" : t.creator;
+    const author = t.witness_relationship === "shared" ? t.witness_name || "an unnamed witness" : t.is_anonymous ? "Anonymous" : t.creator;
     const where = [t.location_city, t.location_country].filter(Boolean).join(", ");
     const meta = [t.category, where, t.experienced_on ? t.experienced_on.slice(0, 4) : null].filter(Boolean).join(" · ");
     const text = (t.content ?? t.description).slice(0, per);

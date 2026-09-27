@@ -41,7 +41,7 @@ export default function TestimonyCard({ testimony, priority = false }: { testimo
         )}
         <div className="mt-auto flex items-center justify-between pt-5 text-xs text-parchment-700">
           <span className="truncate">
-            {testimony.is_anonymous ? "Anonymous" : testimony.creator}
+            {testimony.witness_relationship === "shared" ? testimony.witness_name || "Unnamed witness" : testimony.is_anonymous ? "Anonymous" : testimony.creator}
             {testimony.part_number > 1 && <span className="ml-2 text-gold-500">· Part {testimony.part_number}</span>}
           </span>
           <span className="truncate pl-3 text-right">
