@@ -25,6 +25,9 @@ interface Props {
   continueSeries?: { series_id: string; title: string; nextPart: number; category: string; creator: string; is_anonymous: boolean; author_bio: string | null };
 }
 
+/** Shelved: YouTube refuses most server-side transcript requests. Set NEXT_PUBLIC_TRANSCRIPT_IMPORT=1 to show the importer again. */
+const TRANSCRIPT_IMPORT = process.env.NEXT_PUBLIC_TRANSCRIPT_IMPORT === "1";
+
 const PROMPTS = [
   "Start with the moment everything changed.",
   "Where were you? What did the room feel like?",
@@ -651,7 +654,15 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
       </section>
       {polishError && <p className="mt-3 text-sm text-ember-500">{polishError}</p>}
       {importNotice && <p className="mt-3 text-xs text-gold-300">{importNotice}</p>}
-      {wordCount === 0 && !suggestion && (
+      {wordCount === 0 && !suggestion && !TRANSCRIPT_IMPORT && (
+        <div className="mt-4 rounded-xl border border-ink-600 bg-ink-900/60 p-4">
+          <p className="text-sm text-parchment-300">Told this story on video? Bring the transcript over in thirty seconds.</p>
+          <p className="mt-2 text-xs leading-relaxed text-parchment-500">
+            On YouTube, open the video, click <span className="text-parchment-300">…more</span> under the title, then <span className="text-parchment-300">Show transcript</span>. Select all of it, copy, and paste it here — the timestamps are stripped automatically, and the details below fill themselves in. Add the video link in “Before you publish” so it&apos;s embedded above the text.
+          </p>
+        </div>
+      )}
+      {wordCount === 0 && !suggestion && TRANSCRIPT_IMPORT && (
         <div className="mt-4 rounded-xl border border-ink-600 bg-ink-900/60 p-4">
           <p className="text-sm text-parchment-300">Told this story on video? Paste the YouTube link and we&apos;ll bring the transcript in for you.</p>
           <form
@@ -909,7 +920,7 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
             <Field label="YouTube link" htmlFor="video" hint="Optional. If you told this story on video, it's embedded above the text." error={!videoOk ? "That doesn't look like a YouTube link." : undefined}>
               <div className="flex flex-col gap-2 sm:flex-row">
                 <input id="video" className="input" value={videoUrl} onChange={(e) => setVideoUrl(e.target.value)} placeholder="https://www.youtube.com/watch?v=…" inputMode="url" />
-                {extractYouTubeId(videoUrl) && (
+                {TRANSCRIPT_IMPORT && extractYouTubeId(videoUrl) && (
                   <button type="button" onClick={() => void importTranscript(videoUrl)} disabled={importing} className="btn btn-ghost whitespace-nowrap !py-2 text-sm">
                     {importing ? "Fetching…" : content.trim() ? "Replace with transcript" : "Import transcript"}
                   </button>

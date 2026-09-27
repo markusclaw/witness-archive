@@ -86,6 +86,10 @@ Every testimony has an original `language` (chosen in the editor; English, Spani
 - **Crawl files**: `/robots.txt`, `/sitemap.xml` (generated from the database), and `/llms.txt` — a plain-text site summary for AI assistants and answer engines.
 - **Set `NEXT_PUBLIC_SITE_URL`** to the production origin in Cloudflare; canonical URLs, the sitemap and structured data are all built from it.
 
+## Shelved
+
+- **YouTube transcript import** (`/api/transcript`, `lib/youtube-transcript.ts`): works when YouTube allows it, but from Cloudflare's IPs it usually answers with a sign-in check. Hidden behind `NEXT_PUBLIC_TRANSCRIPT_IMPORT=1`. Re-enable behind a transcript API provider if the manual paste flow becomes a bottleneck.
+
 ## Roadmap
 
 - Stored, high-quality audio (hosted TTS → Supabase Storage) as an upgrade over browser voices
