@@ -11,6 +11,8 @@
 const TIMESTAMP_PATTERNS: RegExp[] = [
   // YouTube flattened "M:SSSS seconds" / "M:SSS minute, S seconds" glued to the next word
   /\b\d{1,2}:\d{2,4}\s*(?:minutes?|minute)?,?\s*(?:\d{1,3}\s*)?seconds?(?=\S|\s)/gi,
+  // …and the whole-minute form with no seconds: "6:006 minutestoo late" / "12:0012 minutes"
+  /\b\d{1,2}:\d{3,4}\s*minutes?(?=\S|\s)/gi,
   // SRT / VTT ranges
   /\b\d{1,2}:\d{2}(?::\d{2})?(?:[.,]\d{1,3})?\s*-->\s*\d{1,2}:\d{2}(?::\d{2})?(?:[.,]\d{1,3})?/g,
   // bracketed or bare timestamps at a line start

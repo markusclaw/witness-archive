@@ -124,6 +124,7 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
   const [polishError, setPolishError] = useState<string | null>(null);
   const [view, setView] = useState<"diff" | "preview">("diff");
   const [cleanedNotice, setCleanedNotice] = useState<string | null>(null);
+  const [pasteUndo, setPasteUndo] = useState<string | null>(null);
 
   // ---- transcript import ----
   const [importUrl, setImportUrl] = useState("");
@@ -306,6 +307,7 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
 
   /* ---------------- actions ---------------- */
   const cleanUp = () => {
+    setPasteUndo(null);
     const before = content;
     const after = cleanTranscript(content);
     if (after === before.trim()) {
@@ -605,6 +607,22 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
               ref={textareaRef}
               value={content}
               onChange={(e) => setContent(e.target.value)}
+              onPaste={(e) => {
+                const pasted = e.clipboardData.getData("text/plain");
+                if (!pasted || !looksLikeTranscript(pasted)) return; // ordinary paste: let the browser handle it
+                e.preventDefault();
+                const el = e.currentTarget;
+                const cleaned = cleanTranscript(pasted);
+                const before = content.slice(0, el.selectionStart);
+                const after = content.slice(el.selectionEnd);
+                const raw = before + pasted + after;
+                const next = before + (before.trim() ? "\n\n" : "") + cleaned + (after.trim() ? "\n\n" : "") + after;
+                setPasteUndo(raw);
+                setContent(next);
+                setCleanedNotice("Pasted transcript cleaned — timestamps removed, lines rejoined.");
+                window.setTimeout(() => setCleanedNotice(null), 8000);
+                window.setTimeout(autosize, 0);
+              }}
               onInput={autosize}
               placeholder={prompt}
               aria-label="Your testimony"
@@ -623,7 +641,25 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
               {wordCount > 0 && <span className="text-parchment-700"> · about {minutes} min read</span>}
             </span>
             {localSavedAt && <span className="text-parchment-700">Saved in this browser {new Date(localSavedAt).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })}</span>}
-            {cleanedNotice && <span className="text-gold-300">{cleanedNotice}</span>}
+            {cleanedNotice && (
+              <span className="text-gold-300">
+                {cleanedNotice}
+                {pasteUndo !== null && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setContent(pasteUndo);
+                      setPasteUndo(null);
+                      setCleanedNotice(null);
+                      window.setTimeout(autosize, 0);
+                    }}
+                    className="ml-2 underline hover:text-parchment-50"
+                  >
+                    Undo
+                  </button>
+                )}
+              </span>
+            )}
             {extracting && (
               <span className="flex items-center gap-1.5 text-gold-500/80">
                 <Sparkle /> Reading for details…
@@ -701,7 +737,9 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
               <p className="text-sm text-parchment-300">
                 {visibleDupes.some((d) => d.reasons.includes("same_video"))
                   ? "This video is already in the archive."
-                  : "This looks like it may already be here. Take a look before publishing."}
+                  : visibleDupes.some((d) => d.reasons.includes("same_text"))
+                    ? "An entry with the same wording is already here — this may be the same testimony."
+                    : "The same witness already has a testimony here. Take a look before publishing."}
               </p>
               <ul className="mt-4 space-y-3">
                 {visibleDupes.map((d) => (
@@ -1093,7 +1131,7 @@ function reasonLabel(r: DuplicateReason): string {
     case "same_video":
       return "Same video";
     case "same_text":
-      return "Same text";
+      return "Same wording";
     case "same_witness":
       return "Same witness";
     case "same_witness_other_category":
