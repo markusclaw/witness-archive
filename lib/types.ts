@@ -22,6 +22,10 @@ export interface Testimony {
   witness_relationship: WitnessRelationship;
   source_credit: string | null;
   source_url: string | null;
+  video_title: string | null;
+  video_published_at: string | null;
+  video_duration_s: number | null;
+  video_description: string | null;
   retelling_of: string | null;
   experienced_precision: DatePrecision;
   location_text: string | null;

@@ -23,7 +23,8 @@ Return ONLY a JSON object with exactly these keys:
 Rules for "experienced": this is when the experience happened, not when it was written. "April of 1999" → date "1999-04-01", precision "month". "in 1987" → "1987-01-01", precision "year". "about twenty years ago" with no anchor → null. "the summer I turned 30" with no year → null. Only use "day" when the day is stated.
 Rules for "location": where the experience happened, not where the author lives now unless it is the same. Infer region/country only when unambiguous (e.g. "Houston" → Texas, United States, US). A hospital name alone is not a location unless its city is known from the text.
 Rules for "witness": this is the person who LIVED the experience, not a narrator, interviewer, or the person posting. Use the name exactly as the text gives it (first name only is fine). "first_person" is true when the account is told in the first person by the witness themselves ("I died…"), false when it is retold about someone else ("my grandmother told me…", "this is the story of…"). If no name is given, return null even when first person.
-Rules for "source": only when the text itself credits where it came from ("interviewed by…", "as told on…", a channel or ministry name). Never guess.
+If <video_metadata> is present, you may use it for the witness name, the source (channel), and to anchor relative dates — but the testimony text always wins when they disagree.
+Rules for "source": only when the text or the video metadata credits where it came from ("interviewed by…", "as told on…", a channel or ministry name). Never guess.
 Category: pick the single best fit for the central experience. Near-death with a heaven vision → "Heaven" if heaven is the focus, otherwise "Near-Death Experience".`;
 
 interface AnthropicResponse {
@@ -43,7 +44,7 @@ export async function POST(req: Request) {
   } = await createServerSupabase().auth.getUser(token);
   if (!user) return NextResponse.json({ error: "Your session has expired. Sign in again." }, { status: 401 });
 
-  let body: { content?: unknown; title?: unknown };
+  let body: { content?: unknown; title?: unknown; video?: unknown };
   try {
     body = await req.json();
   } catch {
@@ -51,6 +52,13 @@ export async function POST(req: Request) {
   }
   const content = typeof body.content === "string" ? body.content.trim() : "";
   const title = typeof body.title === "string" ? body.title.trim() : "";
+  const v = (body.video && typeof body.video === "object" ? body.video : {}) as { title?: unknown; channel?: unknown; publishedAt?: unknown; description?: unknown };
+  const videoContext = [
+    typeof v.title === "string" && v.title.trim() ? `Video title: ${v.title.trim()}` : null,
+    typeof v.channel === "string" && v.channel.trim() ? `Channel: ${v.channel.trim()}` : null,
+    typeof v.publishedAt === "string" && v.publishedAt ? `Video published: ${v.publishedAt.slice(0, 10)} (this is when it was uploaded, NOT when the experience happened — use it only to anchor relative dates like "three years ago")` : null,
+    typeof v.description === "string" && v.description.trim() ? `Video description:\n${v.description.trim().slice(0, 3000)}` : null,
+  ].filter(Boolean).join("\n");
   if (content.length < 200) return NextResponse.json({ error: "Write a little more first — a few paragraphs helps the assistant find the details." }, { status: 400 });
 
   const model = process.env.ANTHROPIC_MODEL ?? "claude-sonnet-4-5";
@@ -64,7 +72,7 @@ export async function POST(req: Request) {
         max_tokens: 1_500,
         temperature: 0,
         system: SYSTEM_PROMPT,
-        messages: [{ role: "user", content: `${title ? `Working title from the author: ${title}\n\n` : ""}<testimony>\n${content.slice(0, MAX_CHARS)}\n</testimony>` }],
+        messages: [{ role: "user", content: `${title ? `Working title from the author: ${title}\n\n` : ""}${videoContext ? `<video_metadata>\n${videoContext}\n</video_metadata>\n\n` : ""}<testimony>\n${content.slice(0, MAX_CHARS)}\n</testimony>` }],
       }),
     });
   } catch (err) {

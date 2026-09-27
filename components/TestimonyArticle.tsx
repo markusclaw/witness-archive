@@ -161,7 +161,8 @@ export default async function TestimonyArticle({ param, lang, prefixed = false }
                 name: testimony.title,
                 description: testimony.description,
                 thumbnailUrl: [`https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`, `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`],
-                uploadDate: testimony.created_at,
+                uploadDate: testimony.video_published_at ?? testimony.created_at,
+                ...(testimony.video_duration_s ? { duration: `PT${Math.floor(testimony.video_duration_s / 60)}M${testimony.video_duration_s % 60}S` } : {}),
                 embedUrl: `https://www.youtube-nocookie.com/embed/${videoId}`,
                 contentUrl: watchUrl,
               },
@@ -249,6 +250,8 @@ export default async function TestimonyArticle({ param, lang, prefixed = false }
           {watchUrl && (
             <p className="mt-3 text-xs text-parchment-700">
               <a href={watchUrl} target="_blank" rel="noopener noreferrer" className="underline hover:text-gold-300">YouTube</a>
+              {testimony.video_duration_s ? ` · ${Math.max(1, Math.round(testimony.video_duration_s / 60))} min` : ""}
+              {testimony.video_published_at ? ` · published ${formatDate(testimony.video_published_at)}` : ""}
             </p>
           )}
         </section>

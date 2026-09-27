@@ -72,6 +72,11 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
   const [witnessName, setWitnessName] = useState(existing?.witness_name ?? "");
   const [sourceCredit, setSourceCredit] = useState(existing?.source_credit ?? "");
   const [sourceUrl, setSourceUrl] = useState(existing?.source_url ?? "");
+  const [videoMeta, setVideoMeta] = useState<{ title: string | null; author: string | null; publishedAt: string | null; durationSeconds: number | null; description: string | null } | null>(
+    existing?.video_title || existing?.video_published_at
+      ? { title: existing.video_title, author: null, publishedAt: existing.video_published_at, durationSeconds: existing.video_duration_s, description: existing.video_description }
+      : null
+  );
   const videoMetaForRef = useRef<string>("");
 
   // ---- repeat detection ----
@@ -270,7 +275,10 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
           body: JSON.stringify({ url: videoUrl }),
         });
         if (!res.ok) return;
-        const m = (await res.json()) as { title?: string | null; author?: string | null; authorUrl?: string | null };
+        const m = (await res.json()) as { title?: string | null; author?: string | null; authorUrl?: string | null; publishedAt?: string | null; durationSeconds?: number | null; description?: string | null; language?: string | null };
+        setVideoMeta({ title: m.title ?? null, author: m.author ?? null, publishedAt: m.publishedAt ?? null, durationSeconds: m.durationSeconds ?? null, description: m.description ?? null });
+        if (m.language && !existing && LANGUAGES.some((l) => l.code === m.language)) setLang(m.language);
+        lastAutoWordsRef.current = 0; // let the details pass re-run with the video context
         if (m.author && !sourceCredit.trim()) {
           setSourceCredit(`${m.author} (YouTube)`);
           markSuggested("source");
@@ -441,7 +449,7 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
       const res = await fetch("/api/extract", {
         method: "POST",
         headers: { "content-type": "application/json", authorization: `Bearer ${session?.access_token ?? ""}` },
-        body: JSON.stringify({ content, title }),
+        body: JSON.stringify({ content, title, video: videoMeta ? { title: videoMeta.title, channel: videoMeta.author, publishedAt: videoMeta.publishedAt, description: videoMeta.description } : undefined }),
       });
       const json = (await res.json()) as ExtractedDetails & { error?: string };
       if (!res.ok) throw new Error(json.error || "Something went wrong.");
@@ -523,6 +531,10 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
       witness_name: relationship === "self" ? (isAnonymous ? null : creator.trim() || null) : witnessName.trim() || null,
       source_credit: sourceCredit.trim() || null,
       source_url: sourceUrl.trim() || null,
+      video_title: videoUrl.trim() ? videoMeta?.title ?? null : null,
+      video_published_at: videoUrl.trim() ? videoMeta?.publishedAt ?? null : null,
+      video_duration_s: videoUrl.trim() ? videoMeta?.durationSeconds ?? null : null,
+      video_description: videoUrl.trim() ? videoMeta?.description ?? null : null,
       retelling_of: retellingOf,
       experienced_precision: experiencedOn ? precision : "day",
       location_text: locationText.trim() || null,
