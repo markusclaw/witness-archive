@@ -40,15 +40,24 @@ interface PlayerResponse {
 
 const INNERTUBE_URL = "https://www.youtube.com/youtubei/v1/player?prettyPrint=false";
 
-// The Android client is the most tolerant of server-side callers.
-const CLIENTS = [
-  { clientName: "ANDROID", clientVersion: "19.09.37", androidSdkVersion: 30, userAgent: "com.google.android.youtube/19.09.37 (Linux; U; Android 11) gzip" },
-  { clientName: "WEB", clientVersion: "2.20240101.00.00", userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36" },
+/**
+ * YouTube serves different rules to different "clients". Server-side callers
+ * get refused by some and tolerated by others, and which is which changes over
+ * time — so we try several and take the first that yields caption tracks.
+ */
+const CLIENTS: { name: string; version: string; id: string; userAgent: string; extra?: Record<string, unknown> }[] = [
+  { name: "WEB_EMBEDDED_PLAYER", version: "1.20240101.00.00", id: "56", userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36" },
+  { name: "TVHTML5_SIMPLY_EMBEDDED_PLAYER", version: "2.0", id: "85", userAgent: "Mozilla/5.0 (PlayStation; PlayStation 4/12.00) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Safari/605.1.15" },
+  { name: "ANDROID_VR", version: "1.57.29", id: "28", userAgent: "com.google.android.apps.youtube.vr.oculus/1.57.29 (Linux; U; Android 12L; eureka-user Build/SQ3A.220605.009.A1) gzip", extra: { androidSdkVersion: 32, osName: "Android", osVersion: "12L" } },
+  { name: "IOS", version: "19.29.1", id: "5", userAgent: "com.google.ios.youtube/19.29.1 (iPhone16,2; U; CPU iOS 17_5_1 like Mac OS X;)", extra: { deviceMake: "Apple", deviceModel: "iPhone16,2", osName: "iPhone", osVersion: "17.5.1.21F90" } },
+  { name: "WEB", version: "2.20240101.00.00", id: "1", userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36" },
 ];
 
+const GONE = /removed|private|does not exist|no longer available|terminated|not available in your country/i;
+
 export async function fetchYouTubeTranscript(videoId: string, preferredLangs: string[] = ["en"]): Promise<TranscriptResult> {
-  let player: PlayerResponse | null = null;
-  let lastErr: unknown = null;
+  let details: PlayerResponse["videoDetails"] | undefined;
+  const reasons: string[] = [];
 
   for (const client of CLIENTS) {
     try {
@@ -57,63 +66,74 @@ export async function fetchYouTubeTranscript(videoId: string, preferredLangs: st
         headers: {
           "content-type": "application/json",
           "user-agent": client.userAgent,
-          "x-youtube-client-name": client.clientName === "ANDROID" ? "3" : "1",
-          "x-youtube-client-version": client.clientVersion,
+          "x-youtube-client-name": client.id,
+          "x-youtube-client-version": client.version,
           "accept-language": "en-US,en;q=0.9",
+          origin: "https://www.youtube.com",
+          referer: `https://www.youtube.com/watch?v=${videoId}`,
         },
         body: JSON.stringify({
-          context: { client: { clientName: client.clientName, clientVersion: client.clientVersion, ...(client.androidSdkVersion ? { androidSdkVersion: client.androidSdkVersion } : {}), hl: "en", gl: "US" } },
+          context: { client: { clientName: client.name, clientVersion: client.version, hl: "en", gl: "US", ...(client.extra ?? {}) }, thirdParty: { embedUrl: "https://www.youtube.com/" } },
           videoId,
           contentCheckOk: true,
           racyCheckOk: true,
         }),
-        signal: AbortSignal.timeout(12_000),
+        signal: AbortSignal.timeout(10_000),
       });
       if (!res.ok) {
-        lastErr = new Error(`player ${res.status}`);
+        reasons.push(`${client.name}: HTTP ${res.status}`);
         continue;
       }
       const json = (await res.json()) as PlayerResponse;
-      const status = json.playabilityStatus?.status;
-      if (status === "LOGIN_REQUIRED" || /bot|sign in/i.test(json.playabilityStatus?.reason ?? "")) {
-        lastErr = new TranscriptError("YouTube asked for a sign-in check.", "blocked");
-        continue;
+      if (json.videoDetails?.title) details = json.videoDetails;
+      const status = json.playabilityStatus?.status ?? "OK";
+      const reason = json.playabilityStatus?.reason ?? "";
+      const tracks = json.captions?.playerCaptionsTracklistRenderer?.captionTracks ?? [];
+      if (tracks.length) {
+        return await downloadTrack(tracks, preferredLangs, details);
       }
-      if (status && status !== "OK") {
-        throw new TranscriptError(json.playabilityStatus?.reason || "This video isn't available.", "unavailable");
-      }
-      player = json;
-      if (json.captions?.playerCaptionsTracklistRenderer?.captionTracks?.length) break;
+      reasons.push(`${client.name}: ${status}${reason ? ` (${reason})` : ""}, ${tracks.length} tracks`);
     } catch (err) {
-      if (err instanceof TranscriptError && err.code === "unavailable") throw err;
-      lastErr = err;
+      reasons.push(`${client.name}: ${err instanceof Error ? err.message : "error"}`);
     }
   }
 
-  if (!player) {
-    if (lastErr instanceof TranscriptError) throw lastErr;
-    throw new TranscriptError("Couldn't reach YouTube for this video.", "blocked");
+  // Last resort: the legacy caption list (creator-uploaded captions only).
+  try {
+    const listRes = await fetch(`https://www.youtube.com/api/timedtext?type=list&v=${videoId}`, { headers: { "user-agent": CLIENTS[4].userAgent }, signal: AbortSignal.timeout(8_000) });
+    const xml = listRes.ok ? await listRes.text() : "";
+    const tracks: CaptionTrack[] = [...xml.matchAll(/<track\s+([^>]+)\/?>/g)].map((m) => {
+      const attrs = Object.fromEntries([...m[1].matchAll(/(\w+)="([^"]*)"/g)].map((a) => [a[1], a[2]]));
+      return { baseUrl: `https://www.youtube.com/api/timedtext?v=${videoId}&lang=${attrs.lang_code ?? "en"}${attrs.name ? `&name=${encodeURIComponent(attrs.name)}` : ""}`, languageCode: attrs.lang_code ?? "en", kind: attrs.kind };
+    });
+    if (tracks.length) return await downloadTrack(tracks, preferredLangs, details);
+  } catch {
+    /* fall through */
   }
 
-  const tracks = player.captions?.playerCaptionsTracklistRenderer?.captionTracks ?? [];
-  if (tracks.length === 0) throw new TranscriptError("This video has no captions or transcript.", "no_captions");
+  console.warn("transcript: all paths failed", videoId, reasons.join(" | "));
+  const allGone = reasons.length > 0 && reasons.every((r) => GONE.test(r));
+  if (allGone) throw new TranscriptError("This video is private or has been removed.", "unavailable");
+  const anyOk = reasons.some((r) => /: OK/.test(r));
+  if (anyOk) throw new TranscriptError("This video doesn't have captions yet — YouTube hasn't generated a transcript for it.", "no_captions");
+  throw new TranscriptError("YouTube declined the automated request for this video.", "blocked");
+}
 
+async function downloadTrack(tracks: CaptionTrack[], preferredLangs: string[], details: PlayerResponse["videoDetails"] | undefined): Promise<TranscriptResult> {
   const track = pickTrack(tracks, preferredLangs);
   const url = new URL(track.baseUrl);
   url.searchParams.set("fmt", "json3");
-
-  const capRes = await fetch(url.toString(), { headers: { "user-agent": CLIENTS[0].userAgent }, signal: AbortSignal.timeout(12_000) });
+  const capRes = await fetch(url.toString(), { headers: { "user-agent": CLIENTS[4].userAgent }, signal: AbortSignal.timeout(12_000) });
   if (!capRes.ok) throw new TranscriptError("Couldn't download the captions.", "blocked");
   const raw = await capRes.text();
   const text = parseJson3(raw);
   if (!text) throw new TranscriptError("The captions came back empty.", "parse");
-
   return {
     text,
     language: track.languageCode.split("-")[0],
     kind: track.kind === "asr" ? "auto" : "manual",
-    videoTitle: player.videoDetails?.title ?? null,
-    author: player.videoDetails?.author ?? null,
+    videoTitle: details?.title ?? null,
+    author: details?.author ?? null,
   };
 }
 

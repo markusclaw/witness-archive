@@ -42,7 +42,8 @@ export async function POST(req: Request) {
     });
   } catch (err) {
     if (err instanceof TranscriptError) {
-      const status = err.code === "no_captions" ? 404 : err.code === "unavailable" ? 404 : 502;
+      const status = err.code === "no_captions" || err.code === "unavailable" ? 404 : 502;
+      // Even "no captions" gets the manual path: YouTube sometimes hides auto-captions from API callers but shows them in the player.
       return NextResponse.json({ error: err.message, code: err.code, fallback: err.code !== "unavailable" }, { status });
     }
     console.error("transcript:", err instanceof Error ? err.message : err);
