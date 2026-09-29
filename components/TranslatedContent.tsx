@@ -37,52 +37,49 @@ export default function TranslatedContent({
   const [status, setStatus] = useState<"idle" | "loading" | "failed">(isTranslated && !initial ? "loading" : "idle");
   const [progress, setProgress] = useState<{ done: number; total: number } | null>(null);
 
-  // Ask the server for the translation. A cached one comes back at once; otherwise
-  // the server starts a background job and we poll its progress until it is ready.
+  // Drive the translation one step per request: each POST translates one more
+  // chunk and reports progress; we call again until it comes back ready. If a
+  // step fails (Claude hiccup), retry a couple of times before giving up.
   useEffect(() => {
     if (!isTranslated || translation) return;
     let cancelled = false;
     let timer: ReturnType<typeof setTimeout> | undefined;
+    let failures = 0;
 
-    const handle = (res: Response, data: Translation | TranslationJob) => {
-      if (cancelled) return;
-      if (res.status === 200 && data.status === "ready") {
-        setTranslation(data);
-        setStatus("idle");
-        return;
-      }
-      if (res.status === 202 && data.status === "pending") {
-        setProgress({ done: data.progress_done, total: data.progress_total });
-        timer = setTimeout(poll, 3000);
-        return;
-      }
-      setStatus("failed");
-    };
-
-    const poll = async () => {
-      try {
-        const res = await fetch(`/api/translate?id=${encodeURIComponent(testimony.id)}&language=${encodeURIComponent(lang)}`, { cache: "no-store" });
-        if (res.status === 404) throw new Error("gone");
-        handle(res, (await res.json()) as Translation | TranslationJob);
-      } catch {
-        if (!cancelled) setStatus("failed");
-      }
-    };
-
-    track("translate", { testimony_id: testimony.id, from_language: testimony.language, to_language: lang });
-    (async () => {
+    const step = async () => {
       try {
         const res = await fetch("/api/translate", {
           method: "POST",
           headers: { "content-type": "application/json" },
           body: JSON.stringify({ id: testimony.id, language: lang }),
+          cache: "no-store",
         });
+        if (cancelled) return;
         if (res.status !== 200 && res.status !== 202) throw new Error(String(res.status));
-        handle(res, (await res.json()) as Translation | TranslationJob);
+        const data = (await res.json()) as Translation | TranslationJob;
+        if (data.status === "ready") {
+          setTranslation(data);
+          setStatus("idle");
+          return;
+        }
+        if (data.status === "pending") {
+          failures = 0;
+          setProgress({ done: data.progress_done, total: data.progress_total });
+          // Another visitor is translating this chunk → wait; otherwise go straight on.
+          timer = setTimeout(step, data.working === false ? 4000 : 250);
+          return;
+        }
+        throw new Error(data.error ?? "failed");
       } catch {
-        if (!cancelled) setStatus("failed");
+        if (cancelled) return;
+        failures += 1;
+        if (failures <= 2) timer = setTimeout(step, 3000 * failures);
+        else setStatus("failed");
       }
-    })();
+    };
+
+    track("translate", { testimony_id: testimony.id, from_language: testimony.language, to_language: lang });
+    void step();
     return () => {
       cancelled = true;
       if (timer) clearTimeout(timer);

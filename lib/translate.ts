@@ -59,7 +59,7 @@ interface AnthropicResponse {
 }
 
 /** Roughly how many words go into one translation call. */
-const CHUNK_WORDS = 900;
+const CHUNK_WORDS = 600;
 
 /** Split content into runs of whole paragraphs of about CHUNK_WORDS each. */
 export function chunkParagraphs(content: string, target = CHUNK_WORDS): string[] {
@@ -101,124 +101,117 @@ function adminClient(): SupabaseClient | null {
   return createClient(url, serviceKey, { auth: { persistSession: false, autoRefreshToken: false } });
 }
 
-/** A pending job older than this is treated as abandoned and restarted. */
-const STALE_MS = 10 * 60 * 1000;
+/** How long one step may hold the row before another request may take over. */
+const LOCK_MS = 90 * 1000;
 
 /**
- * Make sure a translation exists or is being generated. Returns the finished
- * translation when cached, the job's progress when it is running, or null
- * when translation is not configured. The work itself runs after the response
- * is sent (see `runInBackground`), so this returns within a second even for a
- * very long testimony.
+ * Advance a translation by exactly one step and return its state.
+ *
+ * Cloudflare Workers can't keep working after they reply, so instead of a
+ * background job the page drives the work: every call translates one chunk
+ * (title + description first, then the body in runs of whole paragraphs),
+ * saves it, and returns progress. The page calls again until it's ready.
+ * A short lock on the row means two visitors never translate the same chunk.
  */
-export async function ensureTranslation(
-  testimony: Testimony,
-  language: string,
-  runInBackground: (work: Promise<unknown>) => void,
-): Promise<Translation | TranslationJob | null> {
+export async function advanceTranslation(testimony: Testimony, language: string): Promise<Translation | TranslationJob | null> {
   const lang = languageByCode(language);
   const admin = adminClient();
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!lang || !admin || !apiKey) {
-    console.error("ensureTranslation: missing configuration", { lang: !!lang, admin: !!admin, apiKey: !!apiKey });
+    console.error("advanceTranslation: missing configuration", { lang: !!lang, admin: !!admin, apiKey: !!apiKey });
     return null;
   }
   if (testimony.status !== "published") return null;
 
-  const { data: existing } = await admin
-    .from("testimony_translations")
-    .select("*")
-    .eq("testimony_id", testimony.id)
-    .eq("language", lang.code)
-    .maybeSingle();
-
-  if (existing?.status === "ready") return existing as Translation;
-  if (existing?.status === "pending") {
-    const age = Date.now() - new Date(existing.started_at ?? existing.updated_at).getTime();
-    if (age < STALE_MS) return { status: "pending", progress_done: existing.progress_done, progress_total: existing.progress_total };
-  }
-  // failed, stale, or brand new → (re)start
+  const key = { testimony_id: testimony.id, language: lang.code };
   const chunks = chunkParagraphs(testimony.content ?? "");
-  const total = chunks.length + 1; // +1 for title & description
-  const now = new Date().toISOString();
-  const { error } = await admin.from("testimony_translations").upsert(
-    {
-      testimony_id: testimony.id,
-      language: lang.code,
-      title: testimony.title,
-      description: testimony.description,
-      content: null,
-      source: "machine",
-      status: "pending",
-      progress_done: 0,
-      progress_total: total,
-      started_at: now,
-      error: null,
-      updated_at: now,
-    },
-    { onConflict: "testimony_id,language" },
-  );
-  if (error) {
-    console.error("ensureTranslation: could not start job", error.message);
-    return null;
-  }
-  runInBackground(translateJob(admin, apiKey, testimony, lang.code, lang.name, chunks));
-  return { status: "pending", progress_done: 0, progress_total: total };
-}
+  const total = chunks.length + 1;
 
-async function translateJob(admin: SupabaseClient, apiKey: string, testimony: Testimony, code: string, langName: string, chunks: string[]) {
+  let { data: row } = await admin.from("testimony_translations").select("*").match(key).maybeSingle();
+  if (row?.status === "ready") return row as Translation;
+
+  // A failed job whose chunking still matches resumes from its last saved part.
+  if (row?.status === "failed" && row.progress_total === total) {
+    const { data } = await admin
+      .from("testimony_translations")
+      .update({ status: "pending", error: null, lock_until: null, updated_at: new Date().toISOString() })
+      .match(key)
+      .select("*")
+      .single();
+    if (data) row = data;
+  }
+  // Start over when there is no usable job, or the chunking no longer matches
+  // the current text (the author edited it).
+  if (!row || row.status !== "pending" || row.progress_total !== total) {
+    const now = new Date().toISOString();
+    const { data, error } = await admin
+      .from("testimony_translations")
+      .upsert(
+        { ...key, title: testimony.title, description: testimony.description, content: null, source: "machine", status: "pending", progress_done: 0, progress_total: total, parts: [], started_at: now, lock_until: null, error: null, updated_at: now },
+        { onConflict: "testimony_id,language" },
+      )
+      .select("*")
+      .single();
+    if (error || !data) {
+      console.error("advanceTranslation: could not start", error?.message);
+      return null;
+    }
+    row = data;
+  }
+
+  // Take the lock for one step. If another request holds it, just report progress.
+  const nowMs = Date.now();
+  const { data: locked } = await admin
+    .from("testimony_translations")
+    .update({ lock_until: new Date(nowMs + LOCK_MS).toISOString() })
+    .match(key)
+    .eq("status", "pending")
+    .or(`lock_until.is.null,lock_until.lt.${new Date(nowMs).toISOString()}`)
+    .select("*")
+    .maybeSingle();
+  if (!locked) return { status: "pending", progress_done: row.progress_done, progress_total: row.progress_total, working: false };
+
   const model = process.env.ANTHROPIC_MODEL ?? "claude-sonnet-4-5";
   const source = languageByCode(testimony.language)?.name ?? testimony.language;
-  const key = { testimony_id: testimony.id, language: code };
-  const progress = async (done: number) => {
-    await admin.from("testimony_translations").update({ progress_done: done, updated_at: new Date().toISOString() }).match(key);
-  };
+  const done: number = locked.progress_done;
+  const parts: string[] = Array.isArray(locked.parts) ? locked.parts : [];
 
   try {
-    // 1. Title and description
-    const head = await callClaude(
-      apiKey,
-      model,
-      `Translate from ${source} into ${langName} (${code}).\n\n<title>${testimony.title}</title>\n<description>${testimony.description}</description>\n\nRespond as:\n<title>\ntranslated title\n</title>\n<description>\ntranslated description\n</description>`,
-      2_000,
-    );
-    const title = pick(head, "title");
-    const description = pick(head, "description");
-    if (!title) throw new Error("unparseable title response");
-    await progress(1);
-
-    // 2. Body, one chunk at a time, in order
-    const parts: string[] = [];
-    for (let i = 0; i < chunks.length; i++) {
-      const text = await callClaude(
+    if (done === 0) {
+      const head = await callClaude(
         apiKey,
         model,
-        `Translate from ${source} into ${langName} (${code}). This is part ${i + 1} of ${chunks.length}.\n\n<part>\n${chunks[i]}\n</part>\n\nRespond as:\n<part>\ntranslated part\n</part>`,
-        8_000,
+        `Translate from ${source} into ${lang.name} (${lang.code}).\n\n<title>${testimony.title}</title>\n<description>${testimony.description}</description>\n\nRespond as:\n<title>\ntranslated title\n</title>\n<description>\ntranslated description\n</description>`,
+        2_000,
       );
-      const translated = pick(text, "part");
-      if (!translated) throw new Error(`unparseable response for part ${i + 1}`);
-      parts.push(translated);
-      await progress(i + 2);
+      const title = pick(head, "title");
+      if (!title) throw new Error("unparseable title response");
+      await admin.from("testimony_translations").update({ title, description: pick(head, "description"), model, progress_done: 1, lock_until: null, updated_at: new Date().toISOString() }).match(key);
+      return { status: "pending", progress_done: 1, progress_total: total, working: true };
     }
 
-    const { error } = await admin
-      .from("testimony_translations")
-      .update({
-        title,
-        description,
-        content: parts.length ? parts.join("\n\n") : null,
-        model,
-        status: "ready",
-        progress_done: chunks.length + 1,
-        error: null,
-        updated_at: new Date().toISOString(),
-      })
-      .match(key);
-    if (error) throw new Error(`save failed: ${error.message}`);
+    const i = done - 1;
+    const text = await callClaude(
+      apiKey,
+      model,
+      `Translate from ${source} into ${lang.name} (${lang.code}). This is part ${i + 1} of ${chunks.length}.\n\n<part>\n${chunks[i]}\n</part>\n\nRespond as:\n<part>\ntranslated part\n</part>`,
+      6_000,
+    );
+    const translated = pick(text, "part");
+    if (!translated) throw new Error(`unparseable response for part ${i + 1}`);
+    const nextParts = [...parts.slice(0, i), translated];
+    const finished = i + 1 >= chunks.length;
+    const patch = finished
+      ? { parts: nextParts, content: nextParts.join("\n\n"), status: "ready", progress_done: total, lock_until: null, error: null, updated_at: new Date().toISOString() }
+      : { parts: nextParts, progress_done: done + 1, lock_until: null, updated_at: new Date().toISOString() };
+    const { data: saved, error } = await admin.from("testimony_translations").update(patch).match(key).select("*").single();
+    if (error || !saved) throw new Error(`save failed: ${error?.message}`);
+    if (finished) return saved as Translation;
+    return { status: "pending", progress_done: done + 1, progress_total: total, working: true };
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
-    console.error("translateJob:", testimony.id, code, message);
-    await admin.from("testimony_translations").update({ status: "failed", error: message.slice(0, 500), updated_at: new Date().toISOString() }).match(key);
+    console.error("advanceTranslation:", testimony.id, lang.code, message);
+    await admin.from("testimony_translations").update({ status: "failed", error: message.slice(0, 500), lock_until: null, updated_at: new Date().toISOString() }).match(key);
+    return { status: "failed", progress_done: done, progress_total: total, error: message };
   }
 }

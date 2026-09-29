@@ -1,30 +1,15 @@
 import { NextResponse } from "next/server";
 import { isSupportedLanguage } from "@/lib/languages";
 import { getTestimonyById } from "@/lib/queries";
-import { ensureTranslation, getTranslationState } from "@/lib/translate";
+import { advanceTranslation, getTranslationState } from "@/lib/translate";
 
 export const dynamic = "force-dynamic";
 
 /**
- * Keep working after the response has been sent. On Cloudflare that needs
- * `ctx.waitUntil`, otherwise the Worker is torn down as soon as it replies;
- * in local `next dev` the Node process simply keeps running the promise.
- */
-async function runInBackground(work: Promise<unknown>) {
-  try {
-    const { getCloudflareContext } = await import("@opennextjs/cloudflare");
-    const { ctx } = await getCloudflareContext({ async: true });
-    ctx.waitUntil(work);
-  } catch {
-    work.catch((err) => console.error("background translation failed:", err));
-  }
-}
-
-/**
- * POST { id, language } → the cached translation (200), or the running job's
- * progress (202) after starting it if needed. Bounded by (published
- * testimonies × supported languages) and cached forever, so it is safe to
- * leave unauthenticated.
+ * POST { id, language } → the cached translation (200), or — after translating
+ * exactly one more chunk — the job's progress (202). The page keeps calling
+ * until it gets a 200. Bounded by (published testimonies × supported languages)
+ * and cached forever, so it is safe to leave unauthenticated.
  */
 export async function POST(req: Request) {
   let body: { id?: unknown; language?: unknown };
@@ -41,15 +26,12 @@ export async function POST(req: Request) {
   if (!testimony) return NextResponse.json({ error: "Not found." }, { status: 404 });
   if (testimony.language === language) return NextResponse.json({ error: "That is the original language." }, { status: 400 });
 
-  const pending: Promise<unknown>[] = [];
-  const result = await ensureTranslation(testimony, language, (work) => pending.push(work));
+  const result = await advanceTranslation(testimony, language);
   if (!result) return NextResponse.json({ error: "Translation isn't available right now." }, { status: 503 });
-  for (const work of pending) await runInBackground(work);
-
-  return NextResponse.json(result, { status: result.status === "ready" ? 200 : 202 });
+  return NextResponse.json(result, { status: result.status === "ready" ? 200 : 202, headers: { "cache-control": "no-store" } });
 }
 
-/** GET ?id=&language= → current state, for polling while a job runs. */
+/** GET ?id=&language= → current state without doing any work. */
 export async function GET(req: Request) {
   const url = new URL(req.url);
   const id = url.searchParams.get("id") ?? "";

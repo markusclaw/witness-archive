@@ -126,6 +126,8 @@ export interface TranslationJob {
   status: "pending" | "failed";
   progress_done: number;
   progress_total: number;
+  /** True when this response performed a step; false when another visitor holds the lock. */
+  working?: boolean;
   error?: string | null;
 }
 
