@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { youtubeEmbedUrl, youtubeThumbnail } from "@/lib/youtube";
+import { track } from "@/lib/analytics";
 
 /**
  * Click-to-play facade: shows the thumbnail first and only loads the YouTube
@@ -38,7 +39,10 @@ export default function VideoEmbed({ url, title }: { url: string; title: string 
       ) : (
         <button
           type="button"
-          onClick={() => setPlaying(true)}
+          onClick={() => {
+            setPlaying(true);
+            track("video_play", { video_title: title });
+          }}
           className="group absolute inset-0 flex h-full w-full items-center justify-center"
           aria-label={`Play video: ${title}`}
         >

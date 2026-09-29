@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { User } from "@supabase/supabase-js";
 import { supabase } from "@/lib/supabase";
+import { track } from "@/lib/analytics";
 import { compactNumber } from "@/lib/format";
 
 export default function HeartButton({ testimonyId, initialCount }: { testimonyId: string; initialCount: number }) {
@@ -41,6 +42,7 @@ export default function HeartButton({ testimonyId, initialCount }: { testimonyId
       if (!error) {
         setHearted(true);
         setCount((c) => c + 1);
+        track("heart", { testimony_id: testimonyId });
       }
     }
     setBusy(false);

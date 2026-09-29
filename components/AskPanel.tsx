@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { track } from "@/lib/analytics";
 import Link from "next/link";
 import AskBox from "@/components/AskBox";
 import { SUGGESTED_QUESTIONS } from "@/lib/ask";
@@ -17,6 +18,7 @@ export default function AskPanel({ initialQuestion }: { initialQuestion: string 
     }
     let cancelled = false;
     queueMicrotask(() => setState({ status: "loading" }));
+    track("ask", { search_term: initialQuestion.slice(0, 100) });
     fetch("/api/ask", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ q: initialQuestion }) })
       .then(async (r) => {
         const json = (await r.json()) as AskResult & { error?: string };

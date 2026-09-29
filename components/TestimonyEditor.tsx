@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { User } from "@supabase/supabase-js";
 import { supabase } from "@/lib/supabase";
+import { track } from "@/lib/analytics";
 import { CATEGORIES } from "@/lib/categories";
 import { LANGUAGES } from "@/lib/languages";
 import { diffStats, diffWords } from "@/lib/diff";
@@ -333,6 +334,12 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
   /* ---------------- derived ---------------- */
   const videoOk = !videoUrl.trim() || !!extractYouTubeId(videoUrl);
   const wordCount = useMemo(() => content.trim().split(/\s+/).filter(Boolean).length, [content]);
+  const wroteRef = useRef(false);
+  useEffect(() => {
+    if (existing || wroteRef.current || wordCount === 0) return;
+    wroteRef.current = true;
+    track("write_start", {});
+  }, [existing, wordCount]);
   const minutes = Math.max(1, Math.round(wordCount / 220));
   const transcripty = useMemo(() => looksLikeTranscript(content), [content]);
   const missing: string[] = [];
@@ -407,6 +414,7 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
     setPolishing(true);
     setPolishError(null);
     setSuggestion(null);
+    track("polish_used", { words: wordCount });
     try {
       const {
         data: { session },
@@ -499,7 +507,10 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
   });
 
   const acceptSuggestion = () => {
-    if (suggestion) setContent(suggestion.formatted);
+    if (suggestion) {
+      setContent(suggestion.formatted);
+      track("polish_applied", { words: wordCount });
+    }
     setSuggestion(null);
   };
 
@@ -568,6 +579,9 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
     }
     setSavedId(id);
     setSaving(null);
+    if (status === "published" && (!existing || existing.status !== "published")) {
+      track("testimony_publish", { testimony_id: id, testimony_category: category, testimony_language: lang, witness_relationship: relationship, has_video: !!videoUrl.trim(), words: wordCount });
+    }
     router.push(status === "published" ? testimonyPath({ id, title: effectiveTitle }) : `/me?saved=${id}`);
     router.refresh();
   };

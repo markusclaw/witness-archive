@@ -86,6 +86,14 @@ Every testimony has an original `language` (chosen in the editor; English, Spani
 - **Crawl files**: `/robots.txt`, `/sitemap.xml` (generated from the database), and `/llms.txt` — a plain-text site summary for AI assistants and answer engines.
 - **Set `NEXT_PUBLIC_SITE_URL`** to the production origin in Cloudflare; canonical URLs, the sitemap and structured data are all built from it.
 
+## Analytics
+
+Google Analytics 4 (`NEXT_PUBLIC_GA_ID`). Beyond page views the site sends: `testimony_view` (category, language, shown language, witness relationship, has_video, length bucket), `read_progress` at 25/50/75/100 % of the body, `listen_start` / `listen_complete`, `video_play`, `translate`, `share`, `heart`, `follow`, `ask` (search_term), `write_start`, `polish_used` / `polish_applied`, `testimony_publish`, `sign_up`, `login`. User properties: `signed_in`; signed-in members also get a pseudonymous `user_id`.
+
+Worth marking as key events in GA: `testimony_publish`, `sign_up`, and `read_progress` (percent = 100). Register `testimony_category`, `shown_language`, `witness_relationship` and `percent` as custom dimensions/metrics to use them in reports.
+
+Team visits: Settings → "Exclude my visits from analytics" (or open any page with `?internal=1`) tags every hit from that browser with `traffic_type=internal`. The GA property's "Internal Traffic" data filter must be set to Active for those hits to be excluded.
+
 ## Shelved
 
 - **YouTube transcript import** (`/api/transcript`, `lib/youtube-transcript.ts`): works when YouTube allows it, but from Cloudflare's IPs it usually answers with a sign-in check. Hidden behind `NEXT_PUBLIC_TRANSCRIPT_IMPORT=1`. Re-enable behind a transcript API provider if the manual paste flow becomes a bottleneck.

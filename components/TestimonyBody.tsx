@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { languageByCode } from "@/lib/languages";
 import { pickVoice } from "@/lib/voices";
+import { track } from "@/lib/analytics";
 
 /**
  * Read-or-listen body. "Listen" uses the browser's speech synthesis, reads
@@ -58,8 +59,10 @@ export default function TestimonyBody({ paragraphs, title, lang = "en" }: { para
       if (index >= paragraphs.length) {
         setPlaying(false);
         setCurrent(-1);
+        track("listen_complete", { language: lang, paragraphs: paragraphs.length });
         return;
       }
+      if (index === 0) track("listen_start", { language: lang, paragraphs: paragraphs.length });
       const u = new SpeechSynthesisUtterance(paragraphs[index]);
       u.lang = speechPrefix;
       u.rate = rateRef.current;
@@ -78,7 +81,7 @@ export default function TestimonyBody({ paragraphs, title, lang = "en" }: { para
       synth.speak(u);
       setPlaying(true);
     },
-    [paragraphs, speechPrefix]
+    [paragraphs, speechPrefix, lang]
   );
   useEffect(() => {
     speakFromRef.current = speakFrom;

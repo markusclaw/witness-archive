@@ -7,6 +7,7 @@ import { toParagraphs } from "@/lib/format";
 import { languageByCode, languageNameIn } from "@/lib/languages";
 import { testimonyPath } from "@/lib/seo";
 import type { Testimony, Translation, TranslationJob } from "@/lib/types";
+import { track } from "@/lib/analytics";
 
 type Shown = Pick<Translation, "title" | "description" | "content"> & { source?: Translation["source"] };
 
@@ -68,6 +69,7 @@ export default function TranslatedContent({
       }
     };
 
+    track("translate", { testimony_id: testimony.id, from_language: testimony.language, to_language: lang });
     (async () => {
       try {
         const res = await fetch("/api/translate", {
@@ -85,7 +87,7 @@ export default function TranslatedContent({
       cancelled = true;
       if (timer) clearTimeout(timer);
     };
-  }, [isTranslated, translation, testimony.id, lang]);
+  }, [isTranslated, translation, testimony.id, testimony.language, lang]);
 
   const shown: Shown = translation ?? testimony;
   const paragraphs = toParagraphs(shown.content);

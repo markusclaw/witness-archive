@@ -1,12 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { track } from "@/lib/analytics";
 
 export default function ShareButton({ title }: { title: string }) {
   const [copied, setCopied] = useState(false);
 
   const share = async () => {
     const url = window.location.href;
+    track("share", { method: "share" in navigator ? "native" : "copy_link", page_path: window.location.pathname });
     if (navigator.share) {
       try {
         await navigator.share({ title, url });

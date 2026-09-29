@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { User } from "@supabase/supabase-js";
 import { supabase } from "@/lib/supabase";
+import { track } from "@/lib/analytics";
 
 export default function FollowButton({ userId, initialCount, size = "sm" }: { userId: string; initialCount?: number; size?: "sm" | "md" }) {
   const [user, setUser] = useState<User | null | undefined>(undefined);
@@ -41,6 +42,7 @@ export default function FollowButton({ userId, initialCount, size = "sm" }: { us
       if (!error) {
         setFollowing(true);
         setCount((c) => c + 1);
+        track("follow", { followee_id: userId });
       }
     }
     setBusy(false);

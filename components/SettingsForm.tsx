@@ -8,6 +8,7 @@ import { fetchMyProfile, squareImage } from "@/lib/profiles";
 import { displayNameFor } from "@/lib/user";
 import type { Profile } from "@/lib/types";
 import Avatar from "@/components/Avatar";
+import { isInternal, setInternal } from "@/lib/analytics";
 
 export default function SettingsForm() {
   const [user, setUser] = useState<User | null | undefined>(undefined);
@@ -19,9 +20,11 @@ export default function SettingsForm() {
   const [notice, setNotice] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [pwNotice, setPwNotice] = useState<string | null>(null);
+  const [internal, setInternalState] = useState(false);
   const fileRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
+    queueMicrotask(() => setInternalState(isInternal()));
     supabase.auth.getUser().then(async ({ data }) => {
       setUser(data.user);
       if (data.user) {
@@ -164,6 +167,27 @@ export default function SettingsForm() {
           <p className="mt-1 text-sm text-parchment-500">{pwNotice ?? "We'll email you a link to set a new one."}</p>
         </div>
         <button type="button" onClick={sendReset} className="btn btn-ghost !py-2 text-sm">Send reset link</button>
+      </section>
+
+      {/* Analytics */}
+      <section className="card p-6">
+        <label className="flex cursor-pointer items-start gap-3">
+          <input
+            type="checkbox"
+            checked={internal}
+            onChange={(e) => {
+              setInternal(e.target.checked);
+              setInternalState(e.target.checked);
+            }}
+            className="mt-1 h-4 w-4 accent-gold-500"
+          />
+          <span>
+            <span className="block font-medium text-parchment-50">Exclude my visits from analytics</span>
+            <span className="mt-1 block text-sm text-parchment-500">
+              For the team. Marks everything you do in this browser as internal traffic so it doesn&apos;t count as a reader. It&apos;s per device — turn it on in each browser you use, or open any page with <code className="text-parchment-300">?internal=1</code>.
+            </span>
+          </span>
+        </label>
       </section>
     </form>
   );

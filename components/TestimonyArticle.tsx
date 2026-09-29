@@ -12,6 +12,7 @@ import TestimonyCard from "@/components/TestimonyCard";
 import TranslatedContent from "@/components/TranslatedContent";
 import VideoEmbed from "@/components/VideoEmbed";
 import ViewPing from "@/components/ViewPing";
+import ReadTracker from "@/components/ReadTracker";
 import FollowButton from "@/components/FollowButton";
 import { slugForCategoryName } from "@/lib/categories";
 import { catalogNumber, compactNumber, formatDate, formatExperienced, formatLocation, isTruncatedExcerpt, readingTime } from "@/lib/format";
@@ -263,6 +264,7 @@ export default async function TestimonyArticle({ param, lang, prefixed = false }
     <main lang={lang}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <ViewPing id={testimony.id} />
+      <ReadTracker id={testimony.id} category={testimony.category} language={testimony.language} shownLanguage={lang} relationship={testimony.witness_relationship ?? "self"} hasVideo={!!testimony.video_url} words={wordCount} />
       {prev && <link rel="prev" href={absoluteUrl(localizedTestimonyPath(prev, lang))} />}
       {next && <link rel="next" href={absoluteUrl(localizedTestimonyPath(next, lang))} />}
 

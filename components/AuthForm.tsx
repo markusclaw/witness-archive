@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import { track } from "@/lib/analytics";
 
 type Mode = "signin" | "signup" | "reset";
 
@@ -36,6 +37,7 @@ export default function AuthForm() {
           },
         });
         if (error) throw error;
+        track("sign_up", { method: "email" });
         if (data.session) {
           router.push(next);
           router.refresh();
@@ -45,6 +47,7 @@ export default function AuthForm() {
       } else if (mode === "signin") {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
+        track("login", { method: "email" });
         router.push(next);
         router.refresh();
       } else {
