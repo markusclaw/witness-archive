@@ -244,6 +244,7 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
   /* ---------------- details assistant: run on pause ---------------- */
   useEffect(() => {
     if (suggestion || extracting) return;
+    if (extractYouTubeId(videoUrl) && !videoMeta) return; // let the channel/title arrive first so the first pass sees them
     const words = content.trim().split(/\s+/).filter(Boolean).length;
     if (words < 80) return;
     const changed = Math.abs(words - lastAutoWordsRef.current);
@@ -256,7 +257,7 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
     return () => {
       if (autoTimerRef.current) window.clearTimeout(autoTimerRef.current);
     };
-  }, [content, suggestion, extracting]);
+  }, [content, suggestion, extracting, videoUrl, videoMeta]);
 
   /* ---------------- video details from the link (channel, title) ---------------- */
   useEffect(() => {
@@ -274,7 +275,10 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
           headers: { "content-type": "application/json", authorization: `Bearer ${session?.access_token ?? ""}` },
           body: JSON.stringify({ url: videoUrl }),
         });
-        if (!res.ok) return;
+        if (!res.ok) {
+          setVideoMeta({ title: null, author: null, publishedAt: null, durationSeconds: null, description: null });
+          return;
+        }
         const m = (await res.json()) as { title?: string | null; author?: string | null; authorUrl?: string | null; publishedAt?: string | null; durationSeconds?: number | null; description?: string | null; language?: string | null };
         setVideoMeta({ title: m.title ?? null, author: m.author ?? null, publishedAt: m.publishedAt ?? null, durationSeconds: m.durationSeconds ?? null, description: m.description ?? null });
         if (m.language && !existing && LANGUAGES.some((l) => l.code === m.language)) setLang(m.language);
@@ -286,7 +290,7 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
         if (m.authorUrl && !sourceUrl.trim()) setSourceUrl(m.authorUrl);
         if (m.title && !title.trim() && !ghostTitle) setGhostTitle(m.title.replace(/\s*[|\-–—]\s*[^|\-–—]{0,40}$/, "").trim() || m.title);
       } catch {
-        /* advisory only */
+        setVideoMeta({ title: null, author: null, publishedAt: null, durationSeconds: null, description: null });
       }
     };
     void run();
@@ -621,6 +625,55 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
         </div>
       )}
 
+      {/* ================= Video ================= */}
+      <section className="card mb-6 p-5">
+        <div className="flex flex-wrap items-baseline justify-between gap-2">
+          <p className="eyebrow">Video</p>
+          {videoOk && extractYouTubeId(videoUrl) && (
+            <span className="text-xs text-parchment-700">Embedded above the text on the published page.</span>
+          )}
+        </div>
+        <div className="mt-3 flex flex-col gap-2 sm:flex-row">
+          <input
+            id="video"
+            className={`input ${!videoOk ? "!border-ember-500/60" : ""}`}
+            value={videoUrl}
+            onChange={(e) => setVideoUrl(e.target.value.trim())}
+            placeholder="Paste the YouTube link — https://www.youtube.com/watch?v=…"
+            inputMode="url"
+            aria-label="YouTube link"
+          />
+          {TRANSCRIPT_IMPORT && extractYouTubeId(videoUrl) && (
+            <button type="button" onClick={() => void importTranscript(videoUrl)} disabled={importing} className="btn btn-ghost whitespace-nowrap !py-2 text-sm">
+              {importing ? "Fetching…" : content.trim() ? "Replace with transcript" : "Import transcript"}
+            </button>
+          )}
+        </div>
+        {!videoOk && <p className="mt-2 text-xs text-ember-500">That doesn&apos;t look like a YouTube link.</p>}
+
+        {videoOk && extractYouTubeId(videoUrl) && (
+          <div className="mt-4 flex gap-4">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={`https://i.ytimg.com/vi/${extractYouTubeId(videoUrl)}/mqdefault.jpg`} alt="" className="h-20 w-36 shrink-0 rounded-lg object-cover ring-1 ring-ink-600" />
+            <div className="min-w-0 text-sm">
+              <p className="truncate text-parchment-50">{videoMeta ? (videoMeta.title ?? "Couldn’t read the video details — the title and source can be typed in below.") : "Reading video details…"}</p>
+              <p className="mt-0.5 truncate text-xs text-parchment-500">
+                {[videoMeta?.author, videoMeta?.durationSeconds ? `${Math.max(1, Math.round(videoMeta.durationSeconds / 60))} min` : null, videoMeta?.publishedAt ? new Date(videoMeta.publishedAt).toLocaleDateString(undefined, { year: "numeric", month: "short" }) : null].filter(Boolean).join(" · ")}
+              </p>
+              {wordCount === 0 && (
+                <p className="mt-2 text-xs leading-relaxed text-parchment-700">
+                  Now the transcript: on YouTube click <span className="text-parchment-400">…more</span> under the title, then <span className="text-parchment-400">Show transcript</span>, select all, copy, and paste it into the page below. Timestamps are stripped automatically.
+                </p>
+              )}
+            </div>
+          </div>
+        )}
+        {videoOk && !extractYouTubeId(videoUrl) && (
+          <p className="mt-2 text-xs text-parchment-700">Start here if the testimony was told on video: the link fills in the title and source, and the video is embedded above the text. Then paste the transcript below.</p>
+        )}
+        {importError && <ImportFallback error={importError} />}
+      </section>
+
       {/* ================= Writing canvas ================= */}
       <section className="paper">
         <div className="paper-inner">
@@ -669,6 +722,14 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
               onChange={(e) => setContent(e.target.value)}
               onPaste={(e) => {
                 const pasted = e.clipboardData.getData("text/plain");
+                if (pasted && pasted.trim().split(/\s+/).length === 1 && extractYouTubeId(pasted.trim())) {
+                  // A YouTube link pasted into the text belongs in the Video card.
+                  e.preventDefault();
+                  setVideoUrl(pasted.trim());
+                  setCleanedNotice("That's a YouTube link — moved it to the Video card above.");
+                  window.setTimeout(() => setCleanedNotice(null), 6000);
+                  return;
+                }
                 if (!pasted || !looksLikeTranscript(pasted)) return; // ordinary paste: let the browser handle it
                 e.preventDefault();
                 const el = e.currentTarget;
@@ -744,6 +805,23 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
               <button type="button" onClick={() => setFocus((f) => !f)} className="btn btn-ghost !px-3 !py-1.5 text-xs" aria-pressed={focus}>
                 {focus ? "Exit focus" : "Focus"}
               </button>
+              {!focus && wordCount > 0 && (
+                <>
+                  <span className="mx-1 hidden h-5 w-px bg-ink-600 sm:inline-block" aria-hidden />
+                  <button type="button" onClick={() => save("draft")} disabled={saving !== null} className="btn btn-ghost !px-3 !py-1.5 text-xs">
+                    {saving === "draft" ? "Saving…" : "Save draft"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => save("published")}
+                    disabled={saving !== null}
+                    title={!canSave ? `Still needed: ${missing.join(", ")}.` : undefined}
+                    className="btn btn-primary !px-4 !py-1.5 text-xs"
+                  >
+                    {saving === "publish" ? "Publishing…" : existing?.status === "published" ? "Update" : "Publish"}
+                  </button>
+                </>
+              )}
             </div>
           )}
         </div>
@@ -760,55 +838,6 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
           <span className="text-parchment-500">Polish</span> fixes grammar, punctuation, and paragraph breaks. It never changes what you said, and you approve every edit.
         </p>
       )}
-
-      {/* ================= Video ================= */}
-      <section className="card mt-8 p-5">
-        <div className="flex flex-wrap items-baseline justify-between gap-2">
-          <p className="eyebrow">Video</p>
-          {videoOk && extractYouTubeId(videoUrl) && (
-            <span className="text-xs text-parchment-700">Embedded above the text on the published page.</span>
-          )}
-        </div>
-        <div className="mt-3 flex flex-col gap-2 sm:flex-row">
-          <input
-            id="video"
-            className={`input ${!videoOk ? "!border-ember-500/60" : ""}`}
-            value={videoUrl}
-            onChange={(e) => setVideoUrl(e.target.value.trim())}
-            placeholder="Paste the YouTube link — https://www.youtube.com/watch?v=…"
-            inputMode="url"
-            aria-label="YouTube link"
-          />
-          {TRANSCRIPT_IMPORT && extractYouTubeId(videoUrl) && (
-            <button type="button" onClick={() => void importTranscript(videoUrl)} disabled={importing} className="btn btn-ghost whitespace-nowrap !py-2 text-sm">
-              {importing ? "Fetching…" : content.trim() ? "Replace with transcript" : "Import transcript"}
-            </button>
-          )}
-        </div>
-        {!videoOk && <p className="mt-2 text-xs text-ember-500">That doesn&apos;t look like a YouTube link.</p>}
-
-        {videoOk && extractYouTubeId(videoUrl) && (
-          <div className="mt-4 flex gap-4">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`https://i.ytimg.com/vi/${extractYouTubeId(videoUrl)}/mqdefault.jpg`} alt="" className="h-20 w-36 shrink-0 rounded-lg object-cover ring-1 ring-ink-600" />
-            <div className="min-w-0 text-sm">
-              <p className="truncate text-parchment-50">{videoMeta?.title ?? "Reading video details…"}</p>
-              <p className="mt-0.5 truncate text-xs text-parchment-500">
-                {[videoMeta?.author, videoMeta?.durationSeconds ? `${Math.max(1, Math.round(videoMeta.durationSeconds / 60))} min` : null, videoMeta?.publishedAt ? new Date(videoMeta.publishedAt).toLocaleDateString(undefined, { year: "numeric", month: "short" }) : null].filter(Boolean).join(" · ")}
-              </p>
-              {wordCount === 0 && (
-                <p className="mt-2 text-xs leading-relaxed text-parchment-700">
-                  Now the transcript: on YouTube click <span className="text-parchment-400">…more</span> under the title, then <span className="text-parchment-400">Show transcript</span>, select all, copy, and paste it into the page above. Timestamps are stripped automatically.
-                </p>
-              )}
-            </div>
-          </div>
-        )}
-        {videoOk && !extractYouTubeId(videoUrl) && (
-          <p className="mt-2 text-xs text-parchment-700">Optional. If this testimony was told on video, the link fills in the source and title, and the video is embedded above the text.</p>
-        )}
-        {importError && <ImportFallback error={importError} />}
-      </section>
 
       {/* ================= Repeat check ================= */}
       {(visibleDupes.length > 0 || linkedDupe || retellingOf) && (
