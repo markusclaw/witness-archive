@@ -68,7 +68,7 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
   const [category, setCategory] = useState(existing?.category ?? continueSeries?.category ?? CATEGORIES[0].name);
   const [videoUrl, setVideoUrl] = useState(existing?.video_url ?? "");
   const [lang, setLang] = useState(existing?.language ?? "en");
-  const [relationship, setRelationship] = useState<WitnessRelationship>(existing?.witness_relationship ?? "self");
+  const [relationship, setRelationship] = useState<WitnessRelationship>(existing?.witness_relationship ?? "shared");
   const [witnessName, setWitnessName] = useState(existing?.witness_name ?? "");
   const [sourceCredit, setSourceCredit] = useState(existing?.source_credit ?? "");
   const [sourceUrl, setSourceUrl] = useState(existing?.source_url ?? "");
@@ -938,8 +938,8 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
               <div className="grid gap-2 sm:grid-cols-2">
                 {(
                   [
-                    { v: "self", t: "It happened to me", d: "You are the witness. You'll be credited by the name below." },
                     { v: "shared", t: "I'm sharing someone else's", d: "Preserving a testimony that isn't yours. The witness is credited; you're listed as the contributor." },
+                    { v: "self", t: "It happened to me", d: "You are the witness. You'll be credited by the name below." },
                   ] as { v: WitnessRelationship; t: string; d: string }[]
                 ).map((o) => (
                   <label key={o.v} className={`cursor-pointer rounded-lg border p-3 transition ${relationship === o.v ? "border-gold-500 bg-gold-500/10" : "border-ink-600 hover:border-ink-500"}`}>
