@@ -2,7 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { languageByCode } from "@/lib/languages";
-import { pickVoice } from "@/lib/voices";
+import { pickVoice, selectVoices, voiceLabel } from "@/lib/voices";
+import { splitSentences, isHeadingLine } from "@/lib/speech";
 import { track } from "@/lib/analytics";
 
 /**
@@ -18,11 +19,13 @@ export default function TestimonyBody({ paragraphs, title, lang = "en" }: { para
   const [mode, setMode] = useState<"read" | "listen">("read");
   const [playing, setPlaying] = useState(false);
   const [current, setCurrent] = useState<number>(-1);
-  const [rate, setRate] = useState(1);
+  const [rate, setRate] = useState(0.95);
+  const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
   const [voiceURI, setVoiceURI] = useState<string>("");
   const rateRef = useRef(rate);
   const voiceRef = useRef(voiceURI);
   const stoppedRef = useRef(false);
+  const runRef = useRef(0);
   const paraRefs = useRef<(HTMLParagraphElement | null)[]>([]);
   const speakFromRef = useRef<(index: number) => void>(() => {});
 
@@ -30,7 +33,9 @@ export default function TestimonyBody({ paragraphs, title, lang = "en" }: { para
     if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
     queueMicrotask(() => setSupported(true));
     const loadVoices = () => {
-      const best = pickVoice(window.speechSynthesis.getVoices(), speechPrefix);
+      const all = window.speechSynthesis.getVoices();
+      setVoices(selectVoices(all, speechPrefix, 5));
+      const best = pickVoice(all, speechPrefix);
       if (best && voiceRef.current !== best.voiceURI) {
         setVoiceURI(best.voiceURI);
         voiceRef.current = best.voiceURI;
@@ -63,22 +68,42 @@ export default function TestimonyBody({ paragraphs, title, lang = "en" }: { para
         return;
       }
       if (index === 0) track("listen_start", { language: lang, paragraphs: paragraphs.length });
-      const u = new SpeechSynthesisUtterance(paragraphs[index]);
-      u.lang = speechPrefix;
-      u.rate = rateRef.current;
       const v = synth.getVoices().find((x) => x.voiceURI === voiceRef.current);
-      if (v) u.voice = v;
-      u.onstart = () => {
-        setCurrent(index);
-        paraRefs.current[index]?.scrollIntoView({ block: "center", behavior: "smooth" });
+      const heading = isHeadingLine(paragraphs[index]);
+      // One utterance per sentence: natural breaths between sentences, and no
+      // single utterance long enough to trip Chrome's ~15s cutoff on network voices.
+      const sentences = splitSentences(paragraphs[index]);
+      const token = ++runRef.current;
+      const speakSentence = (si: number) => {
+        if (stoppedRef.current || runRef.current !== token) return;
+        if (si >= sentences.length) {
+          // Breath between paragraphs; a little longer after a heading.
+          window.setTimeout(() => {
+            if (!stoppedRef.current && runRef.current === token) speakFromRef.current(index + 1);
+          }, heading ? 650 : 420);
+          return;
+        }
+        const u = new SpeechSynthesisUtterance(sentences[si]);
+        u.lang = speechPrefix;
+        u.rate = rateRef.current;
+        if (v) u.voice = v;
+        if (si === 0) {
+          u.onstart = () => {
+            setCurrent(index);
+            paraRefs.current[index]?.scrollIntoView({ block: "center", behavior: "smooth" });
+          };
+        }
+        u.onend = () => {
+          if (stoppedRef.current || runRef.current !== token) return;
+          window.setTimeout(() => speakSentence(si + 1), 160);
+        };
+        u.onerror = (e) => {
+          if (e.error === "interrupted" || e.error === "canceled") return;
+          if (!stoppedRef.current) setPlaying(false);
+        };
+        synth.speak(u);
       };
-      u.onend = () => {
-        if (!stoppedRef.current) speakFromRef.current(index + 1);
-      };
-      u.onerror = () => {
-        if (!stoppedRef.current) setPlaying(false);
-      };
-      synth.speak(u);
+      speakSentence(0);
       setPlaying(true);
     },
     [paragraphs, speechPrefix, lang]
@@ -152,11 +177,29 @@ export default function TestimonyBody({ paragraphs, title, lang = "en" }: { para
               <label className="flex items-center gap-2 text-xs text-parchment-500">
                 {ui.speed}
                 <select value={rate} onChange={(e) => changeRate(Number(e.target.value))} className="input !w-auto !py-1 !text-xs">
-                  {[0.8, 0.9, 1, 1.1, 1.25, 1.5].map((r) => (
+                  {[0.8, 0.9, 0.95, 1, 1.1, 1.25, 1.5].map((r) => (
                     <option key={r} value={r}>{r}×</option>
                   ))}
                 </select>
               </label>
+              {voices.length > 1 && (
+                <label className="flex items-center gap-2 text-xs text-parchment-500">
+                  {ui.voice}
+                  <select
+                    value={voiceURI}
+                    onChange={(e) => {
+                      setVoiceURI(e.target.value);
+                      voiceRef.current = e.target.value;
+                      if (playing && current >= 0) speakFrom(current);
+                    }}
+                    className="input !w-auto !max-w-[11rem] !py-1 !text-xs"
+                  >
+                    {voices.map((v) => (
+                      <option key={v.voiceURI} value={v.voiceURI}>{voiceLabel(v)}</option>
+                    ))}
+                  </select>
+                </label>
+              )}
               <span className="sr-only" aria-live="polite">{playing ? `Reading ${title}, paragraph ${current + 1} of ${paragraphs.length}` : ""}</span>
             </div>
           )}
