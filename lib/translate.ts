@@ -2,6 +2,7 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { createServerSupabase } from "@/lib/supabase-server";
 import { languageByCode } from "@/lib/languages";
 import type { Testimony, Translation, TranslationJob } from "@/lib/types";
+import { chunkParagraphs } from "@/lib/chunks";
 
 /** Public read of a finished, cached translation (anon client, RLS allows published only). */
 export async function getTranslation(testimonyId: string, language: string): Promise<Translation | null> {
@@ -35,7 +36,22 @@ export async function getTranslationState(testimonyId: string, language: string)
   }
   if (!data) return null;
   if (data.status === "ready") return data as Translation;
-  return { status: data.status, progress_done: data.progress_done ?? 0, progress_total: data.progress_total ?? 0, error: data.error ?? null };
+  return partial(data);
+}
+
+/** The in-flight shape the page renders progressively from. */
+function partial(row: Record<string, unknown>, working?: boolean): TranslationJob {
+  const done = (row.progress_done as number) ?? 0;
+  return {
+    status: row.status as "pending" | "failed",
+    progress_done: done,
+    progress_total: (row.progress_total as number) ?? 0,
+    title: done >= 1 ? ((row.title as string) ?? null) : null,
+    description: done >= 1 ? ((row.description as string) ?? null) : null,
+    parts: Array.isArray(row.parts) ? (row.parts as string[]) : [],
+    error: (row.error as string | null) ?? null,
+    ...(working === undefined ? {} : { working }),
+  };
 }
 
 /** Which languages already have a finished translation for this testimony. */
@@ -56,29 +72,6 @@ Respond in exactly the format requested and nothing else.`;
 interface AnthropicResponse {
   content?: { type: string; text?: string }[];
   error?: { message?: string };
-}
-
-/** Roughly how many words go into one translation call. */
-const CHUNK_WORDS = 600;
-
-/** Split content into runs of whole paragraphs of about CHUNK_WORDS each. */
-export function chunkParagraphs(content: string, target = CHUNK_WORDS): string[] {
-  const paragraphs = content.replace(/\r\n/g, "\n").split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean);
-  const chunks: string[] = [];
-  let current: string[] = [];
-  let words = 0;
-  for (const p of paragraphs) {
-    const n = p.split(/\s+/).length;
-    if (current.length && words + n > target) {
-      chunks.push(current.join("\n\n"));
-      current = [];
-      words = 0;
-    }
-    current.push(p);
-    words += n;
-  }
-  if (current.length) chunks.push(current.join("\n\n"));
-  return chunks;
 }
 
 async function callClaude(apiKey: string, model: string, userMessage: string, maxTokens: number): Promise<string> {
@@ -169,7 +162,7 @@ export async function advanceTranslation(testimony: Testimony, language: string)
     .or(`lock_until.is.null,lock_until.lt.${new Date(nowMs).toISOString()}`)
     .select("*")
     .maybeSingle();
-  if (!locked) return { status: "pending", progress_done: row.progress_done, progress_total: row.progress_total, working: false };
+  if (!locked) return partial(row, false);
 
   const model = process.env.ANTHROPIC_MODEL ?? "claude-sonnet-4-5";
   const source = languageByCode(testimony.language)?.name ?? testimony.language;
@@ -186,8 +179,9 @@ export async function advanceTranslation(testimony: Testimony, language: string)
       );
       const title = pick(head, "title");
       if (!title) throw new Error("unparseable title response");
-      await admin.from("testimony_translations").update({ title, description: pick(head, "description"), model, progress_done: 1, lock_until: null, updated_at: new Date().toISOString() }).match(key);
-      return { status: "pending", progress_done: 1, progress_total: total, working: true };
+      const description = pick(head, "description");
+      await admin.from("testimony_translations").update({ title, description, model, progress_done: 1, lock_until: null, updated_at: new Date().toISOString() }).match(key);
+      return partial({ ...locked, title, description, progress_done: 1 }, true);
     }
 
     const i = done - 1;
@@ -207,11 +201,11 @@ export async function advanceTranslation(testimony: Testimony, language: string)
     const { data: saved, error } = await admin.from("testimony_translations").update(patch).match(key).select("*").single();
     if (error || !saved) throw new Error(`save failed: ${error?.message}`);
     if (finished) return saved as Translation;
-    return { status: "pending", progress_done: done + 1, progress_total: total, working: true };
+    return partial(saved, true);
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
     console.error("advanceTranslation:", testimony.id, lang.code, message);
     await admin.from("testimony_translations").update({ status: "failed", error: message.slice(0, 500), lock_until: null, updated_at: new Date().toISOString() }).match(key);
-    return { status: "failed", progress_done: done, progress_total: total, error: message };
+    return partial({ ...locked, status: "failed", error: message }, true);
   }
 }

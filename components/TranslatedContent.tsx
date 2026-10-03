@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import TestimonyBody from "@/components/TestimonyBody";
 import { toParagraphs } from "@/lib/format";
+import { chunkParagraphs } from "@/lib/chunks";
 import { languageByCode, languageNameIn } from "@/lib/languages";
 import { testimonyPath } from "@/lib/seo";
 import type { Testimony, Translation, TranslationJob } from "@/lib/types";
@@ -36,6 +37,7 @@ export default function TranslatedContent({
   const [translation, setTranslation] = useState<Translation | null>(initial);
   const [status, setStatus] = useState<"idle" | "loading" | "failed">(isTranslated && !initial ? "loading" : "idle");
   const [progress, setProgress] = useState<{ done: number; total: number } | null>(null);
+  const [partial, setPartial] = useState<TranslationJob | null>(null);
 
   // Drive the translation one step per request: each POST translates one more
   // chunk and reports progress; we call again until it comes back ready. If a
@@ -65,6 +67,7 @@ export default function TranslatedContent({
         if (data.status === "pending") {
           failures = 0;
           setProgress({ done: data.progress_done, total: data.progress_total });
+          setPartial(data);
           // Another visitor is translating this chunk → wait; otherwise go straight on.
           timer = setTimeout(step, data.working === false ? 4000 : 250);
           return;
@@ -86,8 +89,14 @@ export default function TranslatedContent({
     };
   }, [isTranslated, translation, testimony.id, testimony.language, lang]);
 
-  const shown: Shown = translation ?? testimony;
+  const shown: Shown = translation ?? (partial?.title ? { title: partial.title, description: partial.description ?? testimony.description, content: testimony.content } : testimony);
   const paragraphs = toParagraphs(shown.content);
+
+  // While translating: the finished chunks in the new language, the rest still in the original.
+  const originalChunks = useMemo(() => chunkParagraphs(testimony.content ?? ""), [testimony.content]);
+  const doneParts = partial?.parts ?? [];
+  const translatedSoFar = toParagraphs(doneParts.join("\n\n"));
+  const remaining = toParagraphs(originalChunks.slice(doneParts.length).join("\n\n"));
   const originalName = languageNameIn(testimony.language, lang);
 
   return (
@@ -124,15 +133,34 @@ export default function TranslatedContent({
       {between}
 
       {status === "loading" ? (
-        <div className="space-y-4" aria-busy="true" aria-live="polite">
+        <div aria-busy="true" aria-live="polite">
           {progress && progress.total > 1 && (
-            <div className="h-1 w-full overflow-hidden rounded-full bg-ink-700" role="progressbar" aria-valuemin={0} aria-valuemax={progress.total} aria-valuenow={progress.done}>
+            <div className="mb-6 h-1 w-full overflow-hidden rounded-full bg-ink-700" role="progressbar" aria-valuemin={0} aria-valuemax={progress.total} aria-valuenow={progress.done}>
               <div className="h-full bg-gold-500 transition-[width] duration-700" style={{ width: `${Math.max(4, (100 * progress.done) / progress.total)}%` }} />
             </div>
           )}
-          {[95, 100, 88, 97, 60].map((w, i) => (
-            <div key={i} className="h-5 animate-pulse rounded bg-ink-700" style={{ width: `${w}%` }} />
-          ))}
+          {translatedSoFar.length > 0 && (
+            <div className="prose-testimony" lang={lang}>
+              {translatedSoFar.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
+          )}
+          {remaining.length > 0 && (
+            <div className="relative mt-2 border-t border-dashed border-gold-500/30 pt-6" lang={testimony.language}>
+              <span className="absolute -top-2.5 left-0 bg-ink-950 pr-2 text-[0.7rem] uppercase tracking-[0.18em] text-gold-500">
+                {language.ui.translating}
+                {progress && progress.total > 1 && ` ${Math.min(progress.done, progress.total)}/${progress.total}`}
+              </span>
+              <div className="prose-testimony prose-continued opacity-45">
+                {(translatedSoFar.length ? remaining : remaining.slice(0, 6)).map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
+              </div>
+            </div>
+          )}
+          {translatedSoFar.length === 0 && remaining.length === 0 &&
+            [95, 100, 88, 97, 60].map((w, i) => <div key={i} className="mb-4 h-5 animate-pulse rounded bg-ink-700" style={{ width: `${w}%` }} />)}
         </div>
       ) : paragraphs.length > 0 ? (
         <div itemProp="articleBody">

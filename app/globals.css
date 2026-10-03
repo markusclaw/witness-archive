@@ -271,6 +271,16 @@ body::before {
   color: var(--color-gold-400);
 }
 
+/* The still-untranslated tail of a testimony in flight: no second drop cap. */
+.prose-continued p:first-of-type::first-letter {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  float: none;
+  padding: 0;
+  color: inherit;
+}
+
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;

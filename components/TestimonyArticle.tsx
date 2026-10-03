@@ -269,7 +269,7 @@ export default async function TestimonyArticle({ param, lang, prefixed = false }
       {next && <link rel="next" href={absoluteUrl(localizedTestimonyPath(next, lang))} />}
 
       <article className="mx-auto max-w-3xl px-5 pt-12" itemScope itemType="https://schema.org/Article">
-        <OwnerBar id={testimony.id} authorId={testimony.author_id} />
+        <OwnerBar id={testimony.id} authorId={testimony.author_id} language={testimony.language} shown={lang} published={testimony.status === "published"} />
         <nav aria-label="Breadcrumb" className="mb-8 text-xs text-parchment-700">
           <Link href="/archive" className="hover:text-gold-300">Archive</Link>
           <span className="mx-2">/</span>

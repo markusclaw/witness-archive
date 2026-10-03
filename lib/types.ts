@@ -128,6 +128,10 @@ export interface TranslationJob {
   progress_total: number;
   /** True when this response performed a step; false when another visitor holds the lock. */
   working?: boolean;
+  /** Translated so far, so the page can render the finished chunks while the rest is in flight. */
+  title?: string | null;
+  description?: string | null;
+  parts?: string[];
   error?: string | null;
 }
 
