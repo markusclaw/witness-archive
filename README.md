@@ -31,7 +31,7 @@ The app runs on Cloudflare Workers via the OpenNext adapter (`wrangler.jsonc`, `
 
 - Build command: `npm run build:cf` · Deploy command: `npx wrangler deploy`
 - Build variables: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` (and optionally `NEXT_PUBLIC_SITE_URL`)
-- Runtime secrets (Settings → Variables and Secrets, type *Secret*): `ANTHROPIC_API_KEY` (Polish + translations) and `SUPABASE_SERVICE_ROLE_KEY` (lets the translate route write to the cache)
+- Runtime secrets (Settings → Variables and Secrets, type *Secret*): `ANTHROPIC_API_KEY` (Polish + translations), `SUPABASE_SERVICE_ROLE_KEY` (translation and audio caches), `GOOGLE_TTS_API_KEY` (narration), optional `YOUTUBE_API_KEY`
 
 ## How it's organized
 
@@ -77,6 +77,10 @@ A view is counted once per visitor per testimony per day, by a small client ping
 ## Languages
 
 Every testimony has an original `language` (chosen in the editor; English, Spanish, and Portuguese today — add one in `lib/languages.ts`). Readers switch language on the testimony page; the translated version lives at `/<lang>/testimony/<slug>-<uuid>` with `hreflang` alternates, and Listen picks a voice for that language. The first request for a language sends the testimony to Claude with a faithful-translation prompt and caches the result in `testimony_translations`; everyone after that gets it instantly. Translated pages are labeled as machine translations and link to the original. Authors can replace a machine translation with their own (`source = author`) via the table's RLS.
+
+## Narrated audio
+
+Listen mode plays a narrated MP3 when one exists, and falls back to the browser's own speech synthesis otherwise. Narration is generated once per testimony per language with Google Cloud Text-to-Speech (Chirp 3 HD voices, Neural2 as fallback) and stored in the public `audio` bucket; `testimony_audio` tracks it. Like translations it advances one ~3,200-character segment per `POST /api/audio` and the last step stitches the segments. The owner bar warms translations and then narration whenever the author views their published testimony. Needs `GOOGLE_TTS_API_KEY` (optional `GOOGLE_TTS_VOICE_EN/ES/PT`), migration 018, and `SUPABASE_SERVICE_ROLE_KEY`.
 
 ## SEO and discoverability
 

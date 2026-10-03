@@ -5,13 +5,15 @@ import { languageByCode } from "@/lib/languages";
 import { pickVoice, selectVoices, voiceLabel } from "@/lib/voices";
 import { splitSentences, isHeadingLine } from "@/lib/speech";
 import { track } from "@/lib/analytics";
+import AudioPlayer from "@/components/AudioPlayer";
 
 /**
  * Read-or-listen body. "Listen" uses the browser's speech synthesis, reads
  * paragraph by paragraph, and highlights the one being spoken. No audio is
  * stored or sent anywhere.
  */
-export default function TestimonyBody({ paragraphs, title, lang = "en" }: { paragraphs: string[]; title: string; lang?: string }) {
+export default function TestimonyBody({ paragraphs, title, lang = "en", audioUrl = null }: { paragraphs: string[]; title: string; lang?: string; audioUrl?: string | null }) {
+  const narrated = !!audioUrl;
   const language = languageByCode(lang) ?? languageByCode("en")!;
   const ui = language.ui;
   const speechPrefix = language.speech;
@@ -30,7 +32,9 @@ export default function TestimonyBody({ paragraphs, title, lang = "en" }: { para
   const speakFromRef = useRef<(index: number) => void>(() => {});
 
   useEffect(() => {
-    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+    if (typeof window === "undefined") return;
+    if (narrated) queueMicrotask(() => setSupported(true));
+    if (!("speechSynthesis" in window)) return;
     queueMicrotask(() => setSupported(true));
     const loadVoices = () => {
       const all = window.speechSynthesis.getVoices();
@@ -47,7 +51,7 @@ export default function TestimonyBody({ paragraphs, title, lang = "en" }: { para
       window.speechSynthesis.removeEventListener("voiceschanged", loadVoices);
       window.speechSynthesis.cancel();
     };
-  }, [speechPrefix]);
+  }, [speechPrefix, narrated]);
 
   useEffect(() => {
     rateRef.current = rate;
@@ -159,7 +163,12 @@ export default function TestimonyBody({ paragraphs, title, lang = "en" }: { para
             </button>
           </div>
 
-          {mode === "listen" && (
+          {mode === "listen" && narrated && audioUrl && (
+            <div className="w-full sm:w-auto sm:flex-1">
+              <AudioPlayer src={audioUrl} title={title} language={lang} labels={{ play: ui.play, pause: ui.pause, speed: ui.speed }} />
+            </div>
+          )}
+          {mode === "listen" && !narrated && (
             <div className="flex flex-wrap items-center gap-3">
               <button type="button" onClick={toggle} className="btn btn-primary !px-4 !py-1.5 text-sm" aria-label={playing ? "Pause" : "Play"}>
                 {playing ? (
@@ -211,19 +220,19 @@ export default function TestimonyBody({ paragraphs, title, lang = "en" }: { para
           <p
             key={i}
             ref={(el) => { paraRefs.current[i] = el; }}
-            onClick={mode === "listen" ? () => speakFrom(i) : undefined}
+            onClick={mode === "listen" && !narrated ? () => speakFrom(i) : undefined}
             className={
-              mode === "listen"
+              mode === "listen" && !narrated
                 ? `cursor-pointer rounded-md transition ${i === current ? "bg-gold-500/10 text-parchment-50 -mx-3 px-3 py-1" : "hover:text-parchment-50"}`
                 : undefined
             }
-            title={mode === "listen" ? "Click to start reading from here" : undefined}
+            title={mode === "listen" && !narrated ? "Click to start reading from here" : undefined}
           >
             {p}
           </p>
         ))}
       </div>
-      {mode === "listen" && <p className="mt-6 text-xs text-parchment-700">{ui.audioHint}</p>}
+      {mode === "listen" && <p className="mt-6 text-xs text-parchment-700">{narrated ? ui.narratedHint : ui.audioHint}</p>}
     </section>
   );
 }

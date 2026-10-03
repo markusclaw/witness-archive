@@ -21,6 +21,7 @@ import { LANGUAGES, languageByCode } from "@/lib/languages";
 import { getProfile, getRelatedTestimonies, getRetellings, getSeriesParts, getTestimonyById } from "@/lib/queries";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL, absoluteUrl, collectionPath, localizedTestimonyPath, metaDescription, parseTestimonyParam, testimonyPath } from "@/lib/seo";
 import { getTranslation } from "@/lib/translate";
+import { getAudio } from "@/lib/audio";
 import type { Translation } from "@/lib/types";
 import { extractYouTubeId, youtubeThumbnail, youtubeWatchUrl } from "@/lib/youtube";
 
@@ -31,7 +32,8 @@ async function load(param: string, lang: string) {
   const testimony = await getTestimonyById(parsed.id);
   if (!testimony) return null;
   const translation = lang !== testimony.language ? await getTranslation(testimony.id, lang) : null;
-  return { testimony, translation, canonicalPath: testimonyPath(testimony) };
+  const audio = lang === testimony.language || translation ? await getAudio(testimony.id, lang) : null;
+  return { testimony, translation, audio, canonicalPath: testimonyPath(testimony) };
 }
 
 /* ---------------- metadata ---------------- */
@@ -84,7 +86,7 @@ export default async function TestimonyArticle({ param, lang, prefixed = false }
 
   const data = await load(param, lang);
   if (!data) notFound();
-  const { testimony, translation, canonicalPath } = data;
+  const { testimony, translation, audio, canonicalPath } = data;
 
   // Canonical URL per (testimony, language). Old / stale links 308 to it.
   const expected = localizedTestimonyPath(testimony, lang);
@@ -149,6 +151,9 @@ export default async function TestimonyArticle({ param, lang, prefixed = false }
           : {}),
         ...(isTranslated ? { translationOfWork: { "@type": "Article", "@id": `${absoluteUrl(canonicalPath)}#article`, inLanguage: testimony.language } } : {}),
         ...(wordCount ? { wordCount } : {}),
+        ...(audio
+          ? { audio: { "@type": "AudioObject", contentUrl: audio.url, encodingFormat: "audio/mpeg", inLanguage: lang, name: `${shown.title} (narrated)`, ...(audio.duration_s ? { duration: `PT${Math.floor(audio.duration_s / 60)}M${audio.duration_s % 60}S` } : {}) } }
+          : {}),
         ...(shown.content ? { articleBody: shown.content } : {}),
         isPartOf:
           parts.length > 1
@@ -285,7 +290,7 @@ export default async function TestimonyArticle({ param, lang, prefixed = false }
           </span>
         </div>
 
-        <TranslatedContent testimony={testimony} lang={lang} initial={translation} meta={metaRow} between={between} hideDescription={isTruncatedExcerpt(testimony.description, testimony.content)} />
+        <TranslatedContent testimony={testimony} lang={lang} initial={translation} meta={metaRow} between={between} hideDescription={isTruncatedExcerpt(testimony.description, testimony.content)} audioUrl={audio?.url ?? null} />
 
         {!testimony.is_anonymous && testimony.author_bio && (
           <aside className="mt-10 flex gap-4 rounded-xl border border-ink-600 bg-ink-900/60 p-5">

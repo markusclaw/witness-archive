@@ -1,4 +1,4 @@
-import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import { createAdminSupabase } from "@/lib/supabase-admin";
 import { createServerSupabase } from "@/lib/supabase-server";
 import { languageByCode } from "@/lib/languages";
 import type { Testimony, Translation, TranslationJob } from "@/lib/types";
@@ -87,13 +87,6 @@ async function callClaude(apiKey: string, model: string, userMessage: string, ma
 
 const pick = (text: string, tag: string) => text.match(new RegExp(`<${tag}>\\s*([\\s\\S]*?)\\s*<\\/${tag}>`, "i"))?.[1]?.trim() ?? "";
 
-function adminClient(): SupabaseClient | null {
-  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  if (!serviceKey || !url) return null;
-  return createClient(url, serviceKey, { auth: { persistSession: false, autoRefreshToken: false } });
-}
-
 /** How long one step may hold the row before another request may take over. */
 const LOCK_MS = 90 * 1000;
 
@@ -108,7 +101,7 @@ const LOCK_MS = 90 * 1000;
  */
 export async function advanceTranslation(testimony: Testimony, language: string): Promise<Translation | TranslationJob | null> {
   const lang = languageByCode(language);
-  const admin = adminClient();
+  const admin = createAdminSupabase();
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!lang || !admin || !apiKey) {
     console.error("advanceTranslation: missing configuration", { lang: !!lang, admin: !!admin, apiKey: !!apiKey });
