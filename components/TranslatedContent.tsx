@@ -9,6 +9,7 @@ import { languageByCode, languageNameIn } from "@/lib/languages";
 import { testimonyPath } from "@/lib/seo";
 import type { Testimony, Translation, TranslationJob } from "@/lib/types";
 import { track } from "@/lib/analytics";
+import type { PlayerTrack } from "@/components/PlayerProvider";
 
 type Shown = Pick<Translation, "title" | "description" | "content"> & { source?: Translation["source"] };
 
@@ -24,7 +25,7 @@ export default function TranslatedContent({
   meta,
   between,
   hideDescription = false,
-  audioUrl = null,
+  audio = null,
 }: {
   testimony: Testimony;
   lang: string;
@@ -32,7 +33,7 @@ export default function TranslatedContent({
   meta: React.ReactNode;
   between: React.ReactNode;
   hideDescription?: boolean;
-  audioUrl?: string | null;
+  audio?: PlayerTrack | null;
 }) {
   const isTranslated = lang !== testimony.language;
   const language = languageByCode(lang)!;
@@ -166,7 +167,7 @@ export default function TranslatedContent({
         </div>
       ) : paragraphs.length > 0 ? (
         <div itemProp="articleBody">
-          <TestimonyBody paragraphs={paragraphs} title={shown.title} lang={translation ? lang : testimony.language} audioUrl={translation || !isTranslated ? audioUrl : null} />
+          <TestimonyBody paragraphs={paragraphs} title={shown.title} lang={translation ? lang : testimony.language} audio={translation || !isTranslated ? audio : null} />
         </div>
       ) : (
         !testimony.video_url && <p className="text-parchment-500">A written account for this testimony has not been added yet.</p>

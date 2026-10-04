@@ -6,14 +6,15 @@ import { pickVoice, selectVoices, voiceLabel } from "@/lib/voices";
 import { splitSentences, isHeadingLine } from "@/lib/speech";
 import { track } from "@/lib/analytics";
 import AudioPlayer from "@/components/AudioPlayer";
+import type { PlayerTrack } from "@/components/PlayerProvider";
 
 /**
  * Read-or-listen body. "Listen" uses the browser's speech synthesis, reads
  * paragraph by paragraph, and highlights the one being spoken. No audio is
  * stored or sent anywhere.
  */
-export default function TestimonyBody({ paragraphs, title, lang = "en", audioUrl = null }: { paragraphs: string[]; title: string; lang?: string; audioUrl?: string | null }) {
-  const narrated = !!audioUrl;
+export default function TestimonyBody({ paragraphs, title, lang = "en", audio = null }: { paragraphs: string[]; title: string; lang?: string; audio?: PlayerTrack | null }) {
+  const narrated = !!audio;
   const language = languageByCode(lang) ?? languageByCode("en")!;
   const ui = language.ui;
   const speechPrefix = language.speech;
@@ -163,9 +164,9 @@ export default function TestimonyBody({ paragraphs, title, lang = "en", audioUrl
             </button>
           </div>
 
-          {mode === "listen" && narrated && audioUrl && (
+          {mode === "listen" && narrated && audio && (
             <div className="w-full sm:w-auto sm:flex-1">
-              <AudioPlayer src={audioUrl} title={title} language={lang} labels={{ play: ui.play, pause: ui.pause, speed: ui.speed }} />
+              <AudioPlayer track={audio} labels={{ play: ui.play, pause: ui.pause, speed: ui.speed }} />
             </div>
           )}
           {mode === "listen" && !narrated && (

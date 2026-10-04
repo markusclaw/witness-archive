@@ -290,7 +290,7 @@ export default async function TestimonyArticle({ param, lang, prefixed = false }
           </span>
         </div>
 
-        <TranslatedContent testimony={testimony} lang={lang} initial={translation} meta={metaRow} between={between} hideDescription={isTruncatedExcerpt(testimony.description, testimony.content)} audioUrl={audio?.url ?? null} />
+        <TranslatedContent testimony={testimony} lang={lang} initial={translation} meta={metaRow} between={between} hideDescription={isTruncatedExcerpt(testimony.description, testimony.content)} audio={audio ? { id: testimony.id, language: lang, title: shown.title, src: audio.url, href: localizedTestimonyPath(testimony, lang), artwork: youtubeThumbnail(testimony.video_url, "hq") } : null} />
 
         {!testimony.is_anonymous && testimony.author_bio && (
           <aside className="mt-10 flex gap-4 rounded-xl border border-ink-600 bg-ink-900/60 p-5">

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { LANGUAGES } from "@/lib/languages";
 
@@ -11,6 +12,7 @@ import { LANGUAGES } from "@/lib/languages";
  * steps for every other language so readers never wait for them.
  */
 export default function OwnerBar({ id, authorId, language, shown, published }: { id: string; authorId: string | null; language: string; shown: string; published: boolean }) {
+  const router = useRouter();
   const [isOwner, setIsOwner] = useState(false);
   const [warming, setWarming] = useState<string | null>(null);
 
@@ -32,7 +34,13 @@ export default function OwnerBar({ id, authorId, language, shown, published }: {
         } catch {
           return;
         }
-        if (cancelled || res.status === 200 || res.status !== 202) return;
+        if (cancelled) return;
+        if (res.status === 200) {
+          // The page was rendered before this existed; show it now.
+          if (endpoint === "/api/audio" && code === shown && guard > 0) router.refresh();
+          return;
+        }
+        if (res.status !== 202) return;
         const job = (await res.json()) as { status: string; progress_done: number; progress_total: number; working?: boolean };
         if (job.status !== "pending") return;
         setWarming(`${label} ${Math.min(job.progress_done, job.progress_total)}/${job.progress_total}`);
@@ -53,7 +61,7 @@ export default function OwnerBar({ id, authorId, language, shown, published }: {
     return () => {
       cancelled = true;
     };
-  }, [isOwner, published, id, language, shown]);
+  }, [isOwner, published, id, language, shown, router]);
 
   if (!isOwner) return null;
   return (

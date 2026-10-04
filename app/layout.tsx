@@ -4,6 +4,8 @@ import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import Analytics from "@/components/Analytics";
+import { PlayerProvider } from "@/components/PlayerProvider";
+import MiniPlayer from "@/components/MiniPlayer";
 import { gaInitScript } from "@/lib/analytics";
 import { DEFAULT_OG_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, SITE_URL, absoluteUrl } from "@/lib/seo";
 
@@ -108,9 +110,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-gold-500 focus:px-4 focus:py-2 focus:text-ink-950">
           Skip to content
         </a>
-        <SiteHeader />
-        <div id="main" className="flex-1">{children}</div>
-        <SiteFooter />
+        <PlayerProvider>
+          <SiteHeader />
+          <div id="main" className="flex-1">{children}</div>
+          <SiteFooter />
+          <MiniPlayer />
+        </PlayerProvider>
         {GA_ID && (
           <Suspense>
             <Analytics id={GA_ID} />
