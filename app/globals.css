@@ -491,15 +491,19 @@ body:has(.writing-focus)::before {
   outline: 1px solid var(--color-gold-500);
   outline-offset: 2px;
 }
-/* Selected: a solid highlighter stroke, like a marker on the page. */
+/* Selected (pointing at): a soft tint with a gold edge — distinct from a kept highlight,
+   and it composes over one, so a highlighted verse keeps its color while selected. */
 .verse-hit,
 .verse-hit:hover {
-  background: var(--color-gold-400);
-  color: var(--color-ink-950);
-  font-weight: 450;
+  box-shadow: 0 0 0 1.5px rgb(201 163 90 / 0.8);
+  color: var(--color-parchment-50);
+}
+.verse-hit:not([class*="hl-"]) {
+  background: rgb(201 163 90 / 0.14);
 }
 .verse-hit .verse-num {
-  color: var(--color-ink-950);
+  color: var(--color-gold-300);
+  opacity: 1;
 }
 
 /* Highlighter marks: a reader's own colors, kept on the account or in the browser. */
@@ -533,10 +537,15 @@ body:has(.writing-focus)::before {
   font-size: 1.02em;
   line-height: 1.7;
 }
-.verse-hit .verse-original,
 .verse[class*="hl-"] .verse-original {
   color: var(--color-ink-950);
   opacity: 0.85;
+}
+.verse-hit[class*="hl-"] {
+  color: var(--color-ink-950);
+}
+.verse-hit[class*="hl-"] .verse-num {
+  color: var(--color-ink-950);
 }
 .hl-swatch {
   width: 1.35rem;
