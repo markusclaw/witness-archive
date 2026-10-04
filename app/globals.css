@@ -493,8 +493,9 @@ body:has(.writing-focus)::before {
 }
 .verse-hit,
 .verse-hit:hover {
-  background: rgb(201 163 90 / 0.16);
-  color: var(--color-parchment-50);
+  background: rgb(201 163 90 / 0.28);
+  color: #fff;
+  box-shadow: 0 0 0 1px rgb(201 163 90 / 0.35);
 }
 .verse-num {
   font-size: 0.6em;
