@@ -6,8 +6,7 @@ const NAV: { href: string; label: string; mobile?: boolean }[] = [
   { href: "/ask", label: "Ask", mobile: true },
   { href: "/archive", label: "Archive", mobile: true },
   { href: "/pray", label: "Pray", mobile: true },
-  { href: "/bible", label: "Bible", mobile: false },
-  { href: "/about", label: "About", mobile: false },
+  { href: "/bible", label: "Bible", mobile: true },
   { href: "/submit", label: "Write", mobile: true },
 ];
 
