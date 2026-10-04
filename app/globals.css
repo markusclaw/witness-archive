@@ -549,6 +549,27 @@ body:has(.writing-focus)::before {
 .verse-hit[class*="hl-"] .verse-num {
   color: var(--color-ink-950);
 }
+/* Tappable words in the original line. */
+.ow {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0 0.08em;
+  margin: 0 0.04em;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  border-bottom: 1px dotted rgb(201 163 90 / 0.35);
+  transition: background-color 0.15s, color 0.15s;
+}
+.ow:hover,
+.ow-open {
+  background: rgb(201 163 90 / 0.18);
+  color: var(--color-parchment-50);
+  border-bottom-color: transparent;
+}
+.verse[class*="hl-"] .ow { border-bottom-color: rgb(0 0 0 / 0.25); color: inherit; }
+.verse[class*="hl-"] .ow:hover { background: rgb(0 0 0 / 0.12); }
 .hl-swatch {
   width: 1.35rem;
   height: 1.35rem;

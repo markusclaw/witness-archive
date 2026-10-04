@@ -20,7 +20,7 @@ A curated archive of first-hand testimonies of the supernatural — heaven, hell
    - `supabase/migrations/008_follows_views.sql` — follows, view counts (total + per day) and the `record_view` function
    - `supabase/migrations/009_search_ask.sql` — full-text search column/function and the cached-answers table for Ask
    - `supabase/migrations/010_hearts.sql` — hearts (one per member per testimony) with a synced count
-   - …through `024_bible_highlights.sql` — translations, audio, analytics, the prayer wall, and scripture (run every file in order)
+   - …through `025_bible_words.sql` — translations, audio, analytics, the prayer wall, and scripture (run every file in order)
 2. Copy `.env.example` to `.env.local` and fill in the URL and anon key from *Project Settings → API*. Add an `ANTHROPIC_API_KEY` to enable the formatting assistant (the site works without it; the button just reports it isn't configured).
 3. `npm install && npm run dev`, then open http://localhost:3000.
 
@@ -33,6 +33,12 @@ node scripts/seed-bible.mjs
 ```
 
 It takes a few minutes and is safe to re-run. Until it has run, references render as plain text.
+
+For tap-a-word in the originals (root, meaning, parsing, where else it appears), load the word data and Strong's lexicon the same way, after migration 025:
+
+```
+node scripts/seed-bible-words.mjs
+```
 
 Each chapter in `/bible` also lists the testimonies that mention it. That index fills itself in as testimonies are viewed; to fill it for everything already published, open `/api/scripture/reindex` on the live site and follow `next_url` until it is null.
 

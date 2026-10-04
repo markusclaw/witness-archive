@@ -44,7 +44,8 @@ export type EventName =
   | "prayer_reply"
   | "prayer_answered"
   | "scripture_open"
-  | "scripture_share";
+  | "scripture_share"
+  | "scripture_word";
 
 type Params = Record<string, string | number | boolean | null | undefined>;
 

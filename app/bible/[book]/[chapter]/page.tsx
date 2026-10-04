@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { BIBLE_UI, BOOKS, TRANSLATION_FOR_LANGUAGE, bookBySlug, bookSlug, originalFor, translationFor } from "@/lib/scripture";
-import { getChapter } from "@/lib/bible";
+import { getChapter, getChapterWords } from "@/lib/bible";
 import { BibleLanguagePicker, BibleLanguageSync, OriginalToggle } from "@/components/BibleLanguage";
 import ChapterText from "@/components/ChapterText";
 import TestimonyCard from "@/components/TestimonyCard";
@@ -44,10 +44,11 @@ export default async function ChapterPage({ params, searchParams }: { params: Pa
   const ui = BIBLE_UI[lang];
   const q = lang === "en" ? "" : `?lang=${lang}`;
   const name = b.names[lang] ?? b.names.en;
-  const [{ translation, verses }, mentions, original] = await Promise.all([
+  const [{ translation, verses }, mentions, original, words] = await Promise.all([
     getChapter(b.index, chapter, lang),
     getChapterMentions(b.index, chapter),
     showOriginal ? getChapter(b.index, chapter, "orig") : Promise.resolve(null),
+    showOriginal ? getChapterWords(b.index, chapter) : Promise.resolve({}),
   ]);
   const originalInfo = originalFor(b.index);
 
@@ -95,7 +96,7 @@ export default async function ChapterPage({ params, searchParams }: { params: Pa
       <div className="mt-10">
         {verses.length ? (
           <Suspense>
-            <ChapterText verses={verses} lang={lang} book={name} bookIndex={b.index} chapter={chapter} translation={translation.name} original={original ? { language: originalInfo.language, name: originalInfo.name, verses: Object.fromEntries(original.verses.map((v) => [v.verse, v.text])) } : null} />
+            <ChapterText verses={verses} lang={lang} book={name} bookIndex={b.index} chapter={chapter} translation={translation.name} original={original ? { language: originalInfo.language, name: originalInfo.name, verses: Object.fromEntries(original.verses.map((v) => [v.verse, v.text])), words } : null} />
           </Suspense>
         ) : (
           <p className="rounded-xl border border-ink-600 bg-ink-900/60 px-5 py-4 text-sm text-parchment-500" lang={lang}>{ui.notLoaded}</p>
