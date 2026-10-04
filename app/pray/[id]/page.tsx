@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import PrayedButton from "@/components/PrayedButton";
 import PrayerReplies from "@/components/PrayerReplies";
 import PrayerOwnerPanel from "@/components/PrayerOwnerPanel";
+import PrayerText from "@/components/PrayerText";
 import HeldPrayerView from "@/components/HeldPrayerView";
 import { getPrayerReplies, getPrayerRequest, prayerCategory, requesterName } from "@/lib/prayer";
 import { formatDate } from "@/lib/format";
@@ -39,19 +40,15 @@ export default async function PrayerRequestPage({ params }: { params: Params }) 
         {r.status === "answered" && <span className="chip chip-active">Answered</span>}
         {r.status === "closed" && <span className="chip">Closed</span>}
       </div>
-      <h1 className="font-display mt-4 text-4xl font-light leading-tight text-parchment-50" dir="auto">{r.title}</h1>
-      <p className="mt-3 text-sm text-parchment-500">
-        {requesterName(r)} · {formatDate(r.created_at)}
-      </p>
-
-      <div className="prose-testimony mt-8 whitespace-pre-wrap" lang={r.language} dir="auto">{r.body}</div>
-
-      {r.status === "answered" && r.answer && (
-        <section className="mt-10 rounded-xl border border-gold-500/40 bg-gold-500/5 p-6">
-          <p className="eyebrow mb-2">Answered{r.answered_at ? ` · ${formatDate(r.answered_at)}` : ""}</p>
-          <p className="whitespace-pre-wrap text-parchment-100" dir="auto">{r.answer}</p>
-        </section>
-      )}
+      <PrayerText
+        id={r.id}
+        language={r.language}
+        text={{ title: r.title, body: r.body, answer: r.answer }}
+        variant="page"
+        answered={r.status === "answered"}
+        metaLine={`${requesterName(r)} · ${formatDate(r.created_at)}`}
+        answeredLabel={`Answered${r.answered_at ? ` · ${formatDate(r.answered_at)}` : ""}`}
+      />
 
       <div className="mt-10 flex flex-wrap items-center gap-4">
         <PrayedButton requestId={r.id} initialCount={r.prayed_count} size="md" />
@@ -60,7 +57,7 @@ export default async function PrayerRequestPage({ params }: { params: Params }) 
         </span>
       </div>
 
-      <PrayerReplies requestId={r.id} initial={replies} ownerId={r.user_id} />
+      <PrayerReplies requestId={r.id} initial={replies} ownerId={r.user_id} requestLanguage={r.language} />
     </main>
   );
 }

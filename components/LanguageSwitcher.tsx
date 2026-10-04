@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { LANGUAGES } from "@/lib/languages";
 import { localizedTestimonyPath } from "@/lib/seo";
@@ -16,7 +18,7 @@ export default function LanguageSwitcher({ testimony, current }: { testimony: Te
             {isOriginal && <span className="ml-1 text-parchment-500">·</span>}
           </span>
         ) : (
-          <Link key={l.code} href={localizedTestimonyPath(testimony, l.code)} hrefLang={l.code} lang={l.code} className="rounded-full px-3 py-1 text-parchment-500 hover:text-parchment-50" title={isOriginal ? "Original" : l.name}>
+          <Link key={l.code} href={localizedTestimonyPath(testimony, l.code)} hrefLang={l.code} lang={l.code} onClick={() => { try { window.localStorage.setItem("wa:lang", l.code); } catch { /* ignore */ } }} className="rounded-full px-3 py-1 text-parchment-500 hover:text-parchment-50" title={isOriginal ? "Original" : l.name}>
             {l.nativeName}
           </Link>
         );

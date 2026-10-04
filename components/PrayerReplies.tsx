@@ -9,10 +9,11 @@ import { timeAgo } from "@/lib/format";
 import { track } from "@/lib/analytics";
 import Avatar from "@/components/Avatar";
 import CrisisNote from "@/components/CrisisNote";
+import { ReplyText } from "@/components/PrayerText";
 import type { PrayerReply, Profile } from "@/lib/types";
 
 /** Short words left after praying. Screened like requests; held ones show only to their author. */
-export default function PrayerReplies({ requestId, initial, ownerId }: { requestId: string; initial: PrayerReply[]; ownerId: string }) {
+export default function PrayerReplies({ requestId, initial, ownerId, requestLanguage }: { requestId: string; initial: PrayerReply[]; ownerId: string; requestLanguage?: string }) {
   const [replies, setReplies] = useState<PrayerReply[]>(initial);
   const [profiles, setProfiles] = useState<Record<string, Profile>>({});
   const [user, setUser] = useState<User | null | undefined>(undefined);
@@ -88,7 +89,7 @@ export default function PrayerReplies({ requestId, initial, ownerId }: { request
                     <button type="button" onClick={() => remove(r.id)} className="ml-2 underline hover:text-ember-500">remove</button>
                   )}
                 </p>
-                <p className="mt-1 whitespace-pre-wrap text-parchment-100" dir="auto">{r.content}</p>
+                <ReplyText id={r.id} content={r.content} requestLanguage={requestLanguage} />
               </div>
             </li>
           );
