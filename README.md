@@ -20,8 +20,19 @@ A curated archive of first-hand testimonies of the supernatural — heaven, hell
    - `supabase/migrations/008_follows_views.sql` — follows, view counts (total + per day) and the `record_view` function
    - `supabase/migrations/009_search_ask.sql` — full-text search column/function and the cached-answers table for Ask
    - `supabase/migrations/010_hearts.sql` — hearts (one per member per testimony) with a synced count
+   - …through `022_bible.sql` — translations, audio, analytics, the prayer wall, and scripture (run every file in order)
 2. Copy `.env.example` to `.env.local` and fill in the URL and anon key from *Project Settings → API*. Add an `ANTHROPIC_API_KEY` to enable the formatting assistant (the site works without it; the button just reports it isn't configured).
 3. `npm install && npm run dev`, then open http://localhost:3000.
+
+### Scripture
+
+References in testimonies, prayers and replies ("John 3:16", "Salmos 23", "1 Co 13.4-7") become links that open the verse in the reader's language. The texts are public domain — World English Bible (en), Reina-Valera 1909 (es), Almeida (pt) — and live in `bible_verses`. Load them once, after migration 022, with the service role key in `.env.local`:
+
+```
+node scripts/seed-bible.mjs
+```
+
+It takes a few minutes and is safe to re-run. Until it has run, references render as plain text.
 
 Optional: set `NEXT_PUBLIC_SITE_URL` to the production origin so Open Graph URLs resolve correctly.
 

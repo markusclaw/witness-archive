@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import TestimonyBody from "@/components/TestimonyBody";
+import { ScriptureText } from "@/components/ScriptureRef";
 import { toParagraphs } from "@/lib/format";
 import { chunkParagraphs } from "@/lib/chunks";
 import { languageByCode, languageNameIn } from "@/lib/languages";
@@ -145,7 +146,7 @@ export default function TranslatedContent({
           {translatedSoFar.length > 0 && (
             <div className="prose-testimony" lang={lang}>
               {translatedSoFar.map((p, i) => (
-                <p key={i}>{p}</p>
+                <p key={i}><ScriptureText text={p} /></p>
               ))}
             </div>
           )}
@@ -157,7 +158,7 @@ export default function TranslatedContent({
               </span>
               <div className="prose-testimony prose-continued opacity-45">
                 {(translatedSoFar.length ? remaining : remaining.slice(0, 6)).map((p, i) => (
-                  <p key={i}>{p}</p>
+                  <p key={i}><ScriptureText text={p} /></p>
                 ))}
               </div>
             </div>

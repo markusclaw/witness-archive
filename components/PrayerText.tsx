@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { languageDisplayName, readerLanguage } from "@/lib/reader-language";
+import { ScriptureText } from "@/components/ScriptureRef";
 
 type Text = { title: string; body: string; answer?: string | null };
 
@@ -91,11 +92,11 @@ export default function PrayerText({
         {metaLine}
         {note && <> · {note}</>}
       </p>
-      <div className="prose-testimony mt-8 whitespace-pre-wrap" dir="auto" lang={lang}>{t.body}</div>
+      <div className="prose-testimony mt-8 whitespace-pre-wrap" dir="auto" lang={lang}><ScriptureText text={t.body} /></div>
       {answered && t.answer && (
         <section className="mt-10 rounded-xl border border-gold-500/40 bg-gold-500/5 p-6">
           <p className="eyebrow mb-2">{answeredLabel ?? "Answered"}</p>
-          <p className="whitespace-pre-wrap text-parchment-100" dir="auto" lang={lang}>{t.answer}</p>
+          <p className="whitespace-pre-wrap text-parchment-100" dir="auto" lang={lang}><ScriptureText text={t.answer} /></p>
         </section>
       )}
     </>
@@ -126,7 +127,7 @@ export function ReplyText({ id, content, requestLanguage }: { id: string; conten
   const shown = translated && !showOriginal ? translated : content;
   return (
     <>
-      <p className="mt-1 whitespace-pre-wrap text-parchment-100" dir="auto">{shown}</p>
+      <p className="mt-1 whitespace-pre-wrap text-parchment-100" dir="auto"><ScriptureText text={shown} /></p>
       {translated && (
         <button type="button" onClick={() => setShowOriginal((v) => !v)} className="mt-0.5 text-[0.7rem] text-parchment-700 underline hover:text-gold-300">
           {showOriginal ? "Show translation" : "Translated · show original"}

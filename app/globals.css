@@ -271,6 +271,23 @@ body::before {
   color: var(--color-gold-400);
 }
 
+/* Scripture references inside prose: a quiet link that opens the verse. */
+.scripture-ref {
+  font: inherit;
+  color: var(--color-gold-300);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, var(--color-gold-500) 45%, transparent);
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+  cursor: pointer;
+  transition: color 0.15s, text-decoration-color 0.15s;
+}
+.scripture-ref:hover,
+.scripture-ref[aria-expanded="true"] {
+  color: var(--color-gold-200, var(--color-gold-300));
+  text-decoration-color: var(--color-gold-400);
+}
+
 /* The still-untranslated tail of a testimony in flight: no second drop cap. */
 .prose-continued p:first-of-type::first-letter {
   font-family: inherit;

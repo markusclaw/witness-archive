@@ -6,6 +6,8 @@ import { pickVoice, selectVoices, voiceLabel } from "@/lib/voices";
 import { splitSentences, isHeadingLine } from "@/lib/speech";
 import { track } from "@/lib/analytics";
 import AudioPlayer from "@/components/AudioPlayer";
+import { ScriptureText } from "@/components/ScriptureRef";
+import ScriptureStrip from "@/components/ScriptureStrip";
 import type { PlayerTrack } from "@/components/PlayerProvider";
 
 /**
@@ -229,10 +231,11 @@ export default function TestimonyBody({ paragraphs, title, lang = "en", audio = 
             }
             title={mode === "listen" && !narrated ? "Click to start reading from here" : undefined}
           >
-            {p}
+            <ScriptureText text={p} />
           </p>
         ))}
       </div>
+      <ScriptureStrip text={paragraphs.join("\n")} lang={lang} />
       {mode === "listen" && <p className="mt-6 text-xs text-parchment-700">{narrated ? ui.narratedHint : ui.audioHint}</p>}
     </section>
   );
