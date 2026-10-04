@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-import { BIBLE_UI, BOOKS, TRANSLATION_FOR_LANGUAGE, bookBySlug, bookSlug, translationFor } from "@/lib/scripture";
+import { BIBLE_UI, BOOKS, TRANSLATION_FOR_LANGUAGE, bookBySlug, bookSlug, originalFor, translationFor } from "@/lib/scripture";
 import { getChapter } from "@/lib/bible";
-import { BibleLanguagePicker, BibleLanguageSync } from "@/components/BibleLanguage";
+import { BibleLanguagePicker, BibleLanguageSync, OriginalToggle } from "@/components/BibleLanguage";
 import ChapterText from "@/components/ChapterText";
 import TestimonyCard from "@/components/TestimonyCard";
 import { getChapterMentions } from "@/lib/scripture-index";
@@ -13,7 +13,7 @@ import { formatReference } from "@/lib/scripture";
 export const dynamic = "force-dynamic";
 
 type Params = Promise<{ book: string; chapter: string }>;
-type SearchParams = Promise<{ lang?: string; v?: string }>;
+type SearchParams = Promise<{ lang?: string; v?: string; orig?: string }>;
 
 function readerLang(lang: string | undefined): string {
   return lang && TRANSLATION_FOR_LANGUAGE[lang] ? lang : "en";
@@ -38,11 +38,18 @@ export default async function ChapterPage({ params, searchParams }: { params: Pa
   const b = bookBySlug(p.book);
   const chapter = Number(p.chapter);
   if (!b || !Number.isInteger(chapter) || chapter < 1 || chapter > b.chapters) notFound();
-  const lang = readerLang((await searchParams).lang);
+  const sp = await searchParams;
+  const lang = readerLang(sp.lang);
+  const showOriginal = sp.orig === "1";
   const ui = BIBLE_UI[lang];
   const q = lang === "en" ? "" : `?lang=${lang}`;
   const name = b.names[lang] ?? b.names.en;
-  const [{ translation, verses }, mentions] = await Promise.all([getChapter(b.index, chapter, lang), getChapterMentions(b.index, chapter)]);
+  const [{ translation, verses }, mentions, original] = await Promise.all([
+    getChapter(b.index, chapter, lang),
+    getChapterMentions(b.index, chapter),
+    showOriginal ? getChapter(b.index, chapter, "orig") : Promise.resolve(null),
+  ]);
+  const originalInfo = originalFor(b.index);
 
   // Previous/next run across book boundaries so the reader can keep going.
   const prev = chapter > 1 ? { book: b, chapter: chapter - 1 } : b.index > 0 ? { book: BOOKS[b.index - 1], chapter: BOOKS[b.index - 1].chapters } : null;
@@ -77,13 +84,18 @@ export default async function ChapterPage({ params, searchParams }: { params: Pa
         <Suspense>
           <BibleLanguagePicker current={lang} label={ui.readIn} translationName={translation.name} />
         </Suspense>
-        <span className="text-xs text-parchment-700">{verses.length} {ui.verses}</span>
+        <span className="flex items-center gap-3 text-xs text-parchment-700">
+          <Suspense>
+            <OriginalToggle on={showOriginal} label={ui.original} script={originalInfo.script} />
+          </Suspense>
+          <span>{verses.length} {ui.verses}</span>
+        </span>
       </div>
 
       <div className="mt-10">
         {verses.length ? (
           <Suspense>
-            <ChapterText verses={verses} lang={lang} book={name} bookIndex={b.index} chapter={chapter} translation={translation.name} />
+            <ChapterText verses={verses} lang={lang} book={name} bookIndex={b.index} chapter={chapter} translation={translation.name} original={original ? { language: originalInfo.language, name: originalInfo.name, verses: Object.fromEntries(original.verses.map((v) => [v.verse, v.text])) } : null} />
           </Suspense>
         ) : (
           <p className="rounded-xl border border-ink-600 bg-ink-900/60 px-5 py-4 text-sm text-parchment-500" lang={lang}>{ui.notLoaded}</p>
@@ -113,7 +125,10 @@ export default async function ChapterPage({ params, searchParams }: { params: Pa
           <p className="mt-4 text-sm text-parchment-500" lang={lang}>{ui.mentionsNone}</p>
         )}
       </section>
-      <p className="mt-6 text-[0.7rem] text-parchment-700">{translation.name} · public domain</p>
+      <p className="mt-6 text-[0.7rem] text-parchment-700">
+        {translation.name} · public domain
+        {original && <> · {originalInfo.name}{originalInfo.language === "el" ? " · CC BY 4.0, SBL & Logos" : " · public domain"}</>}
+      </p>
     </main>
   );
 }

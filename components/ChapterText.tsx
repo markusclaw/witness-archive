@@ -19,6 +19,7 @@ export default function ChapterText({
   bookIndex,
   chapter,
   translation,
+  original = null,
 }: {
   verses: { verse: number; text: string }[];
   lang: string;
@@ -27,6 +28,8 @@ export default function ChapterText({
   bookIndex: number;
   chapter: number;
   translation: string;
+  /** The Hebrew or Greek of this chapter, verse → text, when the reader turned it on. */
+  original?: { language: string; name: string; verses: Record<number, string> } | null;
 }) {
   const params = useSearchParams();
   const router = useRouter();
@@ -115,7 +118,8 @@ export default function ChapterText({
 
   const copyText = async () => {
     try {
-      await navigator.clipboard.writeText(`“${selectedText}”\n— ${reference} (${translation})\n${shareUrl()}`);
+      const orig = original ? "\n" + verses.filter((v) => selected.has(v.verse) && original.verses[v.verse]).map((v) => original.verses[v.verse]).join(" ") + `\n— ${original.name}` : "";
+      await navigator.clipboard.writeText(`“${selectedText}”\n— ${reference} (${translation})${orig}\n${shareUrl()}`);
       setCopied("text");
       setTimeout(() => setCopied(null), 1600);
       track("scripture_share", { reference, action: "copy" });
@@ -160,7 +164,7 @@ export default function ChapterText({
 
   return (
     <>
-      <div className="prose-testimony prose-chapter select-text" lang={lang} dir={lang === "ar" ? "rtl" : "ltr"}>
+      <div className={`prose-testimony prose-chapter select-text ${original ? "prose-interlinear" : ""}`} lang={lang} dir={lang === "ar" ? "rtl" : "ltr"}>
         <p>
           {verses.map((v) => {
             const hit = selected.has(v.verse);
@@ -183,6 +187,11 @@ export default function ChapterText({
               >
                 <span className="verse-num" aria-hidden>{v.verse}</span>
                 {v.text}{" "}
+                {original?.verses[v.verse] && (
+                  <span className={`verse-original ${original.language === "he" ? "verse-he" : "verse-el"}`} lang={original.language} dir={original.language === "he" ? "rtl" : "ltr"}>
+                    {original.verses[v.verse]}
+                  </span>
+                )}
               </span>
             );
           })}

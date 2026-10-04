@@ -23,7 +23,8 @@ const MAX_VERSES = 60;
 export async function getPassage(ref: Reference, language: string): Promise<Passage | null> {
   const book = BOOKS[ref.book];
   if (!book || ref.chapter < 1 || ref.chapter > book.chapters) return null;
-  const t = translationFor(language);
+  const t = translationFor(language, ref.book);
+  const labelLang = language === "orig" ? "en" : t.language;
   const chapterEnd = ref.chapterEnd ?? ref.chapter;
 
   let q = createServerSupabase()
@@ -54,9 +55,9 @@ export async function getPassage(ref: Reference, language: string): Promise<Pass
   if (truncated) rows = rows.slice(0, MAX_VERSES);
 
   return {
-    reference: formatReference(ref, t.language),
+    reference: formatReference(ref, labelLang),
     key: ref,
-    book: { index: book.index, osis: book.osis, name: book.names[t.language] ?? book.names.en, chapters: book.chapters },
+    book: { index: book.index, osis: book.osis, name: book.names[labelLang] ?? book.names.en, chapters: book.chapters },
     translation: t,
     verses: rows,
     truncated,
@@ -65,7 +66,7 @@ export async function getPassage(ref: Reference, language: string): Promise<Pass
 
 /** A whole chapter in the translation for a reader language. Empty when not seeded. */
 export async function getChapter(book: number, chapter: number, language: string): Promise<{ translation: { code: string; name: string; language: string }; verses: { verse: number; text: string }[] }> {
-  const t = translationFor(language);
+  const t = translationFor(language, book);
   const { data, error } = await createServerSupabase()
     .from("bible_verses")
     .select("verse, text")

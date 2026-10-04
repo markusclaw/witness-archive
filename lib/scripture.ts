@@ -37,7 +37,25 @@ export const TRANSLATION_FOR_LANGUAGE: Record<string, { code: string; name: stri
   pt: { code: "aa", name: "Almeida Atualizada" },
 };
 
-export function translationFor(language: string): { code: string; name: string; language: string } {
+/** The original-language text of a book: Hebrew for the Old Testament, Greek for the New. */
+export const ORIGINALS = {
+  he: { code: "wlc", name: "Westminster Leningrad Codex", language: "he", script: "עברית" },
+  el: { code: "sblgnt", name: "SBL Greek New Testament", language: "el", script: "Ελληνικά" },
+} as const;
+
+export function originalFor(book: number) {
+  return book < 39 ? ORIGINALS.he : ORIGINALS.el;
+}
+
+/**
+ * The translation for a reader language; "orig" (with a book) means the
+ * original Hebrew or Greek. Unsupported languages fall back to English.
+ */
+export function translationFor(language: string, book?: number): { code: string; name: string; language: string } {
+  if (language === "orig" && book != null) {
+    const o = originalFor(book);
+    return { code: o.code, name: o.name, language: o.language };
+  }
   const t = TRANSLATION_FOR_LANGUAGE[language] ?? TRANSLATION_FOR_LANGUAGE.en;
   return { ...t, language: TRANSLATION_FOR_LANGUAGE[language] ? language : "en" };
 }
@@ -258,8 +276,8 @@ export function chapterPath(r: Reference, language?: string): string {
 /** Old Testament is the first 39 books. */
 export const OT_COUNT = 39;
 
-export const BIBLE_UI: Record<string, { bible: string; ot: string; nt: string; chapters: string; chapter: string; prev: string; next: string; readIn: string; openChapter: string; notLoaded: string; verses: string; mentions: string; mentionsNone: string; mentioned: (n: number) => string }> = {
-  en: { bible: "The Bible", ot: "Old Testament", nt: "New Testament", chapters: "Chapters", chapter: "Chapter", prev: "Previous", next: "Next", readIn: "Read in", openChapter: "Open chapter", notLoaded: "The scripture texts haven't been loaded yet.", verses: "verses", mentions: "Testimonies that mention this chapter", mentionsNone: "No testimony in the archive mentions this chapter yet.", mentioned: (n) => `${n} ${n === 1 ? "testimony" : "testimonies"}` },
-  es: { bible: "La Biblia", ot: "Antiguo Testamento", nt: "Nuevo Testamento", chapters: "Capítulos", chapter: "Capítulo", prev: "Anterior", next: "Siguiente", readIn: "Leer en", openChapter: "Abrir capítulo", notLoaded: "Los textos bíblicos aún no se han cargado.", verses: "versículos", mentions: "Testimonios que mencionan este capítulo", mentionsNone: "Ningún testimonio del archivo menciona este capítulo todavía.", mentioned: (n) => `${n} ${n === 1 ? "testimonio" : "testimonios"}` },
-  pt: { bible: "A Bíblia", ot: "Antigo Testamento", nt: "Novo Testamento", chapters: "Capítulos", chapter: "Capítulo", prev: "Anterior", next: "Próximo", readIn: "Ler em", openChapter: "Abrir capítulo", notLoaded: "Os textos bíblicos ainda não foram carregados.", verses: "versículos", mentions: "Testemunhos que mencionam este capítulo", mentionsNone: "Nenhum testemunho do arquivo menciona este capítulo ainda.", mentioned: (n) => `${n} ${n === 1 ? "testemunho" : "testemunhos"}` },
+export const BIBLE_UI: Record<string, { bible: string; ot: string; nt: string; chapters: string; chapter: string; prev: string; next: string; readIn: string; openChapter: string; notLoaded: string; verses: string; mentions: string; mentionsNone: string; mentioned: (n: number) => string; original: string; originalHint: string }> = {
+  en: { bible: "The Bible", ot: "Old Testament", nt: "New Testament", chapters: "Chapters", chapter: "Chapter", prev: "Previous", next: "Next", readIn: "Read in", openChapter: "Open chapter", notLoaded: "The scripture texts haven't been loaded yet.", verses: "verses", mentions: "Testimonies that mention this chapter", mentionsNone: "No testimony in the archive mentions this chapter yet.", mentioned: (n) => `${n} ${n === 1 ? "testimony" : "testimonies"}`, original: "Original text", originalHint: "The Hebrew and Greek under each verse, from the oldest complete manuscripts." },
+  es: { bible: "La Biblia", ot: "Antiguo Testamento", nt: "Nuevo Testamento", chapters: "Capítulos", chapter: "Capítulo", prev: "Anterior", next: "Siguiente", readIn: "Leer en", openChapter: "Abrir capítulo", notLoaded: "Los textos bíblicos aún no se han cargado.", verses: "versículos", mentions: "Testimonios que mencionan este capítulo", mentionsNone: "Ningún testimonio del archivo menciona este capítulo todavía.", mentioned: (n) => `${n} ${n === 1 ? "testimonio" : "testimonios"}`, original: "Texto original", originalHint: "El hebreo y el griego bajo cada versículo, de los manuscritos completos más antiguos." },
+  pt: { bible: "A Bíblia", ot: "Antigo Testamento", nt: "Novo Testamento", chapters: "Capítulos", chapter: "Capítulo", prev: "Anterior", next: "Próximo", readIn: "Ler em", openChapter: "Abrir capítulo", notLoaded: "Os textos bíblicos ainda não foram carregados.", verses: "versículos", mentions: "Testemunhos que mencionam este capítulo", mentionsNone: "Nenhum testemunho do arquivo menciona este capítulo ainda.", mentioned: (n) => `${n} ${n === 1 ? "testemunho" : "testemunhos"}`, original: "Texto original", originalHint: "O hebraico e o grego sob cada versículo, dos manuscritos completos mais antigos." },
 };

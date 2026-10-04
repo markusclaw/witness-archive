@@ -26,7 +26,7 @@ A curated archive of first-hand testimonies of the supernatural — heaven, hell
 
 ### Scripture
 
-References in testimonies, prayers and replies ("John 3:16", "Salmos 23", "1 Co 13.4-7") become links that open the verse in the reader's language. The texts are public domain — World English Bible (en), Reina-Valera 1909 (es), Almeida (pt) — and live in `bible_verses`. Load them once, after migration 022, with the service role key in `.env.local`:
+References in testimonies, prayers and replies ("John 3:16", "Salmos 23", "1 Co 13.4-7") become links that open the verse in the reader's language. The texts are public domain — World English Bible (en), Reina-Valera 1909 (es), Almeida (pt) — plus the originals, Westminster Leningrad Codex (Hebrew) and SBL Greek New Testament (CC BY 4.0), aligned to English verse numbering; all live in `bible_verses`. Load them once, after migration 022, with the service role key in `.env.local`:
 
 ```
 node scripts/seed-bible.mjs

@@ -28,6 +28,28 @@ export function BibleLanguageSync({ current }: { current: string }) {
   return null;
 }
 
+/** Show/hide the Hebrew or Greek under each verse (?orig=1). */
+export function OriginalToggle({ on, label, script }: { on: boolean; label: string; script: string }) {
+  const pathname = usePathname();
+  const params = useSearchParams();
+  const q = new URLSearchParams(params.toString());
+  if (on) q.delete("orig");
+  else q.set("orig", "1");
+  const s = q.toString();
+  return (
+    <Link
+      href={s ? `${pathname}?${s}` : pathname}
+      scroll={false}
+      role="switch"
+      aria-checked={on}
+      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 transition ${on ? "border-gold-500/60 bg-gold-500/10 text-gold-300" : "border-ink-600 text-parchment-500 hover:border-ink-500 hover:text-parchment-100"}`}
+    >
+      <span className={`h-1.5 w-1.5 rounded-full ${on ? "bg-gold-400" : "bg-ink-500"}`} aria-hidden />
+      {label} <span className="text-parchment-700">· {script}</span>
+    </Link>
+  );
+}
+
 /** "Read in: English · Español · Português" with the translation name under the active one. */
 export function BibleLanguagePicker({ current, label, translationName }: { current: string; label: string; translationName: string }) {
   const pathname = usePathname();

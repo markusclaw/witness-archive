@@ -11,7 +11,8 @@ import { parseReferenceKey, findReferences } from "@/lib/scripture";
  */
 export async function GET(request: Request) {
   const url = new URL(request.url);
-  const lang = (url.searchParams.get("lang") ?? "en").slice(0, 2).toLowerCase();
+  const rawLang = (url.searchParams.get("lang") ?? "en").toLowerCase();
+  const lang = rawLang === "orig" ? "orig" : rawLang.slice(0, 2);
   let ref = parseReferenceKey(url.searchParams.get("ref") ?? "");
   if (!ref) {
     const q = url.searchParams.get("q");

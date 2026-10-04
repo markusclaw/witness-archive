@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
-import { chapterPath, findReferences, formatReference, referenceKey, type Reference } from "@/lib/scripture";
+import { chapterPath, findReferences, formatReference, originalFor, referenceKey, type Reference } from "@/lib/scripture";
 import { readerLanguage } from "@/lib/reader-language";
 import { track } from "@/lib/analytics";
 
@@ -34,10 +34,10 @@ function fetchPassage(key: string, lang: string): Promise<Passage | null> {
   return p;
 }
 
-const UI: Record<string, { from: string; loading: string; unavailable: string; close: string; more: string; open: string }> = {
-  en: { from: "From the", loading: "Opening…", unavailable: "This passage isn't available yet.", close: "Close", more: "Chapter continues…", open: "Open chapter" },
-  es: { from: "De la", loading: "Abriendo…", unavailable: "Este pasaje aún no está disponible.", close: "Cerrar", more: "El capítulo continúa…", open: "Abrir capítulo" },
-  pt: { from: "Da", loading: "Abrindo…", unavailable: "Esta passagem ainda não está disponível.", close: "Fechar", more: "O capítulo continua…", open: "Abrir capítulo" },
+const UI: Record<string, { from: string; loading: string; unavailable: string; close: string; more: string; open: string; original: string; hideOriginal: string }> = {
+  en: { from: "From the", loading: "Opening…", unavailable: "This passage isn't available yet.", close: "Close", more: "Chapter continues…", open: "Open chapter", original: "Original", hideOriginal: "Hide original" },
+  es: { from: "De la", loading: "Abriendo…", unavailable: "Este pasaje aún no está disponible.", close: "Cerrar", more: "El capítulo continúa…", open: "Abrir capítulo", original: "Original", hideOriginal: "Ocultar original" },
+  pt: { from: "Da", loading: "Abrindo…", unavailable: "Esta passagem ainda não está disponível.", close: "Fechar", more: "O capítulo continua…", open: "Abrir capítulo", original: "Original", hideOriginal: "Ocultar original" },
 };
 
 /** One reference as a link with a verse popover. `label` defaults to the reference as written. */
@@ -45,6 +45,7 @@ export function ScriptureRef({ reference, label, chip = false, lang: initialLang
   const [open, setOpen] = useState(false);
   const [passage, setPassage] = useState<Passage | null | undefined>(undefined);
   const [lang, setLang] = useState(initialLang);
+  const [original, setOriginal] = useState<Passage | null | undefined>(undefined); // undefined = not shown
   const [flip, setFlip] = useState(false);
   const wrap = useRef<HTMLSpanElement>(null);
   const id = useId();
@@ -55,6 +56,7 @@ export function ScriptureRef({ reference, label, chip = false, lang: initialLang
     setLang(l);
     setOpen(true);
     setPassage(undefined);
+    setOriginal(undefined);
     fetchPassage(key, l).then(setPassage);
     track("scripture_open", { reference: key, language: l });
     const r = wrap.current?.getBoundingClientRect();
@@ -131,8 +133,32 @@ export function ScriptureRef({ reference, label, chip = false, lang: initialLang
                 ))}
                 {passage.truncated && <span className="block pt-2 text-xs text-parchment-500">{ui.more}</span>}
               </span>
+              {original && (
+                <span className={`mt-3 block border-t border-ink-700 pt-3 text-parchment-200 ${original.translation.language === "he" ? "verse-he" : "verse-el"}`} lang={original.translation.language} dir={original.translation.language === "he" ? "rtl" : "ltr"}>
+                  {original.verses.map((v) => (
+                    <span key={`${v.chapter}:${v.verse}`}>
+                      <sup className="mx-1 text-[0.55rem] text-gold-400">{v.verse}</sup>
+                      {v.text}{" "}
+                    </span>
+                  ))}
+                  <span className="mt-1 block text-[0.65rem] text-parchment-700" dir="ltr">{original.translation.name}</span>
+                </span>
+              )}
               <span className="mt-3 flex items-center justify-between gap-3 text-[0.7rem] text-parchment-700">
-                <span>{ui.from} {passage.translation.name}</span>
+                <span>
+                  {ui.from} {passage.translation.name}
+                  {" · "}
+                  <button
+                    type="button"
+                    className="text-gold-400 hover:text-gold-300"
+                    onClick={() => {
+                      if (original) setOriginal(undefined);
+                      else fetchPassage(key, "orig").then((p) => setOriginal(p ?? null));
+                    }}
+                  >
+                    {original ? ui.hideOriginal : `${ui.original} · ${originalFor(reference.book).script}`}
+                  </button>
+                </span>
                 <Link href={chapterPath(reference, lang)} className="whitespace-nowrap text-gold-400 hover:text-gold-300">{ui.open} →</Link>
               </span>
             </>
