@@ -38,7 +38,11 @@ export type EventName =
   | "polish_applied"
   | "testimony_publish"
   | "sign_up"
-  | "login";
+  | "login"
+  | "prayed"
+  | "prayer_request"
+  | "prayer_reply"
+  | "prayer_answered";
 
 type Params = Record<string, string | number | boolean | null | undefined>;
 

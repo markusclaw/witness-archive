@@ -103,8 +103,42 @@ export interface Profile {
   display_name: string;
   avatar_url: string | null;
   bio: string | null;
+  role?: "member" | "admin";
   created_at: string;
   updated_at: string;
+}
+
+export type PrayerCategory = "healing" | "family" | "provision" | "deliverance" | "grief" | "guidance" | "salvation" | "thanksgiving" | "other";
+
+export interface PrayerRequest {
+  id: string;
+  user_id: string;
+  display_name: string | null;
+  anonymous: boolean;
+  title: string;
+  body: string;
+  category: PrayerCategory;
+  language: string;
+  status: "open" | "answered" | "closed";
+  answer: string | null;
+  answered_at: string | null;
+  review: "clear" | "held" | "removed";
+  review_note: string | null;
+  prayed_count: number;
+  reply_count: number;
+  last_prayed_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface PrayerReply {
+  id: string;
+  request_id: string;
+  user_id: string;
+  author: string;
+  content: string;
+  review: "clear" | "held" | "removed";
+  created_at: string;
 }
 
 export interface Translation {

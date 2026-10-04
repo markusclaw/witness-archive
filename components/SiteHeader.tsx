@@ -5,6 +5,7 @@ import Logo from "@/components/Logo";
 const NAV: { href: string; label: string; mobile?: boolean }[] = [
   { href: "/ask", label: "Ask", mobile: true },
   { href: "/archive", label: "Archive", mobile: true },
+  { href: "/pray", label: "Pray", mobile: true },
   { href: "/about", label: "About", mobile: false },
   { href: "/submit", label: "Write", mobile: true },
 ];

@@ -15,6 +15,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: absoluteUrl("/archive"), lastModified: latest, changeFrequency: "daily", priority: 0.9 },
     { url: absoluteUrl("/about"), changeFrequency: "monthly", priority: 0.5 },
     { url: absoluteUrl("/ask"), changeFrequency: "monthly", priority: 0.6 },
+    { url: absoluteUrl("/pray"), changeFrequency: "daily", priority: 0.7 },
   ];
 
   const collections: MetadataRoute.Sitemap = CATEGORIES.map((c) => {
