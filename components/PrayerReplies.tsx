@@ -88,7 +88,7 @@ export default function PrayerReplies({ requestId, initial, ownerId }: { request
                     <button type="button" onClick={() => remove(r.id)} className="ml-2 underline hover:text-ember-500">remove</button>
                   )}
                 </p>
-                <p className="mt-1 whitespace-pre-wrap text-parchment-100">{r.content}</p>
+                <p className="mt-1 whitespace-pre-wrap text-parchment-100" dir="auto">{r.content}</p>
               </div>
             </li>
           );
@@ -105,7 +105,7 @@ export default function PrayerReplies({ requestId, initial, ownerId }: { request
       ) : (
         user && (
           <form onSubmit={post} className="mt-8 flex flex-col gap-3">
-            <textarea className="input min-h-[5rem]" value={text} onChange={(e) => setText(e.target.value)} maxLength={1000} placeholder="Praying for you. …" aria-label="Your word" />
+            <textarea className="input min-h-[5rem]" dir="auto" value={text} onChange={(e) => setText(e.target.value)} maxLength={1000} placeholder="Praying for you. …" aria-label="Your word" />
             {error && <p className="text-sm text-ember-500">{error}</p>}
             <div className="flex justify-end">
               <button type="submit" disabled={busy || !text.trim()} className="btn btn-primary !py-2 text-sm">{busy ? "Posting…" : "Leave this word"}</button>

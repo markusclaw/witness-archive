@@ -3,7 +3,6 @@ import { createServerSupabase } from "@/lib/supabase-server";
 import { createAdminSupabase } from "@/lib/supabase-admin";
 import { screenPrayerText } from "@/lib/prayer-screen";
 import { PRAYER_CATEGORIES } from "@/lib/prayer";
-import { isSupportedLanguage } from "@/lib/languages";
 
 export const dynamic = "force-dynamic";
 
@@ -63,7 +62,7 @@ export async function POST(req: Request) {
     const givenTitle = str(body.title, 120);
     const title = givenTitle.length >= 3 ? givenTitle : screen.title && screen.title.length >= 3 ? screen.title : fallbackTitle(text);
     const category = PRAYER_CATEGORIES.some((c) => c.slug === screen.category) ? (screen.category as string) : "other";
-    const language = screen.language && isSupportedLanguage(screen.language) ? screen.language : "en";
+    const language = screen.language && /^[a-z]{2}$/.test(screen.language) ? screen.language : "en";
 
     const { data, error } = await admin
       .from("prayer_requests")

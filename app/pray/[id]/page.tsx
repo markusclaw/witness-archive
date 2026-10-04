@@ -39,17 +39,17 @@ export default async function PrayerRequestPage({ params }: { params: Params }) 
         {r.status === "answered" && <span className="chip chip-active">Answered</span>}
         {r.status === "closed" && <span className="chip">Closed</span>}
       </div>
-      <h1 className="font-display mt-4 text-4xl font-light leading-tight text-parchment-50">{r.title}</h1>
+      <h1 className="font-display mt-4 text-4xl font-light leading-tight text-parchment-50" dir="auto">{r.title}</h1>
       <p className="mt-3 text-sm text-parchment-500">
         {requesterName(r)} · {formatDate(r.created_at)}
       </p>
 
-      <div className="prose-testimony mt-8 whitespace-pre-wrap" lang={r.language}>{r.body}</div>
+      <div className="prose-testimony mt-8 whitespace-pre-wrap" lang={r.language} dir="auto">{r.body}</div>
 
       {r.status === "answered" && r.answer && (
         <section className="mt-10 rounded-xl border border-gold-500/40 bg-gold-500/5 p-6">
           <p className="eyebrow mb-2">Answered{r.answered_at ? ` · ${formatDate(r.answered_at)}` : ""}</p>
-          <p className="whitespace-pre-wrap text-parchment-100">{r.answer}</p>
+          <p className="whitespace-pre-wrap text-parchment-100" dir="auto">{r.answer}</p>
         </section>
       )}
 

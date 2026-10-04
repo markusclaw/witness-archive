@@ -16,13 +16,13 @@ export default function PrayerCard({ r }: { r: PrayerRequest }) {
         <time dateTime={r.created_at}>{timeAgo(r.created_at)}</time>
       </div>
       <h3 className="font-display mt-3 text-2xl font-light leading-snug text-parchment-50">
-        <Link href={`/pray/${r.id}`} className="hover:text-gold-300">{r.title}</Link>
+        <Link href={`/pray/${r.id}`} className="hover:text-gold-300" dir="auto">{r.title}</Link>
       </h3>
-      <p className="mt-2 line-clamp-3 text-parchment-300">{r.body}</p>
+      <p className="mt-2 line-clamp-3 text-parchment-300" dir="auto" lang={r.language}>{r.body}</p>
       {r.status === "answered" && r.answer && (
         <p className="mt-3 border-l-2 border-gold-500/50 pl-3 text-sm text-parchment-100">
           <span className="text-gold-400">Answered: </span>
-          <span className="line-clamp-2">{r.answer}</span>
+          <span className="line-clamp-2" dir="auto">{r.answer}</span>
         </p>
       )}
       <div className="mt-4 flex flex-wrap items-center gap-3">

@@ -102,6 +102,7 @@ export default function PrayerComposer() {
         <textarea
           id="pr-body"
           className="input min-h-[9rem]"
+          dir="auto"
           value={body}
           onChange={(e) => setBody(e.target.value)}
           maxLength={3000}

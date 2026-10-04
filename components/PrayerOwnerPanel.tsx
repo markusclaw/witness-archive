@@ -99,7 +99,7 @@ export default function PrayerOwnerPanel({ r }: { r: PrayerRequest }) {
 
       {renaming ? (
         <form onSubmit={saveTitle} className="flex flex-wrap items-center gap-2">
-          <input className="input !w-auto flex-1" value={title} onChange={(e) => setTitle(e.target.value)} maxLength={120} aria-label="Title" autoFocus />
+          <input className="input !w-auto flex-1" dir="auto" value={title} onChange={(e) => setTitle(e.target.value)} maxLength={120} aria-label="Title" autoFocus />
           <select className="input !w-auto" value={category} onChange={(e) => setCategory(e.target.value)} aria-label="Kind of request">
             {PRAYER_CATEGORIES.map((c) => (
               <option key={c.slug} value={c.slug}>{c.name}</option>
@@ -112,7 +112,7 @@ export default function PrayerOwnerPanel({ r }: { r: PrayerRequest }) {
       ) : answering ? (
         <form onSubmit={saveAnswer} className="space-y-3">
           <label className="block text-xs uppercase tracking-[0.18em] text-parchment-500" htmlFor="pr-answer">What happened?</label>
-          <textarea id="pr-answer" className="input min-h-[7rem]" value={answer} onChange={(e) => setAnswer(e.target.value)} maxLength={3000} placeholder="Tell the people who prayed how it went." />
+          <textarea id="pr-answer" className="input min-h-[7rem]" dir="auto" value={answer} onChange={(e) => setAnswer(e.target.value)} maxLength={3000} placeholder="Tell the people who prayed how it went." />
           {error && <p className="text-ember-500">{error}</p>}
           <div className="flex gap-2">
             <button type="submit" disabled={busy || answer.trim().length < 5} className="btn btn-primary !py-1.5 text-xs">{busy ? "Saving…" : "Mark as answered"}</button>

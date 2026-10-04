@@ -59,8 +59,8 @@ export default function PrayerReviewQueue() {
           <p className="text-xs text-parchment-700">
             Request · {prayerCategory(r.category).name} · {r.anonymous ? "anonymous" : r.display_name} · {timeAgo(r.created_at)}
           </p>
-          <h3 className="font-display mt-2 text-xl text-parchment-50">{r.title}</h3>
-          <p className="mt-2 whitespace-pre-wrap text-parchment-300">{r.body}</p>
+          <h3 className="font-display mt-2 text-xl text-parchment-50" dir="auto">{r.title}</h3>
+          <p className="mt-2 whitespace-pre-wrap text-parchment-300" dir="auto">{r.body}</p>
           {r.answer && <p className="mt-2 border-l-2 border-gold-500/50 pl-3 text-sm text-parchment-100">Answer: {r.answer}</p>}
           {r.review_note && <p className="mt-3 text-xs text-gold-500/80">Screener: {r.review_note}</p>}
           <div className="mt-4 flex gap-2">
@@ -73,7 +73,7 @@ export default function PrayerReviewQueue() {
       {replies.map((r) => (
         <article key={r.id} className="card p-5">
           <p className="text-xs text-parchment-700">Reply · {r.author} · {timeAgo(r.created_at)}</p>
-          <p className="mt-2 whitespace-pre-wrap text-parchment-300">{r.content}</p>
+          <p className="mt-2 whitespace-pre-wrap text-parchment-300" dir="auto">{r.content}</p>
           <div className="mt-4 flex gap-2">
             <button type="button" disabled={busy === r.id} onClick={() => decide({ replyId: r.id }, "clear")} className="btn btn-primary !py-1.5 text-xs">Publish</button>
             <button type="button" disabled={busy === r.id} onClick={() => decide({ replyId: r.id }, "removed")} className="btn btn-ghost !py-1.5 text-xs">Remove</button>
