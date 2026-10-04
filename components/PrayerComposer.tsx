@@ -5,8 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { User } from "@supabase/supabase-js";
 import { supabase } from "@/lib/supabase";
-import { PRAYER_CATEGORIES } from "@/lib/prayer";
-import { LANGUAGES } from "@/lib/languages";
+import { prayerCategory } from "@/lib/prayer";
 import { track } from "@/lib/analytics";
 import CrisisNote from "@/components/CrisisNote";
 
@@ -15,14 +14,11 @@ export default function PrayerComposer() {
   const router = useRouter();
   const [user, setUser] = useState<User | null | undefined>(undefined);
   const [open, setOpen] = useState(false);
-  const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const [category, setCategory] = useState("other");
   const [anonymous, setAnonymous] = useState(false);
-  const [language, setLanguage] = useState("en");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [result, setResult] = useState<{ held: boolean; crisis: boolean; id: string } | null>(null);
+  const [result, setResult] = useState<{ held: boolean; crisis: boolean; id: string; title: string; category: string } | null>(null);
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => setUser(data.user));
@@ -42,13 +38,12 @@ export default function PrayerComposer() {
       const res = await fetch("/api/prayer", {
         method: "POST",
         headers: { "content-type": "application/json", authorization: `Bearer ${session?.access_token ?? ""}` },
-        body: JSON.stringify({ action: "request", title, body, category, anonymous, language }),
+        body: JSON.stringify({ action: "request", body, anonymous }),
       });
-      const json = (await res.json()) as { error?: string; held?: boolean; crisis?: boolean; request?: { id: string } };
+      const json = (await res.json()) as { error?: string; held?: boolean; crisis?: boolean; request?: { id: string; title: string; category: string } };
       if (!res.ok) throw new Error(json.error || "Something went wrong.");
-      track("prayer_request", { category, anonymous });
-      setResult({ held: !!json.held, crisis: !!json.crisis, id: json.request?.id ?? "" });
-      setTitle("");
+      track("prayer_request", { category: json.request?.category ?? "other", anonymous });
+      setResult({ held: !!json.held, crisis: !!json.crisis, id: json.request?.id ?? "", title: json.request?.title ?? "", category: json.request?.category ?? "other" });
       setBody("");
       if (!json.held) router.refresh();
     } catch (err) {
@@ -68,9 +63,12 @@ export default function PrayerComposer() {
             Thank you. Your request has been received and will appear on the wall once someone on the team has read it — usually within a day.
           </p>
         ) : (
-          <p className="text-parchment-100">
-            Your request is on the wall. <Link href={`/pray/${result.id}`} className="text-gold-400 underline hover:text-gold-300">See it</Link> — you&apos;ll be able to mark it answered from there.
-          </p>
+          <div className="text-parchment-100">
+            <p>Your request is on the wall as <span className="font-display text-xl text-parchment-50">“{result.title}”</span> under <span className="chip align-middle">{prayerCategory(result.category).name}</span>.</p>
+            <p className="mt-2 text-sm text-parchment-500">
+              <Link href={`/pray/${result.id}`} className="text-gold-400 underline hover:text-gold-300">Open it</Link> to change the title or, later, mark it answered.
+            </p>
+          </div>
         )}
         <button type="button" onClick={() => { setResult(null); setOpen(false); }} className="mt-4 text-sm text-parchment-500 underline hover:text-parchment-100">
           Post another
@@ -100,42 +98,29 @@ export default function PrayerComposer() {
   return (
     <form onSubmit={submit} className="card space-y-4 p-6">
       <div>
-        <label htmlFor="pr-title" className="mb-1 block text-xs uppercase tracking-[0.18em] text-parchment-500">In a few words</label>
-        <input id="pr-title" className="input" value={title} onChange={(e) => setTitle(e.target.value)} maxLength={120} placeholder="My mother's surgery on Tuesday" required />
-      </div>
-      <div>
-        <label htmlFor="pr-body" className="mb-1 block text-xs uppercase tracking-[0.18em] text-parchment-500">The request</label>
-        <textarea id="pr-body" className="input min-h-[8rem]" value={body} onChange={(e) => setBody(e.target.value)} maxLength={3000} placeholder="Tell us what's happening and what you're asking God for." required />
+        <label htmlFor="pr-body" className="mb-1 block text-xs uppercase tracking-[0.18em] text-parchment-500">Your request</label>
+        <textarea
+          id="pr-body"
+          className="input min-h-[9rem]"
+          value={body}
+          onChange={(e) => setBody(e.target.value)}
+          maxLength={3000}
+          placeholder="Tell us what's happening and what you're asking God for. Any language is fine."
+          autoFocus
+          required
+        />
         <p className="mt-1 text-right text-xs text-parchment-700">{body.length}/3000</p>
       </div>
-      <div className="grid gap-4 sm:grid-cols-3">
-        <label className="text-xs text-parchment-500">
-          Kind of request
-          <select className="input mt-1" value={category} onChange={(e) => setCategory(e.target.value)}>
-            {PRAYER_CATEGORIES.map((c) => (
-              <option key={c.slug} value={c.slug}>{c.name}</option>
-            ))}
-          </select>
-        </label>
-        <label className="text-xs text-parchment-500">
-          Written in
-          <select className="input mt-1" value={language} onChange={(e) => setLanguage(e.target.value)}>
-            {LANGUAGES.map((l) => (
-              <option key={l.code} value={l.code}>{l.nativeName}</option>
-            ))}
-          </select>
-        </label>
-        <label className="flex items-center gap-2 self-end pb-2 text-sm text-parchment-300">
-          <input type="checkbox" checked={anonymous} onChange={(e) => setAnonymous(e.target.checked)} className="h-4 w-4 accent-gold-500" />
-          Post anonymously
-        </label>
-      </div>
+      <label className="flex items-center gap-2 text-sm text-parchment-300">
+        <input type="checkbox" checked={anonymous} onChange={(e) => setAnonymous(e.target.checked)} className="h-4 w-4 accent-gold-500" />
+        Post anonymously
+      </label>
       {error && <p className="text-sm text-ember-500">{error}</p>}
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <p className="text-xs text-parchment-700">Requests appear right away. A few are read by the team first.</p>
+        <p className="text-xs text-parchment-700">We&apos;ll give it a short title and file it under the right kind of request — you can change both. Requests appear right away; a few are read by the team first.</p>
         <div className="flex gap-2">
           <button type="button" onClick={() => setOpen(false)} className="btn btn-ghost !py-2 text-sm">Cancel</button>
-          <button type="submit" disabled={busy || title.trim().length < 3 || body.trim().length < 10} className="btn btn-primary !py-2 text-sm">
+          <button type="submit" disabled={busy || body.trim().length < 10} className="btn btn-primary !py-2 text-sm">
             {busy ? "Posting…" : "Post request"}
           </button>
         </div>

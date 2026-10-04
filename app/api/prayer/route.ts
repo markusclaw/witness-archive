@@ -8,13 +8,21 @@ import { isSupportedLanguage } from "@/lib/languages";
 export const dynamic = "force-dynamic";
 
 type Body =
-  | { action: "request"; title?: unknown; body?: unknown; category?: unknown; anonymous?: unknown; language?: unknown; displayName?: unknown }
+  | { action: "request"; title?: unknown; body?: unknown; anonymous?: unknown }
+  | { action: "title"; requestId?: unknown; title?: unknown; category?: unknown }
   | { action: "reply"; requestId?: unknown; content?: unknown; displayName?: unknown }
   | { action: "answer"; requestId?: unknown; answer?: unknown }
   | { action: "status"; requestId?: unknown; status?: unknown }
   | { action: "review"; requestId?: unknown; replyId?: unknown; decision?: unknown };
 
 const str = (v: unknown, max: number) => (typeof v === "string" ? v.trim().slice(0, max) : "");
+
+/** If the assistant couldn't offer a title: the first clause of the request. */
+function fallbackTitle(text: string): string {
+  const first = text.split(/[.!?\n]/)[0].trim();
+  const words = first.split(/\s+/).slice(0, 8).join(" ");
+  return (words.length >= 3 ? words : "A prayer request").slice(0, 120);
+}
 
 /**
  * Every write to the prayer wall comes through here: the member is verified
@@ -46,15 +54,17 @@ export async function POST(req: Request) {
   const myName = str(profile?.display_name, 80) || str((user.user_metadata as { display_name?: string } | null)?.display_name, 80) || (user.email ?? "Member").split("@")[0];
 
   if (body.action === "request") {
-    const title = str(body.title, 120);
     const text = str(body.body, 3000);
-    const category = PRAYER_CATEGORIES.some((c) => c.slug === body.category) ? (body.category as string) : "other";
     const anonymous = body.anonymous === true;
-    const language = typeof body.language === "string" && isSupportedLanguage(body.language) ? body.language.toLowerCase() : "en";
-    if (title.length < 3) return NextResponse.json({ error: "Give your request a short title." }, { status: 400 });
     if (text.length < 10) return NextResponse.json({ error: "Tell us a little more — at least a sentence." }, { status: 400 });
 
-    const screen = await screenPrayerText("request", `${title}\n\n${text}`);
+    // One Claude call screens the post and reads its language, kind and a title.
+    const screen = await screenPrayerText("request", text);
+    const givenTitle = str(body.title, 120);
+    const title = givenTitle.length >= 3 ? givenTitle : screen.title && screen.title.length >= 3 ? screen.title : fallbackTitle(text);
+    const category = PRAYER_CATEGORIES.some((c) => c.slug === screen.category) ? (screen.category as string) : "other";
+    const language = screen.language && isSupportedLanguage(screen.language) ? screen.language : "en";
+
     const { data, error } = await admin
       .from("prayer_requests")
       .insert({ user_id: user.id, display_name: anonymous ? null : myName, anonymous, title, body: text, category, language, review: screen.hold ? "held" : "clear", review_note: screen.hold ? screen.reason : null })
@@ -65,6 +75,18 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Couldn't save your request. Try again in a moment." }, { status: 500 });
     }
     return NextResponse.json({ request: data, held: screen.hold, crisis: screen.crisis });
+  }
+
+  if (body.action === "title") {
+    const requestId = str(body.requestId, 64);
+    const title = str(body.title, 120);
+    if (title.length < 3) return NextResponse.json({ error: "A title needs at least a few letters." }, { status: 400 });
+    const { data: target } = await admin.from("prayer_requests").select("id, user_id").eq("id", requestId).maybeSingle();
+    if (!target || (target.user_id !== user.id && !isAdmin)) return NextResponse.json({ error: "Not your request." }, { status: 403 });
+    const category = PRAYER_CATEGORIES.some((c) => c.slug === body.category) ? (body.category as string) : undefined;
+    const { error } = await admin.from("prayer_requests").update({ title, ...(category ? { category } : {}) }).eq("id", requestId);
+    if (error) return NextResponse.json({ error: "Couldn't rename it." }, { status: 500 });
+    return NextResponse.json({ ok: true });
   }
 
   if (body.action === "reply") {

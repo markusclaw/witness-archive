@@ -10,6 +10,10 @@ export interface ScreenResult {
   /** The person may be in immediate danger (self-harm, suicide). Always held; the UI shows support. */
   crisis: boolean;
   reason: string;
+  /** Only for requests: what the assistant read from the text. */
+  title?: string;
+  category?: string;
+  language?: string;
 }
 
 const SYSTEM_PROMPT = `You review posts for the prayer wall of Witness Archive, a Christian community site where people share prayer requests, press "I prayed", and leave short words of encouragement.
@@ -25,7 +29,12 @@ Decide whether a post can be published immediately or should be held for a human
 
 Everything else is cleared, including strong emotion, grief, anger at God, doubt, unusual theology, and mentions of past self-harm or past abuse that are told as history.
 
-Respond with only JSON: {"hold": boolean, "crisis": boolean, "reason": "one short sentence"}`;
+For a request (not a reply or answer), also read three things from the text:
+- language: the BCP-47 two-letter code the post is written in (en, es, pt, …).
+- category: one of healing, family, provision, deliverance, grief, guidance, salvation, thanksgiving, other — the main thing being asked for.
+- title: a short, warm, specific title of at most 8 words in the SAME language as the post, written the way the person would say it (e.g. "My mother's surgery on Tuesday", "Trabajo antes de que termine el contrato"). No quotes, no trailing period, never generic ("Prayer request").
+
+Respond with only JSON: {"hold": boolean, "crisis": boolean, "reason": "one short sentence", "language": "xx", "category": "…", "title": "…"}`;
 
 export async function screenPrayerText(kind: "request" | "reply" | "answer", text: string): Promise<ScreenResult> {
   const apiKey = process.env.ANTHROPIC_API_KEY;
@@ -50,7 +59,14 @@ export async function screenPrayerText(kind: "request" | "reply" | "answer", tex
     if (!m) throw new Error("unparseable screen response");
     const parsed = JSON.parse(m[0]) as Partial<ScreenResult>;
     const crisis = parsed.crisis === true;
-    return { hold: parsed.hold === true || crisis, crisis, reason: typeof parsed.reason === "string" ? parsed.reason.slice(0, 300) : "" };
+    return {
+      hold: parsed.hold === true || crisis,
+      crisis,
+      reason: typeof parsed.reason === "string" ? parsed.reason.slice(0, 300) : "",
+      title: typeof parsed.title === "string" ? parsed.title.trim().replace(/^["“”']+|["“”'.]+$/g, "").slice(0, 120) : undefined,
+      category: typeof parsed.category === "string" ? parsed.category.trim().toLowerCase() : undefined,
+      language: typeof parsed.language === "string" ? parsed.language.trim().toLowerCase().slice(0, 2) : undefined,
+    };
   } catch (err) {
     console.error("screenPrayerText:", err instanceof Error ? err.message : err);
     return { hold: true, crisis: false, reason: "Screening was unavailable; held for review." };

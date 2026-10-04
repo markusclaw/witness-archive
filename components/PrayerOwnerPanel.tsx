@@ -6,12 +6,16 @@ import { supabase } from "@/lib/supabase";
 import { track } from "@/lib/analytics";
 import CrisisNote from "@/components/CrisisNote";
 import type { PrayerRequest } from "@/lib/types";
+import { PRAYER_CATEGORIES } from "@/lib/prayer";
 
 /** Shown only to the request's author: mark answered, close, delete, or turn an answer into a testimony. */
 export default function PrayerOwnerPanel({ r }: { r: PrayerRequest }) {
   const router = useRouter();
   const [isOwner, setIsOwner] = useState(false);
   const [answering, setAnswering] = useState(false);
+  const [renaming, setRenaming] = useState(false);
+  const [title, setTitle] = useState(r.title);
+  const [category, setCategory] = useState<string>(r.category);
   const [answer, setAnswer] = useState(r.answer ?? "");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -56,6 +60,14 @@ export default function PrayerOwnerPanel({ r }: { r: PrayerRequest }) {
     router.refresh();
   };
 
+  const saveTitle = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (await call({ action: "title", requestId: r.id, title, category })) {
+      setRenaming(false);
+      router.refresh();
+    }
+  };
+
   const setStatus = async (status: "open" | "closed") => {
     if (await call({ action: "status", requestId: r.id, status })) router.refresh();
   };
@@ -85,7 +97,19 @@ export default function PrayerOwnerPanel({ r }: { r: PrayerRequest }) {
       {notice === "crisis" && <div className="mb-3"><CrisisNote /></div>}
       {notice === "held" && <p className="mb-2 text-gold-300">Thank you — your update will show once someone on the team has read it.</p>}
 
-      {answering ? (
+      {renaming ? (
+        <form onSubmit={saveTitle} className="flex flex-wrap items-center gap-2">
+          <input className="input !w-auto flex-1" value={title} onChange={(e) => setTitle(e.target.value)} maxLength={120} aria-label="Title" autoFocus />
+          <select className="input !w-auto" value={category} onChange={(e) => setCategory(e.target.value)} aria-label="Kind of request">
+            {PRAYER_CATEGORIES.map((c) => (
+              <option key={c.slug} value={c.slug}>{c.name}</option>
+            ))}
+          </select>
+          <button type="submit" disabled={busy || title.trim().length < 3} className="btn btn-primary !py-1.5 text-xs">Save</button>
+          <button type="button" onClick={() => { setRenaming(false); setTitle(r.title); }} className="btn btn-ghost !py-1.5 text-xs">Cancel</button>
+          {error && <p className="w-full text-ember-500">{error}</p>}
+        </form>
+      ) : answering ? (
         <form onSubmit={saveAnswer} className="space-y-3">
           <label className="block text-xs uppercase tracking-[0.18em] text-parchment-500" htmlFor="pr-answer">What happened?</label>
           <textarea id="pr-answer" className="input min-h-[7rem]" value={answer} onChange={(e) => setAnswer(e.target.value)} maxLength={3000} placeholder="Tell the people who prayed how it went." />
@@ -99,6 +123,7 @@ export default function PrayerOwnerPanel({ r }: { r: PrayerRequest }) {
         <div className="flex flex-wrap items-center justify-between gap-3">
           <span className="text-parchment-300">This is your request.</span>
           <span className="flex flex-wrap gap-3">
+            <button type="button" onClick={() => setRenaming(true)} className="text-gold-400 hover:text-gold-300">Edit title or kind</button>
             {r.status !== "answered" && <button type="button" onClick={() => setAnswering(true)} className="text-gold-400 hover:text-gold-300">Mark answered</button>}
             {r.status === "answered" && (
               <>
