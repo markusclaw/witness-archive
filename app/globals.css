@@ -495,15 +495,17 @@ body:has(.writing-focus)::before {
    and it composes over one, so a highlighted verse keeps its color while selected. */
 .verse-hit,
 .verse-hit:hover {
-  box-shadow: 0 0 0 1.5px rgb(201 163 90 / 0.8);
   color: var(--color-parchment-50);
 }
 .verse-hit:not([class*="hl-"]) {
-  background: rgb(201 163 90 / 0.14);
+  background: rgb(201 163 90 / 0.16);
 }
 .verse-hit .verse-num {
-  color: var(--color-gold-300);
   opacity: 1;
+}
+/* A highlighted verse that is also selected: a faint edge is the only cue, so its color stays true. */
+.verse-hit[class*="hl-"] {
+  box-shadow: 0 0 0 1.5px rgb(255 255 255 / 0.55);
 }
 
 /* Highlighter marks: a reader's own colors, kept on the account or in the browser. */
