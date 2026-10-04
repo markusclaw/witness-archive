@@ -6,6 +6,9 @@ import { BIBLE_UI, BOOKS, TRANSLATION_FOR_LANGUAGE, bookBySlug, bookSlug, transl
 import { getChapter } from "@/lib/bible";
 import { BibleLanguagePicker, BibleLanguageSync } from "@/components/BibleLanguage";
 import ChapterText from "@/components/ChapterText";
+import TestimonyCard from "@/components/TestimonyCard";
+import { getChapterMentions } from "@/lib/scripture-index";
+import { formatReference } from "@/lib/scripture";
 
 export const dynamic = "force-dynamic";
 
@@ -39,7 +42,7 @@ export default async function ChapterPage({ params, searchParams }: { params: Pa
   const ui = BIBLE_UI[lang];
   const q = lang === "en" ? "" : `?lang=${lang}`;
   const name = b.names[lang] ?? b.names.en;
-  const { translation, verses } = await getChapter(b.index, chapter, lang);
+  const [{ translation, verses }, mentions] = await Promise.all([getChapter(b.index, chapter, lang), getChapterMentions(b.index, chapter)]);
 
   // Previous/next run across book boundaries so the reader can keep going.
   const prev = chapter > 1 ? { book: b, chapter: chapter - 1 } : b.index > 0 ? { book: BOOKS[b.index - 1], chapter: BOOKS[b.index - 1].chapters } : null;
@@ -88,6 +91,28 @@ export default async function ChapterPage({ params, searchParams }: { params: Pa
       </div>
 
       <div className="mt-12 border-t border-ink-700 pt-6">{nav}</div>
+
+      <section className="mt-14" aria-labelledby="mentions">
+        <h2 id="mentions" className="eyebrow" lang={lang}>{ui.mentions}</h2>
+        {mentions.length ? (
+          <div className="mt-5 grid gap-6 sm:grid-cols-2">
+            {mentions.map(({ testimony, refs }) => (
+              <div key={testimony.id} className="flex flex-col gap-2">
+                <TestimonyCard testimony={testimony} />
+                <p className="flex flex-wrap gap-1.5 px-1 text-xs text-parchment-500">
+                  {refs.map((r) => (
+                    <Link key={formatReference(r, "en")} href={`/bible/${bookSlug(b)}/${chapter}${r.verse != null ? `?v=${r.verse}${r.verseEnd != null ? `-${r.verseEnd}` : ""}${lang === "en" ? "" : `&lang=${lang}`}` : q}`} className="chip chip-interactive" lang={lang}>
+                      {formatReference(r, lang)}
+                    </Link>
+                  ))}
+                </p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="mt-4 text-sm text-parchment-500" lang={lang}>{ui.mentionsNone}</p>
+        )}
+      </section>
       <p className="mt-6 text-[0.7rem] text-parchment-700">{translation.name} · public domain</p>
     </main>
   );

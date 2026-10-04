@@ -22,6 +22,7 @@ import { getProfile, getRelatedTestimonies, getRetellings, getSeriesParts, getTe
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL, absoluteUrl, collectionPath, localizedTestimonyPath, metaDescription, parseTestimonyParam, testimonyPath } from "@/lib/seo";
 import { getTranslation } from "@/lib/translate";
 import { getAudio } from "@/lib/audio";
+import { syncScriptureIndex } from "@/lib/scripture-index";
 import type { Translation } from "@/lib/types";
 import { extractYouTubeId, youtubeThumbnail, youtubeWatchUrl } from "@/lib/youtube";
 
@@ -98,6 +99,8 @@ export default async function TestimonyArticle({ param, lang, prefixed = false }
     getSeriesParts(testimony.series_id),
     testimony.is_anonymous ? Promise.resolve(null) : getProfile(testimony.author_id),
     getRetellings(testimony.id),
+    // Keeps the "testimonies that mention this passage" index fresh; a no-op when the text hasn't changed.
+    syncScriptureIndex(testimony),
   ]);
 
   const ui = language.ui;
