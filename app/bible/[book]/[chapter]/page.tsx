@@ -83,7 +83,7 @@ export default async function ChapterPage({ params, searchParams }: { params: Pa
       <div className="mt-10">
         {verses.length ? (
           <Suspense>
-            <ChapterText verses={verses} lang={lang} />
+            <ChapterText verses={verses} lang={lang} book={name} chapter={chapter} translation={translation.name} />
           </Suspense>
         ) : (
           <p className="rounded-xl border border-ink-600 bg-ink-900/60 px-5 py-4 text-sm text-parchment-500" lang={lang}>{ui.notLoaded}</p>
