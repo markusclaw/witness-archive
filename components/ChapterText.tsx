@@ -1,9 +1,10 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { track } from "@/lib/analytics";
+import { HIGHLIGHT_COLORS, loadHighlights, setHighlight, type ChapterHighlights, type HighlightColor } from "@/lib/highlights";
 
 /**
  * The verses of a chapter. Hover a verse and it lifts; click to select it,
@@ -15,6 +16,7 @@ export default function ChapterText({
   verses,
   lang,
   book,
+  bookIndex,
   chapter,
   translation,
 }: {
@@ -22,6 +24,7 @@ export default function ChapterText({
   lang: string;
   /** Localized book name, e.g. "Números". */
   book: string;
+  bookIndex: number;
   chapter: number;
   translation: string;
 }) {
@@ -31,7 +34,18 @@ export default function ChapterText({
   const [selected, setSelected] = useState<Set<number>>(new Set());
   const [copied, setCopied] = useState<"text" | "link" | null>(null);
   const anchor = useRef<number | null>(null);
+  const [marks, setMarks] = useState<ChapterHighlights>({});
   const ui = UI[lang] ?? UI.en;
+
+  // The reader's own highlighter marks for this chapter.
+  useEffect(() => {
+    let cancelled = false;
+    loadHighlights(bookIndex, chapter).then(({ marks }) => !cancelled && setMarks(marks));
+    return () => {
+      cancelled = true;
+    };
+  }, [bookIndex, chapter]);
+
 
   // URL → selection (initial load, back/forward, and links from popovers).
   useEffect(() => {
@@ -76,15 +90,27 @@ export default function ChapterText({
     commit(new Set());
   };
 
-  const reference = useMemo(() => `${book} ${chapter}${selected.size ? ":" + formatSel(selected).replace(/-/g, "–") : ""}`, [book, chapter, selected]);
-  const selectedText = useMemo(
-    () =>
-      verses
-        .filter((v) => selected.has(v.verse))
-        .map((v) => (selected.size > 1 ? `${v.verse} ${v.text}` : v.text))
-        .join(" "),
-    [verses, selected]
-  );
+  const reference = `${book} ${chapter}${selected.size ? ":" + formatSel(selected).replace(/-/g, "–") : ""}`;
+  const selectedText = verses
+    .filter((v) => selected.has(v.verse))
+    .map((v) => (selected.size > 1 ? `${v.verse} ${v.text}` : v.text))
+    .join(" ");
+
+  const paint = (color: HighlightColor | null) => {
+    const verses = [...selected];
+    setMarks((m) => {
+      const next = { ...m };
+      for (const v of verses) {
+        if (color) next[v] = color;
+        else delete next[v];
+      }
+      return next;
+    });
+    void setHighlight(bookIndex, chapter, verses, color);
+    track("scripture_share", { reference, action: color ? `highlight_${color}` : "unhighlight" });
+    clear();
+  };
+
   const shareUrl = () => (typeof window === "undefined" ? "" : window.location.href);
 
   const copyText = async () => {
@@ -138,6 +164,7 @@ export default function ChapterText({
         <p>
           {verses.map((v) => {
             const hit = selected.has(v.verse);
+            const mark = marks[v.verse];
             return (
               <span
                 key={v.verse}
@@ -152,7 +179,7 @@ export default function ChapterText({
                     onVerseClick(v.verse, e.shiftKey);
                   }
                 }}
-                className={`verse ${hit ? "verse-hit" : ""}`}
+                className={`verse ${mark ? `hl-${mark}` : ""} ${hit ? "verse-hit" : ""}`}
               >
                 <span className="verse-num" aria-hidden>{v.verse}</span>
                 {v.text}{" "}
@@ -167,6 +194,16 @@ export default function ChapterText({
         <div className="fixed inset-x-0 bottom-4 z-40 flex justify-center px-4" role="toolbar" aria-label={reference}>
           <div className="flex max-w-full flex-wrap items-center gap-1 rounded-2xl border border-ink-500 bg-ink-900/95 px-3 py-2 shadow-2xl shadow-black/60 backdrop-blur-md">
             <span className="font-display mr-2 truncate text-base text-parchment-50" lang={lang}>{reference}</span>
+            <span className="mr-1 flex items-center gap-1" role="group" aria-label={ui.highlight}>
+              {HIGHLIGHT_COLORS.map((c) => (
+                <button key={c} type="button" onClick={() => paint(c)} aria-label={`${ui.highlight}: ${ui.colors[c]}`} title={ui.colors[c]} className={`hl-swatch hl-${c}`} />
+              ))}
+              {[...selected].some((v) => marks[v]) && (
+                <button type="button" onClick={() => paint(null)} aria-label={ui.removeHighlight} title={ui.removeHighlight} className="hl-swatch hl-none">
+                  <svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden><path d="M6 6l12 12M18 6L6 18" /></svg>
+                </button>
+              )}
+            </span>
             <button type="button" onClick={copyText} className="btn btn-ghost !h-8 !px-3 !text-xs">
               {copied === "text" ? ui.copied : ui.copy}
             </button>
@@ -216,8 +253,8 @@ function formatSel(s: Set<number>): string {
   return parts.join(",");
 }
 
-const UI: Record<string, { hint: string; copy: string; copied: string; share: string; linkCopied: string; ask: string; write: string; clear: string; askQuestion: (ref: string) => string }> = {
-  en: { hint: "Click a verse to select it; click more to add, or hold Shift to select a run. The link in your address bar carries the selection.", copy: "Copy", copied: "Copied", share: "Share", linkCopied: "Link copied", ask: "Ask about this", write: "Write a testimony", clear: "Clear selection", askQuestion: (ref) => `Which testimonies speak to ${ref}, and what does this passage say?` },
-  es: { hint: "Haz clic en un versículo para seleccionarlo; sigue haciendo clic para añadir, o mantén Shift para un rango. El enlace de la barra de direcciones lleva la selección.", copy: "Copiar", copied: "Copiado", share: "Compartir", linkCopied: "Enlace copiado", ask: "Preguntar sobre esto", write: "Escribir un testimonio", clear: "Quitar selección", askQuestion: (ref) => `¿Qué testimonios hablan de ${ref} y qué dice este pasaje?` },
-  pt: { hint: "Clique num versículo para selecioná-lo; continue clicando para adicionar, ou segure Shift para um trecho. O link na barra de endereços carrega a seleção.", copy: "Copiar", copied: "Copiado", share: "Compartilhar", linkCopied: "Link copiado", ask: "Perguntar sobre isto", write: "Escrever um testemunho", clear: "Limpar seleção", askQuestion: (ref) => `Quais testemunhos falam de ${ref} e o que diz esta passagem?` },
+const UI: Record<string, { highlight: string; removeHighlight: string; colors: Record<HighlightColor, string>; hint: string; copy: string; copied: string; share: string; linkCopied: string; ask: string; write: string; clear: string; askQuestion: (ref: string) => string }> = {
+  en: { highlight: "Highlight", removeHighlight: "Remove highlight", colors: { yellow: "Yellow", green: "Green", blue: "Blue", pink: "Pink", violet: "Violet" }, hint: "Click a verse to select it; click more to add, or hold Shift to select a run. Pick a color to keep a highlight; sign in and it follows you to any device.", copy: "Copy", copied: "Copied", share: "Share", linkCopied: "Link copied", ask: "Ask about this", write: "Write a testimony", clear: "Clear selection", askQuestion: (ref) => `Which testimonies speak to ${ref}, and what does this passage say?` },
+  es: { highlight: "Resaltar", removeHighlight: "Quitar resaltado", colors: { yellow: "Amarillo", green: "Verde", blue: "Azul", pink: "Rosa", violet: "Violeta" }, hint: "Haz clic en un versículo para seleccionarlo; sigue haciendo clic para añadir, o mantén Shift para un rango. Elige un color para guardar un resaltado; con sesión iniciada te sigue a cualquier dispositivo.", copy: "Copiar", copied: "Copiado", share: "Compartir", linkCopied: "Enlace copiado", ask: "Preguntar sobre esto", write: "Escribir un testimonio", clear: "Quitar selección", askQuestion: (ref) => `¿Qué testimonios hablan de ${ref} y qué dice este pasaje?` },
+  pt: { highlight: "Destacar", removeHighlight: "Remover destaque", colors: { yellow: "Amarelo", green: "Verde", blue: "Azul", pink: "Rosa", violet: "Violeta" }, hint: "Clique num versículo para selecioná-lo; continue clicando para adicionar, ou segure Shift para um trecho. Escolha uma cor para guardar um destaque; com sessão iniciada ele segue você em qualquer dispositivo.", copy: "Copiar", copied: "Copiado", share: "Compartilhar", linkCopied: "Link copiado", ask: "Perguntar sobre isto", write: "Escrever um testemunho", clear: "Limpar seleção", askQuestion: (ref) => `Quais testemunhos falam de ${ref} e o que diz esta passagem?` },
 };

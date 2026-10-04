@@ -501,6 +501,31 @@ body:has(.writing-focus)::before {
 .verse-hit .verse-num {
   color: var(--color-ink-950);
 }
+
+/* Highlighter marks: a reader's own colors, kept on the account or in the browser. */
+.hl-yellow { background: #e9d46a; color: var(--color-ink-950); }
+.hl-green  { background: #a7d58f; color: var(--color-ink-950); }
+.hl-blue   { background: #9cc8ec; color: var(--color-ink-950); }
+.hl-pink   { background: #f0a9c0; color: var(--color-ink-950); }
+.hl-violet { background: #c7b3ea; color: var(--color-ink-950); }
+.verse[class*="hl-"] .verse-num { color: var(--color-ink-950); }
+.verse[class*="hl-"]:hover { filter: brightness(1.06); }
+.hl-swatch {
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 9999px;
+  border: 2px solid rgb(255 255 255 / 0.15);
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s;
+}
+.hl-swatch:hover { transform: scale(1.15); border-color: rgb(255 255 255 / 0.6); }
+.hl-none {
+  background: transparent;
+  color: var(--color-parchment-300);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
 .verse-num {
   font-size: 0.6em;
   position: relative;
