@@ -235,3 +235,31 @@ export function formatReference(r: Reference, language = "en"): string {
 export function hasReference(text: string): boolean {
   return findReferences(text).length > 0;
 }
+
+/** URL slug for a book: its OSIS id, lower-case ("gen", "1cor", "john"). */
+export function bookSlug(book: Book | number): string {
+  return (typeof book === "number" ? BOOKS[book] : book).osis.toLowerCase();
+}
+
+export function bookBySlug(slug: string): Book | undefined {
+  const s = fold(slug).replace(/[^a-z0-9]/g, "");
+  return BOOKS.find((b) => b.osis.toLowerCase() === s) ?? aliasToBook.get(s) ?? [...aliasToBook.entries()].find(([a]) => a.replace(/\s/g, "") === s)?.[1];
+}
+
+/** Reader page for a reference: /bible/john/3?v=16-18&lang=es */
+export function chapterPath(r: Reference, language?: string): string {
+  const q = new URLSearchParams();
+  if (r.verse != null) q.set("v", r.verseEnd != null && r.chapterEnd == null ? `${r.verse}-${r.verseEnd}` : String(r.verse));
+  if (language && language !== "en" && TRANSLATION_FOR_LANGUAGE[language]) q.set("lang", language);
+  const s = q.toString();
+  return `/bible/${bookSlug(r.book)}/${r.chapter}${s ? `?${s}` : ""}`;
+}
+
+/** Old Testament is the first 39 books. */
+export const OT_COUNT = 39;
+
+export const BIBLE_UI: Record<string, { bible: string; ot: string; nt: string; chapters: string; chapter: string; prev: string; next: string; readIn: string; openChapter: string; notLoaded: string; verses: string }> = {
+  en: { bible: "The Bible", ot: "Old Testament", nt: "New Testament", chapters: "Chapters", chapter: "Chapter", prev: "Previous", next: "Next", readIn: "Read in", openChapter: "Open chapter", notLoaded: "The scripture texts haven't been loaded yet.", verses: "verses" },
+  es: { bible: "La Biblia", ot: "Antiguo Testamento", nt: "Nuevo Testamento", chapters: "Capítulos", chapter: "Capítulo", prev: "Anterior", next: "Siguiente", readIn: "Leer en", openChapter: "Abrir capítulo", notLoaded: "Los textos bíblicos aún no se han cargado.", verses: "versículos" },
+  pt: { bible: "A Bíblia", ot: "Antigo Testamento", nt: "Novo Testamento", chapters: "Capítulos", chapter: "Capítulo", prev: "Anterior", next: "Próximo", readIn: "Ler em", openChapter: "Abrir capítulo", notLoaded: "Os textos bíblicos ainda não foram carregados.", verses: "versículos" },
+};

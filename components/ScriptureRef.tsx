@@ -1,7 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from "react";
-import { findReferences, formatReference, referenceKey, type Reference } from "@/lib/scripture";
+import Link from "next/link";
+import { chapterPath, findReferences, formatReference, referenceKey, type Reference } from "@/lib/scripture";
 import { readerLanguage } from "@/lib/reader-language";
 import { track } from "@/lib/analytics";
 
@@ -33,10 +34,10 @@ function fetchPassage(key: string, lang: string): Promise<Passage | null> {
   return p;
 }
 
-const UI: Record<string, { from: string; loading: string; unavailable: string; close: string; more: string }> = {
-  en: { from: "From the", loading: "Opening…", unavailable: "This passage isn't available yet.", close: "Close", more: "Chapter continues…" },
-  es: { from: "De la", loading: "Abriendo…", unavailable: "Este pasaje aún no está disponible.", close: "Cerrar", more: "El capítulo continúa…" },
-  pt: { from: "Da", loading: "Abrindo…", unavailable: "Esta passagem ainda não está disponível.", close: "Fechar", more: "O capítulo continua…" },
+const UI: Record<string, { from: string; loading: string; unavailable: string; close: string; more: string; open: string }> = {
+  en: { from: "From the", loading: "Opening…", unavailable: "This passage isn't available yet.", close: "Close", more: "Chapter continues…", open: "Open chapter" },
+  es: { from: "De la", loading: "Abriendo…", unavailable: "Este pasaje aún no está disponible.", close: "Cerrar", more: "El capítulo continúa…", open: "Abrir capítulo" },
+  pt: { from: "Da", loading: "Abrindo…", unavailable: "Esta passagem ainda não está disponível.", close: "Fechar", more: "O capítulo continua…", open: "Abrir capítulo" },
 };
 
 /** One reference as a link with a verse popover. `label` defaults to the reference as written. */
@@ -114,7 +115,11 @@ export function ScriptureRef({ reference, label, chip = false, lang: initialLang
             </button>
           </span>
           {passage === undefined && <span className="mt-3 block text-sm text-parchment-500">{ui.loading}</span>}
-          {passage === null && <span className="mt-3 block text-sm text-parchment-500">{ui.unavailable}</span>}
+          {passage === null && (
+            <span className="mt-3 block text-sm text-parchment-500">
+              {ui.unavailable} <Link href={chapterPath(reference, lang)} className="text-gold-400 hover:text-gold-300">{ui.open} →</Link>
+            </span>
+          )}
           {passage && (
             <>
               <span className="mt-3 block max-h-72 overflow-y-auto pr-1 text-[0.95rem] leading-relaxed text-parchment-100">
@@ -126,7 +131,10 @@ export function ScriptureRef({ reference, label, chip = false, lang: initialLang
                 ))}
                 {passage.truncated && <span className="block pt-2 text-xs text-parchment-500">{ui.more}</span>}
               </span>
-              <span className="mt-3 block text-[0.7rem] text-parchment-700">{ui.from} {passage.translation.name}</span>
+              <span className="mt-3 flex items-center justify-between gap-3 text-[0.7rem] text-parchment-700">
+                <span>{ui.from} {passage.translation.name}</span>
+                <Link href={chapterPath(reference, lang)} className="whitespace-nowrap text-gold-400 hover:text-gold-300">{ui.open} →</Link>
+              </span>
             </>
           )}
         </span>

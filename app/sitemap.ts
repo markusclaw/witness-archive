@@ -3,6 +3,7 @@ import { CATEGORIES } from "@/lib/categories";
 import { getAllTestimonies } from "@/lib/queries";
 import { absoluteUrl, collectionPath, localizedTestimonyPath, testimonyPath } from "@/lib/seo";
 import { createServerSupabase } from "@/lib/supabase-server";
+import { BOOKS, bookSlug } from "@/lib/scripture";
 
 export const dynamic = "force-dynamic";
 
@@ -16,7 +17,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: absoluteUrl("/about"), changeFrequency: "monthly", priority: 0.5 },
     { url: absoluteUrl("/ask"), changeFrequency: "monthly", priority: 0.6 },
     { url: absoluteUrl("/pray"), changeFrequency: "daily", priority: 0.7 },
+    { url: absoluteUrl("/bible"), changeFrequency: "yearly", priority: 0.6 },
   ];
+
+  const bible: MetadataRoute.Sitemap = BOOKS.flatMap((b) => [
+    { url: absoluteUrl(`/bible/${bookSlug(b)}`), changeFrequency: "yearly" as const, priority: 0.4 },
+    ...Array.from({ length: b.chapters }, (_, i) => ({ url: absoluteUrl(`/bible/${bookSlug(b)}/${i + 1}`), changeFrequency: "yearly" as const, priority: 0.3 })),
+  ]);
 
   const collections: MetadataRoute.Sitemap = CATEGORIES.map((c) => {
     const inCat = testimonies.filter((t) => t.category === c.name);
@@ -43,5 +50,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
-  return [...staticPages, ...collections, ...entries];
+  return [...staticPages, ...collections, ...entries, ...bible];
 }

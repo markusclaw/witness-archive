@@ -62,3 +62,18 @@ export async function getPassage(ref: Reference, language: string): Promise<Pass
     truncated,
   };
 }
+
+/** A whole chapter in the translation for a reader language. Empty when not seeded. */
+export async function getChapter(book: number, chapter: number, language: string): Promise<{ translation: { code: string; name: string; language: string }; verses: { verse: number; text: string }[] }> {
+  const t = translationFor(language);
+  const { data, error } = await createServerSupabase()
+    .from("bible_verses")
+    .select("verse, text")
+    .eq("translation", t.code)
+    .eq("book", book)
+    .eq("chapter", chapter)
+    .order("verse")
+    .limit(200);
+  if (error) console.error("getChapter:", error.message);
+  return { translation: t, verses: (data ?? []) as { verse: number; text: string }[] };
+}

@@ -464,3 +464,41 @@ body:has(.writing-focus)::before {
 .paper-title-ghost:hover {
   color: var(--color-parchment-500);
 }
+
+/* Bible reader: verse numbers as small gold superscripts; a selected passage glows. */
+.prose-chapter p:first-of-type::first-letter {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  float: none;
+  padding: 0;
+  color: inherit;
+}
+.verse {
+  border-radius: 0.25rem;
+  transition: background-color 0.3s;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.verse-hit {
+  background: rgb(201 163 90 / 0.14);
+  color: var(--color-parchment-50);
+  padding: 0.05em 0.2em;
+  margin: 0 -0.2em;
+}
+.verse-num {
+  font: inherit;
+  font-size: 0.6em;
+  position: relative;
+  top: -0.55em;
+  line-height: 1;
+  padding: 0.1em 0.15em;
+  color: var(--color-gold-400);
+  margin-right: 0.35em;
+  cursor: pointer;
+  opacity: 0.85;
+}
+.verse-num:hover {
+  color: var(--color-gold-200, var(--color-gold-300));
+  opacity: 1;
+}
