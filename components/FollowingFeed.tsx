@@ -68,7 +68,7 @@ export default function FollowingFeed() {
       {items.length === 0 ? (
         <p className="text-parchment-500">Nothing published yet from the people you follow.</p>
       ) : (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="feed grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((t) => (
             <TestimonyCard key={t.id} testimony={t} />
           ))}

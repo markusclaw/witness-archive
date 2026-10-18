@@ -90,7 +90,7 @@ export default async function CollectionPage({ params }: { params: Params }) {
           <Link href="/submit" className="btn btn-primary mt-6">Write your testimony</Link>
         </div>
       ) : (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="feed grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((t, i) => (
             <TestimonyCard key={t.id} testimony={t} priority={i < 3} />
           ))}

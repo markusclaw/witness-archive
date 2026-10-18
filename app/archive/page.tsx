@@ -33,11 +33,11 @@ export default async function ArchivePage({ searchParams }: { searchParams: Sear
   const testimonies = await getAllTestimonies();
 
   return (
-    <main className="mx-auto max-w-6xl px-5 py-16">
-      <div className="mb-10 max-w-3xl">
-        <p className="eyebrow mb-3">The archive</p>
-        <h1 className="font-display text-4xl text-parchment-50 sm:text-5xl">Every testimony</h1>
-        <p className="mt-4 text-lg leading-relaxed text-parchment-500">
+    <main className="mx-auto max-w-6xl px-5 pb-16 pt-5 sm:py-16">
+      <div className="mb-3 max-w-3xl sm:mb-10">
+        <p className="eyebrow mb-3 hidden sm:block">The archive</p>
+        <h1 className="font-display text-2xl text-parchment-50 sm:text-5xl">Every testimony</h1>
+        <p className="mt-4 hidden text-lg sm:block leading-relaxed text-parchment-500">
           Search by title, name, or keyword, or narrow the archive to a single kind of encounter.
         </p>
       </div>

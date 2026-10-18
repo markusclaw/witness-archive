@@ -629,3 +629,18 @@ body:has(.wa-sheet) .wa-bottombar { display: none; }
 .verse-hit .verse-num {
   opacity: 1;
 }
+
+/* Phones: lists of testimonies read as a feed — pictures edge to edge,
+   no card frames, like a video app. Tablet and up keep the card grid. */
+@media (max-width: 639px) {
+  .feed { row-gap: 1.5rem; }
+  .feed .feed-card {
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    margin-inline: calc(50% - 50vw);
+  }
+}
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }

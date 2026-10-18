@@ -69,7 +69,7 @@ export default async function Home() {
             The archive is being assembled. The first testimonies will appear here soon.
           </div>
         ) : (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="feed grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {recent.map((t, i) => (
               <TestimonyCard key={t.id} testimony={t} priority={i === 0} />
             ))}
@@ -82,7 +82,7 @@ export default async function Home() {
         <section className="mx-auto max-w-6xl px-5 pb-20">
           <p className="eyebrow mb-3">Most read this week</p>
           <h2 className="font-display mb-10 text-3xl text-parchment-50 sm:text-4xl">What people are turning to</h2>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="feed grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {trending.map((t) => (
               <TestimonyCard key={t.id} testimony={t} />
             ))}
