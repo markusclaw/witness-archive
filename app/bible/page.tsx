@@ -49,6 +49,9 @@ export default async function BiblePage({ searchParams }: { searchParams: Search
         </Suspense>
       </div>
       <GoToBar lang={lang} placeholder={ui.goTo} />
+      <p className="mt-3 text-right text-sm">
+        <Link href="/bible/notes" className="text-parchment-500 hover:text-gold-300" lang={lang}>{ui.myNotes} →</Link>
+      </p>
 
       <section className="mt-10">
         <h2 className="font-display text-2xl text-parchment-100" lang={lang}>{ui.ot}</h2>

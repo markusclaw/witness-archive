@@ -557,6 +557,24 @@ body:has(.wa-sheet) .wa-bottombar { display: none; }
 .verse-hit[class*="hl-"] .verse-num {
   color: var(--color-ink-950);
 }
+/* A note marker after the last verse of a noted passage. */
+.note-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: -0.2rem 0.25rem 0 0;
+  border-radius: 9999px;
+  color: var(--color-gold-400);
+  background: rgb(201 163 90 / 0.12);
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+.note-mark:hover { background: rgb(201 163 90 / 0.25); color: var(--color-gold-200, var(--color-gold-300)); }
+.verse[class*="hl-"] .note-mark { color: var(--color-ink-950); background: rgb(0 0 0 / 0.12); }
+
 /* Tappable words in the original line. */
 .ow {
   font: inherit;

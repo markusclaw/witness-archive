@@ -6,6 +6,8 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { track } from "@/lib/analytics";
 import { HIGHLIGHT_COLORS, loadHighlights, setHighlight, type ChapterHighlights, type HighlightColor } from "@/lib/highlights";
 import WordCard from "@/components/WordCard";
+import NoteSheet from "@/components/NoteSheet";
+import { loadChapterNotes, type VerseNote } from "@/lib/notes";
 import type { OriginalWord } from "@/lib/bible";
 
 /**
@@ -41,12 +43,16 @@ export default function ChapterText({
   const anchor = useRef<number | null>(null);
   const [marks, setMarks] = useState<ChapterHighlights>({});
   const [openWord, setOpenWord] = useState<{ word: OriginalWord; verse: number } | null>(null);
+  const [notes, setNotes] = useState<VerseNote[]>([]);
+  /** The note sheet: the passage it's about, and the note being edited (if any). */
+  const [noteFor, setNoteFor] = useState<{ start: number; end: number; existing: VerseNote | null } | null>(null);
   const ui = UI[lang] ?? UI.en;
 
   // The reader's own highlighter marks for this chapter.
   useEffect(() => {
     let cancelled = false;
     loadHighlights(bookIndex, chapter).then(({ marks }) => !cancelled && setMarks(marks));
+    loadChapterNotes(bookIndex, chapter).then((n) => !cancelled && setNotes(n));
     return () => {
       cancelled = true;
     };
@@ -101,6 +107,15 @@ export default function ChapterText({
     .filter((v) => selected.has(v.verse))
     .map((v) => (selected.size > 1 ? `${v.verse} ${v.text}` : v.text))
     .join(" ");
+
+  const openNoteForSelection = () => {
+    const sorted = [...selected].sort((a, b) => a - b);
+    const start = sorted[0];
+    const end = sorted[sorted.length - 1];
+    const existing = notes.find((n) => n.verse_start === start && n.verse_end === end) ?? null;
+    setNoteFor({ start, end, existing });
+    track("scripture_share", { reference, action: existing ? "note_open" : "note_new" });
+  };
 
   const paint = (color: HighlightColor | null) => {
     const verses = [...selected];
@@ -190,6 +205,23 @@ export default function ChapterText({
               >
                 <span className="verse-num" aria-hidden>{v.verse}</span>
                 {v.text}{" "}
+                {notes
+                  .filter((n) => n.verse_end === v.verse)
+                  .map((n) => (
+                    <button
+                      key={n.id}
+                      type="button"
+                      className="note-mark"
+                      aria-label={`${ui.openNote}: ${book} ${chapter}:${n.verse_start}${n.verse_end !== n.verse_start ? `–${n.verse_end}` : ""}`}
+                      title={n.body.length > 120 ? n.body.slice(0, 120) + "…" : n.body}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setNoteFor({ start: n.verse_start, end: n.verse_end, existing: n });
+                      }}
+                    >
+                      <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9zM14 3v6h6M8 13h8M8 17h5" /></svg>
+                    </button>
+                  ))}
                 {original?.verses[v.verse] && (
                   <span className={`verse-original ${original.language === "he" ? "verse-he" : "verse-el"}`} lang={original.language} dir={original.language === "he" ? "rtl" : "ltr"}>
                     {original.words[v.verse]?.length
@@ -218,9 +250,28 @@ export default function ChapterText({
         {ui.hint}
         {original && ` ${ui.wordHint}`}
       </p>
+      {noteFor && (
+        <NoteSheet
+          reference={`${book} ${chapter}:${noteFor.start}${noteFor.end !== noteFor.start ? `–${noteFor.end}` : ""}`}
+          quote={verses.filter((v) => v.verse >= noteFor.start && v.verse <= noteFor.end).map((v) => v.text).join(" ")}
+          existing={noteFor.existing}
+          anchor={{ book: bookIndex, chapter, verse_start: noteFor.start, verse_end: noteFor.end }}
+          lang={lang}
+          onSaved={(n) => {
+            setNotes((all) => [...all.filter((x) => x.id !== n.id), n]);
+            setNoteFor(null);
+            clear();
+          }}
+          onDeleted={(id) => {
+            setNotes((all) => all.filter((x) => x.id !== id));
+            setNoteFor(null);
+          }}
+          onClose={() => setNoteFor(null)}
+        />
+      )}
       {openWord && original && <WordCard word={openWord.word} language={original.language} at={{ book: bookIndex, chapter, verse: openWord.verse }} onClose={() => setOpenWord(null)} />}
 
-      {selected.size > 0 && (
+      {selected.size > 0 && !noteFor && (
         <div className="wa-sheet fixed inset-x-0 bottom-4 z-40 flex justify-center px-4" role="toolbar" aria-label={reference}>
           <div className="flex max-w-full flex-wrap items-center gap-1 rounded-2xl border border-ink-500 bg-ink-900/95 px-3 py-2 shadow-2xl shadow-black/60 backdrop-blur-md">
             <span className="font-display mr-2 truncate text-base text-parchment-50" lang={lang}>{reference}</span>
@@ -234,6 +285,9 @@ export default function ChapterText({
                 </button>
               )}
             </span>
+            <button type="button" onClick={openNoteForSelection} className="btn btn-ghost !h-8 !px-3 !text-xs">
+              {notes.some((n) => n.verse_start === Math.min(...selected) && n.verse_end === Math.max(...selected)) ? ui.editNote : ui.addNote}
+            </button>
             <button type="button" onClick={copyText} className="btn btn-ghost !h-8 !px-3 !text-xs">
               {copied === "text" ? ui.copied : ui.copy}
             </button>
@@ -283,8 +337,8 @@ function formatSel(s: Set<number>): string {
   return parts.join(",");
 }
 
-const UI: Record<string, { wordHint: string; highlight: string; removeHighlight: string; colors: Record<HighlightColor, string>; hint: string; copy: string; copied: string; share: string; linkCopied: string; ask: string; write: string; clear: string; askQuestion: (ref: string) => string }> = {
-  en: { wordHint: "Tap any Hebrew or Greek word for its root and meaning.", highlight: "Highlight", removeHighlight: "Remove highlight", colors: { yellow: "Yellow", green: "Green", blue: "Blue", pink: "Pink", violet: "Violet" }, hint: "Click a verse to select it; click more to add, or hold Shift to select a run. Pick a color to keep a highlight; sign in and it follows you to any device.", copy: "Copy", copied: "Copied", share: "Share", linkCopied: "Link copied", ask: "Ask about this", write: "Write a testimony", clear: "Clear selection", askQuestion: (ref) => `Which testimonies speak to ${ref}, and what does this passage say?` },
-  es: { wordHint: "Toca cualquier palabra hebrea o griega para ver su raíz y significado.", highlight: "Resaltar", removeHighlight: "Quitar resaltado", colors: { yellow: "Amarillo", green: "Verde", blue: "Azul", pink: "Rosa", violet: "Violeta" }, hint: "Haz clic en un versículo para seleccionarlo; sigue haciendo clic para añadir, o mantén Shift para un rango. Elige un color para guardar un resaltado; con sesión iniciada te sigue a cualquier dispositivo.", copy: "Copiar", copied: "Copiado", share: "Compartir", linkCopied: "Enlace copiado", ask: "Preguntar sobre esto", write: "Escribir un testimonio", clear: "Quitar selección", askQuestion: (ref) => `¿Qué testimonios hablan de ${ref} y qué dice este pasaje?` },
-  pt: { wordHint: "Toque em qualquer palavra hebraica ou grega para ver sua raiz e significado.", highlight: "Destacar", removeHighlight: "Remover destaque", colors: { yellow: "Amarelo", green: "Verde", blue: "Azul", pink: "Rosa", violet: "Violeta" }, hint: "Clique num versículo para selecioná-lo; continue clicando para adicionar, ou segure Shift para um trecho. Escolha uma cor para guardar um destaque; com sessão iniciada ele segue você em qualquer dispositivo.", copy: "Copiar", copied: "Copiado", share: "Compartilhar", linkCopied: "Link copiado", ask: "Perguntar sobre isto", write: "Escrever um testemunho", clear: "Limpar seleção", askQuestion: (ref) => `Quais testemunhos falam de ${ref} e o que diz esta passagem?` },
+const UI: Record<string, { addNote: string; editNote: string; openNote: string; wordHint: string; highlight: string; removeHighlight: string; colors: Record<HighlightColor, string>; hint: string; copy: string; copied: string; share: string; linkCopied: string; ask: string; write: string; clear: string; askQuestion: (ref: string) => string }> = {
+  en: { addNote: "Note", editNote: "Edit note", openNote: "Your note on", wordHint: "Tap any Hebrew or Greek word for its root and meaning.", highlight: "Highlight", removeHighlight: "Remove highlight", colors: { yellow: "Yellow", green: "Green", blue: "Blue", pink: "Pink", violet: "Violet" }, hint: "Click a verse to select it; click more to add, or hold Shift to select a run. Pick a color to keep a highlight, or add a note; sign in and they follow you to any device.", copy: "Copy", copied: "Copied", share: "Share", linkCopied: "Link copied", ask: "Ask about this", write: "Write a testimony", clear: "Clear selection", askQuestion: (ref) => `Which testimonies speak to ${ref}, and what does this passage say?` },
+  es: { addNote: "Nota", editNote: "Editar nota", openNote: "Tu nota sobre", wordHint: "Toca cualquier palabra hebrea o griega para ver su raíz y significado.", highlight: "Resaltar", removeHighlight: "Quitar resaltado", colors: { yellow: "Amarillo", green: "Verde", blue: "Azul", pink: "Rosa", violet: "Violeta" }, hint: "Haz clic en un versículo para seleccionarlo; sigue haciendo clic para añadir, o mantén Shift para un rango. Elige un color para guardar un resaltado, o añade una nota; con sesión iniciada te siguen a cualquier dispositivo.", copy: "Copiar", copied: "Copiado", share: "Compartir", linkCopied: "Enlace copiado", ask: "Preguntar sobre esto", write: "Escribir un testimonio", clear: "Quitar selección", askQuestion: (ref) => `¿Qué testimonios hablan de ${ref} y qué dice este pasaje?` },
+  pt: { addNote: "Nota", editNote: "Editar nota", openNote: "Sua nota sobre", wordHint: "Toque em qualquer palavra hebraica ou grega para ver sua raiz e significado.", highlight: "Destacar", removeHighlight: "Remover destaque", colors: { yellow: "Amarelo", green: "Verde", blue: "Azul", pink: "Rosa", violet: "Violeta" }, hint: "Clique num versículo para selecioná-lo; continue clicando para adicionar, ou segure Shift para um trecho. Escolha uma cor para guardar um destaque, ou adicione uma nota; com sessão iniciada eles seguem você em qualquer dispositivo.", copy: "Copiar", copied: "Copiado", share: "Compartilhar", linkCopied: "Link copiado", ask: "Perguntar sobre isto", write: "Escrever um testemunho", clear: "Limpar seleção", askQuestion: (ref) => `Quais testemunhos falam de ${ref} e o que diz esta passagem?` },
 };

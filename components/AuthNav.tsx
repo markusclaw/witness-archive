@@ -98,6 +98,7 @@ export default function AuthNav() {
             <MenuLink href="/about" label="About" />
             <MenuLink href="/following" label="Following" />
             <MenuLink href="/me" label="My testimonies" />
+            <MenuLink href="/bible/notes" label="My Bible notes" />
             <MenuLink href="/submit" label="Write a testimony" />
             <MenuLink href="/settings" label="Settings" />
           </div>
