@@ -81,7 +81,8 @@ export default async function ChapterPage({ params, searchParams }: { params: Pa
         <Link href={`/bible${q}`} className="hover:text-gold-300">{ui.bible}</Link> / <Link href={`/bible/${bookSlug(b)}${q}`} className="hover:text-gold-300" lang={lang}>{name}</Link>
       </p>
       <ChapterTitle lang={lang} book={b.index} chapter={chapter} name={name} />
-      <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
+      <p className="mt-2 text-xs text-parchment-700 sm:hidden">{translation.name}{showOriginal && ` · ${originalInfo.name}`}</p>
+      <div className="mt-5 hidden flex-wrap items-center justify-between gap-3 sm:flex">
         <Suspense>
           <BibleLanguagePicker current={lang} label={ui.readIn} translationName={translation.name} />
         </Suspense>
@@ -90,7 +91,7 @@ export default async function ChapterPage({ params, searchParams }: { params: Pa
             <OriginalToggle on={showOriginal} label={ui.original} script={originalInfo.script} />
           </Suspense>
           <span>{verses.length} {ui.verses}</span>
-          <span className="hidden sm:inline-flex"><TextSizeButton label={ui.textSize} /></span>
+          <TextSizeButton label={ui.textSize} />
         </span>
       </div>
 
@@ -134,7 +135,7 @@ export default async function ChapterPage({ params, searchParams }: { params: Pa
         name={name}
         prev={prev ? { href: `/bible/${bookSlug(prev.book)}/${prev.chapter}${q}`, label: `${prev.book.names[lang] ?? prev.book.names.en} ${prev.chapter}` } : null}
         next={next ? { href: `/bible/${bookSlug(next.book)}/${next.chapter}${q}`, label: `${next.book.names[lang] ?? next.book.names.en} ${next.chapter}` } : null}
-        sizeLabel={ui.textSize}
+        settings={{ lang, showOriginal, script: originalInfo.script, labels: { title: ui.readingSettings, textSize: ui.textSize, readIn: ui.readIn, original: ui.original, done: ui.done } }}
       />
       <p className="mt-6 text-[0.7rem] text-parchment-700">
         {translation.name} · public domain

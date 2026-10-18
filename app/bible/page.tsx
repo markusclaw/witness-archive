@@ -43,7 +43,7 @@ export default async function BiblePage({ searchParams }: { searchParams: Search
       </Suspense>
       <p className="eyebrow mb-3">Scripture</p>
       <h1 className="font-display text-4xl font-light leading-tight text-parchment-50 sm:text-5xl" lang={lang}>{ui.bible}</h1>
-      <div className="mt-5">
+      <div className="mt-5 hidden sm:block">
         <Suspense>
           <BibleLanguagePicker current={lang} label={ui.readIn} translationName={t.name} />
         </Suspense>

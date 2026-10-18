@@ -41,7 +41,7 @@ export default async function BookPage({ params, searchParams }: { params: Param
         <Link href={`/bible${q}`} className="hover:text-gold-300">{ui.bible}</Link> / <span lang={lang}>{b.index < OT_COUNT ? ui.ot : ui.nt}</span>
       </p>
       <h1 className="font-display mt-4 text-4xl font-light leading-tight text-parchment-50 sm:text-5xl" lang={lang}>{name}</h1>
-      <div className="mt-5">
+      <div className="mt-5 hidden sm:block">
         <Suspense>
           <BibleLanguagePicker current={lang} label={ui.readIn} translationName={t.name} />
         </Suspense>

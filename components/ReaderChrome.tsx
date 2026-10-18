@@ -2,8 +2,10 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import BiblePicker from "@/components/BiblePicker";
+import { LANGUAGES } from "@/lib/languages";
+import { TRANSLATION_FOR_LANGUAGE } from "@/lib/scripture";
 
 /**
  * The reader's navigation furniture: a tappable chapter title that opens the
@@ -12,6 +14,92 @@ import BiblePicker from "@/components/BiblePicker";
  */
 
 type Neighbour = { href: string; label: string } | null;
+
+/** What the phone's reading-settings sheet needs: language, original text, size. */
+export interface ReadingSettingsProps {
+  lang: string;
+  showOriginal: boolean;
+  script: string;
+  labels: { title: string; textSize: string; readIn: string; original: string; done: string };
+}
+
+/**
+ * Phones: one sheet behind the Aa button for everything about how the page
+ * reads — text size, language, and the original Hebrew/Greek — instead of a
+ * row of controls above the text.
+ */
+function ReadingSettings({ open, onClose, lang, showOriginal, script, labels }: ReadingSettingsProps & { open: boolean; onClose: () => void }) {
+  const pathname = usePathname();
+  const params = useSearchParams();
+  const [size, setSize] = useState<Size>("m");
+  useEffect(() => {
+    if (!open) return;
+    queueMicrotask(() => setSize(readSize()));
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open, onClose]);
+  if (!open) return null;
+
+  const withParams = (patch: Record<string, string | null>) => {
+    const q = new URLSearchParams(params.toString());
+    for (const [k, v] of Object.entries(patch)) {
+      if (v === null) q.delete(k);
+      else q.set(k, v);
+    }
+    const s = q.toString();
+    return s ? `${pathname}?${s}` : pathname;
+  };
+  const remember = (code: string) => {
+    try {
+      window.localStorage.setItem("wa:lang", code);
+    } catch {
+      /* ignore */
+    }
+  };
+  const pill = (active: boolean) => `flex h-11 flex-1 items-center justify-center rounded-xl border text-sm transition ${active ? "border-gold-500 bg-gold-500/15 text-gold-300" : "border-ink-600 text-parchment-200 active:bg-ink-800"}`;
+
+  return (
+    <div className="wa-sheet fixed inset-0 z-50 flex items-end justify-center" role="dialog" aria-modal="true" aria-label={labels.title}>
+      <button type="button" aria-label={labels.done} onClick={onClose} className="absolute inset-0 bg-ink-950/60" />
+      <div className="relative w-full max-w-lg rounded-t-2xl border border-ink-500 bg-ink-900 p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] shadow-2xl shadow-black/60">
+        <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-ink-600" aria-hidden />
+        <p className="eyebrow mb-2">{labels.textSize}</p>
+        <div className="flex gap-2">
+          {SIZES.map((s, i) => (
+            <button key={s} type="button" onClick={() => { setSize(s); applySize(s); }} className={pill(size === s)} aria-pressed={size === s}>
+              <span style={{ fontSize: `${0.8 + i * 0.18}rem` }}>Aa</span>
+            </button>
+          ))}
+        </div>
+        <p className="eyebrow mb-2 mt-5">{labels.readIn}</p>
+        <div className="flex gap-2">
+          {LANGUAGES.filter((l) => TRANSLATION_FOR_LANGUAGE[l.code]).map((l) => (
+            <Link key={l.code} href={withParams({ lang: l.code === "en" ? null : l.code })} onClick={() => { remember(l.code); onClose(); }} className={pill(l.code === lang)} lang={l.code} scroll={false}>
+              {l.nativeName}
+            </Link>
+          ))}
+        </div>
+        <Link
+          href={withParams({ orig: showOriginal ? null : "1" })}
+          onClick={onClose}
+          scroll={false}
+          role="switch"
+          aria-checked={showOriginal}
+          className="mt-5 flex items-center justify-between rounded-xl border border-ink-600 px-4 py-3 text-parchment-100 active:bg-ink-800"
+        >
+          <span>
+            {labels.original} <span className="text-parchment-500">· {script}</span>
+          </span>
+          <span className={`relative h-6 w-10 rounded-full transition ${showOriginal ? "bg-gold-500" : "bg-ink-600"}`} aria-hidden>
+            <span className={`absolute top-0.5 h-5 w-5 rounded-full bg-parchment-50 transition-all ${showOriginal ? "left-[1.1rem]" : "left-0.5"}`} />
+          </span>
+        </Link>
+        <button type="button" onClick={onClose} className="btn btn-ghost mt-5 w-full !h-11">{labels.done}</button>
+      </div>
+    </div>
+  );
+}
 
 const SIZES = ["s", "m", "l", "xl"] as const;
 type Size = (typeof SIZES)[number];
@@ -81,9 +169,11 @@ export function ChapterTitle({ lang, book, chapter, name }: { lang: string; book
   );
 }
 
-export function MobileChapterBar({ lang, book, chapter, name, prev, next, sizeLabel }: { lang: string; book: number; chapter: number; name: string; prev: Neighbour; next: Neighbour; sizeLabel: string }) {
+export function MobileChapterBar({ lang, book, chapter, name, prev, next, settings }: { lang: string; book: number; chapter: number; name: string; prev: Neighbour; next: Neighbour; settings: ReadingSettingsProps }) {
   const [open, setOpen] = useState(false);
   const close = useCallback(() => setOpen(false), []);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const closeSettings = useCallback(() => setSettingsOpen(false), []);
   const router = useRouter();
 
   // Tell the mini player how tall we are on phones.
@@ -139,7 +229,11 @@ export function MobileChapterBar({ lang, book, chapter, name, prev, next, sizeLa
             <span className="truncate">{name} {chapter}</span>
             <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0 text-parchment-500" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden><path d="M6 9l6 6 6-6" /></svg>
           </button>
-          <TextSizeButton label={sizeLabel} />
+          <button type="button" onClick={() => setSettingsOpen(true)} aria-haspopup="dialog" aria-label={settings.labels.title} className="flex h-12 min-w-12 items-center justify-center rounded-full px-2 text-parchment-300 active:bg-ink-800">
+            <span className="text-[0.75rem]">A</span>
+            <span className="text-[1.15rem]">a</span>
+            {settings.lang !== "en" && <span className="ml-1 text-[0.6rem] uppercase text-gold-400">{settings.lang}</span>}
+          </button>
           {next ? (
             <Link href={next.href} rel="next" aria-label={next.label} className="flex h-12 w-12 items-center justify-center rounded-full text-parchment-300 active:bg-ink-800">
               <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden><path d="M9 6l6 6-6 6" /></svg>
@@ -148,6 +242,7 @@ export function MobileChapterBar({ lang, book, chapter, name, prev, next, sizeLa
         </div>
       </div>
       <BiblePicker open={open} onClose={close} lang={lang} book={book} chapter={chapter} />
+      <ReadingSettings open={settingsOpen} onClose={closeSettings} {...settings} />
     </>
   );
 }
