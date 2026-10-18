@@ -105,7 +105,7 @@ export default async function ChapterPage({ params, searchParams }: { params: Pa
         )}
       </div>
 
-      <div className="mt-12 border-t border-ink-700 pt-6">{nav}</div>
+      <div className="mt-12 hidden border-t border-ink-700 pt-6 sm:block">{nav}</div>
 
       <section className="mt-14" aria-labelledby="mentions">
         <h2 id="mentions" className="eyebrow" lang={lang}>{ui.mentions}</h2>

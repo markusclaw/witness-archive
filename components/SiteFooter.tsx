@@ -4,8 +4,16 @@ import { CATEGORIES } from "@/lib/categories";
 
 export default function SiteFooter() {
   return (
-    <footer className="mt-24 border-t border-ink-700 bg-ink-950">
-      <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-[1.5fr_1fr_1fr]">
+    <footer className="site-footer mt-12 border-t border-ink-700 bg-ink-950 sm:mt-24">
+      {/* Phones: the tab bar already carries the sections, so the footer is one quiet line. */}
+      <div className="flex items-center justify-between gap-4 px-5 py-5 text-xs text-parchment-700 sm:hidden">
+        <span>&copy; {new Date().getFullYear()} Witness Archive</span>
+        <span className="flex gap-4">
+          <Link href="/about" className="hover:text-gold-300">About</Link>
+          <Link href="/archive" className="hover:text-gold-300">Collections</Link>
+        </span>
+      </div>
+      <div className="mx-auto hidden max-w-6xl gap-10 px-5 py-14 sm:grid md:grid-cols-[1.5fr_1fr_1fr]">
         <div>
           <div className="flex items-center gap-3">
             <Logo className="h-6 w-6 text-gold-500" />
@@ -40,7 +48,7 @@ export default function SiteFooter() {
           </ul>
         </div>
       </div>
-      <div className="border-t border-ink-800">
+      <div className="hidden border-t border-ink-800 sm:block">
         <div className="mx-auto flex max-w-6xl flex-col gap-2 px-5 py-6 text-xs text-parchment-700 sm:flex-row sm:justify-between">
           <p>&copy; {new Date().getFullYear()} Witness Archive. Testimonies are shared with permission or embedded from their public source.</p>
           <p>Videos remain the property of their original creators.</p>

@@ -470,6 +470,11 @@ html[data-textsize="s"] .prose-chapter { font-size: 0.95rem; }
 html[data-textsize="l"] .prose-chapter { font-size: 1.22rem; }
 html[data-textsize="xl"] .prose-chapter { font-size: 1.4rem; line-height: 1.75; }
 
+/* Reading a chapter on a phone is full-screen: no footer under the text. */
+@media (max-width: 639px) {
+  body:has(.wa-bottombar) .site-footer { display: none; }
+}
+
 /* The phone's chapter bar steps aside while a selection toolbar or word card is up. */
 body:has(.wa-sheet) .wa-bottombar { display: none; }
 

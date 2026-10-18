@@ -246,7 +246,7 @@ export default function ChapterText({
           })}
         </p>
       </div>
-      <p className="mt-4 text-xs text-parchment-700" lang={lang}>
+      <p className="mt-4 hidden text-xs text-parchment-700 sm:block" lang={lang}>
         {ui.hint}
         {original && ` ${ui.wordHint}`}
       </p>
