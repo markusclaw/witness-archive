@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { BIBLE_UI, BOOKS, OT_COUNT, TRANSLATION_FOR_LANGUAGE, bookSlug, translationFor } from "@/lib/scripture";
 import { BibleLanguagePicker, BibleLanguageSync } from "@/components/BibleLanguage";
+import { GoToBar } from "@/components/ReaderChrome";
 
 export const metadata: Metadata = {
   title: "The Bible",
@@ -47,6 +48,7 @@ export default async function BiblePage({ searchParams }: { searchParams: Search
           <BibleLanguagePicker current={lang} label={ui.readIn} translationName={t.name} />
         </Suspense>
       </div>
+      <GoToBar lang={lang} placeholder={ui.goTo} />
 
       <section className="mt-10">
         <h2 className="font-display text-2xl text-parchment-100" lang={lang}>{ui.ot}</h2>

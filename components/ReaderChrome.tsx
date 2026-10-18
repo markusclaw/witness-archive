@@ -139,3 +139,18 @@ export function MobileChapterBar({ lang, book, chapter, name, prev, next, sizeLa
     </>
   );
 }
+
+/** A search-box-shaped button on the index and book pages that opens the go-to sheet. */
+export function GoToBar({ lang, book = 0, placeholder }: { lang: string; book?: number; placeholder: string }) {
+  const [open, setOpen] = useState(false);
+  const close = useCallback(() => setOpen(false), []);
+  return (
+    <>
+      <button type="button" onClick={() => setOpen(true)} aria-haspopup="dialog" className="mt-6 flex w-full items-center gap-3 rounded-xl border border-ink-600 bg-ink-900/70 px-4 py-3 text-left text-parchment-500 transition hover:border-ink-500 hover:text-parchment-300">
+        <svg viewBox="0 0 24 24" className="h-5 w-5 shrink-0" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" /></svg>
+        <span className="truncate">{placeholder}</span>
+      </button>
+      <BiblePicker open={open} onClose={close} lang={lang} book={book} chapter={0} />
+    </>
+  );
+}

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { BIBLE_UI, OT_COUNT, TRANSLATION_FOR_LANGUAGE, bookBySlug, bookSlug, translationFor } from "@/lib/scripture";
 import { BibleLanguagePicker, BibleLanguageSync } from "@/components/BibleLanguage";
+import { GoToBar } from "@/components/ReaderChrome";
 import { getBookMentionCounts } from "@/lib/scripture-index";
 
 type Params = Promise<{ book: string }>;
@@ -45,6 +46,7 @@ export default async function BookPage({ params, searchParams }: { params: Param
           <BibleLanguagePicker current={lang} label={ui.readIn} translationName={t.name} />
         </Suspense>
       </div>
+      <GoToBar lang={lang} book={b.index} placeholder={ui.goTo} />
       <h2 className="eyebrow mt-10" lang={lang}>{ui.chapters}</h2>
       {total > 0 && (
         <p className="mt-1 text-xs text-parchment-700" lang={lang}>
