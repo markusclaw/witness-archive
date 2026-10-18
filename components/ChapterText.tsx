@@ -221,7 +221,7 @@ export default function ChapterText({
       {openWord && original && <WordCard word={openWord.word} language={original.language} at={{ book: bookIndex, chapter, verse: openWord.verse }} onClose={() => setOpenWord(null)} />}
 
       {selected.size > 0 && (
-        <div className="fixed inset-x-0 bottom-4 z-40 flex justify-center px-4" role="toolbar" aria-label={reference}>
+        <div className="wa-sheet fixed inset-x-0 bottom-4 z-40 flex justify-center px-4" role="toolbar" aria-label={reference}>
           <div className="flex max-w-full flex-wrap items-center gap-1 rounded-2xl border border-ink-500 bg-ink-900/95 px-3 py-2 shadow-2xl shadow-black/60 backdrop-blur-md">
             <span className="font-display mr-2 truncate text-base text-parchment-50" lang={lang}>{reference}</span>
             <span className="mr-1 flex items-center gap-1" role="group" aria-label={ui.highlight}>

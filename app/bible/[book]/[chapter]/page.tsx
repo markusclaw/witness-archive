@@ -6,6 +6,7 @@ import { BIBLE_UI, BOOKS, TRANSLATION_FOR_LANGUAGE, bookBySlug, bookSlug, origin
 import { getChapter, getChapterWords } from "@/lib/bible";
 import { BibleLanguagePicker, BibleLanguageSync, OriginalToggle } from "@/components/BibleLanguage";
 import ChapterText from "@/components/ChapterText";
+import { ChapterTitle, MobileChapterBar, TextSizeButton, TextSizeInit } from "@/components/ReaderChrome";
 import TestimonyCard from "@/components/TestimonyCard";
 import { getChapterMentions } from "@/lib/scripture-index";
 import { formatReference } from "@/lib/scripture";
@@ -71,16 +72,15 @@ export default async function ChapterPage({ params, searchParams }: { params: Pa
   );
 
   return (
-    <main className="mx-auto max-w-3xl px-5 py-12">
+    <main className="mx-auto max-w-3xl px-5 py-12 pb-24 sm:pb-12">
+      <TextSizeInit />
       <Suspense>
         <BibleLanguageSync current={lang} />
       </Suspense>
       <p className="text-xs text-parchment-500">
         <Link href={`/bible${q}`} className="hover:text-gold-300">{ui.bible}</Link> / <Link href={`/bible/${bookSlug(b)}${q}`} className="hover:text-gold-300" lang={lang}>{name}</Link>
       </p>
-      <h1 className="font-display mt-4 text-4xl font-light leading-tight text-parchment-50 sm:text-5xl" lang={lang}>
-        {name} {chapter}
-      </h1>
+      <ChapterTitle lang={lang} book={b.index} chapter={chapter} name={name} />
       <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
         <Suspense>
           <BibleLanguagePicker current={lang} label={ui.readIn} translationName={translation.name} />
@@ -90,6 +90,7 @@ export default async function ChapterPage({ params, searchParams }: { params: Pa
             <OriginalToggle on={showOriginal} label={ui.original} script={originalInfo.script} />
           </Suspense>
           <span>{verses.length} {ui.verses}</span>
+          <span className="hidden sm:inline-flex"><TextSizeButton label={ui.textSize} /></span>
         </span>
       </div>
 
@@ -126,6 +127,15 @@ export default async function ChapterPage({ params, searchParams }: { params: Pa
           <p className="mt-4 text-sm text-parchment-500" lang={lang}>{ui.mentionsNone}</p>
         )}
       </section>
+      <MobileChapterBar
+        lang={lang}
+        book={b.index}
+        chapter={chapter}
+        name={name}
+        prev={prev ? { href: `/bible/${bookSlug(prev.book)}/${prev.chapter}${q}`, label: `${prev.book.names[lang] ?? prev.book.names.en} ${prev.chapter}` } : null}
+        next={next ? { href: `/bible/${bookSlug(next.book)}/${next.chapter}${q}`, label: `${next.book.names[lang] ?? next.book.names.en} ${next.chapter}` } : null}
+        sizeLabel={ui.textSize}
+      />
       <p className="mt-6 text-[0.7rem] text-parchment-700">
         {translation.name} · public domain
         {original && <> · {originalInfo.name}{originalInfo.language === "el" ? " · CC BY 4.0, SBL & Logos" : " · public domain"}</>}

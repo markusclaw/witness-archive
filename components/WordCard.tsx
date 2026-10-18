@@ -56,7 +56,7 @@ export default function WordCard({
   const entry = info?.entry;
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 flex justify-center px-3 pb-3 sm:px-4 sm:pb-4" role="dialog" aria-label={word.t}>
+    <div className="wa-sheet fixed inset-x-0 bottom-0 z-50 flex justify-center px-3 pb-3 sm:px-4 sm:pb-4" role="dialog" aria-label={word.t}>
       <button type="button" className="fixed inset-0 -z-10 bg-ink-950/40" aria-label={ui.close} onClick={onClose} />
       <div className="w-full max-w-xl rounded-2xl border border-ink-500 bg-ink-900 p-5 shadow-2xl shadow-black/60">
         <div className="flex items-start justify-between gap-4">

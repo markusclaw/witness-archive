@@ -465,6 +465,14 @@ body:has(.writing-focus)::before {
   color: var(--color-parchment-500);
 }
 
+/* Bible reader text size (Aa button), remembered per browser. */
+html[data-textsize="s"] .prose-chapter { font-size: 0.95rem; }
+html[data-textsize="l"] .prose-chapter { font-size: 1.22rem; }
+html[data-textsize="xl"] .prose-chapter { font-size: 1.4rem; line-height: 1.75; }
+
+/* The phone's chapter bar steps aside while a selection toolbar or word card is up. */
+body:has(.wa-sheet) .wa-bottombar { display: none; }
+
 /* Bible reader: verse numbers as small gold superscripts; a selected passage glows. */
 .prose-chapter p:first-of-type::first-letter {
   font-family: inherit;
