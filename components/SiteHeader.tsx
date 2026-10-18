@@ -1,7 +1,6 @@
 import Link from "next/link";
 import AuthNav from "@/components/AuthNav";
 import Logo from "@/components/Logo";
-import MobileNav from "@/components/MobileNav";
 
 const NAV: { href: string; label: string }[] = [
   { href: "/ask", label: "Ask" },
@@ -30,7 +29,6 @@ export default function SiteHeader() {
             <span className="mx-1 h-5 w-px bg-ink-600" aria-hidden />
           </nav>
           <AuthNav />
-          <MobileNav items={[...NAV, { href: "/about", label: "About" }]} />
         </div>
       </div>
     </header>

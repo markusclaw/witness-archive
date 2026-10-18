@@ -86,6 +86,18 @@ export function MobileChapterBar({ lang, book, chapter, name, prev, next, sizeLa
   const close = useCallback(() => setOpen(false), []);
   const router = useRouter();
 
+  // Tell the mini player how tall we are on phones.
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 639px)");
+    const apply = () => document.documentElement.style.setProperty("--wa-bottom", mq.matches ? "3.5rem" : "0px");
+    apply();
+    mq.addEventListener("change", apply);
+    return () => {
+      mq.removeEventListener("change", apply);
+      document.documentElement.style.setProperty("--wa-bottom", "0px");
+    };
+  }, []);
+
   // Swipe between chapters (phones): a clear horizontal flick, not a scroll, not a text selection.
   useEffect(() => {
     let start: { x: number; y: number; t: number } | null = null;

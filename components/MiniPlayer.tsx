@@ -16,7 +16,7 @@ export default function MiniPlayer() {
   return (
     <>
       <div className="h-16" aria-hidden />
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-ink-700 bg-ink-950/95 backdrop-blur-md" role="region" aria-label="Now playing">
+    <div className="fixed inset-x-0 z-40 border-t border-ink-700 bg-ink-950/95 backdrop-blur-md" style={{ bottom: "var(--wa-bottom, 0px)" }} role="region" aria-label="Now playing">
       <div className="h-0.5 w-full bg-ink-700">
         <div className="h-full bg-gold-500 transition-[width]" style={{ width: `${pct}%` }} />
       </div>

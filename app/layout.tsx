@@ -6,6 +6,7 @@ import SiteFooter from "@/components/SiteFooter";
 import Analytics from "@/components/Analytics";
 import { PlayerProvider } from "@/components/PlayerProvider";
 import MiniPlayer from "@/components/MiniPlayer";
+import TabBar from "@/components/TabBar";
 import { gaInitScript } from "@/lib/analytics";
 import { DEFAULT_OG_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, SITE_URL, absoluteUrl } from "@/lib/seo";
 
@@ -115,6 +116,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div id="main" className="flex-1">{children}</div>
           <SiteFooter />
           <MiniPlayer />
+          <TabBar />
         </PlayerProvider>
         {GA_ID && (
           <Suspense>
