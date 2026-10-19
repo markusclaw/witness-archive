@@ -42,7 +42,14 @@ for (const v of draft.verses) {
   const [chapter, verse] = v.ref.split(":").map(Number);
   const existing = now.get(v.ref);
   if (existing && existing.text === v.text) {
+    // Same text: just refresh its automatic checks (e.g. after check.mjs --ai).
     same++;
+    const mine = (report?.checks ?? []).filter((c) => c.ref === v.ref);
+    if (mine.length && existing.revision_id) {
+      await db.from("translation_checks").delete().eq("revision_id", existing.revision_id);
+      const { error: cErr } = await db.from("translation_checks").insert(mine.map((c) => ({ revision_id: existing.revision_id, translation: TRANSLATION, book, chapter, verse, kind: c.kind, severity: c.severity, message: c.message, data: c.data ?? {} })));
+      if (cErr) console.error(`${v.ref} checks: ${cErr.message}`);
+    }
     continue;
   }
   const { data: rev, error: rErr } = await db
@@ -83,4 +90,4 @@ for (const v of draft.verses) {
     if (cErr) console.error(`${v.ref} checks: ${cErr.message}`);
   }
 }
-console.log(`${OSIS[book]}: ${added} new revisions${kept ? ` (${kept} verses kept their reviewed text)` : ""}, ${same} unchanged.`);
+console.log(`${OSIS[book]}: ${added} new revisions${kept ? ` (${kept} verses kept their reviewed text)` : ""}, ${same} unchanged (checks refreshed).`);
