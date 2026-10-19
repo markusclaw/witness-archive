@@ -35,19 +35,25 @@ if (error) {
 }
 const now = new Map((current ?? []).map((r) => [`${r.chapter}:${r.verse}`, r]));
 
+// The latest AI draft of each verse, so re-importing the same draft is a no-op
+// even for verses a reviewer has since edited.
+const { data: drafts } = await db.from("translation_revisions").select("id, chapter, verse, text, created_at").eq("translation", TRANSLATION).eq("book", book).eq("kind", "ai_draft").order("created_at");
+const lastDraft = new Map((drafts ?? []).map((r) => [`${r.chapter}:${r.verse}`, r]));
+
 let added = 0;
 let kept = 0;
 let same = 0;
 for (const v of draft.verses) {
   const [chapter, verse] = v.ref.split(":").map(Number);
   const existing = now.get(v.ref);
-  if (existing && existing.text === v.text) {
-    // Same text: just refresh its automatic checks (e.g. after check.mjs --ai).
+  const prior = lastDraft.get(v.ref);
+  if (prior && prior.text === v.text) {
+    // Already imported: just refresh its automatic checks (e.g. after check.mjs --ai).
     same++;
     const mine = (report?.checks ?? []).filter((c) => c.ref === v.ref);
-    if (mine.length && existing.revision_id) {
-      await db.from("translation_checks").delete().eq("revision_id", existing.revision_id);
-      const { error: cErr } = await db.from("translation_checks").insert(mine.map((c) => ({ revision_id: existing.revision_id, translation: TRANSLATION, book, chapter, verse, kind: c.kind, severity: c.severity, message: c.message, data: c.data ?? {} })));
+    if (mine.length) {
+      await db.from("translation_checks").delete().eq("revision_id", prior.id);
+      const { error: cErr } = await db.from("translation_checks").insert(mine.map((c) => ({ revision_id: prior.id, translation: TRANSLATION, book, chapter, verse, kind: c.kind, severity: c.severity, message: c.message, data: c.data ?? {} })));
       if (cErr) console.error(`${v.ref} checks: ${cErr.message}`);
     }
     continue;
