@@ -29,3 +29,21 @@ export function languageDisplayName(code: string, inLanguage: string): string {
     return code;
   }
 }
+
+/** The Bible translation this reader picked for a language ("esv"), if any. */
+export function readerVersion(language: string): string | null {
+  if (typeof window === "undefined") return null;
+  try {
+    return window.localStorage.getItem(`wa:ver:${language}`);
+  } catch {
+    return null;
+  }
+}
+
+export function rememberVersion(language: string, code: string) {
+  try {
+    window.localStorage.setItem(`wa:ver:${language}`, code);
+  } catch {
+    /* ignore */
+  }
+}

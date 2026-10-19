@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { chapterPath, findReferences, formatReference, originalFor, referenceKey, type Reference } from "@/lib/scripture";
-import { readerLanguage } from "@/lib/reader-language";
+import { readerLanguage, readerVersion } from "@/lib/reader-language";
 import { track } from "@/lib/analytics";
 
 /**
@@ -14,7 +14,7 @@ import { track } from "@/lib/analytics";
 
 interface Passage {
   reference: string;
-  translation: { code: string; name: string; language: string };
+  translation: { code: string; name: string; language: string; abbr?: string };
   verses: { chapter: number; verse: number; text: string }[];
   truncated: boolean;
 }
@@ -22,10 +22,11 @@ interface Passage {
 const cache = new Map<string, Promise<Passage | null>>();
 
 function fetchPassage(key: string, lang: string): Promise<Passage | null> {
-  const k = `${key}|${lang}`;
+  const ver = lang === "orig" ? null : readerVersion(lang);
+  const k = `${key}|${lang}|${ver ?? ""}`;
   let p = cache.get(k);
   if (!p) {
-    p = fetch(`/api/bible?ref=${encodeURIComponent(key)}&lang=${lang}`)
+    p = fetch(`/api/bible?ref=${encodeURIComponent(key)}&lang=${lang}${ver ? `&ver=${ver}` : ""}`)
       .then((r) => (r.ok ? (r.json() as Promise<Passage>) : null))
       .catch(() => null);
     cache.set(k, p);
@@ -146,7 +147,14 @@ export function ScriptureRef({ reference, label, chip = false, lang: initialLang
               )}
               <span className="mt-3 flex items-center justify-between gap-3 text-[0.7rem] text-parchment-700">
                 <span>
-                  {ui.from} {passage.translation.name}
+                  {ui.from}{" "}
+                  {passage.translation.code === "esv" ? (
+                    <a href="https://www.esv.org" target="_blank" rel="noopener noreferrer" className="underline-offset-2 hover:text-parchment-300 hover:underline">
+                      {passage.translation.name} (ESV)
+                    </a>
+                  ) : (
+                    passage.translation.name
+                  )}
                   {" · "}
                   <button
                     type="button"

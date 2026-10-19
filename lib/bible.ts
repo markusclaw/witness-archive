@@ -1,4 +1,5 @@
 import { createServerSupabase } from "@/lib/supabase-server";
+import { esvEnabled, getEsv } from "@/lib/esv";
 import { BOOKS, formatReference, originalFor, translationFor, type Reference } from "@/lib/scripture";
 
 /** The text of a reference in one translation. */
@@ -6,10 +7,16 @@ export interface Passage {
   reference: string;
   key: Reference;
   book: { index: number; osis: string; name: string; chapters: number };
-  translation: { code: string; name: string; language: string };
+  translation: { code: string; name: string; language: string; abbr: string; credit: string; live?: boolean };
   verses: { chapter: number; verse: number; text: string }[];
   /** True when a long chapter was cut short for the popover. */
   truncated: boolean;
+}
+
+/** Live translations are only offered when they're configured. */
+export function usableVersion(version?: string | null): string | null {
+  if (version === "esv" && !esvEnabled()) return null;
+  return version ?? null;
 }
 
 /** Verses per chapter-only reference before we stop (Psalm 119 has 176). */
@@ -20,12 +27,26 @@ const MAX_VERSES = 60;
  * languages fall back to English). Returns null when the table is empty, so
  * callers degrade to plain text until the texts are seeded.
  */
-export async function getPassage(ref: Reference, language: string): Promise<Passage | null> {
+export async function getPassage(ref: Reference, language: string, version?: string | null): Promise<Passage | null> {
   const book = BOOKS[ref.book];
   if (!book || ref.chapter < 1 || ref.chapter > book.chapters) return null;
-  const t = translationFor(language, ref.book);
+  const t = translationFor(language, ref.book, usableVersion(version));
   const labelLang = language === "orig" ? "en" : t.language;
   const chapterEnd = ref.chapterEnd ?? ref.chapter;
+
+  if (t.code === "esv") {
+    const verses = await getEsv(ref);
+    if (!verses) return getPassage(ref, language, null);
+    const truncated = verses.length > MAX_VERSES;
+    return {
+      reference: formatReference(ref, labelLang),
+      key: ref,
+      book: { index: book.index, osis: book.osis, name: book.names.en, chapters: book.chapters },
+      translation: t,
+      verses: truncated ? verses.slice(0, MAX_VERSES) : verses,
+      truncated,
+    };
+  }
 
   let q = createServerSupabase()
     .from("bible_verses")
@@ -65,8 +86,14 @@ export async function getPassage(ref: Reference, language: string): Promise<Pass
 }
 
 /** A whole chapter in the translation for a reader language. Empty when not seeded. */
-export async function getChapter(book: number, chapter: number, language: string): Promise<{ translation: { code: string; name: string; language: string }; verses: { verse: number; text: string }[] }> {
-  const t = translationFor(language, book);
+export async function getChapter(book: number, chapter: number, language: string, version?: string | null): Promise<{ translation: { code: string; name: string; language: string; abbr: string; credit: string; live?: boolean }; verses: { verse: number; text: string }[] }> {
+  const t = translationFor(language, book, usableVersion(version));
+  if (t.code === "esv") {
+    const verses = await getEsv({ book, chapter });
+    if (verses) return { translation: t, verses: verses.map(({ verse, text }) => ({ verse, text })) };
+    // The API is down or the key is missing: fall back to the default translation.
+    return getChapter(book, chapter, language, null);
+  }
   const { data, error } = await createServerSupabase()
     .from("bible_verses")
     .select("verse, text")

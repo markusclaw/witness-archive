@@ -37,6 +37,34 @@ export const TRANSLATION_FOR_LANGUAGE: Record<string, { code: string; name: stri
   pt: { code: "aa", name: "Almeida Atualizada" },
 };
 
+export interface TranslationInfo {
+  code: string;
+  name: string;
+  /** Short label: "WEB", "ESV". */
+  abbr: string;
+  /** Fetched per request from the publisher's API instead of our own table. */
+  live?: boolean;
+  /** One line of credit under the text. */
+  credit: string;
+}
+
+/** Every translation a reader can choose, per language; the first is the default. */
+export const VERSIONS: Record<string, TranslationInfo[]> = {
+  en: [
+    { code: "web", name: "World English Bible", abbr: "WEB", credit: "public domain" },
+    { code: "esv", name: "English Standard Version", abbr: "ESV", live: true, credit: "ESV® · © 2001 Crossway · used by permission" },
+    { code: "kjv", name: "King James Version", abbr: "KJV", credit: "public domain" },
+  ],
+  es: [{ code: "rv1909", name: "Reina-Valera 1909", abbr: "RV1909", credit: "dominio público" }],
+  pt: [{ code: "aa", name: "Almeida Atualizada", abbr: "AA", credit: "domínio público" }],
+};
+
+/** A translation the reader asked for, if it exists in their language. */
+export function versionFor(language: string, version?: string | null): TranslationInfo {
+  const list = VERSIONS[language] ?? VERSIONS.en;
+  return list.find((v) => v.code === version) ?? list[0];
+}
+
 /** The original-language text of a book: Hebrew for the Old Testament, Greek for the New. */
 export const ORIGINALS = {
   he: { code: "wlc", name: "Westminster Leningrad Codex", language: "he", script: "עברית" },
@@ -51,13 +79,13 @@ export function originalFor(book: number) {
  * The translation for a reader language; "orig" (with a book) means the
  * original Hebrew or Greek. Unsupported languages fall back to English.
  */
-export function translationFor(language: string, book?: number): { code: string; name: string; language: string } {
+export function translationFor(language: string, book?: number, version?: string | null): { code: string; name: string; language: string; abbr: string; live?: boolean; credit: string } {
   if (language === "orig" && book != null) {
     const o = originalFor(book);
-    return { code: o.code, name: o.name, language: o.language };
+    return { code: o.code, name: o.name, language: o.language, abbr: o.code.toUpperCase(), credit: o.language === "el" ? "CC BY 4.0, SBL & Logos" : "public domain" };
   }
-  const t = TRANSLATION_FOR_LANGUAGE[language] ?? TRANSLATION_FOR_LANGUAGE.en;
-  return { ...t, language: TRANSLATION_FOR_LANGUAGE[language] ? language : "en" };
+  const lang = TRANSLATION_FOR_LANGUAGE[language] ? language : "en";
+  return { ...versionFor(lang, version), language: lang };
 }
 
 // osis, chapters, en, es, pt, extra aliases (abbreviations in any language)
@@ -265,10 +293,11 @@ export function bookBySlug(slug: string): Book | undefined {
 }
 
 /** Reader page for a reference: /bible/john/3?v=16-18&lang=es */
-export function chapterPath(r: Reference, language?: string): string {
+export function chapterPath(r: Reference, language?: string, version?: string | null): string {
   const q = new URLSearchParams();
   if (r.verse != null) q.set("v", r.verseEnd != null && r.chapterEnd == null ? `${r.verse}-${r.verseEnd}` : String(r.verse));
   if (language && language !== "en" && TRANSLATION_FOR_LANGUAGE[language]) q.set("lang", language);
+  if (version && version !== versionFor(language ?? "en").code && versionFor(language ?? "en", version).code === version) q.set("ver", version);
   const s = q.toString();
   return `/bible/${bookSlug(r.book)}/${r.chapter}${s ? `?${s}` : ""}`;
 }
@@ -276,8 +305,8 @@ export function chapterPath(r: Reference, language?: string): string {
 /** Old Testament is the first 39 books. */
 export const OT_COUNT = 39;
 
-export const BIBLE_UI: Record<string, { bible: string; ot: string; nt: string; chapters: string; chapter: string; prev: string; next: string; readIn: string; openChapter: string; notLoaded: string; verses: string; mentions: string; mentionsNone: string; mentioned: (n: number) => string; original: string; originalHint: string; textSize: string; goTo: string; myNotes: string; readingSettings: string; done: string }> = {
-  en: { bible: "The Bible", ot: "Old Testament", nt: "New Testament", chapters: "Chapters", chapter: "Chapter", prev: "Previous", next: "Next", readIn: "Read in", openChapter: "Open chapter", notLoaded: "The scripture texts haven't been loaded yet.", verses: "verses", mentions: "Testimonies that mention this chapter", mentionsNone: "No testimony in the archive mentions this chapter yet.", mentioned: (n) => `${n} ${n === 1 ? "testimony" : "testimonies"}`, original: "Original text", originalHint: "The Hebrew and Greek under each verse, from the oldest complete manuscripts.", textSize: "Text size", goTo: "Go to… e.g. John 3:16, Psalm 23, Rom", myNotes: "My notes", readingSettings: "Reading settings", done: "Done" },
-  es: { bible: "La Biblia", ot: "Antiguo Testamento", nt: "Nuevo Testamento", chapters: "Capítulos", chapter: "Capítulo", prev: "Anterior", next: "Siguiente", readIn: "Leer en", openChapter: "Abrir capítulo", notLoaded: "Los textos bíblicos aún no se han cargado.", verses: "versículos", mentions: "Testimonios que mencionan este capítulo", mentionsNone: "Ningún testimonio del archivo menciona este capítulo todavía.", mentioned: (n) => `${n} ${n === 1 ? "testimonio" : "testimonios"}`, original: "Texto original", originalHint: "El hebreo y el griego bajo cada versículo, de los manuscritos completos más antiguos.", textSize: "Tamaño del texto", goTo: "Ir a… p. ej. Juan 3:16, Salmo 23, Rom", myNotes: "Mis notas", readingSettings: "Ajustes de lectura", done: "Listo" },
-  pt: { bible: "A Bíblia", ot: "Antigo Testamento", nt: "Novo Testamento", chapters: "Capítulos", chapter: "Capítulo", prev: "Anterior", next: "Próximo", readIn: "Ler em", openChapter: "Abrir capítulo", notLoaded: "Os textos bíblicos ainda não foram carregados.", verses: "versículos", mentions: "Testemunhos que mencionam este capítulo", mentionsNone: "Nenhum testemunho do arquivo menciona este capítulo ainda.", mentioned: (n) => `${n} ${n === 1 ? "testemunho" : "testemunhos"}`, original: "Texto original", originalHint: "O hebraico e o grego sob cada versículo, dos manuscritos completos mais antigos.", textSize: "Tamanho do texto", goTo: "Ir para… ex. João 3:16, Salmo 23, Rom", myNotes: "Minhas notas", readingSettings: "Ajustes de leitura", done: "Pronto" },
+export const BIBLE_UI: Record<string, { bible: string; ot: string; nt: string; chapters: string; chapter: string; prev: string; next: string; readIn: string; openChapter: string; notLoaded: string; verses: string; mentions: string; mentionsNone: string; mentioned: (n: number) => string; original: string; originalHint: string; textSize: string; goTo: string; myNotes: string; readingSettings: string; done: string; version: string; copyright: string }> = {
+  en: { bible: "The Bible", ot: "Old Testament", nt: "New Testament", chapters: "Chapters", chapter: "Chapter", prev: "Previous", next: "Next", readIn: "Read in", openChapter: "Open chapter", notLoaded: "The scripture texts haven't been loaded yet.", verses: "verses", mentions: "Testimonies that mention this chapter", mentionsNone: "No testimony in the archive mentions this chapter yet.", mentioned: (n) => `${n} ${n === 1 ? "testimony" : "testimonies"}`, original: "Original text", originalHint: "The Hebrew and Greek under each verse, from the oldest complete manuscripts.", textSize: "Text size", goTo: "Go to… e.g. John 3:16, Psalm 23, Rom", myNotes: "My notes", readingSettings: "Reading settings", done: "Done", version: "Translation", copyright: "Copyright" },
+  es: { bible: "La Biblia", ot: "Antiguo Testamento", nt: "Nuevo Testamento", chapters: "Capítulos", chapter: "Capítulo", prev: "Anterior", next: "Siguiente", readIn: "Leer en", openChapter: "Abrir capítulo", notLoaded: "Los textos bíblicos aún no se han cargado.", verses: "versículos", mentions: "Testimonios que mencionan este capítulo", mentionsNone: "Ningún testimonio del archivo menciona este capítulo todavía.", mentioned: (n) => `${n} ${n === 1 ? "testimonio" : "testimonios"}`, original: "Texto original", originalHint: "El hebreo y el griego bajo cada versículo, de los manuscritos completos más antiguos.", textSize: "Tamaño del texto", goTo: "Ir a… p. ej. Juan 3:16, Salmo 23, Rom", myNotes: "Mis notas", readingSettings: "Ajustes de lectura", done: "Listo", version: "Traducción", copyright: "Derechos de autor" },
+  pt: { bible: "A Bíblia", ot: "Antigo Testamento", nt: "Novo Testamento", chapters: "Capítulos", chapter: "Capítulo", prev: "Anterior", next: "Próximo", readIn: "Ler em", openChapter: "Abrir capítulo", notLoaded: "Os textos bíblicos ainda não foram carregados.", verses: "versículos", mentions: "Testemunhos que mencionam este capítulo", mentionsNone: "Nenhum testemunho do arquivo menciona este capítulo ainda.", mentioned: (n) => `${n} ${n === 1 ? "testemunho" : "testemunhos"}`, original: "Texto original", originalHint: "O hebraico e o grego sob cada versículo, dos manuscritos completos mais antigos.", textSize: "Tamanho do texto", goTo: "Ir para… ex. João 3:16, Salmo 23, Rom", myNotes: "Minhas notas", readingSettings: "Ajustes de leitura", done: "Pronto", version: "Tradução", copyright: "Direitos autorais" },
 };

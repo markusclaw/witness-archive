@@ -6,6 +6,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import BiblePicker from "@/components/BiblePicker";
 import { LANGUAGES } from "@/lib/languages";
 import { TRANSLATION_FOR_LANGUAGE } from "@/lib/scripture";
+import { rememberVersion } from "@/lib/reader-language";
 
 /**
  * The reader's navigation furniture: a tappable chapter title that opens the
@@ -20,7 +21,10 @@ export interface ReadingSettingsProps {
   lang: string;
   showOriginal: boolean;
   script: string;
-  labels: { title: string; textSize: string; readIn: string; original: string; done: string };
+  /** Translations offered in this language, and the one showing. */
+  version: string;
+  versions: { code: string; abbr: string; name: string }[];
+  labels: { title: string; textSize: string; readIn: string; original: string; done: string; version: string };
 }
 
 /**
@@ -28,7 +32,7 @@ export interface ReadingSettingsProps {
  * reads — text size, language, and the original Hebrew/Greek — instead of a
  * row of controls above the text.
  */
-function ReadingSettings({ open, onClose, lang, showOriginal, script, labels }: ReadingSettingsProps & { open: boolean; onClose: () => void }) {
+function ReadingSettings({ open, onClose, lang, showOriginal, script, version, versions, labels }: ReadingSettingsProps & { open: boolean; onClose: () => void }) {
   const pathname = usePathname();
   const params = useSearchParams();
   const [size, setSize] = useState<Size>("m");
@@ -75,11 +79,24 @@ function ReadingSettings({ open, onClose, lang, showOriginal, script, labels }: 
         <p className="eyebrow mb-2 mt-5">{labels.readIn}</p>
         <div className="flex gap-2">
           {LANGUAGES.filter((l) => TRANSLATION_FOR_LANGUAGE[l.code]).map((l) => (
-            <Link key={l.code} href={withParams({ lang: l.code === "en" ? null : l.code })} onClick={() => { remember(l.code); onClose(); }} className={pill(l.code === lang)} lang={l.code} scroll={false}>
+            <Link key={l.code} href={withParams({ lang: l.code === "en" ? null : l.code, ver: null })} onClick={() => { remember(l.code); onClose(); }} className={pill(l.code === lang)} lang={l.code} scroll={false}>
               {l.nativeName}
             </Link>
           ))}
         </div>
+        {versions.length > 1 && (
+          <>
+            <p className="eyebrow mb-2 mt-5">{labels.version}</p>
+            <div className="flex gap-2">
+              {versions.map((v, i) => (
+                <Link key={v.code} href={withParams({ ver: i === 0 ? null : v.code })} onClick={() => { rememberVersion(lang, v.code); onClose(); }} className={`${pill(v.code === version)} flex-col !gap-0 leading-tight`} scroll={false} aria-current={v.code === version ? "true" : undefined}>
+                  <span>{v.abbr}</span>
+                </Link>
+              ))}
+            </div>
+            <p className="mt-1.5 text-[0.7rem] text-parchment-700">{versions.find((v) => v.code === version)?.name}</p>
+          </>
+        )}
         <Link
           href={withParams({ orig: showOriginal ? null : "1" })}
           onClick={onClose}
@@ -232,7 +249,11 @@ export function MobileChapterBar({ lang, book, chapter, name, prev, next, settin
           <button type="button" onClick={() => setSettingsOpen(true)} aria-haspopup="dialog" aria-label={settings.labels.title} className="flex h-12 min-w-12 items-center justify-center rounded-full px-2 text-parchment-300 active:bg-ink-800">
             <span className="text-[0.75rem]">A</span>
             <span className="text-[1.15rem]">a</span>
-            {settings.lang !== "en" && <span className="ml-1 text-[0.6rem] uppercase text-gold-400">{settings.lang}</span>}
+            {settings.versions.length > 1 && settings.version !== settings.versions[0].code ? (
+              <span className="ml-1 text-[0.6rem] uppercase text-gold-400">{settings.versions.find((v) => v.code === settings.version)?.abbr}</span>
+            ) : (
+              settings.lang !== "en" && <span className="ml-1 text-[0.6rem] uppercase text-gold-400">{settings.lang}</span>
+            )}
           </button>
           {next ? (
             <Link href={next.href} rel="next" aria-label={next.label} className="flex h-12 w-12 items-center justify-center rounded-full text-parchment-300 active:bg-ink-800">

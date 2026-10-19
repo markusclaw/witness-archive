@@ -5,6 +5,7 @@ import { parseReferenceKey, findReferences } from "@/lib/scripture";
 /**
  * GET /api/bible?ref=42.3.16&lang=es
  * GET /api/bible?q=John 3:16-18&lang=pt
+ * GET /api/bible?ref=43.3.16&lang=en&ver=esv
  *
  * The verse(s) in the translation for the reader's language. Scripture texts
  * never change, so responses are cached hard at the edge.
@@ -20,7 +21,10 @@ export async function GET(request: Request) {
   }
   if (!ref) return NextResponse.json({ error: "Unrecognized reference." }, { status: 400 });
 
-  const passage = await getPassage(ref, lang);
+  const version = url.searchParams.get("ver");
+  const passage = await getPassage(ref, lang, version);
   if (!passage) return NextResponse.json({ error: "Passage not available." }, { status: 404, headers: { "cache-control": "public, max-age=300" } });
+  // Licensed text (the ESV) may not be stored, so it's never cached at the edge.
+  if (passage.translation.live) return NextResponse.json(passage, { headers: { "cache-control": "private, no-store" } });
   return NextResponse.json(passage, { headers: { "cache-control": "public, max-age=86400, s-maxage=2592000, stale-while-revalidate=86400" } });
 }

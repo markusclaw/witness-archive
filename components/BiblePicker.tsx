@@ -50,7 +50,9 @@ export default function BiblePicker({ open, onClose, lang, book, chapter }: { op
 
   const go = (href: string) => {
     onClose();
-    router.push(href);
+    // Stay in the translation being read.
+    const ver = new URLSearchParams(window.location.search).get("ver");
+    router.push(ver ? `${href}${href.includes("?") ? "&" : "?"}ver=${encodeURIComponent(ver)}` : href);
   };
 
   if (!open) return null;
