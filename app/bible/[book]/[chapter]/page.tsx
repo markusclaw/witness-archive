@@ -48,7 +48,7 @@ export default async function ChapterPage({ params, searchParams }: { params: Pa
   const ui = BIBLE_UI[lang];
   const name = b.names[lang] ?? b.names.en;
   // Translations offered in this language (live ones only when configured).
-  const offered = VERSIONS[lang].filter((v) => !v.live || esvEnabled());
+  const offered = VERSIONS[lang].filter((v) => (!v.live || esvEnabled()) && (!v.hidden || v.code === sp.ver) && (!v.books || v.books.includes(b.index)));
   const versionOptions = offered.map(({ code, abbr, name }) => ({ code, abbr, name }));
   const [{ translation, verses }, mentions, original, words] = await Promise.all([
     getChapter(b.index, chapter, lang, offered.some((v) => v.code === sp.ver) ? sp.ver : null),
@@ -104,6 +104,13 @@ export default async function ChapterPage({ params, searchParams }: { params: Pa
           <TextSizeButton label={ui.textSize} />
         </span>
       </div>
+
+      {translation.draft && (
+        <div className="mt-6 rounded-xl border border-gold-500/40 bg-gold-500/5 px-4 py-3 text-sm leading-relaxed text-parchment-300" lang="es">
+          <strong className="text-gold-300">Borrador · {translation.name.replace(/ \(borrador\)$/, "")}.</strong> Traducido del {b.index < 39 ? "hebreo" : "griego"} con ayuda de IA; todavía no ha sido revisado por especialistas.{" "}
+          <Link href={`/bible/vt/${bookSlug(b)}/${chapter}`} className="text-gold-400 underline-offset-2 hover:underline">Ver notas, revisiones e historial de cada versículo →</Link>
+        </div>
+      )}
 
       <div className="mt-10">
         {verses.length ? (

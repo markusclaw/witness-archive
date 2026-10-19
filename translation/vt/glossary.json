@@ -1,0 +1,35 @@
+{
+  "version": "0.1",
+  "status": "proposed — needs committee sign-off",
+  "terms": [
+    { "strongs": "H3068", "lemma": "יהוה", "es": ["SEÑOR"], "severity": "error", "note": "The divine name: always «el SEÑOR» in capitals. Never «Jehová» or «Yahvé» in the text." },
+    { "strongs": "H7706", "lemma": "שַׁדַּי", "es": ["Todopoderoso"], "severity": "error", "note": "Shaddai: «el Todopoderoso»." },
+    { "strongs": "H2617", "lemma": "חֶסֶד", "es": ["amor leal"], "severity": "warn", "note": "Covenant loyalty shown in action. «amor leal» everywhere so readers can follow the theme; alternatives go in notes." },
+    { "strongs": "H1350", "lemma": "גָּאַל", "es": ["redent", "redim", "redenci"], "severity": "warn", "note": "Kinsman-redeemer: noun «pariente redentor» / «redentor», verb «redimir», «derecho de redención»." },
+    { "strongs": "H3671", "lemma": "כָּנָף", "es": ["ala"], "severity": "warn", "note": "Ruth 2:12 (God's wings) and 3:9 (the corner of Boaz's cloak) are the same word: keep «ala» in both." },
+    { "strongs": "H2428", "lemma": "חַיִל", "es": ["valía"], "severity": "warn", "note": "Ruth 2:1, 3:11, 4:11: «de valía» links Boaz and Ruth." },
+    { "strongs": "H7387", "lemma": "רֵיקָם", "es": ["vací"], "severity": "warn", "note": "«vacía(s)»: Naomi came back empty (1:21); Ruth must not go back empty (3:17)." },
+    { "strongs": "H4496", "lemma": "מְנוּחָה", "es": ["descanso"], "severity": "info", "note": "Rest / a secure home (1:9, 3:1)." },
+    { "strongs": "H4494", "lemma": "מָנוֹחַ", "es": ["descanso"], "severity": "info", "note": "Rest / a secure home (3:1)." },
+    { "strongs": "H1692", "lemma": "דָּבַק", "es": ["aferr", "junto a"], "severity": "info", "note": "To cling / stay close: «aferrarse» (1:14) or «quedarse junto a» (2:8, 2:21, 2:23)." },
+    { "strongs": "H7725", "lemma": "שׁוּב", "es": ["volv", "vuelv", "volver"], "severity": "info", "note": "The key verb of Ruth 1 (twelve times): «volver» wherever it means return." }
+  ],
+  "names": [
+    { "es": "Noemí", "avoid": ["Noemi\\b", "Naomi", "Nohemí"] },
+    { "es": "Rut", "avoid": ["Ruth"] },
+    { "es": "Orfa", "avoid": ["Orpa"] },
+    { "es": "Booz", "avoid": ["Boaz", "Booz\\u0301"] },
+    { "es": "Elimelec", "avoid": ["Elimelech", "Elimélec"] },
+    { "es": "Mahlón", "avoid": ["Mahlon\\b", "Majlón"] },
+    { "es": "Quelión", "avoid": ["Kilión", "Quilión", "Chilion"] },
+    { "es": "Belén", "avoid": ["Belen\\b", "Bethlehem", "Bet Lejem"] },
+    { "es": "Isaí", "avoid": ["Jesé", "Isai\\b"] },
+    { "es": "Hezrón", "avoid": ["Esrom", "Jezrón"] },
+    { "es": "Naasón", "avoid": ["Najsón"] }
+  ],
+  "forbidden": [
+    { "pattern": "\\bvosotr|\\bos\\s|habéis|tenéis|estáis|\\bsois\\b", "message": "Use «ustedes», not «vosotros»." },
+    { "pattern": "Jehová|Yahv[eé]|Yahweh", "message": "The divine name is «el SEÑOR»." },
+    { "pattern": "\\bhe aquí\\b|\\bempero\\b", "message": "Archaism — use contemporary Spanish." }
+  ]
+}

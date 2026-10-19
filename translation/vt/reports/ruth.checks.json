@@ -1,0 +1,139 @@
+{
+  "book": 7,
+  "draftAuthor": "ai:claude-opus-5-5",
+  "created": "2026-10-19T18:09:02.177Z",
+  "ai": false,
+  "echo": [
+    {
+      "name": "Reina-Valera 1909",
+      "copyrighted": false,
+      "versesWithLongRuns": 11,
+      "longest": {
+        "length": 14,
+        "words": "pues a la era e hizo todo lo que su suegra le habia mandado",
+        "ref": "3:6"
+      }
+    }
+  ],
+  "checks": [
+    {
+      "ref": "4:3",
+      "kind": "glossary",
+      "severity": "info",
+      "message": "H7725 שׁוּב should be rendered «volv» / «vuelv» / «volver».",
+      "data": {
+        "strongs": "H7725"
+      }
+    },
+    {
+      "ref": "1:8",
+      "kind": "echo",
+      "severity": "info",
+      "message": "8 words in a row identical to Reina-Valera 1909: «cada una a la casa de su madre» (public domain — allowed).",
+      "data": {
+        "reference": "Reina-Valera 1909",
+        "length": 8
+      }
+    },
+    {
+      "ref": "1:16",
+      "kind": "echo",
+      "severity": "info",
+      "message": "8 words in a row identical to Reina-Valera 1909: «tu pueblo sera mi pueblo y tu dios» (public domain — allowed).",
+      "data": {
+        "reference": "Reina-Valera 1909",
+        "length": 8
+      }
+    },
+    {
+      "ref": "1:21",
+      "kind": "echo",
+      "severity": "info",
+      "message": "11 words in a row identical to Reina-Valera 1909: «ha dado testimonio contra mi y el todopoderoso me ha afligido» (public domain — allowed).",
+      "data": {
+        "reference": "Reina-Valera 1909",
+        "length": 11
+      }
+    },
+    {
+      "ref": "2:6",
+      "kind": "echo",
+      "severity": "info",
+      "message": "9 words in a row identical to Reina-Valera 1909: «que volvio con noemi de los campos de moab» (public domain — allowed).",
+      "data": {
+        "reference": "Reina-Valera 1909",
+        "length": 9
+      }
+    },
+    {
+      "ref": "2:11",
+      "kind": "echo",
+      "severity": "info",
+      "message": "8 words in a row identical to Reina-Valera 1909: «a tu madre y la tierra donde naciste» (public domain — allowed).",
+      "data": {
+        "reference": "Reina-Valera 1909",
+        "length": 8
+      }
+    },
+    {
+      "ref": "2:14",
+      "kind": "echo",
+      "severity": "info",
+      "message": "9 words in a row identical to Reina-Valera 1909: «come del pan y moja tu bocado en el» (public domain — allowed).",
+      "data": {
+        "reference": "Reina-Valera 1909",
+        "length": 9
+      }
+    },
+    {
+      "ref": "2:18",
+      "kind": "echo",
+      "severity": "info",
+      "message": "10 words in a row identical to Reina-Valera 1909: «a la ciudad y su suegra vio lo que habia» (public domain — allowed).",
+      "data": {
+        "reference": "Reina-Valera 1909",
+        "length": 10
+      }
+    },
+    {
+      "ref": "3:6",
+      "kind": "echo",
+      "severity": "info",
+      "message": "14 words in a row identical to Reina-Valera 1909: «pues a la era e hizo todo lo que su suegra le habia mandado» (public domain — allowed).",
+      "data": {
+        "reference": "Reina-Valera 1909",
+        "length": 14
+      }
+    },
+    {
+      "ref": "4:9",
+      "kind": "echo",
+      "severity": "info",
+      "message": "10 words in a row identical to Reina-Valera 1909: «booz dijo a los ancianos y a todo el pueblo» (public domain — allowed).",
+      "data": {
+        "reference": "Reina-Valera 1909",
+        "length": 10
+      }
+    },
+    {
+      "ref": "4:10",
+      "kind": "echo",
+      "severity": "info",
+      "message": "9 words in a row identical to Reina-Valera 1909: «el nombre del difunto sobre su heredad para que» (public domain — allowed).",
+      "data": {
+        "reference": "Reina-Valera 1909",
+        "length": 9
+      }
+    },
+    {
+      "ref": "4:11",
+      "kind": "echo",
+      "severity": "info",
+      "message": "11 words in a row identical to Reina-Valera 1909: «haga a la mujer que entra en tu casa como a» (public domain — allowed).",
+      "data": {
+        "reference": "Reina-Valera 1909",
+        "length": 11
+      }
+    }
+  ]
+}

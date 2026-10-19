@@ -46,16 +46,26 @@ export interface TranslationInfo {
   live?: boolean;
   /** One line of credit under the text. */
   credit: string;
+  /** Not listed in the picker; reachable by link (?ver=) while in progress. */
+  hidden?: boolean;
+  /** A draft translation: shown with a banner and a link to its review history. */
+  draft?: boolean;
+  /** Only these books exist yet (book indexes); others fall back to the default. */
+  books?: number[];
 }
 
 /** Every translation a reader can choose, per language; the first is the default. */
 export const VERSIONS: Record<string, TranslationInfo[]> = {
   en: [
     { code: "web", name: "World English Bible", abbr: "WEB", credit: "public domain" },
+    { code: "bsb", name: "Berean Standard Bible", abbr: "BSB", credit: "public domain" },
     { code: "esv", name: "English Standard Version", abbr: "ESV", live: true, credit: "ESV® · © 2001 Crossway · used by permission" },
     { code: "kjv", name: "King James Version", abbr: "KJV", credit: "public domain" },
   ],
-  es: [{ code: "rv1909", name: "Reina-Valera 1909", abbr: "RV1909", credit: "dominio público" }],
+  es: [
+    { code: "rv1909", name: "Reina-Valera 1909", abbr: "RV1909", credit: "dominio público" },
+    { code: "vt", name: "Versión Testigo (borrador)", abbr: "VT", credit: "borrador en revisión", hidden: true, draft: true, books: [7] },
+  ],
   pt: [{ code: "aa", name: "Almeida Atualizada", abbr: "AA", credit: "domínio público" }],
 };
 
@@ -79,13 +89,16 @@ export function originalFor(book: number) {
  * The translation for a reader language; "orig" (with a book) means the
  * original Hebrew or Greek. Unsupported languages fall back to English.
  */
-export function translationFor(language: string, book?: number, version?: string | null): { code: string; name: string; language: string; abbr: string; live?: boolean; credit: string } {
+export function translationFor(language: string, book?: number, version?: string | null): TranslationInfo & { language: string } {
   if (language === "orig" && book != null) {
     const o = originalFor(book);
     return { code: o.code, name: o.name, language: o.language, abbr: o.code.toUpperCase(), credit: o.language === "el" ? "CC BY 4.0, SBL & Logos" : "public domain" };
   }
   const lang = TRANSLATION_FOR_LANGUAGE[language] ? language : "en";
-  return { ...versionFor(lang, version), language: lang };
+  let v = versionFor(lang, version);
+  // A translation still in progress only covers some books.
+  if (v.books && book != null && !v.books.includes(book)) v = versionFor(lang);
+  return { ...v, language: lang };
 }
 
 // osis, chapters, en, es, pt, extra aliases (abbreviations in any language)

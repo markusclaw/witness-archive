@@ -44,3 +44,6 @@ next-env.d.ts
 # OpenNext / Cloudflare
 .open-next
 .wrangler
+
+# Versión Testigo: private comparison texts for the echo check (may be copyrighted)
+/translation/vt/reference/

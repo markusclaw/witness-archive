@@ -1,13 +1,13 @@
 import { createServerSupabase } from "@/lib/supabase-server";
 import { esvEnabled, getEsv } from "@/lib/esv";
-import { BOOKS, formatReference, originalFor, translationFor, type Reference } from "@/lib/scripture";
+import { BOOKS, formatReference, originalFor, translationFor, type Reference, type TranslationInfo } from "@/lib/scripture";
 
 /** The text of a reference in one translation. */
 export interface Passage {
   reference: string;
   key: Reference;
   book: { index: number; osis: string; name: string; chapters: number };
-  translation: { code: string; name: string; language: string; abbr: string; credit: string; live?: boolean };
+  translation: TranslationInfo & { language: string };
   verses: { chapter: number; verse: number; text: string }[];
   /** True when a long chapter was cut short for the popover. */
   truncated: boolean;
@@ -34,6 +34,14 @@ export async function getPassage(ref: Reference, language: string, version?: str
   const labelLang = language === "orig" ? "en" : t.language;
   const chapterEnd = ref.chapterEnd ?? ref.chapter;
 
+  if (t.code === "vt") {
+    let q = createServerSupabase().from("translation_verses").select("chapter, verse, text").eq("translation", "vt").eq("book", ref.book).gte("chapter", ref.chapter).lte("chapter", chapterEnd).order("chapter").order("verse");
+    if (ref.verse != null && ref.chapterEnd == null) q = q.gte("verse", ref.verse).lte("verse", ref.verseEnd ?? ref.verse);
+    const { data } = await q;
+    if (!data?.length) return getPassage(ref, language, null);
+    const verses = data as { chapter: number; verse: number; text: string }[];
+    return { reference: formatReference(ref, labelLang), key: ref, book: { index: book.index, osis: book.osis, name: book.names[labelLang] ?? book.names.en, chapters: book.chapters }, translation: t, verses: verses.slice(0, MAX_VERSES), truncated: verses.length > MAX_VERSES };
+  }
   if (t.code === "esv") {
     const verses = await getEsv(ref);
     if (!verses) return getPassage(ref, language, null);
@@ -86,8 +94,13 @@ export async function getPassage(ref: Reference, language: string, version?: str
 }
 
 /** A whole chapter in the translation for a reader language. Empty when not seeded. */
-export async function getChapter(book: number, chapter: number, language: string, version?: string | null): Promise<{ translation: { code: string; name: string; language: string; abbr: string; credit: string; live?: boolean }; verses: { verse: number; text: string }[] }> {
+export async function getChapter(book: number, chapter: number, language: string, version?: string | null): Promise<{ translation: TranslationInfo & { language: string }; verses: { verse: number; text: string }[] }> {
   const t = translationFor(language, book, usableVersion(version));
+  if (t.code === "vt") {
+    const { data } = await createServerSupabase().from("translation_verses").select("verse, text").eq("translation", "vt").eq("book", book).eq("chapter", chapter).order("verse");
+    if (data?.length) return { translation: t, verses: data as { verse: number; text: string }[] };
+    return getChapter(book, chapter, language, null);
+  }
   if (t.code === "esv") {
     const verses = await getEsv({ book, chapter });
     if (verses) return { translation: t, verses: verses.map(({ verse, text }) => ({ verse, text })) };
