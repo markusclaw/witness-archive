@@ -1,5 +1,11 @@
 # Open Bible Translation (English) — changelog
 
+## 2026-10-20 — Ruth, AI draft 2
+
+After the BSB comparison: 4:5 "acquire" (keeps the legal force of קָנָה) and
+4:15 "has borne him" (restores the Hebrew verb). Each change carries its
+reason in the verse's history.
+
 ## 2026-10-20 — v0.1 (pilot)
 
 - English style guide and glossary (proposed, not yet signed off).

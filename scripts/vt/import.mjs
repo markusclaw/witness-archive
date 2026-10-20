@@ -37,7 +37,7 @@ const now = new Map((current ?? []).map((r) => [`${r.chapter}:${r.verse}`, r]));
 
 // The latest AI draft of each verse, so re-importing the same draft is a no-op
 // even for verses a reviewer has since edited.
-const { data: drafts } = await db.from("translation_revisions").select("id, chapter, verse, text, created_at").eq("translation", TRANSLATION).eq("book", book).eq("kind", "ai_draft").order("created_at");
+const { data: drafts } = await db.from("translation_revisions").select("id, chapter, verse, text, notes, created_at").eq("translation", TRANSLATION).eq("book", book).eq("kind", "ai_draft").order("created_at");
 const lastDraft = new Map((drafts ?? []).map((r) => [`${r.chapter}:${r.verse}`, r]));
 
 let added = 0;
@@ -47,7 +47,7 @@ for (const v of draft.verses) {
   const [chapter, verse] = v.ref.split(":").map(Number);
   const existing = now.get(v.ref);
   const prior = lastDraft.get(v.ref);
-  if (prior && prior.text === v.text) {
+  if (prior && prior.text === v.text && JSON.stringify(prior.notes ?? []) === JSON.stringify(v.notes ?? [])) {
     // Already imported: just refresh its automatic checks (e.g. after check.mjs --ai).
     same++;
     const mine = (report?.checks ?? []).filter((c) => c.ref === v.ref);
@@ -69,6 +69,8 @@ for (const v of draft.verses) {
       notes: v.notes ?? [],
       kind: "ai_draft",
       author: draft.author,
+      // Why a later AI draft changed this verse (e.g. after a check).
+      comment: v.why ?? null,
       data: { method: draft.method, promptVersion: draft.promptVersion ?? null, created: draft.created },
     })
     .select("id")
