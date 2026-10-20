@@ -93,6 +93,21 @@ export default async function VtProjectPage() {
         </ol>
       </section>
 
+      <section className="mt-12">
+        <h2 className="eyebrow mb-4">Cómo usamos otras traducciones</h2>
+        <div className="space-y-3 leading-relaxed text-parchment-300">
+          <p>
+            Traducida directamente del hebreo y del griego. Cada versículo lo redacta una IA solo a partir de las palabras del idioma original, sin consultar ninguna traducción publicada. Después se compara con el original y con la Berean Standard Bible, una traducción de dominio público de confianza, y una persona evalúa cada diferencia de significado.
+          </p>
+          <p>
+            Cuando la comparación lleva a un cambio, el motivo queda registrado en el historial público de ese versículo. La Berean Standard Bible sirve como una segunda opinión que detecta errores, no como un texto que copiamos, y no siempre tiene la razón: algunas de sus sugerencias se aceptan y otras no.
+          </p>
+          <p className="text-sm text-parchment-500">
+            Los modelos de IA han leído muchas Biblias durante su entrenamiento, así que no solo prometemos independencia: medimos cuánto coincide nuestra redacción con otras traducciones y lo publicamos en el informe de cada libro.
+          </p>
+        </div>
+      </section>
+
       <section className="mt-12 space-y-3 text-sm leading-relaxed text-parchment-500">
         <h2 className="eyebrow mb-1">Textos de partida y licencia</h2>
         <p>Antiguo Testamento: Códice de Leningrado (Westminster Leningrad Codex), dominio público. Nuevo Testamento: SBL Greek New Testament (CC BY 4.0). Referencia de contraste: Berean Standard Bible (dominio público).</p>

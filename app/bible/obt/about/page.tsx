@@ -93,6 +93,21 @@ export default async function ObtAboutPage() {
         </ol>
       </section>
 
+      <section className="mt-12">
+        <h2 className="eyebrow mb-4">How we use other translations</h2>
+        <div className="space-y-3 leading-relaxed text-parchment-300">
+          <p>
+            Translated directly from the Hebrew and Greek. Each verse is drafted by AI from the original-language words alone, without reference to any published translation. It is then checked against the original and against the Berean Standard Bible, a trusted public-domain translation, and every difference in meaning is weighed by a person.
+          </p>
+          <p>
+            When the comparison leads to a change, the reason is recorded in that verse&apos;s public history. The Berean Standard Bible serves as a second opinion that catches mistakes, not as a text we copy, and it is not always right: some of its suggestions are accepted, others are not.
+          </p>
+          <p className="text-sm text-parchment-500">
+            AI models have read many Bibles during their training, so we don&apos;t only promise independence: we measure how much of our wording overlaps with other translations and publish it with every book&apos;s check report.
+          </p>
+        </div>
+      </section>
+
       <section className="mt-12 space-y-3 text-sm leading-relaxed text-parchment-500">
         <h2 className="eyebrow mb-1">Source texts and license</h2>
         <p>Old Testament: Westminster Leningrad Codex, public domain. New Testament: SBL Greek New Testament (CC BY 4.0). Reference for comparison: Berean Standard Bible (public domain).</p>
