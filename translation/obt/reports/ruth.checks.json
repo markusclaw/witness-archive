@@ -1,8 +1,8 @@
 {
   "book": 7,
   "draftAuthor": "ai:claude-opus-5-5",
-  "created": "2026-10-20T07:26:40.992Z",
-  "ai": false,
+  "created": "2026-10-20T07:43:18.721Z",
+  "ai": true,
   "echo": [
     {
       "name": "King James Version",
@@ -514,6 +514,206 @@
       "data": {
         "reference": "Berean Standard Bible",
         "length": 13
+      }
+    },
+    {
+      "ref": "1:2",
+      "kind": "benchmark",
+      "severity": "info",
+      "message": "Draft translates 'Ephrathites' as 'belonged to the Ephrathite clan' which is an interpretive expansion. The Hebrew simply identifies them as Ephrathites, a gentilicic term that could refer to clan or geographical origin.",
+      "data": {
+        "model": "claude-sonnet-4-5",
+        "bsb": "The man’s name was Elimelech, his wife’s name was Naomi, and the names of his two sons were Mahlon and Chilion. They were Ephrathites from Bethlehem in Judah, and they entered the land of Moab and settled there."
+      }
+    },
+    {
+      "ref": "1:6",
+      "kind": "benchmark",
+      "severity": "info",
+      "message": "Draft translates the idiom 'פקד...לתת להם לחם' as 'come to the aid of his people and given them bread.' The Hebrew verb פקד (attend to, visit, care for) combined with 'giving them bread' is rendered idiomatically, which is defensible but adds the interpretation 'come to the aid' where the Hebrew is more literally about visitation/attention.",
+      "data": {
+        "model": "claude-sonnet-4-5",
+        "bsb": "When Naomi heard in Moab that the LORD had attended to His people by providing them with food, she and her daughters-in-law prepared to leave the land of Moab."
+      }
+    },
+    {
+      "ref": "1:8",
+      "kind": "benchmark",
+      "severity": "info",
+      "message": "Draft uses 'loyal love' for Hebrew חֶסֶד (hesed), while BSB uses 'loving devotion.' Both are legitimate renderings of this key covenant term.",
+      "data": {
+        "model": "claude-sonnet-4-5",
+        "bsb": "Then Naomi said to her two daughters-in-law, “Go back, each of you to your mother’s home. May the LORD show you loving devotion, as you have shown to your dead and to me."
+      }
+    },
+    {
+      "ref": "1:9",
+      "kind": "benchmark",
+      "severity": "info",
+      "message": "Draft translates 'each of you rest' as 'each of you' but puts it in the context of finding rest 'in the house of a husband' (singular) rather than 'your new husband' as in BSB. The Hebrew has 'אִשָּׁה בֵּית אִישָׁהּ' meaning 'each woman in the house of her husband,' so the draft is accurate to use singular.",
+      "data": {
+        "model": "claude-sonnet-4-5",
+        "bsb": "May the LORD enable each of you to find rest in the home of your new husband.” And she kissed them as they wept aloud"
+      }
+    },
+    {
+      "ref": "1:10",
+      "kind": "benchmark",
+      "severity": "warn",
+      "message": "Draft adds 'No' at the beginning, which is not in the Hebrew text. The Hebrew begins directly with 'כִּי־אִתָּךְ נָשׁוּב' (surely/indeed with you we will return). The added 'No' changes the tone and is an interpretive addition not supported by the original.",
+      "data": {
+        "model": "claude-sonnet-4-5",
+        "bsb": "and said, “Surely we will return with you to your people.”"
+      }
+    },
+    {
+      "ref": "1:17",
+      "kind": "benchmark",
+      "severity": "info",
+      "message": "The draft renders 'May the LORD deal with me, and worse' while the BSB has 'May the LORD punish me, and ever so severely.' Both are acceptable renderings of the Hebrew idiom 'koh ya'aseh YHWH li v'koh yosiph,' though they differ slightly in emphasis.",
+      "data": {
+        "model": "claude-sonnet-4-5",
+        "bsb": "Where you die, I will die, and there I will be buried. May the LORD punish me, and ever so severely, if anything but death separates you and me.”"
+      }
+    },
+    {
+      "ref": "2:7",
+      "kind": "benchmark",
+      "severity": "info",
+      "message": "The draft translates 'she has sat only a little while in the shelter' while the Hebrew 'zeh shivtah habayit me'at' is difficult and debated. The BSB has 'except that she rested a short time in the shelter.' Both are interpretive renderings of an uncertain phrase; the draft's version is defensible.",
+      "data": {
+        "model": "claude-sonnet-4-5",
+        "bsb": "She has said, ‘Please let me glean and gather among the sheaves after the harvesters.’ So she came out and has continued from morning until now, except that she rested a short time in the shelter.”"
+      }
+    },
+    {
+      "ref": "2:11",
+      "kind": "benchmark",
+      "severity": "info",
+      "message": "The draft says 'came to live among' while the Hebrew says 'came to' (H413 + H5971). The addition of 'live' is interpretive but defensible given the context.",
+      "data": {
+        "model": "claude-sonnet-4-5",
+        "bsb": "Boaz replied, “I have been made fully aware of all you have done for your mother-in-law since the death of your husband, how you left your father and mother and the land of your birth, and how you came to a people you did not know before."
+      }
+    },
+    {
+      "ref": "2:21",
+      "kind": "benchmark",
+      "severity": "warn",
+      "message": "The draft says 'young men' but the Hebrew is H5288 (ne'arim), which in 2:8-9 clearly refers to 'young men' while 2:22-23 uses H5291 (na'arot) for 'young women.' Ruth may be quoting Boaz's instruction to stay with his workers. However, 2:22-23 suggest she should be with the young women specifically. This may create confusion about what Boaz actually said versus what Naomi recommends.",
+      "data": {
+        "model": "claude-sonnet-4-5",
+        "bsb": "Then Ruth the Moabitess said, “He also told me, ‘Stay with my young men until they have finished gathering all my harvest.’”"
+      }
+    },
+    {
+      "ref": "2:22",
+      "kind": "benchmark",
+      "severity": "error",
+      "message": "The draft says 'his young women' (na'arotav H5291), but the Hebrew has 'his young women' with a masculine suffix (na'arotav) which should be 'his young women.' However, checking the original more carefully: the Hebrew shows נַעֲרוֹתָיו which is indeed 'his young women' (feminine noun with masculine possessive suffix referring to Boaz). The draft is correct.",
+      "data": {
+        "model": "claude-sonnet-4-5",
+        "bsb": "And Naomi said to her daughter-in-law Ruth, “My daughter, it is good for you to work with his young women, so that nothing will happen to you in another field.”"
+      }
+    },
+    {
+      "ref": "3:3",
+      "kind": "benchmark",
+      "severity": "warn",
+      "message": "The Hebrew word שִׂמְלֹתַיִךְ (simlotayikh) in verse 3 means 'your clothes/garments' (plural), referring to her best clothes or garments. The draft translates this as 'your cloak' (singular), which is narrower and potentially misleading. The BSB 'your best clothes' better captures the plural and the sense of dressing well.",
+      "data": {
+        "model": "claude-sonnet-4-5",
+        "bsb": "Therefore wash yourself, put on perfume, and wear your best clothes. Go down to the threshing floor, but do not let the man know you are there until he has finished eating and drinking."
+      }
+    },
+    {
+      "ref": "3:14",
+      "kind": "benchmark",
+      "severity": "warn",
+      "message": "The draft renders the verse as if 'Boaz thought' introduces his internal reasoning, but the Hebrew וַיֹּאמֶר (wayyomer) indicates Boaz spoke/said this, not merely thought it. The BSB 'Then Boaz said' is more accurate. While the content could be understood as Boaz's concern, the text presents it as something he said.",
+      "data": {
+        "model": "claude-sonnet-4-5",
+        "bsb": "So she lay down at his feet until morning, but she got up before anyone else could recognize her. Then Boaz said, “Do not let it be known that a woman came to the threshing floor.”"
+      }
+    },
+    {
+      "ref": "3:15",
+      "kind": "benchmark",
+      "severity": "warn",
+      "message": "The draft 'lifted it onto her' suggests Boaz placed the barley on Ruth, but the Hebrew וַיָּשֶׁת עָלֶיהָ can mean 'he put/set (it) on her' or 'he loaded her with it.' The final phrase וַיָּבֹא הָעִיר 'and he went into the city' has ambiguous subject. Most translations (including BSB) take it as Boaz going into the city, but the subject could potentially be Ruth. The draft follows the common interpretation here, which is acceptable.",
+      "data": {
+        "model": "claude-sonnet-4-5",
+        "bsb": "And he told her, “Bring the shawl you are wearing and hold it out.” When she did so, he shoveled six measures of barley into her shawl. Then he went into the city."
+      }
+    },
+    {
+      "ref": "3:17",
+      "kind": "benchmark",
+      "severity": "info",
+      "message": "The draft renders 'empty-handed' as 'empty.' This is a minor stylistic compression that preserves the essential meaning, though slightly less explicit than the BSB.",
+      "data": {
+        "model": "claude-sonnet-4-5",
+        "bsb": "And she said, “He gave me these six measures of barley, for he said, ‘Do not go back to your mother-in-law empty-handed.’”"
+      }
+    },
+    {
+      "ref": "4:5",
+      "kind": "benchmark",
+      "severity": "warn",
+      "message": "The draft says 'you are also taking on Ruth' which is less precise than the Hebrew and BSB's 'you must also acquire.' The Hebrew verb קָנָה (qanah) means 'acquire/buy,' and the context is a legal transaction. 'Taking on' softens the legal force of the language.",
+      "data": {
+        "model": "claude-sonnet-4-5",
+        "bsb": "Then Boaz said, “On the day you buy the land from Naomi and also from Ruth the Moabitess, you must also acquire the widow of the deceased in order to raise up the name of the deceased on his inheritance.”"
+      }
+    },
+    {
+      "ref": "4:13",
+      "kind": "benchmark",
+      "severity": "info",
+      "message": "Draft adds 'home' (Boaz took Ruth home as his wife), which is not in the Hebrew text. The Hebrew simply says 'took Ruth and she became his wife.' This is interpretive but not a major issue.",
+      "data": {
+        "model": "claude-sonnet-4-5",
+        "bsb": "So Boaz took Ruth, and she became his wife. And when he had relations with her, the LORD enabled her to conceive, and she gave birth to a son."
+      }
+    },
+    {
+      "ref": "4:14",
+      "kind": "benchmark",
+      "severity": "info",
+      "message": "Draft translates גֹּאֵל as 'family redeemer' where BSB has 'kinsman-redeemer.' Both are valid translations of the Hebrew term. 'Celebrated' for יִקָּרֵא שְׁמוֹ (his name be called/proclaimed) is more interpretive than BSB's 'become famous,' but captures the meaning.",
+      "data": {
+        "model": "claude-sonnet-4-5",
+        "bsb": "Then the women said to Naomi, “Blessed be the LORD, who has not left you this day without a kinsman-redeemer. May his name become famous in Israel."
+      }
+    },
+    {
+      "ref": "4:15",
+      "kind": "benchmark",
+      "severity": "warn",
+      "message": "Draft says 'is his mother' where the Hebrew יְלָדַתּוּ means 'she bore him' or 'has given him birth.' The draft changes the structure from 'your daughter-in-law...has given him birth' to 'your daughter-in-law...is his mother.' While true in meaning, this is a significant restructuring that loses the active verb and connection to the birth event just described.",
+      "data": {
+        "model": "claude-sonnet-4-5",
+        "bsb": "He will renew your life and sustain you in your old age. For your daughter-in-law, who loves you and is better to you than seven sons, has given him birth.”"
+      }
+    },
+    {
+      "ref": "4:16",
+      "kind": "benchmark",
+      "severity": "info",
+      "message": "Draft expands 'took the child' to 'took the child in her arms' and translates אֹמֶנֶת as 'the one who cared for him' where BSB has 'nurse.' The Hebrew root אמן can mean nurse/foster-parent/caretaker, so both are defensible.",
+      "data": {
+        "model": "claude-sonnet-4-5",
+        "bsb": "And Naomi took the child, placed him on her lap, and became a nurse to him."
+      }
+    },
+    {
+      "ref": "4:17",
+      "kind": "benchmark",
+      "severity": "info",
+      "message": "Draft says 'The women of the neighborhood named him. \"Naomi has a son!\" they said' where the Hebrew more literally reads 'The neighbor women called/proclaimed a name to him, saying, \"A son has been born to Naomi.\"' The draft restructures but captures the essential meaning.",
+      "data": {
+        "model": "claude-sonnet-4-5",
+        "bsb": "The neighbor women said, “A son has been born to Naomi,” and they named him Obed. He became the father of Jesse, the father of David."
       }
     }
   ]
