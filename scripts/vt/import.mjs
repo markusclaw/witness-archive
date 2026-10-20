@@ -96,4 +96,21 @@ for (const v of draft.verses) {
     if (cErr) console.error(`${v.ref} checks: ${cErr.message}`);
   }
 }
-console.log(`${OSIS[book]}: ${added} new revisions${kept ? ` (${kept} verses kept their reviewed text)` : ""}, ${same} unchanged (checks refreshed).`);
+// Word maps (align.mjs): attach to each verse whose text they were made for.
+const alignFile = path.join(vtDir, "alignments", `${slug(book)}.json`);
+let aligned = 0;
+if (existsSync(alignFile)) {
+  const maps = JSON.parse(readFileSync(alignFile, "utf8")).verses ?? {};
+  const { data: fresh } = await db.from("translation_verses").select("chapter, verse, text").eq("translation", TRANSLATION).eq("book", book);
+  for (const r of fresh ?? []) {
+    const a = maps[`${r.chapter}:${r.verse}`];
+    if (!a || a.text !== r.text) continue;
+    const { error: aErr } = await db.from("translation_verses").update({ alignment: a }).eq("translation", TRANSLATION).eq("book", book).eq("chapter", r.chapter).eq("verse", r.verse);
+    if (aErr) {
+      console.error(`${r.chapter}:${r.verse} word map: ${aErr.message} (did you run migration 028?)`);
+      break;
+    }
+    aligned++;
+  }
+}
+console.log(`${OSIS[book]}: ${added} new revisions${kept ? ` (${kept} verses kept their reviewed text)` : ""}, ${same} unchanged (checks refreshed)${aligned ? `, ${aligned} word maps attached` : ""}.`);

@@ -1,8 +1,11 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import OriginalWords from "@/components/OriginalWords";
+import WordCard from "@/components/WordCard";
+import { pieces } from "@/lib/align";
 import type { OriginalWord } from "@/lib/bible";
 import type { BookLayout } from "@/lib/vt-layout";
 import type { VtVerse } from "@/lib/vt-shared";
@@ -34,6 +37,39 @@ export default function VtBook({ edition: code, book, slug, layout, chapters }: 
   const edition = EDITIONS[code];
   const ui = edition.ui;
   const [open, setOpen] = useState<{ chapter: number; verse: VtVerse; words: OriginalWord[] } | null>(null);
+  // A tapped word of the translation: the original word(s) behind it.
+  const [phrase, setPhrase] = useState<{ key: string; label: string; chapter: number; verse: number; words: OriginalWord[] } | null>(null);
+  const [showAdded, setShowAdded] = useState(false);
+  const hasMaps = chapters.some((c) => c.verses.some((v) => v.alignment?.text === v.text));
+
+  /** A verse with every mapped word tappable; unmapped words were supplied by the translator. */
+  const verseText = (c: Chapter, v: VtVerse): ReactNode => {
+    const a = v.alignment;
+    if (!a || a.text !== v.text) return divineName(v.text);
+    const byToken = new Map<number, (typeof a.map)[number]>();
+    for (const e of a.map) for (let k = 0; k < e.n; k++) byToken.set(e.i + k, e);
+    return pieces(v.text).map((p, idx) => {
+      if (p.word == null) return p.text;
+      const e = byToken.get(p.word);
+      const inner = divineName(p.text);
+      if (!e) return showAdded ? <span key={idx} className="italic text-parchment-500">{inner}</span> : <span key={idx}>{inner}</span>;
+      const key = `${c.chapter}:${v.verse}:${e.i}`;
+      const words = (c.words[v.verse] ?? []).filter((w) => e.h.includes(w.p));
+      const tap = () => words.length && setPhrase({ key, label: e.w, chapter: c.chapter, verse: v.verse, words });
+      return (
+        <span
+          key={idx}
+          role="button"
+          tabIndex={0}
+          onClick={tap}
+          onKeyDown={(ev) => (ev.key === "Enter" || ev.key === " ") && (ev.preventDefault(), tap())}
+          className={`aw ${phrase?.key === key ? "aw-on" : ""}`}
+        >
+          {inner}
+        </span>
+      );
+    });
+  };
   const he = book < 39;
   const paragraphStarts = new Set(layout.paragraphs);
 
@@ -59,6 +95,14 @@ export default function VtBook({ edition: code, book, slug, layout, chapters }: 
         <p className="mx-auto mt-6 max-w-md text-xs leading-relaxed text-parchment-700">
           {ui.draftNote(originalName(edition, book))}
         </p>
+        {hasMaps && (
+          <p className="mx-auto mt-3 max-w-md text-xs leading-relaxed text-parchment-700">
+            {ui.tapAnyWord}{" "}
+            <button type="button" role="switch" aria-checked={showAdded} onClick={() => setShowAdded((x) => !x)} className={`ml-1 rounded-full border px-2 py-0.5 transition ${showAdded ? "border-gold-500/60 text-gold-300" : "border-ink-600 text-parchment-500 hover:text-parchment-100"}`}>
+              {ui.showAdded}
+            </button>
+          </p>
+        )}
         <nav className="mt-6 flex justify-center gap-2" aria-label={ui.chapters}>
           {chapters.map((c) => (
             <a key={c.chapter} href={`#c${c.chapter}`} className="font-display flex h-9 w-9 items-center justify-center rounded-full border border-ink-600 text-parchment-300 hover:border-gold-500/60 hover:text-gold-300">
@@ -106,7 +150,7 @@ export default function VtBook({ edition: code, book, slug, layout, chapters }: 
                             {v.verse}
                           </button>
                         )}
-                        {divineName(v.text)}
+                        {verseText(c, v)}
                         {markers.map((m) => (
                           <a key={m} href={`#n${c.chapter}-${m}`} className="ml-0.5 align-super font-sans text-[0.6rem] italic text-parchment-500 hover:text-gold-300">{m}</a>
                         ))}{" "}
@@ -132,6 +176,24 @@ export default function VtBook({ edition: code, book, slug, layout, chapters }: 
         );
       })}
 
+      {phrase &&
+        createPortal(
+          phrase.words.length === 1 ? (
+            <WordCard word={phrase.words[0]} language={he ? "he" : "el"} at={{ book, chapter: phrase.chapter, verse: phrase.verse }} readerLang={edition.lang} onClose={() => setPhrase(null)} />
+          ) : (
+            <div className="wa-sheet fixed inset-x-0 bottom-0 z-50 flex justify-center px-3 pb-3 sm:px-4 sm:pb-4" role="dialog" aria-label={phrase.label}>
+              <button type="button" className="fixed inset-0 -z-10 bg-ink-950/40" aria-label={ui.close} onClick={() => setPhrase(null)} />
+              <div className="w-full max-w-md rounded-2xl border border-ink-500 bg-ink-900 p-5 shadow-2xl shadow-black/60" lang={edition.lang}>
+                <p className="font-display text-lg text-parchment-50">{edition.lang === "es" ? `«${phrase.label}»` : `“${phrase.label}”`}</p>
+                <p className="mt-1 text-xs text-parchment-500">{ui.phraseHint(phrase.words.length)}</p>
+                <p className={`mt-3 ${he ? "text-right text-2xl leading-loose" : "text-xl leading-loose"}`} dir={he ? "rtl" : "ltr"}>
+                  <OriginalWords words={phrase.words} language={he ? "he" : "el"} at={{ book, chapter: phrase.chapter, verse: phrase.verse }} readerLang={edition.lang} />
+                </p>
+              </div>
+            </div>
+          ),
+          document.body,
+        )}
       {open && (
         <div className="wa-sheet fixed inset-0 z-40 flex items-end justify-center sm:items-center" role="dialog" aria-modal="true" aria-label={`${layout.title} ${open.chapter}:${open.verse.verse}`}>
           <button type="button" aria-label={ui.close} onClick={() => setOpen(null)} className="absolute inset-0 bg-ink-950/60" />

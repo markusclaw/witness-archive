@@ -644,3 +644,8 @@ body:has(.wa-sheet) .wa-bottombar { display: none; }
 }
 .no-scrollbar { scrollbar-width: none; }
 .no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* Open Bible Translation: words of the translation mapped to the original. */
+.aw { cursor: pointer; border-radius: 3px; transition: background-color 120ms ease; }
+.aw:hover { text-decoration: underline dotted rgb(201 163 90 / 0.7); text-underline-offset: 5px; }
+.aw-on { background: rgb(201 163 90 / 0.2); }

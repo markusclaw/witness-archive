@@ -34,7 +34,8 @@ for the AI steps). Run them from the repo root.
 ```
 node scripts/vt/draft.mjs Ruth            # AI draft → translation/vt/drafts/ruth.json
 node scripts/vt/check.mjs Ruth --ai       # checks → translation/vt/reports/ruth.md
-node scripts/vt/import.mjs Ruth           # upload draft + checks to Supabase
+node scripts/vt/align.mjs Ruth            # word map → translation/vt/alignments/ruth.json
+node scripts/vt/import.mjs Ruth           # upload draft, checks and word map to Supabase
 node scripts/vt/review.mjs Ruth 1:16      # show a verse and its history
 node scripts/vt/review.mjs Ruth 1:16 --by "Nombre" --edit "…" --why "…"
 node scripts/vt/review.mjs Ruth 2 --by "Nombre" --reviewed

@@ -20,6 +20,9 @@ export interface Edition {
     hebrew: string;
     greek: string;
     tapWord: string;
+    tapAnyWord: string;
+    showAdded: string;
+    phraseHint: (n: number) => string;
     chapters: string;
     chapter: (n: number) => string;
     verseOpen: (n: number) => string;
@@ -69,6 +72,9 @@ export const EDITIONS: Record<EditionCode, Edition> = {
       hebrew: "Hebrew",
       greek: "Greek",
       tapWord: "tap a word",
+      tapAnyWord: "Tap any word to see the Hebrew or Greek behind it.",
+      showAdded: "Show added words",
+      phraseHint: (n) => `Translates ${n} words of the original — tap one for its meaning.`,
       chapters: "Chapters",
       chapter: (n) => `Chapter ${n}`,
       verseOpen: (n) => `Verse ${n}: see the original`,
@@ -117,6 +123,9 @@ export const EDITIONS: Record<EditionCode, Edition> = {
       hebrew: "Hebreo",
       greek: "Griego",
       tapWord: "toca una palabra",
+      tapAnyWord: "Toca cualquier palabra para ver el hebreo o griego que traduce.",
+      showAdded: "Mostrar palabras añadidas",
+      phraseHint: (n) => `Traduce ${n} palabras del original; toca una para ver su significado.`,
       chapters: "Capítulos",
       chapter: (n) => `Capítulo ${n}`,
       verseOpen: (n) => `Versículo ${n}: ver el original`,

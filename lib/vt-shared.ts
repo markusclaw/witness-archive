@@ -15,6 +15,16 @@ export interface VtVerse {
   status: VtStatus;
   revision_id: string | null;
   updated_at: string;
+  /** Word map back to the original (see migration 028). */
+  alignment?: VtAlignment | null;
+}
+
+/** Which word(s) of the original each phrase of the verse renders. */
+export interface VtAlignment {
+  /** The verse text the map was made for; ignored if the text has changed. */
+  text: string;
+  /** i = first word token, n = number of tokens, h = original word positions. */
+  map: { w: string; h: number[]; i: number; n: number }[];
 }
 
 export interface VtRevision {

@@ -56,7 +56,7 @@ export async function getVtBook(book: number, translation: string = VT) {
   const { getChapterWords } = await import("@/lib/bible");
   const { data, error } = await createServerSupabase()
     .from("translation_verses")
-    .select("chapter, verse, text, notes, status, revision_id, updated_at")
+    .select("chapter, verse, text, notes, status, revision_id, updated_at, alignment")
     .eq("translation", translation)
     .eq("book", book)
     .order("chapter")
