@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Logo from "@/components/Logo";
 import { CATEGORIES } from "@/lib/categories";
+import { CopyrightLink } from "@/components/BibleCopyright";
 
 export default function SiteFooter() {
   return (
@@ -50,14 +51,17 @@ export default function SiteFooter() {
               <Link href="/bible/vt" className="text-parchment-300 hover:text-gold-300" lang="es">Versión Testigo</Link>
               <span className="ml-2 rounded border border-gold-500/40 px-1 text-[0.6rem] uppercase tracking-wider text-gold-400">Borrador</span>
             </li>
-            <li><Link href="/bible/copyright" className="text-parchment-300 hover:text-gold-300">Bible texts &amp; copyright</Link></li>
+
           </ul>
         </div>
       </div>
       <div className="hidden border-t border-ink-800 sm:block">
         <div className="mx-auto flex max-w-6xl flex-col gap-2 px-5 py-6 text-xs text-parchment-700 sm:flex-row sm:justify-between">
           <p>&copy; {new Date().getFullYear()} Witness Archive. Testimonies are shared with permission or embedded from their public source.</p>
-          <p>Videos remain the property of their original creators.</p>
+          <p>
+            Videos remain the property of their original creators. ·{" "}
+            <CopyrightLink className="hover:text-parchment-300">Bible texts &amp; copyright</CopyrightLink>
+          </p>
         </div>
       </div>
     </footer>

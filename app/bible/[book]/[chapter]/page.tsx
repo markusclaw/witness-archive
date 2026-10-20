@@ -9,6 +9,7 @@ import { BibleLanguagePicker, BibleLanguageSync, OriginalToggle } from "@/compon
 import ChapterText from "@/components/ChapterText";
 import { ChapterTitle, MobileChapterBar, TextSizeButton, TextSizeInit } from "@/components/ReaderChrome";
 import TestimonyCard from "@/components/TestimonyCard";
+import { CopyrightLink } from "@/components/BibleCopyright";
 import { getChapterMentions } from "@/lib/scripture-index";
 import { formatReference } from "@/lib/scripture";
 
@@ -160,7 +161,7 @@ export default async function ChapterPage({ params, searchParams }: { params: Pa
             Scripture quotations are from the{" "}
             <a href="https://www.esv.org" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-parchment-300">ESV® Bible</a>
             {" "}(English Standard Version®), © 2001 by Crossway. Used by permission. All rights reserved.{" "}
-            <Link href="/bible/copyright" className="underline underline-offset-2 hover:text-parchment-300">{ui.copyright}</Link>
+            <CopyrightLink className="underline underline-offset-2 hover:text-parchment-300">{ui.copyright}</CopyrightLink>
           </>
         ) : (
           <>{translation.name} · {translation.credit}</>
