@@ -1,0 +1,9156 @@
+{
+ "translation": "obt",
+ "book": 7,
+ "author": "ai:claude-sonnet-4-5",
+ "created": "2026-10-20",
+ "verses": {
+  "1:1": {
+   "text": "In the time when the judges governed, a famine came over the land. A man from Bethlehem in Judah went to live as a foreigner in the fields of Moab, he and his wife and his two sons.",
+   "map": [
+    {
+     "w": "In the time",
+     "h": [
+      0,
+      1
+     ],
+     "i": 0,
+     "n": 3
+    },
+    {
+     "w": "when the judges",
+     "h": [
+      3
+     ],
+     "i": 3,
+     "n": 3
+    },
+    {
+     "w": "governed",
+     "h": [
+      2
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "a famine",
+     "h": [
+      5
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "came over",
+     "h": [
+      4
+     ],
+     "i": 9,
+     "n": 2
+    },
+    {
+     "w": "the land",
+     "h": [
+      6
+     ],
+     "i": 11,
+     "n": 2
+    },
+    {
+     "w": "A man",
+     "h": [
+      8
+     ],
+     "i": 13,
+     "n": 2
+    },
+    {
+     "w": "from Bethlehem",
+     "h": [
+      9,
+      10
+     ],
+     "i": 15,
+     "n": 2
+    },
+    {
+     "w": "in Judah",
+     "h": [
+      11
+     ],
+     "i": 17,
+     "n": 2
+    },
+    {
+     "w": "went",
+     "h": [
+      7
+     ],
+     "i": 19,
+     "n": 1
+    },
+    {
+     "w": "to live as a foreigner",
+     "h": [
+      12
+     ],
+     "i": 20,
+     "n": 5
+    },
+    {
+     "w": "in the fields",
+     "h": [
+      13
+     ],
+     "i": 25,
+     "n": 3
+    },
+    {
+     "w": "of Moab",
+     "h": [
+      14
+     ],
+     "i": 28,
+     "n": 2
+    },
+    {
+     "w": "he",
+     "h": [
+      15
+     ],
+     "i": 30,
+     "n": 1
+    },
+    {
+     "w": "and his wife",
+     "h": [
+      16
+     ],
+     "i": 31,
+     "n": 3
+    },
+    {
+     "w": "and his two",
+     "h": [
+      17
+     ],
+     "i": 34,
+     "n": 3
+    },
+    {
+     "w": "sons",
+     "h": [
+      18
+     ],
+     "i": 37,
+     "n": 1
+    }
+   ]
+  },
+  "1:2": {
+   "text": "The man's name was Elimelech, his wife's name was Naomi, and his two sons were named Mahlon and Chilion. They belonged to the Ephrathite clan of Bethlehem in Judah. They came to the fields of Moab and stayed there.",
+   "map": [
+    {
+     "w": "The man's",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "name",
+     "h": [
+      0
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "was Elimelech",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 2
+    },
+    {
+     "w": "his wife's",
+     "h": [
+      4
+     ],
+     "i": 5,
+     "n": 2
+    },
+    {
+     "w": "name",
+     "h": [
+      3
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "was Naomi",
+     "h": [
+      5
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "and his two",
+     "h": [
+      7
+     ],
+     "i": 10,
+     "n": 3
+    },
+    {
+     "w": "sons",
+     "h": [
+      8
+     ],
+     "i": 13,
+     "n": 1
+    },
+    {
+     "w": "were named",
+     "h": [
+      6
+     ],
+     "i": 14,
+     "n": 2
+    },
+    {
+     "w": "Mahlon",
+     "h": [
+      9
+     ],
+     "i": 16,
+     "n": 1
+    },
+    {
+     "w": "and Chilion",
+     "h": [
+      10
+     ],
+     "i": 17,
+     "n": 2
+    },
+    {
+     "w": "They belonged to the Ephrathite",
+     "h": [
+      11
+     ],
+     "i": 19,
+     "n": 5
+    },
+    {
+     "w": "clan of Bethlehem",
+     "h": [
+      12,
+      13
+     ],
+     "i": 24,
+     "n": 3
+    },
+    {
+     "w": "in Judah",
+     "h": [
+      14
+     ],
+     "i": 27,
+     "n": 2
+    },
+    {
+     "w": "They came",
+     "h": [
+      15
+     ],
+     "i": 29,
+     "n": 2
+    },
+    {
+     "w": "to the fields",
+     "h": [
+      16
+     ],
+     "i": 31,
+     "n": 3
+    },
+    {
+     "w": "of Moab",
+     "h": [
+      17
+     ],
+     "i": 34,
+     "n": 2
+    },
+    {
+     "w": "and stayed",
+     "h": [
+      18
+     ],
+     "i": 36,
+     "n": 2
+    },
+    {
+     "w": "there",
+     "h": [
+      19
+     ],
+     "i": 38,
+     "n": 1
+    }
+   ]
+  },
+  "1:3": {
+   "text": "Then Elimelech, Naomi's husband, died, leaving her with her two sons.",
+   "map": [
+    {
+     "w": "Then Elimelech",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "Naomi's",
+     "h": [
+      3
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "husband",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "died",
+     "h": [
+      0
+     ],
+     "i": 4,
+     "n": 1
+    },
+    {
+     "w": "leaving",
+     "h": [
+      4
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "her",
+     "h": [
+      5
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "with her two",
+     "h": [
+      6
+     ],
+     "i": 7,
+     "n": 3
+    },
+    {
+     "w": "sons",
+     "h": [
+      7
+     ],
+     "i": 10,
+     "n": 1
+    }
+   ]
+  },
+  "1:4": {
+   "text": "They married Moabite women; one was named Orpah and the other Ruth. They lived there about ten years.",
+   "map": [
+    {
+     "w": "They married",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "Moabite",
+     "h": [
+      3
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "women",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "one",
+     "h": [
+      5
+     ],
+     "i": 4,
+     "n": 1
+    },
+    {
+     "w": "was named",
+     "h": [
+      4
+     ],
+     "i": 5,
+     "n": 2
+    },
+    {
+     "w": "Orpah",
+     "h": [
+      6
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "and the other",
+     "h": [
+      8
+     ],
+     "i": 8,
+     "n": 3
+    },
+    {
+     "w": "Ruth",
+     "h": [
+      9
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "They lived",
+     "h": [
+      10
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "there",
+     "h": [
+      11
+     ],
+     "i": 14,
+     "n": 1
+    },
+    {
+     "w": "about ten",
+     "h": [
+      12
+     ],
+     "i": 15,
+     "n": 2
+    },
+    {
+     "w": "years",
+     "h": [
+      13
+     ],
+     "i": 17,
+     "n": 1
+    }
+   ]
+  },
+  "1:5": {
+   "text": "Then Mahlon and Chilion also died, both of them, and the woman was left without her two boys and without her husband.",
+   "map": [
+    {
+     "w": "Then Mahlon",
+     "h": [
+      3
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "and Chilion",
+     "h": [
+      4
+     ],
+     "i": 2,
+     "n": 2
+    },
+    {
+     "w": "also",
+     "h": [
+      1
+     ],
+     "i": 4,
+     "n": 1
+    },
+    {
+     "w": "died",
+     "h": [
+      0
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "both of them",
+     "h": [
+      2
+     ],
+     "i": 6,
+     "n": 3
+    },
+    {
+     "w": "and the woman",
+     "h": [
+      6
+     ],
+     "i": 9,
+     "n": 3
+    },
+    {
+     "w": "was left",
+     "h": [
+      5
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "without her two",
+     "h": [
+      7
+     ],
+     "i": 14,
+     "n": 3
+    },
+    {
+     "w": "boys",
+     "h": [
+      8
+     ],
+     "i": 17,
+     "n": 1
+    },
+    {
+     "w": "and without her husband",
+     "h": [
+      9
+     ],
+     "i": 18,
+     "n": 4
+    }
+   ]
+  },
+  "1:6": {
+   "text": "So she got up with her daughters-in-law to return from the fields of Moab, for word had reached her there in Moab that the LORD had come to the aid of his people and given them bread.",
+   "map": [
+    {
+     "w": "So she",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "got up",
+     "h": [
+      0
+     ],
+     "i": 2,
+     "n": 2
+    },
+    {
+     "w": "with her daughters-in-law",
+     "h": [
+      2
+     ],
+     "i": 4,
+     "n": 3
+    },
+    {
+     "w": "to return",
+     "h": [
+      3
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "from the fields",
+     "h": [
+      4
+     ],
+     "i": 9,
+     "n": 3
+    },
+    {
+     "w": "of Moab",
+     "h": [
+      5
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "for",
+     "h": [
+      6
+     ],
+     "i": 14,
+     "n": 1
+    },
+    {
+     "w": "word had reached her",
+     "h": [
+      7
+     ],
+     "i": 15,
+     "n": 4
+    },
+    {
+     "w": "there in Moab",
+     "h": [
+      8,
+      9
+     ],
+     "i": 19,
+     "n": 3
+    },
+    {
+     "w": "that",
+     "h": [
+      10
+     ],
+     "i": 22,
+     "n": 1
+    },
+    {
+     "w": "the LORD",
+     "h": [
+      12
+     ],
+     "i": 23,
+     "n": 2
+    },
+    {
+     "w": "had come to the aid of",
+     "h": [
+      11
+     ],
+     "i": 25,
+     "n": 6
+    },
+    {
+     "w": "his people",
+     "h": [
+      14
+     ],
+     "i": 31,
+     "n": 2
+    },
+    {
+     "w": "and given",
+     "h": [
+      15
+     ],
+     "i": 33,
+     "n": 2
+    },
+    {
+     "w": "them bread",
+     "h": [
+      17
+     ],
+     "i": 35,
+     "n": 2
+    }
+   ]
+  },
+  "1:7": {
+   "text": "She left the place where she had been living, her two daughters-in-law with her, and they took the road back to the land of Judah.",
+   "map": [
+    {
+     "w": "She left",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "the place",
+     "h": [
+      2
+     ],
+     "i": 2,
+     "n": 2
+    },
+    {
+     "w": "where",
+     "h": [
+      3
+     ],
+     "i": 4,
+     "n": 1
+    },
+    {
+     "w": "she had been living",
+     "h": [
+      4,
+      5
+     ],
+     "i": 5,
+     "n": 4
+    },
+    {
+     "w": "her two",
+     "h": [
+      6
+     ],
+     "i": 9,
+     "n": 2
+    },
+    {
+     "w": "daughters-in-law",
+     "h": [
+      7
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "with her",
+     "h": [
+      8
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "and they took",
+     "h": [
+      9
+     ],
+     "i": 14,
+     "n": 3
+    },
+    {
+     "w": "the road",
+     "h": [
+      10
+     ],
+     "i": 17,
+     "n": 2
+    },
+    {
+     "w": "back",
+     "h": [
+      11
+     ],
+     "i": 19,
+     "n": 1
+    },
+    {
+     "w": "to",
+     "h": [
+      12
+     ],
+     "i": 20,
+     "n": 1
+    },
+    {
+     "w": "the land",
+     "h": [
+      13
+     ],
+     "i": 21,
+     "n": 2
+    },
+    {
+     "w": "of Judah",
+     "h": [
+      14
+     ],
+     "i": 23,
+     "n": 2
+    }
+   ]
+  },
+  "1:8": {
+   "text": "Then Naomi told her two daughters-in-law, \"Go home—each of you back to your mother's house. May the LORD show you loyal love, just as you have shown it to those who died and to me.",
+   "map": [
+    {
+     "w": "Then Naomi",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "told",
+     "h": [
+      0
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "her two",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 2
+    },
+    {
+     "w": "daughters-in-law",
+     "h": [
+      3
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "Go",
+     "h": [
+      4
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "home",
+     "h": [
+      5
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "each of you",
+     "h": [
+      6
+     ],
+     "i": 8,
+     "n": 3
+    },
+    {
+     "w": "back to your mother's",
+     "h": [
+      8
+     ],
+     "i": 11,
+     "n": 4
+    },
+    {
+     "w": "house",
+     "h": [
+      7
+     ],
+     "i": 15,
+     "n": 1
+    },
+    {
+     "w": "May the LORD",
+     "h": [
+      9
+     ],
+     "i": 16,
+     "n": 3
+    },
+    {
+     "w": "show",
+     "h": [
+      9
+     ],
+     "i": 19,
+     "n": 1
+    },
+    {
+     "w": "you",
+     "h": [
+      10
+     ],
+     "i": 20,
+     "n": 1
+    },
+    {
+     "w": "loyal love",
+     "h": [
+      11
+     ],
+     "i": 21,
+     "n": 2
+    },
+    {
+     "w": "just as",
+     "h": [
+      12
+     ],
+     "i": 23,
+     "n": 2
+    },
+    {
+     "w": "you have shown it",
+     "h": [
+      13
+     ],
+     "i": 25,
+     "n": 4
+    },
+    {
+     "w": "to",
+     "h": [
+      14
+     ],
+     "i": 29,
+     "n": 1
+    },
+    {
+     "w": "those who died",
+     "h": [
+      15
+     ],
+     "i": 30,
+     "n": 3
+    },
+    {
+     "w": "and to me",
+     "h": [
+      16
+     ],
+     "i": 33,
+     "n": 3
+    }
+   ]
+  },
+  "1:9": {
+   "text": "May the LORD grant each of you rest in the house of a husband.\" She kissed them, and they broke down and wept aloud.",
+   "map": [
+    {
+     "w": "May the LORD",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 3
+    },
+    {
+     "w": "grant",
+     "h": [
+      0
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "each of you",
+     "h": [
+      2
+     ],
+     "i": 4,
+     "n": 3
+    },
+    {
+     "w": "rest",
+     "h": [
+      4
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "in the house",
+     "h": [
+      6
+     ],
+     "i": 8,
+     "n": 3
+    },
+    {
+     "w": "of a husband",
+     "h": [
+      7
+     ],
+     "i": 11,
+     "n": 3
+    },
+    {
+     "w": "She kissed",
+     "h": [
+      8
+     ],
+     "i": 14,
+     "n": 2
+    },
+    {
+     "w": "them",
+     "h": [
+      9
+     ],
+     "i": 16,
+     "n": 1
+    },
+    {
+     "w": "and they broke down and wept",
+     "h": [
+      10,
+      12
+     ],
+     "i": 17,
+     "n": 6
+    },
+    {
+     "w": "aloud",
+     "h": [
+      11
+     ],
+     "i": 23,
+     "n": 1
+    }
+   ]
+  },
+  "1:10": {
+   "text": "\"No,\" they told her, \"we are going back with you, to your people.\"",
+   "map": [
+    {
+     "w": "they told",
+     "h": [
+      0
+     ],
+     "i": 1,
+     "n": 2
+    },
+    {
+     "w": "her",
+     "h": [
+      1
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "we are going back",
+     "h": [
+      4
+     ],
+     "i": 4,
+     "n": 4
+    },
+    {
+     "w": "with you",
+     "h": [
+      3
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "to your people",
+     "h": [
+      5
+     ],
+     "i": 10,
+     "n": 3
+    }
+   ]
+  },
+  "1:11": {
+   "text": "But Naomi said, \"Go back, my daughters. Why come with me? Do I still have sons in my womb who could become your husbands?",
+   "map": [
+    {
+     "w": "But Naomi",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "said",
+     "h": [
+      0
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "Go back",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 2
+    },
+    {
+     "w": "my daughters",
+     "h": [
+      3
+     ],
+     "i": 5,
+     "n": 2
+    },
+    {
+     "w": "Why",
+     "h": [
+      4
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "come",
+     "h": [
+      5
+     ],
+     "i": 8,
+     "n": 1
+    },
+    {
+     "w": "with me",
+     "h": [
+      6
+     ],
+     "i": 9,
+     "n": 2
+    },
+    {
+     "w": "Do I still have",
+     "h": [
+      7
+     ],
+     "i": 11,
+     "n": 4
+    },
+    {
+     "w": "sons",
+     "h": [
+      9
+     ],
+     "i": 15,
+     "n": 1
+    },
+    {
+     "w": "in my womb",
+     "h": [
+      10
+     ],
+     "i": 16,
+     "n": 3
+    },
+    {
+     "w": "who could become",
+     "h": [
+      11
+     ],
+     "i": 19,
+     "n": 3
+    },
+    {
+     "w": "your husbands",
+     "h": [
+      13
+     ],
+     "i": 22,
+     "n": 2
+    }
+   ]
+  },
+  "1:12": {
+   "text": "Go back, my daughters, go on your way; I'm too old to marry again. Even if I told myself, 'There is still hope for me,' even if I had a husband tonight and gave birth to sons,",
+   "map": [
+    {
+     "w": "Go back",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "my daughters",
+     "h": [
+      1
+     ],
+     "i": 2,
+     "n": 2
+    },
+    {
+     "w": "go on your way",
+     "h": [
+      2
+     ],
+     "i": 4,
+     "n": 4
+    },
+    {
+     "w": "I'm too old",
+     "h": [
+      4
+     ],
+     "i": 8,
+     "n": 3
+    },
+    {
+     "w": "to marry again",
+     "h": [
+      5,
+      6
+     ],
+     "i": 11,
+     "n": 3
+    },
+    {
+     "w": "Even if",
+     "h": [
+      7
+     ],
+     "i": 14,
+     "n": 2
+    },
+    {
+     "w": "I told myself",
+     "h": [
+      8
+     ],
+     "i": 16,
+     "n": 3
+    },
+    {
+     "w": "There is",
+     "h": [
+      9
+     ],
+     "i": 19,
+     "n": 2
+    },
+    {
+     "w": "still hope",
+     "h": [
+      11
+     ],
+     "i": 21,
+     "n": 2
+    },
+    {
+     "w": "for me",
+     "h": [
+      10
+     ],
+     "i": 23,
+     "n": 2
+    },
+    {
+     "w": "even if",
+     "h": [
+      12
+     ],
+     "i": 25,
+     "n": 2
+    },
+    {
+     "w": "I had",
+     "h": [
+      13
+     ],
+     "i": 27,
+     "n": 2
+    },
+    {
+     "w": "a husband",
+     "h": [
+      15
+     ],
+     "i": 29,
+     "n": 2
+    },
+    {
+     "w": "tonight",
+     "h": [
+      14
+     ],
+     "i": 31,
+     "n": 1
+    },
+    {
+     "w": "and gave birth",
+     "h": [
+      17
+     ],
+     "i": 32,
+     "n": 3
+    },
+    {
+     "w": "to sons",
+     "h": [
+      18
+     ],
+     "i": 35,
+     "n": 2
+    }
+   ]
+  },
+  "1:13": {
+   "text": "would you wait for them to grow up? Would you shut yourselves away from marriage for them? No, my daughters. My bitterness is far greater than yours, because the hand of the LORD has come out against me.\"",
+   "map": [
+    {
+     "w": "would you wait",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 3
+    },
+    {
+     "w": "for them",
+     "h": [
+      0
+     ],
+     "i": 3,
+     "n": 2
+    },
+    {
+     "w": "to grow up",
+     "h": [
+      4
+     ],
+     "i": 5,
+     "n": 3
+    },
+    {
+     "w": "Would you shut yourselves away",
+     "h": [
+      6
+     ],
+     "i": 8,
+     "n": 5
+    },
+    {
+     "w": "from marriage",
+     "h": [
+      7,
+      8,
+      9
+     ],
+     "i": 13,
+     "n": 2
+    },
+    {
+     "w": "for them",
+     "h": [
+      5
+     ],
+     "i": 15,
+     "n": 2
+    },
+    {
+     "w": "No",
+     "h": [
+      10
+     ],
+     "i": 17,
+     "n": 1
+    },
+    {
+     "w": "my daughters",
+     "h": [
+      11
+     ],
+     "i": 18,
+     "n": 2
+    },
+    {
+     "w": "My bitterness",
+     "h": [
+      13
+     ],
+     "i": 20,
+     "n": 2
+    },
+    {
+     "w": "is far greater",
+     "h": [
+      15
+     ],
+     "i": 22,
+     "n": 3
+    },
+    {
+     "w": "than yours",
+     "h": [
+      16
+     ],
+     "i": 25,
+     "n": 2
+    },
+    {
+     "w": "because",
+     "h": [
+      17
+     ],
+     "i": 27,
+     "n": 1
+    },
+    {
+     "w": "the hand",
+     "h": [
+      20
+     ],
+     "i": 28,
+     "n": 2
+    },
+    {
+     "w": "of the LORD",
+     "h": [
+      21
+     ],
+     "i": 30,
+     "n": 3
+    },
+    {
+     "w": "has come out",
+     "h": [
+      18
+     ],
+     "i": 33,
+     "n": 3
+    },
+    {
+     "w": "against me",
+     "h": [
+      19
+     ],
+     "i": 36,
+     "n": 2
+    }
+   ]
+  },
+  "1:14": {
+   "text": "Again they wept aloud. Then Orpah kissed her mother-in-law, but Ruth held on to her.",
+   "map": [
+    {
+     "w": "Again they wept",
+     "h": [
+      0,
+      2
+     ],
+     "i": 0,
+     "n": 3
+    },
+    {
+     "w": "aloud",
+     "h": [
+      1
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "Then Orpah",
+     "h": [
+      5
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "kissed",
+     "h": [
+      4
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "her mother-in-law",
+     "h": [
+      6
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "but Ruth",
+     "h": [
+      7
+     ],
+     "i": 9,
+     "n": 2
+    },
+    {
+     "w": "held on to",
+     "h": [
+      8
+     ],
+     "i": 11,
+     "n": 3
+    },
+    {
+     "w": "her",
+     "h": [
+      9
+     ],
+     "i": 14,
+     "n": 1
+    }
+   ]
+  },
+  "1:15": {
+   "text": "Naomi said, \"Look, your sister-in-law is going back to her people and her gods. Go back with your sister-in-law.\"",
+   "map": [
+    {
+     "w": "Naomi said",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "Look",
+     "h": [
+      1
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "your sister-in-law",
+     "h": [
+      3
+     ],
+     "i": 3,
+     "n": 2
+    },
+    {
+     "w": "is going back",
+     "h": [
+      2
+     ],
+     "i": 5,
+     "n": 3
+    },
+    {
+     "w": "to her people",
+     "h": [
+      5
+     ],
+     "i": 8,
+     "n": 3
+    },
+    {
+     "w": "and her gods",
+     "h": [
+      7
+     ],
+     "i": 11,
+     "n": 3
+    },
+    {
+     "w": "Go back",
+     "h": [
+      8
+     ],
+     "i": 14,
+     "n": 2
+    },
+    {
+     "w": "with your sister-in-law",
+     "h": [
+      9,
+      10
+     ],
+     "i": 16,
+     "n": 3
+    }
+   ]
+  },
+  "1:16": {
+   "text": "But Ruth said, \"Don't press me to leave you, to turn back and stop following you. Wherever you go, I will go; wherever you spend the night, I will spend the night. Your people will be my people, and your God my God.",
+   "map": [
+    {
+     "w": "But Ruth",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "said",
+     "h": [
+      0
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "Don't",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "press",
+     "h": [
+      3
+     ],
+     "i": 4,
+     "n": 1
+    },
+    {
+     "w": "me",
+     "h": [
+      4
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "to leave you",
+     "h": [
+      5
+     ],
+     "i": 6,
+     "n": 3
+    },
+    {
+     "w": "to turn back",
+     "h": [
+      6
+     ],
+     "i": 9,
+     "n": 3
+    },
+    {
+     "w": "and stop following you",
+     "h": [
+      7
+     ],
+     "i": 12,
+     "n": 4
+    },
+    {
+     "w": "Wherever",
+     "h": [
+      10
+     ],
+     "i": 16,
+     "n": 1
+    },
+    {
+     "w": "you go",
+     "h": [
+      11
+     ],
+     "i": 17,
+     "n": 2
+    },
+    {
+     "w": "I will go",
+     "h": [
+      12
+     ],
+     "i": 19,
+     "n": 3
+    },
+    {
+     "w": "wherever",
+     "h": [
+      13
+     ],
+     "i": 22,
+     "n": 1
+    },
+    {
+     "w": "you spend the night",
+     "h": [
+      14
+     ],
+     "i": 23,
+     "n": 4
+    },
+    {
+     "w": "I will spend the night",
+     "h": [
+      15
+     ],
+     "i": 27,
+     "n": 5
+    },
+    {
+     "w": "Your people",
+     "h": [
+      16
+     ],
+     "i": 32,
+     "n": 2
+    },
+    {
+     "w": "will be my people",
+     "h": [
+      17
+     ],
+     "i": 34,
+     "n": 4
+    },
+    {
+     "w": "and your God",
+     "h": [
+      18
+     ],
+     "i": 38,
+     "n": 3
+    },
+    {
+     "w": "my God",
+     "h": [
+      19
+     ],
+     "i": 41,
+     "n": 2
+    }
+   ]
+  },
+  "1:17": {
+   "text": "Where you die, I will die, and there I will be buried. May the LORD deal with me, and worse, if anything but death comes between you and me.\"",
+   "map": [
+    {
+     "w": "Where",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "you die",
+     "h": [
+      1
+     ],
+     "i": 1,
+     "n": 2
+    },
+    {
+     "w": "I will die",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 3
+    },
+    {
+     "w": "and there",
+     "h": [
+      3
+     ],
+     "i": 6,
+     "n": 2
+    },
+    {
+     "w": "I will be buried",
+     "h": [
+      4
+     ],
+     "i": 8,
+     "n": 4
+    },
+    {
+     "w": "May",
+     "h": [
+      6
+     ],
+     "i": 12,
+     "n": 1
+    },
+    {
+     "w": "the LORD",
+     "h": [
+      7
+     ],
+     "i": 13,
+     "n": 2
+    },
+    {
+     "w": "deal with me",
+     "h": [
+      5
+     ],
+     "i": 15,
+     "n": 3
+    },
+    {
+     "w": "and worse",
+     "h": [
+      9,
+      10
+     ],
+     "i": 18,
+     "n": 2
+    },
+    {
+     "w": "if",
+     "h": [
+      11
+     ],
+     "i": 20,
+     "n": 1
+    },
+    {
+     "w": "anything but death",
+     "h": [
+      12
+     ],
+     "i": 21,
+     "n": 3
+    },
+    {
+     "w": "comes between",
+     "h": [
+      13
+     ],
+     "i": 24,
+     "n": 2
+    },
+    {
+     "w": "you",
+     "h": [
+      15
+     ],
+     "i": 26,
+     "n": 1
+    },
+    {
+     "w": "and me",
+     "h": [
+      14
+     ],
+     "i": 27,
+     "n": 2
+    }
+   ]
+  },
+  "1:18": {
+   "text": "When Naomi saw that Ruth was determined to go with her, she stopped arguing with her.",
+   "map": [
+    {
+     "w": "When Naomi saw",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 3
+    },
+    {
+     "w": "that",
+     "h": [
+      1
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "Ruth was determined",
+     "h": [
+      2,
+      3
+     ],
+     "i": 4,
+     "n": 3
+    },
+    {
+     "w": "to go",
+     "h": [
+      4
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "with her",
+     "h": [
+      5
+     ],
+     "i": 9,
+     "n": 2
+    },
+    {
+     "w": "she stopped",
+     "h": [
+      6
+     ],
+     "i": 11,
+     "n": 2
+    },
+    {
+     "w": "arguing with",
+     "h": [
+      7
+     ],
+     "i": 13,
+     "n": 2
+    },
+    {
+     "w": "her",
+     "h": [
+      8
+     ],
+     "i": 15,
+     "n": 1
+    }
+   ]
+  },
+  "1:19": {
+   "text": "So the two of them walked on until they reached Bethlehem. When they came into Bethlehem, the whole town was astir over them, and the women asked, \"Is this really Naomi?\"",
+   "map": [
+    {
+     "w": "So the two",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 3
+    },
+    {
+     "w": "of them walked on",
+     "h": [
+      0
+     ],
+     "i": 3,
+     "n": 4
+    },
+    {
+     "w": "until",
+     "h": [
+      2
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "they reached",
+     "h": [
+      3
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "Bethlehem",
+     "h": [
+      4,
+      5
+     ],
+     "i": 10,
+     "n": 1
+    },
+    {
+     "w": "When",
+     "h": [
+      6
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "they came into",
+     "h": [
+      7
+     ],
+     "i": 12,
+     "n": 3
+    },
+    {
+     "w": "Bethlehem",
+     "h": [
+      8,
+      9
+     ],
+     "i": 15,
+     "n": 1
+    },
+    {
+     "w": "the whole",
+     "h": [
+      11
+     ],
+     "i": 16,
+     "n": 2
+    },
+    {
+     "w": "town",
+     "h": [
+      12
+     ],
+     "i": 18,
+     "n": 1
+    },
+    {
+     "w": "was astir",
+     "h": [
+      10
+     ],
+     "i": 19,
+     "n": 2
+    },
+    {
+     "w": "over them",
+     "h": [
+      13
+     ],
+     "i": 21,
+     "n": 2
+    },
+    {
+     "w": "and the women asked",
+     "h": [
+      14
+     ],
+     "i": 23,
+     "n": 4
+    },
+    {
+     "w": "Is this",
+     "h": [
+      15
+     ],
+     "i": 27,
+     "n": 2
+    },
+    {
+     "w": "really Naomi",
+     "h": [
+      16
+     ],
+     "i": 29,
+     "n": 2
+    }
+   ]
+  },
+  "1:20": {
+   "text": "She answered them, \"Don't call me Naomi; call me Mara, for the Almighty has made my life very bitter.",
+   "map": [
+    {
+     "w": "She answered",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "them",
+     "h": [
+      1
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "Don't",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "call",
+     "h": [
+      3
+     ],
+     "i": 4,
+     "n": 1
+    },
+    {
+     "w": "me Naomi",
+     "h": [
+      5
+     ],
+     "i": 5,
+     "n": 2
+    },
+    {
+     "w": "call",
+     "h": [
+      6
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "me Mara",
+     "h": [
+      8
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "for",
+     "h": [
+      9
+     ],
+     "i": 10,
+     "n": 1
+    },
+    {
+     "w": "the Almighty",
+     "h": [
+      11
+     ],
+     "i": 11,
+     "n": 2
+    },
+    {
+     "w": "has made",
+     "h": [
+      10
+     ],
+     "i": 13,
+     "n": 2
+    },
+    {
+     "w": "my life very",
+     "h": [
+      13
+     ],
+     "i": 15,
+     "n": 3
+    },
+    {
+     "w": "bitter",
+     "h": [
+      10
+     ],
+     "i": 18,
+     "n": 1
+    }
+   ]
+  },
+  "1:21": {
+   "text": "I went away full, but the LORD has brought me back empty. So why call me Naomi? The LORD has borne witness against me, and the Almighty has done me harm.\"",
+   "map": [
+    {
+     "w": "I",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "went away",
+     "h": [
+      2
+     ],
+     "i": 1,
+     "n": 2
+    },
+    {
+     "w": "full",
+     "h": [
+      1
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "but the LORD",
+     "h": [
+      5
+     ],
+     "i": 4,
+     "n": 3
+    },
+    {
+     "w": "has brought",
+     "h": [
+      4
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "me back empty",
+     "h": [
+      3
+     ],
+     "i": 9,
+     "n": 3
+    },
+    {
+     "w": "So why",
+     "h": [
+      6
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "call",
+     "h": [
+      7
+     ],
+     "i": 14,
+     "n": 1
+    },
+    {
+     "w": "me Naomi",
+     "h": [
+      9
+     ],
+     "i": 15,
+     "n": 2
+    },
+    {
+     "w": "The LORD",
+     "h": [
+      10
+     ],
+     "i": 17,
+     "n": 2
+    },
+    {
+     "w": "has borne witness",
+     "h": [
+      11
+     ],
+     "i": 19,
+     "n": 3
+    },
+    {
+     "w": "against me",
+     "h": [
+      12
+     ],
+     "i": 22,
+     "n": 2
+    },
+    {
+     "w": "and the Almighty",
+     "h": [
+      13
+     ],
+     "i": 24,
+     "n": 3
+    },
+    {
+     "w": "has done",
+     "h": [
+      14
+     ],
+     "i": 27,
+     "n": 2
+    },
+    {
+     "w": "me harm",
+     "h": [
+      15
+     ],
+     "i": 29,
+     "n": 2
+    }
+   ]
+  },
+  "1:22": {
+   "text": "So Naomi returned, and with her Ruth the Moabite, her daughter-in-law, who came back from the fields of Moab. They reached Bethlehem as the barley harvest was beginning.",
+   "map": [
+    {
+     "w": "So Naomi",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "returned",
+     "h": [
+      0
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "and with her",
+     "h": [
+      5
+     ],
+     "i": 3,
+     "n": 3
+    },
+    {
+     "w": "Ruth",
+     "h": [
+      2
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "the Moabite",
+     "h": [
+      3
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "her daughter-in-law",
+     "h": [
+      4
+     ],
+     "i": 9,
+     "n": 2
+    },
+    {
+     "w": "who came back",
+     "h": [
+      6
+     ],
+     "i": 11,
+     "n": 3
+    },
+    {
+     "w": "from the fields",
+     "h": [
+      7
+     ],
+     "i": 14,
+     "n": 3
+    },
+    {
+     "w": "of Moab",
+     "h": [
+      8
+     ],
+     "i": 17,
+     "n": 2
+    },
+    {
+     "w": "They",
+     "h": [
+      9
+     ],
+     "i": 19,
+     "n": 1
+    },
+    {
+     "w": "reached",
+     "h": [
+      10
+     ],
+     "i": 20,
+     "n": 1
+    },
+    {
+     "w": "Bethlehem",
+     "h": [
+      11,
+      12
+     ],
+     "i": 21,
+     "n": 1
+    },
+    {
+     "w": "as the barley",
+     "h": [
+      15
+     ],
+     "i": 22,
+     "n": 3
+    },
+    {
+     "w": "harvest",
+     "h": [
+      14
+     ],
+     "i": 25,
+     "n": 1
+    },
+    {
+     "w": "was beginning",
+     "h": [
+      13
+     ],
+     "i": 26,
+     "n": 2
+    }
+   ]
+  },
+  "2:1": {
+   "text": "Naomi had a relative on her husband's side, a man of great worth from Elimelech's clan, named Boaz.",
+   "map": [
+    {
+     "w": "Naomi",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "had a relative",
+     "h": [
+      2
+     ],
+     "i": 1,
+     "n": 3
+    },
+    {
+     "w": "on her husband's side",
+     "h": [
+      1
+     ],
+     "i": 4,
+     "n": 4
+    },
+    {
+     "w": "a man",
+     "h": [
+      2
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "of great worth",
+     "h": [
+      3,
+      4
+     ],
+     "i": 10,
+     "n": 3
+    },
+    {
+     "w": "from Elimelech's",
+     "h": [
+      6
+     ],
+     "i": 13,
+     "n": 2
+    },
+    {
+     "w": "clan",
+     "h": [
+      5
+     ],
+     "i": 15,
+     "n": 1
+    },
+    {
+     "w": "named",
+     "h": [
+      7
+     ],
+     "i": 16,
+     "n": 1
+    },
+    {
+     "w": "Boaz",
+     "h": [
+      8
+     ],
+     "i": 17,
+     "n": 1
+    }
+   ]
+  },
+  "2:2": {
+   "text": "Ruth the Moabite said to Naomi, \"Let me go out to the fields and gather leftover grain behind someone who looks on me with favor.\" Naomi said to her, \"Go, my daughter.\"",
+   "map": [
+    {
+     "w": "Ruth",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "the Moabite",
+     "h": [
+      2
+     ],
+     "i": 1,
+     "n": 2
+    },
+    {
+     "w": "said",
+     "h": [
+      0
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "to Naomi",
+     "h": [
+      3,
+      4
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "Let me go out",
+     "h": [
+      5,
+      6
+     ],
+     "i": 6,
+     "n": 4
+    },
+    {
+     "w": "to the fields",
+     "h": [
+      7
+     ],
+     "i": 10,
+     "n": 3
+    },
+    {
+     "w": "and gather",
+     "h": [
+      8
+     ],
+     "i": 13,
+     "n": 2
+    },
+    {
+     "w": "leftover grain",
+     "h": [
+      9
+     ],
+     "i": 15,
+     "n": 2
+    },
+    {
+     "w": "behind",
+     "h": [
+      10
+     ],
+     "i": 17,
+     "n": 1
+    },
+    {
+     "w": "someone who",
+     "h": [
+      11
+     ],
+     "i": 18,
+     "n": 2
+    },
+    {
+     "w": "looks on me with",
+     "h": [
+      12
+     ],
+     "i": 20,
+     "n": 4
+    },
+    {
+     "w": "favor",
+     "h": [
+      13
+     ],
+     "i": 24,
+     "n": 1
+    },
+    {
+     "w": "Naomi said",
+     "h": [
+      15
+     ],
+     "i": 25,
+     "n": 2
+    },
+    {
+     "w": "to her",
+     "h": [
+      16
+     ],
+     "i": 27,
+     "n": 2
+    },
+    {
+     "w": "Go",
+     "h": [
+      17
+     ],
+     "i": 29,
+     "n": 1
+    },
+    {
+     "w": "my daughter",
+     "h": [
+      18
+     ],
+     "i": 30,
+     "n": 2
+    }
+   ]
+  },
+  "2:3": {
+   "text": "So she went out and gathered grain in the field behind the harvesters—and it so happened that the plot she came to was Boaz's, the man from Elimelech's clan.",
+   "map": [
+    {
+     "w": "So she went out",
+     "h": [
+      0,
+      1
+     ],
+     "i": 0,
+     "n": 4
+    },
+    {
+     "w": "and gathered grain",
+     "h": [
+      2
+     ],
+     "i": 4,
+     "n": 3
+    },
+    {
+     "w": "in the field",
+     "h": [
+      3
+     ],
+     "i": 7,
+     "n": 3
+    },
+    {
+     "w": "behind",
+     "h": [
+      4
+     ],
+     "i": 10,
+     "n": 1
+    },
+    {
+     "w": "the harvesters",
+     "h": [
+      5
+     ],
+     "i": 11,
+     "n": 2
+    },
+    {
+     "w": "and it so happened",
+     "h": [
+      6
+     ],
+     "i": 13,
+     "n": 4
+    },
+    {
+     "w": "that the plot",
+     "h": [
+      7,
+      8,
+      9
+     ],
+     "i": 17,
+     "n": 3
+    },
+    {
+     "w": "Boaz's",
+     "h": [
+      10
+     ],
+     "i": 24,
+     "n": 1
+    },
+    {
+     "w": "the man from",
+     "h": [
+      11
+     ],
+     "i": 25,
+     "n": 3
+    },
+    {
+     "w": "Elimelech's",
+     "h": [
+      13
+     ],
+     "i": 28,
+     "n": 1
+    },
+    {
+     "w": "clan",
+     "h": [
+      12
+     ],
+     "i": 29,
+     "n": 1
+    }
+   ]
+  },
+  "2:4": {
+   "text": "Just then Boaz arrived from Bethlehem and greeted the harvesters, \"The LORD be with you!\" They answered him, \"The LORD bless you!\"",
+   "map": [
+    {
+     "w": "Just then",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "Boaz",
+     "h": [
+      1
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "arrived",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "from Bethlehem",
+     "h": [
+      3,
+      4
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "and greeted",
+     "h": [
+      5
+     ],
+     "i": 6,
+     "n": 2
+    },
+    {
+     "w": "the harvesters",
+     "h": [
+      6
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "The LORD",
+     "h": [
+      7
+     ],
+     "i": 10,
+     "n": 2
+    },
+    {
+     "w": "be with you",
+     "h": [
+      8
+     ],
+     "i": 12,
+     "n": 3
+    },
+    {
+     "w": "They answered",
+     "h": [
+      9
+     ],
+     "i": 15,
+     "n": 2
+    },
+    {
+     "w": "him",
+     "h": [
+      10
+     ],
+     "i": 17,
+     "n": 1
+    },
+    {
+     "w": "The LORD",
+     "h": [
+      12
+     ],
+     "i": 18,
+     "n": 2
+    },
+    {
+     "w": "bless",
+     "h": [
+      11
+     ],
+     "i": 20,
+     "n": 1
+    }
+   ]
+  },
+  "2:5": {
+   "text": "Boaz asked the young man in charge of the harvesters, \"Who does this young woman belong to?\"",
+   "map": [
+    {
+     "w": "Boaz",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "asked",
+     "h": [
+      0
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "the young man",
+     "h": [
+      2
+     ],
+     "i": 2,
+     "n": 3
+    },
+    {
+     "w": "in charge",
+     "h": [
+      3
+     ],
+     "i": 5,
+     "n": 2
+    },
+    {
+     "w": "of",
+     "h": [
+      4
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "the harvesters",
+     "h": [
+      5
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "Who",
+     "h": [
+      6
+     ],
+     "i": 10,
+     "n": 1
+    },
+    {
+     "w": "does this",
+     "h": [
+      8
+     ],
+     "i": 11,
+     "n": 2
+    },
+    {
+     "w": "young woman",
+     "h": [
+      7
+     ],
+     "i": 13,
+     "n": 2
+    }
+   ]
+  },
+  "2:6": {
+   "text": "\"She's the Moabite girl,\" answered the young man in charge of the harvesters, \"the one who returned with Naomi from Moab's fields.",
+   "map": [
+    {
+     "w": "She's the Moabite",
+     "h": [
+      6,
+      7
+     ],
+     "i": 0,
+     "n": 3
+    },
+    {
+     "w": "girl",
+     "h": [
+      8
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "answered",
+     "h": [
+      0,
+      5
+     ],
+     "i": 4,
+     "n": 1
+    },
+    {
+     "w": "the young man",
+     "h": [
+      1
+     ],
+     "i": 5,
+     "n": 3
+    },
+    {
+     "w": "in charge",
+     "h": [
+      2
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "of",
+     "h": [
+      3
+     ],
+     "i": 10,
+     "n": 1
+    },
+    {
+     "w": "the harvesters",
+     "h": [
+      4
+     ],
+     "i": 11,
+     "n": 2
+    },
+    {
+     "w": "the one who returned",
+     "h": [
+      9
+     ],
+     "i": 13,
+     "n": 4
+    },
+    {
+     "w": "with",
+     "h": [
+      10
+     ],
+     "i": 17,
+     "n": 1
+    },
+    {
+     "w": "Naomi",
+     "h": [
+      11
+     ],
+     "i": 18,
+     "n": 1
+    },
+    {
+     "w": "from Moab's",
+     "h": [
+      13
+     ],
+     "i": 19,
+     "n": 2
+    },
+    {
+     "w": "fields",
+     "h": [
+      12
+     ],
+     "i": 21,
+     "n": 1
+    }
+   ]
+  },
+  "2:7": {
+   "text": "She asked, 'Please let me glean and gather among the sheaves behind the harvesters.' So she came, and she has kept at it from morning until now; she has sat only a little while in the shelter.\"",
+   "map": [
+    {
+     "w": "She asked",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "Please",
+     "h": [
+      2
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "let me glean",
+     "h": [
+      1
+     ],
+     "i": 3,
+     "n": 3
+    },
+    {
+     "w": "and gather",
+     "h": [
+      3
+     ],
+     "i": 6,
+     "n": 2
+    },
+    {
+     "w": "among the sheaves",
+     "h": [
+      4
+     ],
+     "i": 8,
+     "n": 3
+    },
+    {
+     "w": "behind",
+     "h": [
+      5
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "the harvesters",
+     "h": [
+      6
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "So she came",
+     "h": [
+      7
+     ],
+     "i": 14,
+     "n": 3
+    },
+    {
+     "w": "and she has kept at it",
+     "h": [
+      8
+     ],
+     "i": 17,
+     "n": 6
+    },
+    {
+     "w": "from",
+     "h": [
+      9
+     ],
+     "i": 23,
+     "n": 1
+    },
+    {
+     "w": "morning",
+     "h": [
+      10
+     ],
+     "i": 24,
+     "n": 1
+    },
+    {
+     "w": "until",
+     "h": [
+      11
+     ],
+     "i": 25,
+     "n": 1
+    },
+    {
+     "w": "now",
+     "h": [
+      12
+     ],
+     "i": 26,
+     "n": 1
+    },
+    {
+     "w": "she has sat",
+     "h": [
+      14
+     ],
+     "i": 27,
+     "n": 3
+    },
+    {
+     "w": "only a little while",
+     "h": [
+      16
+     ],
+     "i": 30,
+     "n": 4
+    },
+    {
+     "w": "in the shelter",
+     "h": [
+      15
+     ],
+     "i": 34,
+     "n": 3
+    }
+   ]
+  },
+  "2:8": {
+   "text": "Then Boaz said to Ruth, \"Listen to me, my daughter. Don't go gleaning in anyone else's field, and don't move on from here. Stay right beside my young women.",
+   "map": [
+    {
+     "w": "Then Boaz",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "said",
+     "h": [
+      0
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "to",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "Ruth",
+     "h": [
+      3
+     ],
+     "i": 4,
+     "n": 1
+    },
+    {
+     "w": "Listen to me",
+     "h": [
+      5
+     ],
+     "i": 5,
+     "n": 3
+    },
+    {
+     "w": "my daughter",
+     "h": [
+      6
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "Don't",
+     "h": [
+      7
+     ],
+     "i": 10,
+     "n": 1
+    },
+    {
+     "w": "go",
+     "h": [
+      8
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "gleaning",
+     "h": [
+      9
+     ],
+     "i": 12,
+     "n": 1
+    },
+    {
+     "w": "in anyone else's",
+     "h": [
+      11
+     ],
+     "i": 13,
+     "n": 3
+    },
+    {
+     "w": "field",
+     "h": [
+      10
+     ],
+     "i": 16,
+     "n": 1
+    },
+    {
+     "w": "and don't",
+     "h": [
+      12,
+      13
+     ],
+     "i": 17,
+     "n": 2
+    },
+    {
+     "w": "move on",
+     "h": [
+      14
+     ],
+     "i": 19,
+     "n": 2
+    },
+    {
+     "w": "from here",
+     "h": [
+      15
+     ],
+     "i": 21,
+     "n": 2
+    },
+    {
+     "w": "Stay right beside",
+     "h": [
+      16,
+      17
+     ],
+     "i": 23,
+     "n": 3
+    },
+    {
+     "w": "young women",
+     "h": [
+      19
+     ],
+     "i": 27,
+     "n": 2
+    }
+   ]
+  },
+  "2:9": {
+   "text": "Watch which field they are reaping and walk behind them. I have ordered the young men not to lay a hand on you. When you are thirsty, go to the water jars and drink some of the water the young men have drawn.\"",
+   "map": [
+    {
+     "w": "Watch",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "which field",
+     "h": [
+      1
+     ],
+     "i": 1,
+     "n": 2
+    },
+    {
+     "w": "they",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "are reaping",
+     "h": [
+      3
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "and walk",
+     "h": [
+      4
+     ],
+     "i": 6,
+     "n": 2
+    },
+    {
+     "w": "behind them",
+     "h": [
+      5
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "I have ordered",
+     "h": [
+      7
+     ],
+     "i": 10,
+     "n": 3
+    },
+    {
+     "w": "the young men",
+     "h": [
+      9
+     ],
+     "i": 13,
+     "n": 3
+    },
+    {
+     "w": "not",
+     "h": [
+      10
+     ],
+     "i": 16,
+     "n": 1
+    },
+    {
+     "w": "to lay a hand on",
+     "h": [
+      11
+     ],
+     "i": 17,
+     "n": 5
+    },
+    {
+     "w": "When you are thirsty",
+     "h": [
+      12
+     ],
+     "i": 23,
+     "n": 4
+    },
+    {
+     "w": "go",
+     "h": [
+      13
+     ],
+     "i": 27,
+     "n": 1
+    },
+    {
+     "w": "to",
+     "h": [
+      14
+     ],
+     "i": 28,
+     "n": 1
+    },
+    {
+     "w": "the water jars",
+     "h": [
+      15
+     ],
+     "i": 29,
+     "n": 3
+    },
+    {
+     "w": "and drink",
+     "h": [
+      16
+     ],
+     "i": 32,
+     "n": 2
+    },
+    {
+     "w": "some of the water",
+     "h": [
+      17
+     ],
+     "i": 34,
+     "n": 4
+    },
+    {
+     "w": "the young men",
+     "h": [
+      19
+     ],
+     "i": 38,
+     "n": 3
+    },
+    {
+     "w": "have drawn",
+     "h": [
+      18
+     ],
+     "i": 41,
+     "n": 2
+    }
+   ]
+  },
+  "2:10": {
+   "text": "She bowed down with her face to the ground and said to him, \"How is it that you look on me with favor and pay attention to me—a foreigner?\"",
+   "map": [
+    {
+     "w": "She bowed down",
+     "h": [
+      0,
+      3
+     ],
+     "i": 0,
+     "n": 3
+    },
+    {
+     "w": "with her face",
+     "h": [
+      1,
+      2
+     ],
+     "i": 3,
+     "n": 3
+    },
+    {
+     "w": "to the ground",
+     "h": [
+      4
+     ],
+     "i": 6,
+     "n": 3
+    },
+    {
+     "w": "and said",
+     "h": [
+      5
+     ],
+     "i": 9,
+     "n": 2
+    },
+    {
+     "w": "to him",
+     "h": [
+      6
+     ],
+     "i": 11,
+     "n": 2
+    },
+    {
+     "w": "How is it that",
+     "h": [
+      7
+     ],
+     "i": 13,
+     "n": 4
+    },
+    {
+     "w": "with favor",
+     "h": [
+      8,
+      9
+     ],
+     "i": 21,
+     "n": 2
+    },
+    {
+     "w": "and pay attention to me",
+     "h": [
+      11
+     ],
+     "i": 23,
+     "n": 5
+    },
+    {
+     "w": "a foreigner",
+     "h": [
+      12,
+      13
+     ],
+     "i": 28,
+     "n": 2
+    }
+   ]
+  },
+  "2:11": {
+   "text": "Boaz answered her, \"I have heard the whole story of what you have done for your mother-in-law since your husband died—how you left your father and mother and the land where you were born, and came to live among a people you had never known.",
+   "map": [
+    {
+     "w": "Boaz",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "answered",
+     "h": [
+      0,
+      2
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "her",
+     "h": [
+      3
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "I have heard",
+     "h": [
+      4,
+      5,
+      6
+     ],
+     "i": 3,
+     "n": 3
+    },
+    {
+     "w": "the whole",
+     "h": [
+      7
+     ],
+     "i": 6,
+     "n": 2
+    },
+    {
+     "w": "story of what",
+     "h": [
+      8
+     ],
+     "i": 8,
+     "n": 3
+    },
+    {
+     "w": "you have done",
+     "h": [
+      9
+     ],
+     "i": 11,
+     "n": 3
+    },
+    {
+     "w": "for your mother-in-law",
+     "h": [
+      11
+     ],
+     "i": 14,
+     "n": 3
+    },
+    {
+     "w": "since",
+     "h": [
+      12
+     ],
+     "i": 17,
+     "n": 1
+    },
+    {
+     "w": "your husband",
+     "h": [
+      14
+     ],
+     "i": 18,
+     "n": 2
+    },
+    {
+     "w": "died",
+     "h": [
+      13
+     ],
+     "i": 20,
+     "n": 1
+    },
+    {
+     "w": "how you left",
+     "h": [
+      15
+     ],
+     "i": 21,
+     "n": 3
+    },
+    {
+     "w": "your father",
+     "h": [
+      16
+     ],
+     "i": 24,
+     "n": 2
+    },
+    {
+     "w": "and mother",
+     "h": [
+      17
+     ],
+     "i": 26,
+     "n": 2
+    },
+    {
+     "w": "and the land",
+     "h": [
+      18
+     ],
+     "i": 28,
+     "n": 3
+    },
+    {
+     "w": "where you were born",
+     "h": [
+      19
+     ],
+     "i": 31,
+     "n": 4
+    },
+    {
+     "w": "and came",
+     "h": [
+      20
+     ],
+     "i": 35,
+     "n": 2
+    },
+    {
+     "w": "to live among",
+     "h": [
+      21
+     ],
+     "i": 37,
+     "n": 3
+    },
+    {
+     "w": "a people",
+     "h": [
+      22
+     ],
+     "i": 40,
+     "n": 2
+    },
+    {
+     "w": "you",
+     "h": [
+      23
+     ],
+     "i": 42,
+     "n": 1
+    },
+    {
+     "w": "had never",
+     "h": [
+      24
+     ],
+     "i": 43,
+     "n": 2
+    },
+    {
+     "w": "known",
+     "h": [
+      25
+     ],
+     "i": 45,
+     "n": 1
+    }
+   ]
+  },
+  "2:12": {
+   "text": "May the LORD reward your deeds. May you be paid in full by the LORD, the God of Israel, beneath whose wings you have come to find shelter.\"",
+   "map": [
+    {
+     "w": "May the LORD",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 3
+    },
+    {
+     "w": "reward",
+     "h": [
+      0
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "your deeds",
+     "h": [
+      2
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "May you be",
+     "h": [
+      3
+     ],
+     "i": 6,
+     "n": 3
+    },
+    {
+     "w": "paid",
+     "h": [
+      4
+     ],
+     "i": 9,
+     "n": 1
+    },
+    {
+     "w": "in full",
+     "h": [
+      5
+     ],
+     "i": 10,
+     "n": 2
+    },
+    {
+     "w": "by the LORD",
+     "h": [
+      6,
+      7
+     ],
+     "i": 12,
+     "n": 3
+    },
+    {
+     "w": "the God",
+     "h": [
+      8
+     ],
+     "i": 15,
+     "n": 2
+    },
+    {
+     "w": "of Israel",
+     "h": [
+      9
+     ],
+     "i": 17,
+     "n": 2
+    },
+    {
+     "w": "beneath",
+     "h": [
+      13
+     ],
+     "i": 19,
+     "n": 1
+    },
+    {
+     "w": "whose",
+     "h": [
+      10
+     ],
+     "i": 20,
+     "n": 1
+    },
+    {
+     "w": "wings",
+     "h": [
+      14
+     ],
+     "i": 21,
+     "n": 1
+    },
+    {
+     "w": "you have come",
+     "h": [
+      11
+     ],
+     "i": 22,
+     "n": 3
+    },
+    {
+     "w": "to find shelter",
+     "h": [
+      12
+     ],
+     "i": 25,
+     "n": 3
+    }
+   ]
+  },
+  "2:13": {
+   "text": "She said, \"May I keep finding favor with you, my lord. You have comforted me and spoken to the heart of your servant, though I am not even one of your servant women.\"",
+   "map": [
+    {
+     "w": "She said",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "May I keep finding",
+     "h": [
+      1
+     ],
+     "i": 2,
+     "n": 4
+    },
+    {
+     "w": "favor",
+     "h": [
+      2
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "with you",
+     "h": [
+      3
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "my lord",
+     "h": [
+      4
+     ],
+     "i": 9,
+     "n": 2
+    },
+    {
+     "w": "You have comforted me",
+     "h": [
+      5,
+      6
+     ],
+     "i": 11,
+     "n": 4
+    },
+    {
+     "w": "and",
+     "h": [
+      7
+     ],
+     "i": 15,
+     "n": 1
+    },
+    {
+     "w": "spoken",
+     "h": [
+      8
+     ],
+     "i": 16,
+     "n": 1
+    },
+    {
+     "w": "to the heart",
+     "h": [
+      9,
+      10
+     ],
+     "i": 17,
+     "n": 3
+    },
+    {
+     "w": "of your servant",
+     "h": [
+      11
+     ],
+     "i": 20,
+     "n": 3
+    },
+    {
+     "w": "though I",
+     "h": [
+      12
+     ],
+     "i": 23,
+     "n": 2
+    },
+    {
+     "w": "am not",
+     "h": [
+      13,
+      14
+     ],
+     "i": 25,
+     "n": 2
+    },
+    {
+     "w": "even one",
+     "h": [
+      15
+     ],
+     "i": 27,
+     "n": 2
+    },
+    {
+     "w": "of your servant women",
+     "h": [
+      16
+     ],
+     "i": 29,
+     "n": 4
+    }
+   ]
+  },
+  "2:14": {
+   "text": "At mealtime Boaz said to her, \"Come over here, have some bread, and dip your piece in the sour wine.\" So she sat down next to the harvesters, and he handed her some roasted grain. She ate her fill, and there was still some left.",
+   "map": [
+    {
+     "w": "At mealtime",
+     "h": [
+      3,
+      4
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "Boaz",
+     "h": [
+      2
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "said",
+     "h": [
+      0
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "to her",
+     "h": [
+      1
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "Come over",
+     "h": [
+      5
+     ],
+     "i": 6,
+     "n": 2
+    },
+    {
+     "w": "here",
+     "h": [
+      6
+     ],
+     "i": 8,
+     "n": 1
+    },
+    {
+     "w": "have some",
+     "h": [
+      7
+     ],
+     "i": 9,
+     "n": 2
+    },
+    {
+     "w": "bread",
+     "h": [
+      9
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "and dip",
+     "h": [
+      10
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "your piece",
+     "h": [
+      11
+     ],
+     "i": 14,
+     "n": 2
+    },
+    {
+     "w": "in the sour wine",
+     "h": [
+      12
+     ],
+     "i": 16,
+     "n": 4
+    },
+    {
+     "w": "So she sat down",
+     "h": [
+      13
+     ],
+     "i": 20,
+     "n": 4
+    },
+    {
+     "w": "next to",
+     "h": [
+      14
+     ],
+     "i": 24,
+     "n": 2
+    },
+    {
+     "w": "the harvesters",
+     "h": [
+      15
+     ],
+     "i": 26,
+     "n": 2
+    },
+    {
+     "w": "and he handed",
+     "h": [
+      16
+     ],
+     "i": 28,
+     "n": 3
+    },
+    {
+     "w": "her",
+     "h": [
+      17
+     ],
+     "i": 31,
+     "n": 1
+    },
+    {
+     "w": "some roasted grain",
+     "h": [
+      18
+     ],
+     "i": 32,
+     "n": 3
+    },
+    {
+     "w": "She ate",
+     "h": [
+      19
+     ],
+     "i": 35,
+     "n": 2
+    },
+    {
+     "w": "her fill",
+     "h": [
+      20
+     ],
+     "i": 37,
+     "n": 2
+    },
+    {
+     "w": "and there was still some left",
+     "h": [
+      21
+     ],
+     "i": 39,
+     "n": 6
+    }
+   ]
+  },
+  "2:15": {
+   "text": "As she rose to go on gleaning, Boaz gave orders to his young men: \"Let her gather even among the bundles, and don't embarrass her.",
+   "map": [
+    {
+     "w": "As she rose",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 3
+    },
+    {
+     "w": "to go on gleaning",
+     "h": [
+      1
+     ],
+     "i": 3,
+     "n": 4
+    },
+    {
+     "w": "Boaz",
+     "h": [
+      3
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "gave orders",
+     "h": [
+      2
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "to his young men",
+     "h": [
+      5
+     ],
+     "i": 10,
+     "n": 4
+    },
+    {
+     "w": "Let her gather",
+     "h": [
+      7,
+      10
+     ],
+     "i": 14,
+     "n": 3
+    },
+    {
+     "w": "even among",
+     "h": [
+      8
+     ],
+     "i": 17,
+     "n": 2
+    },
+    {
+     "w": "the bundles",
+     "h": [
+      9
+     ],
+     "i": 19,
+     "n": 2
+    },
+    {
+     "w": "and don't",
+     "h": [
+      11
+     ],
+     "i": 21,
+     "n": 2
+    },
+    {
+     "w": "embarrass her",
+     "h": [
+      12
+     ],
+     "i": 23,
+     "n": 2
+    }
+   ]
+  },
+  "2:16": {
+   "text": "Even draw out a few stalks from the bundles on purpose and leave them behind for her to pick up. Don't rebuke her.\"",
+   "map": [
+    {
+     "w": "Even",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "draw out",
+     "h": [
+      1,
+      2
+     ],
+     "i": 1,
+     "n": 2
+    },
+    {
+     "w": "a few stalks",
+     "h": [
+      3,
+      4
+     ],
+     "i": 3,
+     "n": 3
+    },
+    {
+     "w": "from the bundles",
+     "h": [
+      5
+     ],
+     "i": 6,
+     "n": 3
+    },
+    {
+     "w": "on purpose and leave them behind",
+     "h": [
+      6
+     ],
+     "i": 9,
+     "n": 6
+    },
+    {
+     "w": "for her to pick up",
+     "h": [
+      7
+     ],
+     "i": 15,
+     "n": 5
+    },
+    {
+     "w": "Don't",
+     "h": [
+      8
+     ],
+     "i": 20,
+     "n": 1
+    },
+    {
+     "w": "rebuke",
+     "h": [
+      9
+     ],
+     "i": 21,
+     "n": 1
+    },
+    {
+     "w": "her",
+     "h": [
+      10
+     ],
+     "i": 22,
+     "n": 1
+    }
+   ]
+  },
+  "2:17": {
+   "text": "Ruth gathered in the field until evening. When she threshed what she had collected, it came to about an ephah of barley.",
+   "map": [
+    {
+     "w": "Ruth gathered",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "in the field",
+     "h": [
+      1
+     ],
+     "i": 2,
+     "n": 3
+    },
+    {
+     "w": "until",
+     "h": [
+      2
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "evening",
+     "h": [
+      3
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "When she threshed",
+     "h": [
+      4
+     ],
+     "i": 7,
+     "n": 3
+    },
+    {
+     "w": "what",
+     "h": [
+      6
+     ],
+     "i": 10,
+     "n": 1
+    },
+    {
+     "w": "she had collected",
+     "h": [
+      7
+     ],
+     "i": 11,
+     "n": 3
+    },
+    {
+     "w": "it came to",
+     "h": [
+      8
+     ],
+     "i": 14,
+     "n": 3
+    },
+    {
+     "w": "about an ephah",
+     "h": [
+      9
+     ],
+     "i": 17,
+     "n": 3
+    },
+    {
+     "w": "of barley",
+     "h": [
+      10
+     ],
+     "i": 20,
+     "n": 2
+    }
+   ]
+  },
+  "2:18": {
+   "text": "She picked it up and went into town, and her mother-in-law saw how much she had gleaned. Ruth also brought out the food left over from her meal and gave it to her.",
+   "map": [
+    {
+     "w": "She picked it up",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 4
+    },
+    {
+     "w": "and went",
+     "h": [
+      1
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "into town",
+     "h": [
+      2
+     ],
+     "i": 6,
+     "n": 2
+    },
+    {
+     "w": "and her mother-in-law",
+     "h": [
+      4
+     ],
+     "i": 8,
+     "n": 3
+    },
+    {
+     "w": "saw",
+     "h": [
+      3
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "how much",
+     "h": [
+      6
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "she had gleaned",
+     "h": [
+      7
+     ],
+     "i": 14,
+     "n": 3
+    },
+    {
+     "w": "Ruth also brought out",
+     "h": [
+      8
+     ],
+     "i": 17,
+     "n": 4
+    },
+    {
+     "w": "the food left over",
+     "h": [
+      12,
+      13
+     ],
+     "i": 21,
+     "n": 4
+    },
+    {
+     "w": "from her meal",
+     "h": [
+      14
+     ],
+     "i": 25,
+     "n": 3
+    },
+    {
+     "w": "and gave",
+     "h": [
+      9
+     ],
+     "i": 28,
+     "n": 2
+    },
+    {
+     "w": "it",
+     "h": [
+      11
+     ],
+     "i": 30,
+     "n": 1
+    },
+    {
+     "w": "to her",
+     "h": [
+      10
+     ],
+     "i": 31,
+     "n": 2
+    }
+   ]
+  },
+  "2:19": {
+   "text": "Her mother-in-law asked her, \"Where did you gather grain today? Where did you work? May the one who noticed you be blessed!\" So Ruth told her whose field she had worked in. \"The man I worked for today,\" she said, \"is named Boaz.\"",
+   "map": [
+    {
+     "w": "Her mother-in-law",
+     "h": [
+      2
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "asked",
+     "h": [
+      0
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "her",
+     "h": [
+      1
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "Where",
+     "h": [
+      3
+     ],
+     "i": 4,
+     "n": 1
+    },
+    {
+     "w": "did you gather grain",
+     "h": [
+      4
+     ],
+     "i": 5,
+     "n": 4
+    },
+    {
+     "w": "today",
+     "h": [
+      5
+     ],
+     "i": 9,
+     "n": 1
+    },
+    {
+     "w": "Where",
+     "h": [
+      6
+     ],
+     "i": 10,
+     "n": 1
+    },
+    {
+     "w": "did you work",
+     "h": [
+      7
+     ],
+     "i": 11,
+     "n": 3
+    },
+    {
+     "w": "May",
+     "h": [
+      8
+     ],
+     "i": 14,
+     "n": 1
+    },
+    {
+     "w": "the one who noticed you",
+     "h": [
+      9
+     ],
+     "i": 15,
+     "n": 5
+    },
+    {
+     "w": "be blessed",
+     "h": [
+      10
+     ],
+     "i": 20,
+     "n": 2
+    },
+    {
+     "w": "So Ruth told",
+     "h": [
+      11
+     ],
+     "i": 22,
+     "n": 3
+    },
+    {
+     "w": "her",
+     "h": [
+      12
+     ],
+     "i": 25,
+     "n": 1
+    },
+    {
+     "w": "whose field she had worked",
+     "h": [
+      14,
+      15,
+      16
+     ],
+     "i": 26,
+     "n": 5
+    },
+    {
+     "w": "in",
+     "h": [
+      16
+     ],
+     "i": 31,
+     "n": 1
+    },
+    {
+     "w": "The man",
+     "h": [
+      19
+     ],
+     "i": 32,
+     "n": 2
+    },
+    {
+     "w": "I",
+     "h": [
+      21
+     ],
+     "i": 34,
+     "n": 1
+    },
+    {
+     "w": "worked for",
+     "h": [
+      21
+     ],
+     "i": 35,
+     "n": 2
+    },
+    {
+     "w": "today",
+     "h": [
+      23
+     ],
+     "i": 37,
+     "n": 1
+    },
+    {
+     "w": "she said",
+     "h": [
+      17
+     ],
+     "i": 38,
+     "n": 2
+    },
+    {
+     "w": "is named",
+     "h": [
+      18
+     ],
+     "i": 40,
+     "n": 2
+    },
+    {
+     "w": "Boaz",
+     "h": [
+      24
+     ],
+     "i": 42,
+     "n": 1
+    }
+   ]
+  },
+  "2:20": {
+   "text": "Naomi said to her daughter-in-law, \"May the LORD bless him! He has not stopped showing his loyal love to the living and the dead.\" Naomi added, \"That man is near kin to us. He is one of our family redeemers.\"",
+   "map": [
+    {
+     "w": "Naomi",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "said",
+     "h": [
+      0
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "to her daughter-in-law",
+     "h": [
+      2
+     ],
+     "i": 2,
+     "n": 3
+    },
+    {
+     "w": "May the LORD",
+     "h": [
+      5
+     ],
+     "i": 5,
+     "n": 3
+    },
+    {
+     "w": "bless",
+     "h": [
+      3
+     ],
+     "i": 8,
+     "n": 1
+    },
+    {
+     "w": "him",
+     "h": [
+      4
+     ],
+     "i": 9,
+     "n": 1
+    },
+    {
+     "w": "He",
+     "h": [
+      6
+     ],
+     "i": 10,
+     "n": 1
+    },
+    {
+     "w": "has not",
+     "h": [
+      7
+     ],
+     "i": 11,
+     "n": 2
+    },
+    {
+     "w": "stopped showing",
+     "h": [
+      8
+     ],
+     "i": 13,
+     "n": 2
+    },
+    {
+     "w": "his loyal love",
+     "h": [
+      9
+     ],
+     "i": 15,
+     "n": 3
+    },
+    {
+     "w": "to the living",
+     "h": [
+      11
+     ],
+     "i": 18,
+     "n": 3
+    },
+    {
+     "w": "and the dead",
+     "h": [
+      13
+     ],
+     "i": 21,
+     "n": 3
+    },
+    {
+     "w": "Naomi",
+     "h": [
+      16
+     ],
+     "i": 24,
+     "n": 1
+    },
+    {
+     "w": "added",
+     "h": [
+      14
+     ],
+     "i": 25,
+     "n": 1
+    },
+    {
+     "w": "That man",
+     "h": [
+      19
+     ],
+     "i": 26,
+     "n": 2
+    },
+    {
+     "w": "is near kin",
+     "h": [
+      17
+     ],
+     "i": 28,
+     "n": 3
+    },
+    {
+     "w": "to us",
+     "h": [
+      18
+     ],
+     "i": 31,
+     "n": 2
+    },
+    {
+     "w": "He",
+     "h": [
+      21
+     ],
+     "i": 33,
+     "n": 1
+    },
+    {
+     "w": "is one of our family redeemers",
+     "h": [
+      20
+     ],
+     "i": 34,
+     "n": 6
+    }
+   ]
+  },
+  "2:21": {
+   "text": "Ruth the Moabite said, \"He even told me, 'Stay with my young men until they have brought in my whole harvest.'\"",
+   "map": [
+    {
+     "w": "Ruth",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "the Moabite",
+     "h": [
+      2
+     ],
+     "i": 1,
+     "n": 2
+    },
+    {
+     "w": "said",
+     "h": [
+      0
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "He even",
+     "h": [
+      3
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "told",
+     "h": [
+      5
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "me",
+     "h": [
+      6
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "Stay",
+     "h": [
+      11
+     ],
+     "i": 8,
+     "n": 1
+    },
+    {
+     "w": "with",
+     "h": [
+      7
+     ],
+     "i": 9,
+     "n": 1
+    },
+    {
+     "w": "my young men",
+     "h": [
+      8
+     ],
+     "i": 10,
+     "n": 3
+    },
+    {
+     "w": "until",
+     "h": [
+      12
+     ],
+     "i": 13,
+     "n": 1
+    },
+    {
+     "w": "they have brought in",
+     "h": [
+      14
+     ],
+     "i": 14,
+     "n": 4
+    },
+    {
+     "w": "my whole",
+     "h": [
+      16
+     ],
+     "i": 18,
+     "n": 2
+    },
+    {
+     "w": "harvest",
+     "h": [
+      17
+     ],
+     "i": 20,
+     "n": 1
+    }
+   ]
+  },
+  "2:22": {
+   "text": "Naomi said to Ruth her daughter-in-law, \"It's good, my daughter, for you to go out with his young women, so that no one bothers you in some other field.\"",
+   "map": [
+    {
+     "w": "Naomi",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "said",
+     "h": [
+      0
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "to Ruth",
+     "h": [
+      3
+     ],
+     "i": 2,
+     "n": 2
+    },
+    {
+     "w": "her daughter-in-law",
+     "h": [
+      4
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "It's good",
+     "h": [
+      5
+     ],
+     "i": 6,
+     "n": 2
+    },
+    {
+     "w": "my daughter",
+     "h": [
+      6
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "for you to go out",
+     "h": [
+      8
+     ],
+     "i": 10,
+     "n": 5
+    },
+    {
+     "w": "with",
+     "h": [
+      9
+     ],
+     "i": 15,
+     "n": 1
+    },
+    {
+     "w": "his young women",
+     "h": [
+      10
+     ],
+     "i": 16,
+     "n": 3
+    },
+    {
+     "w": "so that no one",
+     "h": [
+      11,
+      12
+     ],
+     "i": 19,
+     "n": 4
+    },
+    {
+     "w": "bothers you",
+     "h": [
+      12
+     ],
+     "i": 23,
+     "n": 2
+    },
+    {
+     "w": "in some other",
+     "h": [
+      15
+     ],
+     "i": 25,
+     "n": 3
+    },
+    {
+     "w": "field",
+     "h": [
+      14
+     ],
+     "i": 28,
+     "n": 1
+    }
+   ]
+  },
+  "2:23": {
+   "text": "So Ruth stayed beside Boaz's young women and gleaned until both the barley and the wheat harvests were done. Meanwhile she made her home with her mother-in-law.",
+   "map": [
+    {
+     "w": "So Ruth stayed beside",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 4
+    },
+    {
+     "w": "Boaz's",
+     "h": [
+      2
+     ],
+     "i": 4,
+     "n": 1
+    },
+    {
+     "w": "young women",
+     "h": [
+      1
+     ],
+     "i": 5,
+     "n": 2
+    },
+    {
+     "w": "and gleaned",
+     "h": [
+      3
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "until",
+     "h": [
+      4
+     ],
+     "i": 9,
+     "n": 1
+    },
+    {
+     "w": "both the barley",
+     "h": [
+      6,
+      7
+     ],
+     "i": 10,
+     "n": 3
+    },
+    {
+     "w": "and the wheat",
+     "h": [
+      9
+     ],
+     "i": 13,
+     "n": 3
+    },
+    {
+     "w": "harvests were done",
+     "h": [
+      5,
+      8
+     ],
+     "i": 16,
+     "n": 3
+    },
+    {
+     "w": "Meanwhile she made her home",
+     "h": [
+      10
+     ],
+     "i": 19,
+     "n": 5
+    },
+    {
+     "w": "with",
+     "h": [
+      11
+     ],
+     "i": 24,
+     "n": 1
+    },
+    {
+     "w": "her mother-in-law",
+     "h": [
+      12
+     ],
+     "i": 25,
+     "n": 2
+    }
+   ]
+  },
+  "3:1": {
+   "text": "One day Naomi her mother-in-law said to her, \"My daughter, shouldn't I look for a place of rest for you, where life will go well for you?",
+   "map": [
+    {
+     "w": "One day Naomi",
+     "h": [
+      2
+     ],
+     "i": 0,
+     "n": 3
+    },
+    {
+     "w": "her mother-in-law",
+     "h": [
+      3
+     ],
+     "i": 3,
+     "n": 2
+    },
+    {
+     "w": "said",
+     "h": [
+      0
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "to her",
+     "h": [
+      1
+     ],
+     "i": 6,
+     "n": 2
+    },
+    {
+     "w": "My daughter",
+     "h": [
+      4
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "shouldn't",
+     "h": [
+      5
+     ],
+     "i": 10,
+     "n": 1
+    },
+    {
+     "w": "I",
+     "h": [
+      6
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "look for",
+     "h": [
+      6
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "a place of rest",
+     "h": [
+      8
+     ],
+     "i": 14,
+     "n": 4
+    },
+    {
+     "w": "for you",
+     "h": [
+      7
+     ],
+     "i": 18,
+     "n": 2
+    },
+    {
+     "w": "where",
+     "h": [
+      9
+     ],
+     "i": 20,
+     "n": 1
+    },
+    {
+     "w": "life will go well",
+     "h": [
+      10
+     ],
+     "i": 21,
+     "n": 4
+    },
+    {
+     "w": "for you",
+     "h": [
+      11
+     ],
+     "i": 25,
+     "n": 2
+    }
+   ]
+  },
+  "3:2": {
+   "text": "Now, Boaz—whose young women you have been working with—isn't he our relative? Tonight he will be winnowing barley on the threshing floor.",
+   "map": [
+    {
+     "w": "Now",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "Boaz",
+     "h": [
+      2
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "whose young women",
+     "h": [
+      7
+     ],
+     "i": 2,
+     "n": 3
+    },
+    {
+     "w": "you",
+     "h": [
+      5
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "have been working with",
+     "h": [
+      6
+     ],
+     "i": 6,
+     "n": 4
+    },
+    {
+     "w": "isn't he",
+     "h": [
+      1,
+      9
+     ],
+     "i": 10,
+     "n": 2
+    },
+    {
+     "w": "our relative",
+     "h": [
+      3
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "Tonight",
+     "h": [
+      14
+     ],
+     "i": 14,
+     "n": 1
+    },
+    {
+     "w": "he",
+     "h": [
+      9
+     ],
+     "i": 15,
+     "n": 1
+    },
+    {
+     "w": "will be winnowing",
+     "h": [
+      10
+     ],
+     "i": 16,
+     "n": 3
+    },
+    {
+     "w": "barley",
+     "h": [
+      13
+     ],
+     "i": 19,
+     "n": 1
+    },
+    {
+     "w": "on the threshing floor",
+     "h": [
+      12
+     ],
+     "i": 20,
+     "n": 4
+    }
+   ]
+  },
+  "3:3": {
+   "text": "So wash, put on perfume, put on your cloak, and go down to the threshing floor. But don't let him know you are there until he is done eating and drinking.",
+   "map": [
+    {
+     "w": "So wash",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "put on perfume",
+     "h": [
+      1
+     ],
+     "i": 2,
+     "n": 3
+    },
+    {
+     "w": "put on",
+     "h": [
+      2
+     ],
+     "i": 5,
+     "n": 2
+    },
+    {
+     "w": "your cloak",
+     "h": [
+      3
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "and go down",
+     "h": [
+      2
+     ],
+     "i": 9,
+     "n": 3
+    },
+    {
+     "w": "to the threshing floor",
+     "h": [
+      4
+     ],
+     "i": 12,
+     "n": 4
+    },
+    {
+     "w": "But don't",
+     "h": [
+      5
+     ],
+     "i": 16,
+     "n": 2
+    },
+    {
+     "w": "let him",
+     "h": [
+      7
+     ],
+     "i": 18,
+     "n": 2
+    },
+    {
+     "w": "know",
+     "h": [
+      6
+     ],
+     "i": 20,
+     "n": 1
+    },
+    {
+     "w": "until",
+     "h": [
+      8
+     ],
+     "i": 24,
+     "n": 1
+    },
+    {
+     "w": "he is done",
+     "h": [
+      9
+     ],
+     "i": 25,
+     "n": 3
+    },
+    {
+     "w": "eating",
+     "h": [
+      10
+     ],
+     "i": 28,
+     "n": 1
+    },
+    {
+     "w": "and drinking",
+     "h": [
+      11
+     ],
+     "i": 29,
+     "n": 2
+    }
+   ]
+  },
+  "3:4": {
+   "text": "When he lies down, take note of the place where he lies. Then go in, uncover his feet, and lie down. He will tell you what you should do.\"",
+   "map": [
+    {
+     "w": "When he lies down",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 4
+    },
+    {
+     "w": "take note of",
+     "h": [
+      2
+     ],
+     "i": 4,
+     "n": 3
+    },
+    {
+     "w": "the place",
+     "h": [
+      4
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "where",
+     "h": [
+      5
+     ],
+     "i": 9,
+     "n": 1
+    },
+    {
+     "w": "he lies",
+     "h": [
+      6
+     ],
+     "i": 10,
+     "n": 2
+    },
+    {
+     "w": "Then go in",
+     "h": [
+      8
+     ],
+     "i": 12,
+     "n": 3
+    },
+    {
+     "w": "uncover",
+     "h": [
+      9
+     ],
+     "i": 15,
+     "n": 1
+    },
+    {
+     "w": "his feet",
+     "h": [
+      10
+     ],
+     "i": 16,
+     "n": 2
+    },
+    {
+     "w": "and lie down",
+     "h": [
+      0
+     ],
+     "i": 18,
+     "n": 3
+    },
+    {
+     "w": "He",
+     "h": [
+      11
+     ],
+     "i": 21,
+     "n": 1
+    },
+    {
+     "w": "will tell",
+     "h": [
+      12
+     ],
+     "i": 22,
+     "n": 2
+    },
+    {
+     "w": "you",
+     "h": [
+      13
+     ],
+     "i": 24,
+     "n": 1
+    },
+    {
+     "w": "what",
+     "h": [
+      15
+     ],
+     "i": 25,
+     "n": 1
+    },
+    {
+     "w": "you should do",
+     "h": [
+      16
+     ],
+     "i": 26,
+     "n": 3
+    }
+   ]
+  },
+  "3:5": {
+   "text": "Ruth answered her, \"I will do everything you say.\"",
+   "map": [
+    {
+     "w": "Ruth answered",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "her",
+     "h": [
+      1
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "I will do",
+     "h": [
+      5
+     ],
+     "i": 3,
+     "n": 3
+    },
+    {
+     "w": "everything",
+     "h": [
+      2
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "you say",
+     "h": [
+      4
+     ],
+     "i": 7,
+     "n": 2
+    }
+   ]
+  },
+  "3:6": {
+   "text": "She went down to the threshing floor and carried out all her mother-in-law's instructions.",
+   "map": [
+    {
+     "w": "She went down",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 3
+    },
+    {
+     "w": "to the threshing floor",
+     "h": [
+      1
+     ],
+     "i": 3,
+     "n": 4
+    },
+    {
+     "w": "and carried out",
+     "h": [
+      2
+     ],
+     "i": 7,
+     "n": 3
+    },
+    {
+     "w": "all",
+     "h": [
+      3
+     ],
+     "i": 10,
+     "n": 1
+    },
+    {
+     "w": "her mother-in-law's",
+     "h": [
+      6
+     ],
+     "i": 11,
+     "n": 2
+    },
+    {
+     "w": "instructions",
+     "h": [
+      5
+     ],
+     "i": 13,
+     "n": 1
+    }
+   ]
+  },
+  "3:7": {
+   "text": "Boaz ate and drank, and with a contented heart he went to lie down beside the heap of grain. She crept in quietly, uncovered his feet, and lay down.",
+   "map": [
+    {
+     "w": "Boaz",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "ate",
+     "h": [
+      0
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "and drank",
+     "h": [
+      2
+     ],
+     "i": 2,
+     "n": 2
+    },
+    {
+     "w": "and with a contented",
+     "h": [
+      3
+     ],
+     "i": 4,
+     "n": 4
+    },
+    {
+     "w": "heart",
+     "h": [
+      4
+     ],
+     "i": 8,
+     "n": 1
+    },
+    {
+     "w": "he went",
+     "h": [
+      5
+     ],
+     "i": 9,
+     "n": 2
+    },
+    {
+     "w": "to lie down",
+     "h": [
+      6
+     ],
+     "i": 11,
+     "n": 3
+    },
+    {
+     "w": "beside",
+     "h": [
+      7
+     ],
+     "i": 14,
+     "n": 1
+    },
+    {
+     "w": "the heap of grain",
+     "h": [
+      8
+     ],
+     "i": 15,
+     "n": 4
+    },
+    {
+     "w": "She crept in",
+     "h": [
+      9
+     ],
+     "i": 19,
+     "n": 3
+    },
+    {
+     "w": "quietly",
+     "h": [
+      10
+     ],
+     "i": 22,
+     "n": 1
+    },
+    {
+     "w": "uncovered",
+     "h": [
+      11
+     ],
+     "i": 23,
+     "n": 1
+    },
+    {
+     "w": "his feet",
+     "h": [
+      12
+     ],
+     "i": 24,
+     "n": 2
+    },
+    {
+     "w": "and lay down",
+     "h": [
+      13
+     ],
+     "i": 26,
+     "n": 3
+    }
+   ]
+  },
+  "3:8": {
+   "text": "In the middle of the night something startled the man; he turned, and found a woman lying at his feet.",
+   "map": [
+    {
+     "w": "In the middle",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 3
+    },
+    {
+     "w": "of the night",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 3
+    },
+    {
+     "w": "something startled",
+     "h": [
+      3
+     ],
+     "i": 6,
+     "n": 2
+    },
+    {
+     "w": "the man",
+     "h": [
+      4
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "he turned",
+     "h": [
+      5
+     ],
+     "i": 10,
+     "n": 2
+    },
+    {
+     "w": "and found",
+     "h": [
+      6
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "a woman",
+     "h": [
+      7
+     ],
+     "i": 14,
+     "n": 2
+    },
+    {
+     "w": "lying",
+     "h": [
+      8
+     ],
+     "i": 16,
+     "n": 1
+    },
+    {
+     "w": "at his feet",
+     "h": [
+      9
+     ],
+     "i": 17,
+     "n": 3
+    }
+   ]
+  },
+  "3:9": {
+   "text": "\"Who are you?\" he asked. She answered, \"I am Ruth, your servant. Spread the wing of your cloak over your servant, for you are a family redeemer.\"",
+   "map": [
+    {
+     "w": "Who",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "are you",
+     "h": [
+      2
+     ],
+     "i": 1,
+     "n": 2
+    },
+    {
+     "w": "he asked",
+     "h": [
+      0
+     ],
+     "i": 3,
+     "n": 2
+    },
+    {
+     "w": "She answered",
+     "h": [
+      3
+     ],
+     "i": 5,
+     "n": 2
+    },
+    {
+     "w": "I am",
+     "h": [
+      4
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "Ruth",
+     "h": [
+      5
+     ],
+     "i": 9,
+     "n": 1
+    },
+    {
+     "w": "your servant",
+     "h": [
+      6
+     ],
+     "i": 10,
+     "n": 2
+    },
+    {
+     "w": "Spread",
+     "h": [
+      7
+     ],
+     "i": 12,
+     "n": 1
+    },
+    {
+     "w": "the wing of your cloak",
+     "h": [
+      8
+     ],
+     "i": 13,
+     "n": 5
+    },
+    {
+     "w": "over",
+     "h": [
+      9
+     ],
+     "i": 18,
+     "n": 1
+    },
+    {
+     "w": "your servant",
+     "h": [
+      10
+     ],
+     "i": 19,
+     "n": 2
+    },
+    {
+     "w": "for",
+     "h": [
+      11
+     ],
+     "i": 21,
+     "n": 1
+    },
+    {
+     "w": "you",
+     "h": [
+      13
+     ],
+     "i": 22,
+     "n": 1
+    },
+    {
+     "w": "are a family redeemer",
+     "h": [
+      12
+     ],
+     "i": 23,
+     "n": 4
+    }
+   ]
+  },
+  "3:10": {
+   "text": "He said, \"May the LORD bless you, my daughter! This last act of loyal love is greater than the first, for you have not chased after the young men, rich or poor.",
+   "map": [
+    {
+     "w": "He said",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "May the LORD",
+     "h": [
+      3
+     ],
+     "i": 2,
+     "n": 3
+    },
+    {
+     "w": "bless",
+     "h": [
+      1
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "you",
+     "h": [
+      2
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "my daughter",
+     "h": [
+      4
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "This last",
+     "h": [
+      7
+     ],
+     "i": 9,
+     "n": 2
+    },
+    {
+     "w": "act of loyal love",
+     "h": [
+      6
+     ],
+     "i": 11,
+     "n": 4
+    },
+    {
+     "w": "is greater",
+     "h": [
+      5
+     ],
+     "i": 15,
+     "n": 2
+    },
+    {
+     "w": "than",
+     "h": [
+      8
+     ],
+     "i": 17,
+     "n": 1
+    },
+    {
+     "w": "the first",
+     "h": [
+      9
+     ],
+     "i": 18,
+     "n": 2
+    },
+    {
+     "w": "for you have not",
+     "h": [
+      10
+     ],
+     "i": 20,
+     "n": 4
+    },
+    {
+     "w": "chased after",
+     "h": [
+      11,
+      12
+     ],
+     "i": 24,
+     "n": 2
+    },
+    {
+     "w": "the young men",
+     "h": [
+      13
+     ],
+     "i": 26,
+     "n": 3
+    },
+    {
+     "w": "rich",
+     "h": [
+      17
+     ],
+     "i": 29,
+     "n": 1
+    },
+    {
+     "w": "or",
+     "h": [
+      16
+     ],
+     "i": 30,
+     "n": 1
+    },
+    {
+     "w": "poor",
+     "h": [
+      15
+     ],
+     "i": 31,
+     "n": 1
+    }
+   ]
+  },
+  "3:11": {
+   "text": "Now, my daughter, don't be afraid. Whatever you ask, I will do for you. Everyone at the town gate knows you are a woman of worth.",
+   "map": [
+    {
+     "w": "Now",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "my daughter",
+     "h": [
+      1
+     ],
+     "i": 1,
+     "n": 2
+    },
+    {
+     "w": "don't",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "be afraid",
+     "h": [
+      3
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "Whatever",
+     "h": [
+      4,
+      5
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "you ask",
+     "h": [
+      6
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "I will do",
+     "h": [
+      7
+     ],
+     "i": 9,
+     "n": 3
+    },
+    {
+     "w": "for you",
+     "h": [
+      8
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "Everyone at",
+     "h": [
+      11
+     ],
+     "i": 14,
+     "n": 2
+    },
+    {
+     "w": "the town gate",
+     "h": [
+      12
+     ],
+     "i": 16,
+     "n": 3
+    },
+    {
+     "w": "knows",
+     "h": [
+      10
+     ],
+     "i": 19,
+     "n": 1
+    },
+    {
+     "w": "you",
+     "h": [
+      17
+     ],
+     "i": 20,
+     "n": 1
+    },
+    {
+     "w": "are a woman",
+     "h": [
+      15
+     ],
+     "i": 21,
+     "n": 3
+    },
+    {
+     "w": "of worth",
+     "h": [
+      16
+     ],
+     "i": 24,
+     "n": 2
+    }
+   ]
+  },
+  "3:12": {
+   "text": "Yes, I am a family redeemer—but there is one more closely related than I am.",
+   "map": [
+    {
+     "w": "Yes",
+     "h": [
+      2
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "I",
+     "h": [
+      5
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "a family redeemer",
+     "h": [
+      4
+     ],
+     "i": 3,
+     "n": 3
+    },
+    {
+     "w": "but",
+     "h": [
+      6
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "there is",
+     "h": [
+      7
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "one",
+     "h": [
+      8
+     ],
+     "i": 9,
+     "n": 1
+    },
+    {
+     "w": "more closely related",
+     "h": [
+      9
+     ],
+     "i": 10,
+     "n": 3
+    },
+    {
+     "w": "than I am",
+     "h": [
+      10
+     ],
+     "i": 13,
+     "n": 3
+    }
+   ]
+  },
+  "3:13": {
+   "text": "Spend the night here. In the morning, if he will act as your redeemer, well and good—let him. But if he doesn't want to redeem you, I will redeem you myself, as surely as the LORD lives. Now lie here until morning.\"",
+   "map": [
+    {
+     "w": "Spend the night",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 3
+    },
+    {
+     "w": "In the morning",
+     "h": [
+      3,
+      1
+     ],
+     "i": 4,
+     "n": 3
+    },
+    {
+     "w": "if",
+     "h": [
+      4
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "he will act as your redeemer",
+     "h": [
+      5
+     ],
+     "i": 8,
+     "n": 6
+    },
+    {
+     "w": "well and good",
+     "h": [
+      6
+     ],
+     "i": 14,
+     "n": 3
+    },
+    {
+     "w": "let him",
+     "h": [
+      7
+     ],
+     "i": 17,
+     "n": 2
+    },
+    {
+     "w": "But if",
+     "h": [
+      8
+     ],
+     "i": 19,
+     "n": 2
+    },
+    {
+     "w": "he doesn't want",
+     "h": [
+      9,
+      10
+     ],
+     "i": 21,
+     "n": 3
+    },
+    {
+     "w": "to redeem you",
+     "h": [
+      11
+     ],
+     "i": 24,
+     "n": 3
+    },
+    {
+     "w": "I",
+     "h": [
+      13
+     ],
+     "i": 27,
+     "n": 1
+    },
+    {
+     "w": "will redeem",
+     "h": [
+      12
+     ],
+     "i": 28,
+     "n": 2
+    },
+    {
+     "w": "as surely as the LORD",
+     "h": [
+      14,
+      15
+     ],
+     "i": 32,
+     "n": 5
+    },
+    {
+     "w": "Now lie here",
+     "h": [
+      16
+     ],
+     "i": 38,
+     "n": 3
+    },
+    {
+     "w": "until",
+     "h": [
+      17
+     ],
+     "i": 41,
+     "n": 1
+    },
+    {
+     "w": "morning",
+     "h": [
+      18
+     ],
+     "i": 42,
+     "n": 1
+    }
+   ]
+  },
+  "3:14": {
+   "text": "She lay at his feet until morning, then rose while it was still too dark to tell one person from another, because Boaz thought, \"No one must know that a woman came to the threshing floor.\"",
+   "map": [
+    {
+     "w": "She lay",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "until",
+     "h": [
+      1
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "morning",
+     "h": [
+      2
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "then rose",
+     "h": [
+      3
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "while it was still too dark to tell",
+     "h": [
+      4
+     ],
+     "i": 9,
+     "n": 8
+    },
+    {
+     "w": "one person",
+     "h": [
+      5
+     ],
+     "i": 17,
+     "n": 2
+    },
+    {
+     "w": "from another",
+     "h": [
+      7
+     ],
+     "i": 19,
+     "n": 2
+    },
+    {
+     "w": "because Boaz thought",
+     "h": [
+      8
+     ],
+     "i": 21,
+     "n": 3
+    },
+    {
+     "w": "No one",
+     "h": [
+      9
+     ],
+     "i": 24,
+     "n": 2
+    },
+    {
+     "w": "must know",
+     "h": [
+      10
+     ],
+     "i": 26,
+     "n": 2
+    },
+    {
+     "w": "that",
+     "h": [
+      11
+     ],
+     "i": 28,
+     "n": 1
+    },
+    {
+     "w": "a woman",
+     "h": [
+      13
+     ],
+     "i": 29,
+     "n": 2
+    },
+    {
+     "w": "came",
+     "h": [
+      12
+     ],
+     "i": 31,
+     "n": 1
+    },
+    {
+     "w": "to the threshing floor",
+     "h": [
+      14
+     ],
+     "i": 32,
+     "n": 4
+    }
+   ]
+  },
+  "3:15": {
+   "text": "He said, \"Hold out the shawl you have on.\" When she did, he poured in six measures of barley and lifted it onto her. Then he went back to town.",
+   "map": [
+    {
+     "w": "He said",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "Hold out",
+     "h": [
+      1
+     ],
+     "i": 2,
+     "n": 2
+    },
+    {
+     "w": "the shawl",
+     "h": [
+      2
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "you have on",
+     "h": [
+      3,
+      4
+     ],
+     "i": 6,
+     "n": 3
+    },
+    {
+     "w": "When she did",
+     "h": [
+      7
+     ],
+     "i": 9,
+     "n": 3
+    },
+    {
+     "w": "six",
+     "h": [
+      10
+     ],
+     "i": 15,
+     "n": 1
+    },
+    {
+     "w": "measures of barley",
+     "h": [
+      11
+     ],
+     "i": 16,
+     "n": 3
+    },
+    {
+     "w": "and lifted it",
+     "h": [
+      12
+     ],
+     "i": 19,
+     "n": 3
+    },
+    {
+     "w": "onto her",
+     "h": [
+      13
+     ],
+     "i": 22,
+     "n": 2
+    },
+    {
+     "w": "went back",
+     "h": [
+      14
+     ],
+     "i": 26,
+     "n": 2
+    },
+    {
+     "w": "to town",
+     "h": [
+      15
+     ],
+     "i": 28,
+     "n": 2
+    }
+   ]
+  },
+  "3:16": {
+   "text": "When Ruth came to her mother-in-law, Naomi asked, \"How did it go, my daughter?\" Ruth recounted everything the man had done for her.",
+   "map": [
+    {
+     "w": "When Ruth came",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 3
+    },
+    {
+     "w": "to",
+     "h": [
+      1
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "her mother-in-law",
+     "h": [
+      2
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "Naomi asked",
+     "h": [
+      3
+     ],
+     "i": 6,
+     "n": 2
+    },
+    {
+     "w": "How did it go",
+     "h": [
+      4
+     ],
+     "i": 8,
+     "n": 4
+    },
+    {
+     "w": "my daughter",
+     "h": [
+      6
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "Ruth recounted",
+     "h": [
+      7
+     ],
+     "i": 14,
+     "n": 2
+    },
+    {
+     "w": "everything",
+     "h": [
+      10
+     ],
+     "i": 16,
+     "n": 1
+    },
+    {
+     "w": "the man",
+     "h": [
+      14
+     ],
+     "i": 17,
+     "n": 2
+    },
+    {
+     "w": "had done",
+     "h": [
+      12
+     ],
+     "i": 19,
+     "n": 2
+    }
+   ]
+  },
+  "3:17": {
+   "text": "\"He gave me these six measures of barley,\" she said. \"He told me, 'Don't go back to your mother-in-law empty.'\"",
+   "map": [
+    {
+     "w": "He gave",
+     "h": [
+      4
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "these six",
+     "h": [
+      1
+     ],
+     "i": 3,
+     "n": 2
+    },
+    {
+     "w": "measures of barley",
+     "h": [
+      2,
+      3
+     ],
+     "i": 5,
+     "n": 3
+    },
+    {
+     "w": "she said",
+     "h": [
+      0
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "He told",
+     "h": [
+      7
+     ],
+     "i": 10,
+     "n": 2
+    },
+    {
+     "w": "Don't",
+     "h": [
+      8
+     ],
+     "i": 13,
+     "n": 1
+    },
+    {
+     "w": "go back",
+     "h": [
+      9
+     ],
+     "i": 14,
+     "n": 2
+    },
+    {
+     "w": "to",
+     "h": [
+      11
+     ],
+     "i": 16,
+     "n": 1
+    },
+    {
+     "w": "your mother-in-law",
+     "h": [
+      12
+     ],
+     "i": 17,
+     "n": 2
+    },
+    {
+     "w": "empty",
+     "h": [
+      10
+     ],
+     "i": 19,
+     "n": 1
+    }
+   ]
+  },
+  "3:18": {
+   "text": "Naomi said, \"Sit tight, my daughter, until you see how things fall out. That man won't rest until he has resolved this today.\"",
+   "map": [
+    {
+     "w": "Naomi said",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "Sit tight",
+     "h": [
+      1
+     ],
+     "i": 2,
+     "n": 2
+    },
+    {
+     "w": "my daughter",
+     "h": [
+      2
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "until",
+     "h": [
+      3,
+      4
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "you see",
+     "h": [
+      5
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "how",
+     "h": [
+      6
+     ],
+     "i": 9,
+     "n": 1
+    },
+    {
+     "w": "things fall out",
+     "h": [
+      7,
+      8
+     ],
+     "i": 10,
+     "n": 3
+    },
+    {
+     "w": "That man",
+     "h": [
+      12
+     ],
+     "i": 13,
+     "n": 2
+    },
+    {
+     "w": "won't",
+     "h": [
+      10
+     ],
+     "i": 15,
+     "n": 1
+    },
+    {
+     "w": "rest",
+     "h": [
+      11
+     ],
+     "i": 16,
+     "n": 1
+    },
+    {
+     "w": "until",
+     "h": [
+      13,
+      14
+     ],
+     "i": 17,
+     "n": 1
+    },
+    {
+     "w": "he has resolved",
+     "h": [
+      15
+     ],
+     "i": 18,
+     "n": 3
+    },
+    {
+     "w": "this",
+     "h": [
+      16
+     ],
+     "i": 21,
+     "n": 1
+    },
+    {
+     "w": "today",
+     "h": [
+      17
+     ],
+     "i": 22,
+     "n": 1
+    }
+   ]
+  },
+  "4:1": {
+   "text": "Boaz went up to the town gate and took a seat there. Just then the family redeemer he had spoken about was passing by. Boaz said, \"Come over here, So-and-so, and sit down.\" He came over and sat down.",
+   "map": [
+    {
+     "w": "Boaz",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "went up",
+     "h": [
+      1
+     ],
+     "i": 1,
+     "n": 2
+    },
+    {
+     "w": "to the town gate",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 4
+    },
+    {
+     "w": "and took a seat",
+     "h": [
+      3
+     ],
+     "i": 7,
+     "n": 4
+    },
+    {
+     "w": "there",
+     "h": [
+      4
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "Just then",
+     "h": [
+      5
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "the family redeemer",
+     "h": [
+      6
+     ],
+     "i": 14,
+     "n": 3
+    },
+    {
+     "w": "he had spoken about",
+     "h": [
+      8,
+      9
+     ],
+     "i": 17,
+     "n": 4
+    },
+    {
+     "w": "was passing by",
+     "h": [
+      7
+     ],
+     "i": 21,
+     "n": 3
+    },
+    {
+     "w": "Boaz",
+     "h": [
+      10
+     ],
+     "i": 24,
+     "n": 1
+    },
+    {
+     "w": "said",
+     "h": [
+      11
+     ],
+     "i": 25,
+     "n": 1
+    },
+    {
+     "w": "Come over here",
+     "h": [
+      12
+     ],
+     "i": 26,
+     "n": 3
+    },
+    {
+     "w": "So-and-so",
+     "h": [
+      15,
+      16
+     ],
+     "i": 29,
+     "n": 1
+    },
+    {
+     "w": "and sit down",
+     "h": [
+      13
+     ],
+     "i": 30,
+     "n": 3
+    },
+    {
+     "w": "He came over",
+     "h": [
+      17
+     ],
+     "i": 33,
+     "n": 3
+    },
+    {
+     "w": "and sat down",
+     "h": [
+      18
+     ],
+     "i": 36,
+     "n": 3
+    }
+   ]
+  },
+  "4:2": {
+   "text": "Boaz also gathered ten of the town's elders and asked them to be seated, and they sat down.",
+   "map": [
+    {
+     "w": "gathered",
+     "h": [
+      0
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "ten",
+     "h": [
+      1
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "of the town's",
+     "h": [
+      4
+     ],
+     "i": 4,
+     "n": 3
+    },
+    {
+     "w": "elders",
+     "h": [
+      3
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "and asked them",
+     "h": [
+      5
+     ],
+     "i": 8,
+     "n": 3
+    },
+    {
+     "w": "to be seated",
+     "h": [
+      6
+     ],
+     "i": 11,
+     "n": 3
+    },
+    {
+     "w": "and they sat down",
+     "h": [
+      8
+     ],
+     "i": 14,
+     "n": 4
+    }
+   ]
+  },
+  "4:3": {
+   "text": "Then he said to the family redeemer, \"Naomi, back from the fields of Moab, is putting up for sale the piece of land that belonged to our brother Elimelech.",
+   "map": [
+    {
+     "w": "Then he said",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 3
+    },
+    {
+     "w": "to the family redeemer",
+     "h": [
+      1
+     ],
+     "i": 3,
+     "n": 4
+    },
+    {
+     "w": "Naomi",
+     "h": [
+      8
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "back",
+     "h": [
+      9
+     ],
+     "i": 8,
+     "n": 1
+    },
+    {
+     "w": "from the fields",
+     "h": [
+      10
+     ],
+     "i": 9,
+     "n": 3
+    },
+    {
+     "w": "of Moab",
+     "h": [
+      11
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "is putting up for sale",
+     "h": [
+      7
+     ],
+     "i": 14,
+     "n": 5
+    },
+    {
+     "w": "the piece",
+     "h": [
+      2
+     ],
+     "i": 19,
+     "n": 2
+    },
+    {
+     "w": "of land",
+     "h": [
+      3
+     ],
+     "i": 21,
+     "n": 2
+    },
+    {
+     "w": "that",
+     "h": [
+      4
+     ],
+     "i": 23,
+     "n": 1
+    },
+    {
+     "w": "belonged to our brother",
+     "h": [
+      5
+     ],
+     "i": 24,
+     "n": 4
+    },
+    {
+     "w": "Elimelech",
+     "h": [
+      6
+     ],
+     "i": 28,
+     "n": 1
+    }
+   ]
+  },
+  "4:4": {
+   "text": "I wanted to bring it to your attention: buy it in front of the men seated here and the elders of my people. If you mean to redeem it, do so. If not, tell me so I know—for the right of redemption is yours first, and mine after yours.\" \"I will redeem it,\" he said.",
+   "map": [
+    {
+     "w": "I",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "wanted to bring it to your attention",
+     "h": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "i": 1,
+     "n": 7
+    },
+    {
+     "w": "buy it",
+     "h": [
+      5
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "in front of",
+     "h": [
+      6
+     ],
+     "i": 10,
+     "n": 3
+    },
+    {
+     "w": "the men seated here",
+     "h": [
+      7
+     ],
+     "i": 13,
+     "n": 4
+    },
+    {
+     "w": "and",
+     "h": [
+      8
+     ],
+     "i": 17,
+     "n": 1
+    },
+    {
+     "w": "the elders",
+     "h": [
+      9
+     ],
+     "i": 18,
+     "n": 2
+    },
+    {
+     "w": "of my people",
+     "h": [
+      10
+     ],
+     "i": 20,
+     "n": 3
+    },
+    {
+     "w": "If",
+     "h": [
+      11
+     ],
+     "i": 23,
+     "n": 1
+    },
+    {
+     "w": "you mean to redeem it",
+     "h": [
+      12
+     ],
+     "i": 24,
+     "n": 5
+    },
+    {
+     "w": "do so",
+     "h": [
+      13
+     ],
+     "i": 29,
+     "n": 2
+    },
+    {
+     "w": "If not",
+     "h": [
+      14,
+      15,
+      16
+     ],
+     "i": 31,
+     "n": 2
+    },
+    {
+     "w": "tell me",
+     "h": [
+      17
+     ],
+     "i": 33,
+     "n": 2
+    },
+    {
+     "w": "for",
+     "h": [
+      19
+     ],
+     "i": 38,
+     "n": 1
+    },
+    {
+     "w": "the right of redemption is",
+     "h": [
+      20
+     ],
+     "i": 39,
+     "n": 5
+    },
+    {
+     "w": "yours",
+     "h": [
+      21
+     ],
+     "i": 44,
+     "n": 1
+    },
+    {
+     "w": "and mine",
+     "h": [
+      23
+     ],
+     "i": 46,
+     "n": 2
+    },
+    {
+     "w": "after yours",
+     "h": [
+      24
+     ],
+     "i": 48,
+     "n": 2
+    },
+    {
+     "w": "I",
+     "h": [
+      26
+     ],
+     "i": 50,
+     "n": 1
+    },
+    {
+     "w": "will redeem it",
+     "h": [
+      27
+     ],
+     "i": 51,
+     "n": 3
+    },
+    {
+     "w": "he said",
+     "h": [
+      25
+     ],
+     "i": 54,
+     "n": 2
+    }
+   ]
+  },
+  "4:5": {
+   "text": "Boaz said, \"The day you buy the field from Naomi, you are also taking on Ruth the Moabite, the dead man's widow, so that the dead man's name stays with his land.\"",
+   "map": [
+    {
+     "w": "Boaz",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "said",
+     "h": [
+      0
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "The day",
+     "h": [
+      2
+     ],
+     "i": 2,
+     "n": 2
+    },
+    {
+     "w": "you buy",
+     "h": [
+      3
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "the field",
+     "h": [
+      4
+     ],
+     "i": 6,
+     "n": 2
+    },
+    {
+     "w": "from",
+     "h": [
+      5
+     ],
+     "i": 8,
+     "n": 1
+    },
+    {
+     "w": "Naomi",
+     "h": [
+      6
+     ],
+     "i": 9,
+     "n": 1
+    },
+    {
+     "w": "Ruth",
+     "h": [
+      8
+     ],
+     "i": 15,
+     "n": 1
+    },
+    {
+     "w": "the Moabite",
+     "h": [
+      9
+     ],
+     "i": 16,
+     "n": 2
+    },
+    {
+     "w": "the dead man's",
+     "h": [
+      11
+     ],
+     "i": 18,
+     "n": 3
+    },
+    {
+     "w": "widow",
+     "h": [
+      10
+     ],
+     "i": 21,
+     "n": 1
+    },
+    {
+     "w": "the dead man's",
+     "h": [
+      14
+     ],
+     "i": 24,
+     "n": 3
+    },
+    {
+     "w": "name",
+     "h": [
+      13
+     ],
+     "i": 27,
+     "n": 1
+    },
+    {
+     "w": "stays",
+     "h": [
+      12
+     ],
+     "i": 28,
+     "n": 1
+    },
+    {
+     "w": "with",
+     "h": [
+      15
+     ],
+     "i": 29,
+     "n": 1
+    },
+    {
+     "w": "his land",
+     "h": [
+      16
+     ],
+     "i": 30,
+     "n": 2
+    }
+   ]
+  },
+  "4:6": {
+   "text": "\"In that case I can't redeem it,\" the family redeemer replied, \"or I would put my own estate at risk. You redeem it—take over my right—because I am unable to.\"",
+   "map": [
+    {
+     "w": "can't",
+     "h": [
+      2,
+      3,
+      16
+     ],
+     "i": 4,
+     "n": 1
+    },
+    {
+     "w": "redeem it",
+     "h": [
+      17
+     ],
+     "i": 5,
+     "n": 2
+    },
+    {
+     "w": "the family redeemer",
+     "h": [
+      1
+     ],
+     "i": 7,
+     "n": 3
+    },
+    {
+     "w": "replied",
+     "h": [
+      0
+     ],
+     "i": 10,
+     "n": 1
+    },
+    {
+     "w": "or I would",
+     "h": [
+      5
+     ],
+     "i": 11,
+     "n": 3
+    },
+    {
+     "w": "my own estate",
+     "h": [
+      8
+     ],
+     "i": 15,
+     "n": 3
+    },
+    {
+     "w": "at risk",
+     "h": [
+      6
+     ],
+     "i": 18,
+     "n": 2
+    },
+    {
+     "w": "You",
+     "h": [
+      11
+     ],
+     "i": 20,
+     "n": 1
+    },
+    {
+     "w": "redeem it",
+     "h": [
+      9
+     ],
+     "i": 21,
+     "n": 2
+    },
+    {
+     "w": "right",
+     "h": [
+      13
+     ],
+     "i": 26,
+     "n": 1
+    },
+    {
+     "w": "because",
+     "h": [
+      14
+     ],
+     "i": 27,
+     "n": 1
+    }
+   ]
+  },
+  "4:7": {
+   "text": "In earlier times in Israel, to settle any matter of redemption or exchange, a man would take off his sandal and hand it to the other party. That was how an agreement was made binding in Israel.",
+   "map": [
+    {
+     "w": "In earlier times",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 3
+    },
+    {
+     "w": "in Israel",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 2
+    },
+    {
+     "w": "to settle",
+     "h": [
+      7
+     ],
+     "i": 5,
+     "n": 2
+    },
+    {
+     "w": "any",
+     "h": [
+      8
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "matter",
+     "h": [
+      9
+     ],
+     "i": 8,
+     "n": 1
+    },
+    {
+     "w": "of redemption",
+     "h": [
+      4
+     ],
+     "i": 9,
+     "n": 2
+    },
+    {
+     "w": "or exchange",
+     "h": [
+      6
+     ],
+     "i": 11,
+     "n": 2
+    },
+    {
+     "w": "a man",
+     "h": [
+      11
+     ],
+     "i": 13,
+     "n": 2
+    },
+    {
+     "w": "would take off",
+     "h": [
+      10
+     ],
+     "i": 15,
+     "n": 3
+    },
+    {
+     "w": "his sandal",
+     "h": [
+      12
+     ],
+     "i": 18,
+     "n": 2
+    },
+    {
+     "w": "and hand it",
+     "h": [
+      13
+     ],
+     "i": 20,
+     "n": 3
+    },
+    {
+     "w": "to the other party",
+     "h": [
+      14
+     ],
+     "i": 23,
+     "n": 4
+    },
+    {
+     "w": "That",
+     "h": [
+      15
+     ],
+     "i": 27,
+     "n": 1
+    },
+    {
+     "w": "was how an agreement was made binding",
+     "h": [
+      16
+     ],
+     "i": 28,
+     "n": 7
+    },
+    {
+     "w": "in Israel",
+     "h": [
+      17
+     ],
+     "i": 35,
+     "n": 2
+    }
+   ]
+  },
+  "4:8": {
+   "text": "So the family redeemer said to Boaz, \"Buy it yourself,\" and he took off his sandal.",
+   "map": [
+    {
+     "w": "So the family redeemer",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 4
+    },
+    {
+     "w": "said",
+     "h": [
+      0
+     ],
+     "i": 4,
+     "n": 1
+    },
+    {
+     "w": "to Boaz",
+     "h": [
+      2
+     ],
+     "i": 5,
+     "n": 2
+    },
+    {
+     "w": "Buy it yourself",
+     "h": [
+      3
+     ],
+     "i": 7,
+     "n": 3
+    },
+    {
+     "w": "and he took off",
+     "h": [
+      5
+     ],
+     "i": 10,
+     "n": 4
+    },
+    {
+     "w": "his sandal",
+     "h": [
+      6
+     ],
+     "i": 14,
+     "n": 2
+    }
+   ]
+  },
+  "4:9": {
+   "text": "Boaz then addressed the elders and all the people: \"Today you are witnesses that I have acquired from Naomi everything that belonged to Elimelech and everything that belonged to Chilion and Mahlon.",
+   "map": [
+    {
+     "w": "Boaz",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "addressed",
+     "h": [
+      0
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "the elders",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 2
+    },
+    {
+     "w": "and all",
+     "h": [
+      3
+     ],
+     "i": 5,
+     "n": 2
+    },
+    {
+     "w": "the people",
+     "h": [
+      4
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "Today",
+     "h": [
+      7
+     ],
+     "i": 9,
+     "n": 1
+    },
+    {
+     "w": "you",
+     "h": [
+      6
+     ],
+     "i": 10,
+     "n": 1
+    },
+    {
+     "w": "are witnesses",
+     "h": [
+      5
+     ],
+     "i": 11,
+     "n": 2
+    },
+    {
+     "w": "that",
+     "h": [
+      8
+     ],
+     "i": 13,
+     "n": 1
+    },
+    {
+     "w": "I have acquired",
+     "h": [
+      9
+     ],
+     "i": 14,
+     "n": 3
+    },
+    {
+     "w": "from",
+     "h": [
+      19
+     ],
+     "i": 17,
+     "n": 1
+    },
+    {
+     "w": "Naomi",
+     "h": [
+      20
+     ],
+     "i": 18,
+     "n": 1
+    },
+    {
+     "w": "everything",
+     "h": [
+      11
+     ],
+     "i": 19,
+     "n": 1
+    },
+    {
+     "w": "that",
+     "h": [
+      12
+     ],
+     "i": 20,
+     "n": 1
+    },
+    {
+     "w": "belonged to Elimelech",
+     "h": [
+      13
+     ],
+     "i": 21,
+     "n": 3
+    },
+    {
+     "w": "and everything",
+     "h": [
+      15
+     ],
+     "i": 24,
+     "n": 2
+    },
+    {
+     "w": "that",
+     "h": [
+      16
+     ],
+     "i": 26,
+     "n": 1
+    },
+    {
+     "w": "belonged to Chilion",
+     "h": [
+      17
+     ],
+     "i": 27,
+     "n": 3
+    },
+    {
+     "w": "and Mahlon",
+     "h": [
+      18
+     ],
+     "i": 30,
+     "n": 2
+    }
+   ]
+  },
+  "4:10": {
+   "text": "I have also acquired Ruth the Moabite, Mahlon's widow, to be my wife, so that the dead man's name stays with his land and does not vanish from his family or from the gate of his hometown. Today you are witnesses.\"",
+   "map": [
+    {
+     "w": "I have also",
+     "h": [
+      0,
+      6
+     ],
+     "i": 0,
+     "n": 3
+    },
+    {
+     "w": "acquired",
+     "h": [
+      6
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "Ruth",
+     "h": [
+      2
+     ],
+     "i": 4,
+     "n": 1
+    },
+    {
+     "w": "the Moabite",
+     "h": [
+      3
+     ],
+     "i": 5,
+     "n": 2
+    },
+    {
+     "w": "Mahlon's",
+     "h": [
+      5
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "widow",
+     "h": [
+      4
+     ],
+     "i": 8,
+     "n": 1
+    },
+    {
+     "w": "to be my wife",
+     "h": [
+      7,
+      8
+     ],
+     "i": 9,
+     "n": 4
+    },
+    {
+     "w": "the dead man's",
+     "h": [
+      11
+     ],
+     "i": 15,
+     "n": 3
+    },
+    {
+     "w": "name",
+     "h": [
+      10
+     ],
+     "i": 18,
+     "n": 1
+    },
+    {
+     "w": "stays",
+     "h": [
+      9
+     ],
+     "i": 19,
+     "n": 1
+    },
+    {
+     "w": "with",
+     "h": [
+      12
+     ],
+     "i": 20,
+     "n": 1
+    },
+    {
+     "w": "his land",
+     "h": [
+      13
+     ],
+     "i": 21,
+     "n": 2
+    },
+    {
+     "w": "and does not",
+     "h": [
+      14
+     ],
+     "i": 23,
+     "n": 3
+    },
+    {
+     "w": "vanish",
+     "h": [
+      15
+     ],
+     "i": 26,
+     "n": 1
+    },
+    {
+     "w": "from",
+     "h": [
+      18
+     ],
+     "i": 27,
+     "n": 1
+    },
+    {
+     "w": "his family",
+     "h": [
+      19
+     ],
+     "i": 28,
+     "n": 2
+    },
+    {
+     "w": "or from the gate",
+     "h": [
+      20
+     ],
+     "i": 30,
+     "n": 4
+    },
+    {
+     "w": "of his hometown",
+     "h": [
+      21
+     ],
+     "i": 34,
+     "n": 3
+    },
+    {
+     "w": "Today",
+     "h": [
+      24
+     ],
+     "i": 37,
+     "n": 1
+    },
+    {
+     "w": "you",
+     "h": [
+      23
+     ],
+     "i": 38,
+     "n": 1
+    },
+    {
+     "w": "are witnesses",
+     "h": [
+      22
+     ],
+     "i": 39,
+     "n": 2
+    }
+   ]
+  },
+  "4:11": {
+   "text": "All the people at the gate, and the elders, answered, \"We are witnesses! The woman entering your home—may the LORD make her like Rachel and Leah, the two who built up Israel's household. May you show your worth in Ephrathah and make a name in Bethlehem.",
+   "map": [
+    {
+     "w": "All",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "the people",
+     "h": [
+      2
+     ],
+     "i": 1,
+     "n": 2
+    },
+    {
+     "w": "at the gate",
+     "h": [
+      4
+     ],
+     "i": 3,
+     "n": 3
+    },
+    {
+     "w": "and the elders",
+     "h": [
+      5
+     ],
+     "i": 6,
+     "n": 3
+    },
+    {
+     "w": "answered",
+     "h": [
+      0
+     ],
+     "i": 9,
+     "n": 1
+    },
+    {
+     "w": "We are witnesses",
+     "h": [
+      6
+     ],
+     "i": 10,
+     "n": 3
+    },
+    {
+     "w": "The woman",
+     "h": [
+      10
+     ],
+     "i": 13,
+     "n": 2
+    },
+    {
+     "w": "entering",
+     "h": [
+      11
+     ],
+     "i": 15,
+     "n": 1
+    },
+    {
+     "w": "your home",
+     "h": [
+      13
+     ],
+     "i": 16,
+     "n": 2
+    },
+    {
+     "w": "may the LORD",
+     "h": [
+      8
+     ],
+     "i": 18,
+     "n": 3
+    },
+    {
+     "w": "make",
+     "h": [
+      7
+     ],
+     "i": 21,
+     "n": 1
+    },
+    {
+     "w": "like Rachel",
+     "h": [
+      14
+     ],
+     "i": 23,
+     "n": 2
+    },
+    {
+     "w": "and Leah",
+     "h": [
+      15
+     ],
+     "i": 25,
+     "n": 2
+    },
+    {
+     "w": "the two",
+     "h": [
+      18
+     ],
+     "i": 27,
+     "n": 2
+    },
+    {
+     "w": "who",
+     "h": [
+      16
+     ],
+     "i": 29,
+     "n": 1
+    },
+    {
+     "w": "built up",
+     "h": [
+      17
+     ],
+     "i": 30,
+     "n": 2
+    },
+    {
+     "w": "Israel's",
+     "h": [
+      21
+     ],
+     "i": 32,
+     "n": 1
+    },
+    {
+     "w": "household",
+     "h": [
+      20
+     ],
+     "i": 33,
+     "n": 1
+    },
+    {
+     "w": "May you show your worth",
+     "h": [
+      22,
+      23
+     ],
+     "i": 34,
+     "n": 5
+    },
+    {
+     "w": "in Ephrathah",
+     "h": [
+      24
+     ],
+     "i": 39,
+     "n": 2
+    },
+    {
+     "w": "and make",
+     "h": [
+      25
+     ],
+     "i": 41,
+     "n": 2
+    },
+    {
+     "w": "a name",
+     "h": [
+      26
+     ],
+     "i": 43,
+     "n": 2
+    },
+    {
+     "w": "in Bethlehem",
+     "h": [
+      27,
+      28
+     ],
+     "i": 45,
+     "n": 2
+    }
+   ]
+  },
+  "4:12": {
+   "text": "Through the children the LORD gives you by this young woman, may your family become like that of Perez, the son Tamar bore to Judah.\"",
+   "map": [
+    {
+     "w": "Through the children",
+     "h": [
+      9
+     ],
+     "i": 0,
+     "n": 3
+    },
+    {
+     "w": "the LORD",
+     "h": [
+      12
+     ],
+     "i": 3,
+     "n": 2
+    },
+    {
+     "w": "gives",
+     "h": [
+      11
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "you",
+     "h": [
+      13
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "by",
+     "h": [
+      8,
+      14
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "this",
+     "h": [
+      16
+     ],
+     "i": 8,
+     "n": 1
+    },
+    {
+     "w": "young woman",
+     "h": [
+      15
+     ],
+     "i": 9,
+     "n": 2
+    },
+    {
+     "w": "may your family",
+     "h": [
+      1
+     ],
+     "i": 11,
+     "n": 3
+    },
+    {
+     "w": "become",
+     "h": [
+      0
+     ],
+     "i": 14,
+     "n": 1
+    },
+    {
+     "w": "like that of",
+     "h": [
+      2
+     ],
+     "i": 15,
+     "n": 3
+    },
+    {
+     "w": "Perez",
+     "h": [
+      3
+     ],
+     "i": 18,
+     "n": 1
+    },
+    {
+     "w": "Tamar",
+     "h": [
+      6
+     ],
+     "i": 21,
+     "n": 1
+    },
+    {
+     "w": "bore",
+     "h": [
+      5
+     ],
+     "i": 22,
+     "n": 1
+    },
+    {
+     "w": "to Judah",
+     "h": [
+      7
+     ],
+     "i": 23,
+     "n": 2
+    }
+   ]
+  },
+  "4:13": {
+   "text": "So Boaz took Ruth home as his wife. He lay with her, the LORD let her conceive, and she gave birth to a son.",
+   "map": [
+    {
+     "w": "So Boaz",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "took",
+     "h": [
+      0
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "Ruth",
+     "h": [
+      3
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "home as his wife",
+     "h": [
+      4,
+      5,
+      6
+     ],
+     "i": 4,
+     "n": 4
+    },
+    {
+     "w": "He lay",
+     "h": [
+      7
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "with her",
+     "h": [
+      8
+     ],
+     "i": 10,
+     "n": 2
+    },
+    {
+     "w": "the LORD",
+     "h": [
+      10
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "let her",
+     "h": [
+      11
+     ],
+     "i": 14,
+     "n": 2
+    },
+    {
+     "w": "conceive",
+     "h": [
+      9,
+      12
+     ],
+     "i": 16,
+     "n": 1
+    },
+    {
+     "w": "and she gave birth",
+     "h": [
+      13
+     ],
+     "i": 17,
+     "n": 4
+    },
+    {
+     "w": "to a son",
+     "h": [
+      14
+     ],
+     "i": 21,
+     "n": 3
+    }
+   ]
+  },
+  "4:14": {
+   "text": "The women told Naomi, \"Praise the LORD, who today has not left you without a family redeemer! May his name be celebrated throughout Israel.",
+   "map": [
+    {
+     "w": "The women",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "told",
+     "h": [
+      0
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "Naomi",
+     "h": [
+      3
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "Praise",
+     "h": [
+      4
+     ],
+     "i": 4,
+     "n": 1
+    },
+    {
+     "w": "the LORD",
+     "h": [
+      5
+     ],
+     "i": 5,
+     "n": 2
+    },
+    {
+     "w": "who",
+     "h": [
+      6
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "today",
+     "h": [
+      11
+     ],
+     "i": 8,
+     "n": 1
+    },
+    {
+     "w": "has not",
+     "h": [
+      7
+     ],
+     "i": 9,
+     "n": 2
+    },
+    {
+     "w": "left you",
+     "h": [
+      8,
+      9
+     ],
+     "i": 11,
+     "n": 2
+    },
+    {
+     "w": "without a family redeemer",
+     "h": [
+      10
+     ],
+     "i": 13,
+     "n": 4
+    },
+    {
+     "w": "May his name",
+     "h": [
+      13
+     ],
+     "i": 17,
+     "n": 3
+    },
+    {
+     "w": "be celebrated",
+     "h": [
+      12
+     ],
+     "i": 20,
+     "n": 2
+    },
+    {
+     "w": "throughout Israel",
+     "h": [
+      14
+     ],
+     "i": 22,
+     "n": 2
+    }
+   ]
+  },
+  "4:15": {
+   "text": "He will bring you back to life and care for you when you are old. Your daughter-in-law, who loves you and is worth more to you than seven sons, is his mother.\"",
+   "map": [
+    {
+     "w": "He will bring you back to life",
+     "h": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "i": 0,
+     "n": 7
+    },
+    {
+     "w": "and care for you",
+     "h": [
+      4,
+      5
+     ],
+     "i": 7,
+     "n": 4
+    },
+    {
+     "w": "when you are old",
+     "h": [
+      6
+     ],
+     "i": 11,
+     "n": 4
+    },
+    {
+     "w": "Your daughter-in-law",
+     "h": [
+      8
+     ],
+     "i": 15,
+     "n": 2
+    },
+    {
+     "w": "who",
+     "h": [
+      9
+     ],
+     "i": 17,
+     "n": 1
+    },
+    {
+     "w": "loves you",
+     "h": [
+      10
+     ],
+     "i": 18,
+     "n": 2
+    },
+    {
+     "w": "and is",
+     "h": [
+      12,
+      14
+     ],
+     "i": 20,
+     "n": 2
+    },
+    {
+     "w": "worth more to you",
+     "h": [
+      15
+     ],
+     "i": 22,
+     "n": 4
+    },
+    {
+     "w": "than seven",
+     "h": [
+      16
+     ],
+     "i": 26,
+     "n": 2
+    },
+    {
+     "w": "sons",
+     "h": [
+      17
+     ],
+     "i": 28,
+     "n": 1
+    },
+    {
+     "w": "is his mother",
+     "h": [
+      11
+     ],
+     "i": 29,
+     "n": 3
+    }
+   ]
+  },
+  "4:16": {
+   "text": "Naomi took the child in her arms, held him on her lap, and became the one who cared for him.",
+   "map": [
+    {
+     "w": "Naomi",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "took",
+     "h": [
+      0
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "the child",
+     "h": [
+      3
+     ],
+     "i": 2,
+     "n": 2
+    },
+    {
+     "w": "held him",
+     "h": [
+      4
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "on her lap",
+     "h": [
+      5
+     ],
+     "i": 9,
+     "n": 3
+    },
+    {
+     "w": "and became",
+     "h": [
+      6
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "the one who cared for him",
+     "h": [
+      7,
+      8
+     ],
+     "i": 14,
+     "n": 6
+    }
+   ]
+  },
+  "4:17": {
+   "text": "The women of the neighborhood named him. \"Naomi has a son!\" they said, and they called him Obed. He became the father of Jesse, who was the father of David.",
+   "map": [
+    {
+     "w": "The women of the neighborhood",
+     "h": [
+      2
+     ],
+     "i": 0,
+     "n": 5
+    },
+    {
+     "w": "named",
+     "h": [
+      0
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "him",
+     "h": [
+      1
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "Naomi",
+     "h": [
+      7
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "has a son",
+     "h": [
+      6
+     ],
+     "i": 8,
+     "n": 3
+    },
+    {
+     "w": "they said",
+     "h": [
+      4
+     ],
+     "i": 11,
+     "n": 2
+    },
+    {
+     "w": "and they called",
+     "h": [
+      8
+     ],
+     "i": 13,
+     "n": 3
+    },
+    {
+     "w": "Obed",
+     "h": [
+      10
+     ],
+     "i": 17,
+     "n": 1
+    },
+    {
+     "w": "He",
+     "h": [
+      11
+     ],
+     "i": 18,
+     "n": 1
+    },
+    {
+     "w": "became the father",
+     "h": [
+      12
+     ],
+     "i": 19,
+     "n": 3
+    },
+    {
+     "w": "of Jesse",
+     "h": [
+      13
+     ],
+     "i": 22,
+     "n": 2
+    },
+    {
+     "w": "who was the father",
+     "h": [
+      14
+     ],
+     "i": 24,
+     "n": 4
+    },
+    {
+     "w": "of David",
+     "h": [
+      15
+     ],
+     "i": 28,
+     "n": 2
+    }
+   ]
+  },
+  "4:18": {
+   "text": "This is the family line of Perez: Perez was the father of Hezron,",
+   "map": [
+    {
+     "w": "This",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "is the family line",
+     "h": [
+      1
+     ],
+     "i": 1,
+     "n": 4
+    },
+    {
+     "w": "of Perez",
+     "h": [
+      2
+     ],
+     "i": 5,
+     "n": 2
+    },
+    {
+     "w": "Perez",
+     "h": [
+      3
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "was the father of",
+     "h": [
+      4
+     ],
+     "i": 8,
+     "n": 4
+    },
+    {
+     "w": "Hezron",
+     "h": [
+      6
+     ],
+     "i": 12,
+     "n": 1
+    }
+   ]
+  },
+  "4:19": {
+   "text": "Hezron was the father of Ram, Ram was the father of Amminadab,",
+   "map": [
+    {
+     "w": "Hezron",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "was the father of",
+     "h": [
+      1
+     ],
+     "i": 1,
+     "n": 4
+    },
+    {
+     "w": "Ram",
+     "h": [
+      3
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "Ram",
+     "h": [
+      4
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "was the father of",
+     "h": [
+      5
+     ],
+     "i": 7,
+     "n": 4
+    },
+    {
+     "w": "Amminadab",
+     "h": [
+      7
+     ],
+     "i": 11,
+     "n": 1
+    }
+   ]
+  },
+  "4:20": {
+   "text": "Amminadab was the father of Nahshon, Nahshon was the father of Salmon,",
+   "map": [
+    {
+     "w": "Amminadab",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "was the father of",
+     "h": [
+      1
+     ],
+     "i": 1,
+     "n": 4
+    },
+    {
+     "w": "Nahshon",
+     "h": [
+      3
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "Nahshon",
+     "h": [
+      4
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "was the father of",
+     "h": [
+      5
+     ],
+     "i": 7,
+     "n": 4
+    },
+    {
+     "w": "Salmon",
+     "h": [
+      7
+     ],
+     "i": 11,
+     "n": 1
+    }
+   ]
+  },
+  "4:21": {
+   "text": "Salmon was the father of Boaz, Boaz was the father of Obed,",
+   "map": [
+    {
+     "w": "Salmon",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "was the father of",
+     "h": [
+      1
+     ],
+     "i": 1,
+     "n": 4
+    },
+    {
+     "w": "Boaz",
+     "h": [
+      3
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "Boaz",
+     "h": [
+      4
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "was the father of",
+     "h": [
+      5
+     ],
+     "i": 7,
+     "n": 4
+    },
+    {
+     "w": "Obed",
+     "h": [
+      7
+     ],
+     "i": 11,
+     "n": 1
+    }
+   ]
+  },
+  "4:22": {
+   "text": "Obed was the father of Jesse, and Jesse was the father of David.",
+   "map": [
+    {
+     "w": "Obed",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "was the father of",
+     "h": [
+      1
+     ],
+     "i": 1,
+     "n": 4
+    },
+    {
+     "w": "Jesse",
+     "h": [
+      3
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "Jesse",
+     "h": [
+      4
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "was the father of",
+     "h": [
+      5
+     ],
+     "i": 8,
+     "n": 4
+    },
+    {
+     "w": "David",
+     "h": [
+      7
+     ],
+     "i": 12,
+     "n": 1
+    }
+   ]
+  }
+ }
+}

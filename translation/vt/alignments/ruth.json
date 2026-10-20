@@ -1,0 +1,9512 @@
+{
+ "translation": "vt",
+ "book": 7,
+ "author": "ai:claude-sonnet-4-5",
+ "created": "2026-10-20",
+ "verses": {
+  "1:1": {
+   "text": "En los días en que gobernaban los jueces, hubo hambre en el país. Y un hombre de Belén de Judá se fue a vivir como forastero en los campos de Moab, él con su esposa y sus dos hijos.",
+   "map": [
+    {
+     "w": "En los días",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 3
+    },
+    {
+     "w": "en que gobernaban",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 3
+    },
+    {
+     "w": "los jueces",
+     "h": [
+      3
+     ],
+     "i": 6,
+     "n": 2
+    },
+    {
+     "w": "hubo",
+     "h": [
+      4
+     ],
+     "i": 8,
+     "n": 1
+    },
+    {
+     "w": "hambre",
+     "h": [
+      5
+     ],
+     "i": 9,
+     "n": 1
+    },
+    {
+     "w": "en el país",
+     "h": [
+      6
+     ],
+     "i": 10,
+     "n": 3
+    },
+    {
+     "w": "hombre",
+     "h": [
+      8
+     ],
+     "i": 15,
+     "n": 1
+    },
+    {
+     "w": "de Belén",
+     "h": [
+      9,
+      10
+     ],
+     "i": 16,
+     "n": 2
+    },
+    {
+     "w": "de Judá",
+     "h": [
+      11
+     ],
+     "i": 18,
+     "n": 2
+    },
+    {
+     "w": "se fue",
+     "h": [
+      7
+     ],
+     "i": 20,
+     "n": 2
+    },
+    {
+     "w": "a vivir como forastero",
+     "h": [
+      12
+     ],
+     "i": 22,
+     "n": 4
+    },
+    {
+     "w": "en los campos",
+     "h": [
+      13
+     ],
+     "i": 26,
+     "n": 3
+    },
+    {
+     "w": "de Moab",
+     "h": [
+      14
+     ],
+     "i": 29,
+     "n": 2
+    },
+    {
+     "w": "él",
+     "h": [
+      15
+     ],
+     "i": 31,
+     "n": 1
+    },
+    {
+     "w": "con su esposa",
+     "h": [
+      16
+     ],
+     "i": 32,
+     "n": 3
+    },
+    {
+     "w": "y sus dos",
+     "h": [
+      17
+     ],
+     "i": 35,
+     "n": 3
+    },
+    {
+     "w": "hijos",
+     "h": [
+      18
+     ],
+     "i": 38,
+     "n": 1
+    }
+   ]
+  },
+  "1:2": {
+   "text": "El hombre se llamaba Elimelec; su esposa, Noemí; y sus dos hijos, Mahlón y Quelión. Eran efrateos, de Belén de Judá. Llegaron a los campos de Moab y se quedaron allí.",
+   "map": [
+    {
+     "w": "El hombre",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "se llamaba",
+     "h": [
+      0
+     ],
+     "i": 2,
+     "n": 2
+    },
+    {
+     "w": "Elimelec",
+     "h": [
+      2
+     ],
+     "i": 4,
+     "n": 1
+    },
+    {
+     "w": "su esposa",
+     "h": [
+      4
+     ],
+     "i": 5,
+     "n": 2
+    },
+    {
+     "w": "Noemí",
+     "h": [
+      5
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "y sus dos",
+     "h": [
+      7
+     ],
+     "i": 8,
+     "n": 3
+    },
+    {
+     "w": "hijos",
+     "h": [
+      8
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "Mahlón",
+     "h": [
+      9
+     ],
+     "i": 12,
+     "n": 1
+    },
+    {
+     "w": "y Quelión",
+     "h": [
+      10
+     ],
+     "i": 13,
+     "n": 2
+    },
+    {
+     "w": "Eran efrateos",
+     "h": [
+      11
+     ],
+     "i": 15,
+     "n": 2
+    },
+    {
+     "w": "de Belén",
+     "h": [
+      12,
+      13
+     ],
+     "i": 17,
+     "n": 2
+    },
+    {
+     "w": "de Judá",
+     "h": [
+      14
+     ],
+     "i": 19,
+     "n": 2
+    },
+    {
+     "w": "Llegaron",
+     "h": [
+      15
+     ],
+     "i": 21,
+     "n": 1
+    },
+    {
+     "w": "a los campos",
+     "h": [
+      16
+     ],
+     "i": 22,
+     "n": 3
+    },
+    {
+     "w": "de Moab",
+     "h": [
+      17
+     ],
+     "i": 25,
+     "n": 2
+    },
+    {
+     "w": "y se quedaron",
+     "h": [
+      18
+     ],
+     "i": 27,
+     "n": 3
+    },
+    {
+     "w": "allí",
+     "h": [
+      19
+     ],
+     "i": 30,
+     "n": 1
+    }
+   ]
+  },
+  "1:3": {
+   "text": "Pero Elimelec, el esposo de Noemí, murió, y ella quedó con sus dos hijos.",
+   "map": [
+    {
+     "w": "Elimelec",
+     "h": [
+      1
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "el esposo",
+     "h": [
+      2
+     ],
+     "i": 2,
+     "n": 2
+    },
+    {
+     "w": "de Noemí",
+     "h": [
+      3
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "murió",
+     "h": [
+      0
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "ella",
+     "h": [
+      5
+     ],
+     "i": 8,
+     "n": 1
+    },
+    {
+     "w": "quedó",
+     "h": [
+      4
+     ],
+     "i": 9,
+     "n": 1
+    },
+    {
+     "w": "con sus dos",
+     "h": [
+      6
+     ],
+     "i": 10,
+     "n": 3
+    },
+    {
+     "w": "hijos",
+     "h": [
+      7
+     ],
+     "i": 13,
+     "n": 1
+    }
+   ]
+  },
+  "1:4": {
+   "text": "Ellos se casaron con mujeres moabitas; una se llamaba Orfa y la otra, Rut. Vivieron allí unos diez años.",
+   "map": [
+    {
+     "w": "se casaron con",
+     "h": [
+      0
+     ],
+     "i": 1,
+     "n": 3
+    },
+    {
+     "w": "mujeres",
+     "h": [
+      2
+     ],
+     "i": 4,
+     "n": 1
+    },
+    {
+     "w": "moabitas",
+     "h": [
+      3
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "una",
+     "h": [
+      5
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "se llamaba",
+     "h": [
+      4
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "Orfa",
+     "h": [
+      6
+     ],
+     "i": 9,
+     "n": 1
+    },
+    {
+     "w": "y la otra",
+     "h": [
+      8
+     ],
+     "i": 10,
+     "n": 3
+    },
+    {
+     "w": "Rut",
+     "h": [
+      9
+     ],
+     "i": 13,
+     "n": 1
+    },
+    {
+     "w": "Vivieron",
+     "h": [
+      10
+     ],
+     "i": 14,
+     "n": 1
+    },
+    {
+     "w": "allí",
+     "h": [
+      11
+     ],
+     "i": 15,
+     "n": 1
+    },
+    {
+     "w": "unos diez",
+     "h": [
+      12
+     ],
+     "i": 16,
+     "n": 2
+    },
+    {
+     "w": "años",
+     "h": [
+      13
+     ],
+     "i": 18,
+     "n": 1
+    }
+   ]
+  },
+  "1:5": {
+   "text": "Luego murieron también los dos, Mahlón y Quelión, y la mujer quedó sin sus dos muchachos y sin su esposo.",
+   "map": [
+    {
+     "w": "Luego murieron",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "también",
+     "h": [
+      1
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "los dos",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 2
+    },
+    {
+     "w": "Mahlón",
+     "h": [
+      3
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "y Quelión",
+     "h": [
+      4
+     ],
+     "i": 6,
+     "n": 2
+    },
+    {
+     "w": "y la mujer",
+     "h": [
+      6
+     ],
+     "i": 8,
+     "n": 3
+    },
+    {
+     "w": "quedó",
+     "h": [
+      5
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "sin sus dos",
+     "h": [
+      7
+     ],
+     "i": 12,
+     "n": 3
+    },
+    {
+     "w": "muchachos",
+     "h": [
+      8
+     ],
+     "i": 15,
+     "n": 1
+    },
+    {
+     "w": "y sin su esposo",
+     "h": [
+      9
+     ],
+     "i": 16,
+     "n": 4
+    }
+   ]
+  },
+  "1:6": {
+   "text": "Entonces ella se levantó con sus nueras para volver de los campos de Moab, porque en los campos de Moab había oído que el SEÑOR había venido en ayuda de su pueblo y les había dado pan.",
+   "map": [
+    {
+     "w": "Entonces ella",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "se levantó",
+     "h": [
+      0
+     ],
+     "i": 2,
+     "n": 2
+    },
+    {
+     "w": "con sus nueras",
+     "h": [
+      2
+     ],
+     "i": 4,
+     "n": 3
+    },
+    {
+     "w": "para volver",
+     "h": [
+      3
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "de los campos",
+     "h": [
+      4
+     ],
+     "i": 9,
+     "n": 3
+    },
+    {
+     "w": "de Moab",
+     "h": [
+      5
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "porque",
+     "h": [
+      6
+     ],
+     "i": 14,
+     "n": 1
+    },
+    {
+     "w": "en los campos",
+     "h": [
+      8
+     ],
+     "i": 15,
+     "n": 3
+    },
+    {
+     "w": "de Moab",
+     "h": [
+      9
+     ],
+     "i": 18,
+     "n": 2
+    },
+    {
+     "w": "había oído",
+     "h": [
+      7
+     ],
+     "i": 20,
+     "n": 2
+    },
+    {
+     "w": "que",
+     "h": [
+      10
+     ],
+     "i": 22,
+     "n": 1
+    },
+    {
+     "w": "el SEÑOR",
+     "h": [
+      12
+     ],
+     "i": 23,
+     "n": 2
+    },
+    {
+     "w": "había venido en ayuda",
+     "h": [
+      11
+     ],
+     "i": 25,
+     "n": 4
+    },
+    {
+     "w": "de su pueblo",
+     "h": [
+      14
+     ],
+     "i": 29,
+     "n": 3
+    },
+    {
+     "w": "había dado",
+     "h": [
+      15
+     ],
+     "i": 34,
+     "n": 2
+    },
+    {
+     "w": "pan",
+     "h": [
+      17
+     ],
+     "i": 36,
+     "n": 1
+    }
+   ]
+  },
+  "1:7": {
+   "text": "Así que salió del lugar donde había vivido, y sus dos nueras con ella, y emprendieron el camino para volver a la tierra de Judá.",
+   "map": [
+    {
+     "w": "Así que salió",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 3
+    },
+    {
+     "w": "del lugar",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 2
+    },
+    {
+     "w": "donde",
+     "h": [
+      3
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "había vivido",
+     "h": [
+      4,
+      5
+     ],
+     "i": 6,
+     "n": 2
+    },
+    {
+     "w": "y sus dos",
+     "h": [
+      6
+     ],
+     "i": 8,
+     "n": 3
+    },
+    {
+     "w": "nueras",
+     "h": [
+      7
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "con ella",
+     "h": [
+      8
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "y emprendieron",
+     "h": [
+      9
+     ],
+     "i": 14,
+     "n": 2
+    },
+    {
+     "w": "el camino",
+     "h": [
+      10
+     ],
+     "i": 16,
+     "n": 2
+    },
+    {
+     "w": "para volver",
+     "h": [
+      11
+     ],
+     "i": 18,
+     "n": 2
+    },
+    {
+     "w": "a",
+     "h": [
+      12
+     ],
+     "i": 20,
+     "n": 1
+    },
+    {
+     "w": "la tierra",
+     "h": [
+      13
+     ],
+     "i": 21,
+     "n": 2
+    },
+    {
+     "w": "de Judá",
+     "h": [
+      14
+     ],
+     "i": 23,
+     "n": 2
+    }
+   ]
+  },
+  "1:8": {
+   "text": "Pero Noemí dijo a sus dos nueras: «Vayan, vuelva cada una a la casa de su madre. Que el SEÑOR les muestre amor leal, como ustedes lo han mostrado con los que murieron y conmigo.",
+   "map": [
+    {
+     "w": "Pero Noemí",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "dijo",
+     "h": [
+      0
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "a sus dos",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 3
+    },
+    {
+     "w": "nueras",
+     "h": [
+      3
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "Vayan",
+     "h": [
+      4
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "vuelva",
+     "h": [
+      5
+     ],
+     "i": 8,
+     "n": 1
+    },
+    {
+     "w": "cada una",
+     "h": [
+      6
+     ],
+     "i": 9,
+     "n": 2
+    },
+    {
+     "w": "a la casa",
+     "h": [
+      7
+     ],
+     "i": 11,
+     "n": 3
+    },
+    {
+     "w": "de su madre",
+     "h": [
+      8
+     ],
+     "i": 14,
+     "n": 3
+    },
+    {
+     "w": "el SEÑOR",
+     "h": [
+      9
+     ],
+     "i": 18,
+     "n": 2
+    },
+    {
+     "w": "amor leal",
+     "h": [
+      11
+     ],
+     "i": 22,
+     "n": 2
+    },
+    {
+     "w": "como",
+     "h": [
+      12
+     ],
+     "i": 24,
+     "n": 1
+    },
+    {
+     "w": "ustedes lo han mostrado",
+     "h": [
+      13
+     ],
+     "i": 25,
+     "n": 4
+    },
+    {
+     "w": "con",
+     "h": [
+      14
+     ],
+     "i": 29,
+     "n": 1
+    },
+    {
+     "w": "los que murieron",
+     "h": [
+      15
+     ],
+     "i": 30,
+     "n": 3
+    },
+    {
+     "w": "y conmigo",
+     "h": [
+      16
+     ],
+     "i": 33,
+     "n": 2
+    }
+   ]
+  },
+  "1:9": {
+   "text": "Que el SEÑOR les conceda encontrar descanso, cada una en la casa de un esposo». Y las besó; pero ellas alzaron la voz y lloraron,",
+   "map": [
+    {
+     "w": "el SEÑOR",
+     "h": [
+      1
+     ],
+     "i": 1,
+     "n": 2
+    },
+    {
+     "w": "les",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "conceda",
+     "h": [
+      0
+     ],
+     "i": 4,
+     "n": 1
+    },
+    {
+     "w": "encontrar",
+     "h": [
+      3
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "descanso",
+     "h": [
+      4
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "cada una",
+     "h": [
+      5
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "en la casa",
+     "h": [
+      6
+     ],
+     "i": 9,
+     "n": 3
+    },
+    {
+     "w": "de un esposo",
+     "h": [
+      7
+     ],
+     "i": 12,
+     "n": 3
+    },
+    {
+     "w": "las",
+     "h": [
+      9
+     ],
+     "i": 16,
+     "n": 1
+    },
+    {
+     "w": "besó",
+     "h": [
+      8
+     ],
+     "i": 17,
+     "n": 1
+    },
+    {
+     "w": "alzaron",
+     "h": [
+      10
+     ],
+     "i": 20,
+     "n": 1
+    },
+    {
+     "w": "la voz",
+     "h": [
+      11
+     ],
+     "i": 21,
+     "n": 2
+    },
+    {
+     "w": "lloraron",
+     "h": [
+      12
+     ],
+     "i": 24,
+     "n": 1
+    }
+   ]
+  },
+  "1:10": {
+   "text": "y le dijeron: «No; nosotras volveremos contigo a tu pueblo».",
+   "map": [
+    {
+     "w": "le",
+     "h": [
+      1
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "dijeron",
+     "h": [
+      0
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "volveremos",
+     "h": [
+      4
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "contigo",
+     "h": [
+      3
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "a tu pueblo",
+     "h": [
+      5
+     ],
+     "i": 7,
+     "n": 3
+    }
+   ]
+  },
+  "1:11": {
+   "text": "Pero Noemí respondió: «Vuelvan, hijas mías. ¿Para qué van a venir conmigo? ¿Acaso tengo todavía hijos en mi vientre que puedan llegar a ser sus esposos?",
+   "map": [
+    {
+     "w": "Noemí",
+     "h": [
+      1
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "respondió",
+     "h": [
+      0
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "Vuelvan",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "hijas mías",
+     "h": [
+      3
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "Para qué",
+     "h": [
+      4
+     ],
+     "i": 6,
+     "n": 2
+    },
+    {
+     "w": "van a venir",
+     "h": [
+      5
+     ],
+     "i": 8,
+     "n": 3
+    },
+    {
+     "w": "conmigo",
+     "h": [
+      6
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "tengo",
+     "h": [
+      8
+     ],
+     "i": 13,
+     "n": 1
+    },
+    {
+     "w": "todavía",
+     "h": [
+      7
+     ],
+     "i": 14,
+     "n": 1
+    },
+    {
+     "w": "hijos",
+     "h": [
+      9
+     ],
+     "i": 15,
+     "n": 1
+    },
+    {
+     "w": "en mi vientre",
+     "h": [
+      10
+     ],
+     "i": 16,
+     "n": 3
+    },
+    {
+     "w": "que puedan llegar a ser",
+     "h": [
+      11
+     ],
+     "i": 19,
+     "n": 5
+    },
+    {
+     "w": "sus",
+     "h": [
+      12
+     ],
+     "i": 24,
+     "n": 1
+    },
+    {
+     "w": "esposos",
+     "h": [
+      13
+     ],
+     "i": 25,
+     "n": 1
+    }
+   ]
+  },
+  "1:12": {
+   "text": "Vuelvan, hijas mías, váyanse, porque ya soy demasiado vieja para tener esposo. Y aunque dijera: \"Todavía tengo esperanza\", y aunque esta misma noche tuviera esposo y diera a luz hijos,",
+   "map": [
+    {
+     "w": "Vuelvan",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "hijas mías",
+     "h": [
+      1
+     ],
+     "i": 1,
+     "n": 2
+    },
+    {
+     "w": "váyanse",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "porque",
+     "h": [
+      3
+     ],
+     "i": 4,
+     "n": 1
+    },
+    {
+     "w": "ya soy demasiado vieja",
+     "h": [
+      4
+     ],
+     "i": 5,
+     "n": 4
+    },
+    {
+     "w": "para tener",
+     "h": [
+      5
+     ],
+     "i": 9,
+     "n": 2
+    },
+    {
+     "w": "esposo",
+     "h": [
+      6
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "Y aunque",
+     "h": [
+      7
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "dijera",
+     "h": [
+      8
+     ],
+     "i": 14,
+     "n": 1
+    },
+    {
+     "w": "Todavía tengo",
+     "h": [
+      9,
+      10
+     ],
+     "i": 15,
+     "n": 2
+    },
+    {
+     "w": "esperanza",
+     "h": [
+      11
+     ],
+     "i": 17,
+     "n": 1
+    },
+    {
+     "w": "y aunque",
+     "h": [
+      12
+     ],
+     "i": 18,
+     "n": 2
+    },
+    {
+     "w": "esta misma noche",
+     "h": [
+      14
+     ],
+     "i": 20,
+     "n": 3
+    },
+    {
+     "w": "tuviera",
+     "h": [
+      13
+     ],
+     "i": 23,
+     "n": 1
+    },
+    {
+     "w": "esposo",
+     "h": [
+      15
+     ],
+     "i": 24,
+     "n": 1
+    },
+    {
+     "w": "y",
+     "h": [
+      16
+     ],
+     "i": 25,
+     "n": 1
+    },
+    {
+     "w": "diera a luz",
+     "h": [
+      17
+     ],
+     "i": 26,
+     "n": 3
+    },
+    {
+     "w": "hijos",
+     "h": [
+      18
+     ],
+     "i": 29,
+     "n": 1
+    }
+   ]
+  },
+  "1:13": {
+   "text": "¿los esperarían ustedes hasta que crecieran? ¿Se quedarían sin casarse por ellos? No, hijas mías; mi amargura es mucho mayor que la de ustedes, porque la mano del SEÑOR se ha levantado contra mí».",
+   "map": [
+    {
+     "w": "los",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "esperarían",
+     "h": [
+      1
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "hasta que",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 2
+    },
+    {
+     "w": "crecieran",
+     "h": [
+      4
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "Se quedarían",
+     "h": [
+      6
+     ],
+     "i": 6,
+     "n": 2
+    },
+    {
+     "w": "sin casarse",
+     "h": [
+      7,
+      8
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "por ellos",
+     "h": [
+      5
+     ],
+     "i": 10,
+     "n": 2
+    },
+    {
+     "w": "No",
+     "h": [
+      10
+     ],
+     "i": 12,
+     "n": 1
+    },
+    {
+     "w": "hijas mías",
+     "h": [
+      11
+     ],
+     "i": 13,
+     "n": 2
+    },
+    {
+     "w": "mi amargura",
+     "h": [
+      13,
+      14
+     ],
+     "i": 15,
+     "n": 2
+    },
+    {
+     "w": "mucho mayor",
+     "h": [
+      15
+     ],
+     "i": 18,
+     "n": 2
+    },
+    {
+     "w": "que la de ustedes",
+     "h": [
+      16
+     ],
+     "i": 20,
+     "n": 4
+    },
+    {
+     "w": "porque",
+     "h": [
+      17
+     ],
+     "i": 24,
+     "n": 1
+    },
+    {
+     "w": "la mano",
+     "h": [
+      20
+     ],
+     "i": 25,
+     "n": 2
+    },
+    {
+     "w": "del SEÑOR",
+     "h": [
+      21
+     ],
+     "i": 27,
+     "n": 2
+    },
+    {
+     "w": "se ha levantado",
+     "h": [
+      18
+     ],
+     "i": 29,
+     "n": 3
+    },
+    {
+     "w": "contra mí",
+     "h": [
+      19
+     ],
+     "i": 32,
+     "n": 2
+    }
+   ]
+  },
+  "1:14": {
+   "text": "Ellas volvieron a alzar la voz y a llorar. Luego Orfa besó a su suegra, pero Rut se aferró a ella.",
+   "map": [
+    {
+     "w": "volvieron a alzar",
+     "h": [
+      0
+     ],
+     "i": 1,
+     "n": 3
+    },
+    {
+     "w": "la voz",
+     "h": [
+      1
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "y a llorar",
+     "h": [
+      2
+     ],
+     "i": 6,
+     "n": 3
+    },
+    {
+     "w": "Orfa",
+     "h": [
+      5
+     ],
+     "i": 10,
+     "n": 1
+    },
+    {
+     "w": "besó",
+     "h": [
+      4
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "a su suegra",
+     "h": [
+      6
+     ],
+     "i": 12,
+     "n": 3
+    },
+    {
+     "w": "Rut",
+     "h": [
+      7
+     ],
+     "i": 16,
+     "n": 1
+    },
+    {
+     "w": "se aferró",
+     "h": [
+      8
+     ],
+     "i": 17,
+     "n": 2
+    },
+    {
+     "w": "a ella",
+     "h": [
+      9
+     ],
+     "i": 19,
+     "n": 2
+    }
+   ]
+  },
+  "1:15": {
+   "text": "Noemí le dijo: «Mira, tu cuñada vuelve a su pueblo y a sus dioses. Vuelve tú también con tu cuñada».",
+   "map": [
+    {
+     "w": "dijo",
+     "h": [
+      0
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "Mira",
+     "h": [
+      1
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "tu cuñada",
+     "h": [
+      3
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "vuelve",
+     "h": [
+      2
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "a su pueblo",
+     "h": [
+      4,
+      5
+     ],
+     "i": 7,
+     "n": 3
+    },
+    {
+     "w": "y a sus dioses",
+     "h": [
+      6,
+      7
+     ],
+     "i": 10,
+     "n": 4
+    },
+    {
+     "w": "Vuelve",
+     "h": [
+      8
+     ],
+     "i": 14,
+     "n": 1
+    },
+    {
+     "w": "con",
+     "h": [
+      9
+     ],
+     "i": 17,
+     "n": 1
+    },
+    {
+     "w": "tu cuñada",
+     "h": [
+      10
+     ],
+     "i": 18,
+     "n": 2
+    }
+   ]
+  },
+  "1:16": {
+   "text": "Pero Rut respondió: «No me pidas que te deje y que me vuelva atrás sin ti. A donde tú vayas, iré yo; donde tú pases la noche, allí la pasaré yo. Tu pueblo será mi pueblo, y tu Dios será mi Dios.",
+   "map": [
+    {
+     "w": "Rut",
+     "h": [
+      1
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "respondió",
+     "h": [
+      0
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "No",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "me pidas",
+     "h": [
+      3
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "que te deje",
+     "h": [
+      5
+     ],
+     "i": 6,
+     "n": 3
+    },
+    {
+     "w": "y que me vuelva",
+     "h": [
+      6
+     ],
+     "i": 9,
+     "n": 4
+    },
+    {
+     "w": "atrás",
+     "h": [
+      7
+     ],
+     "i": 13,
+     "n": 1
+    },
+    {
+     "w": "sin ti",
+     "h": [
+      4
+     ],
+     "i": 14,
+     "n": 2
+    },
+    {
+     "w": "A donde",
+     "h": [
+      9,
+      10
+     ],
+     "i": 16,
+     "n": 2
+    },
+    {
+     "w": "vayas",
+     "h": [
+      11
+     ],
+     "i": 19,
+     "n": 1
+    },
+    {
+     "w": "iré yo",
+     "h": [
+      12
+     ],
+     "i": 20,
+     "n": 2
+    },
+    {
+     "w": "donde",
+     "h": [
+      13,
+      14
+     ],
+     "i": 22,
+     "n": 1
+    },
+    {
+     "w": "pases la noche",
+     "h": [
+      14
+     ],
+     "i": 24,
+     "n": 3
+    },
+    {
+     "w": "la pasaré yo",
+     "h": [
+      15
+     ],
+     "i": 28,
+     "n": 3
+    },
+    {
+     "w": "Tu pueblo",
+     "h": [
+      16
+     ],
+     "i": 31,
+     "n": 2
+    },
+    {
+     "w": "mi pueblo",
+     "h": [
+      17
+     ],
+     "i": 34,
+     "n": 2
+    },
+    {
+     "w": "y tu Dios",
+     "h": [
+      18
+     ],
+     "i": 36,
+     "n": 3
+    },
+    {
+     "w": "mi Dios",
+     "h": [
+      19
+     ],
+     "i": 40,
+     "n": 2
+    }
+   ]
+  },
+  "1:17": {
+   "text": "Donde tú mueras, moriré yo, y allí seré sepultada. Que el SEÑOR me haga así, y aún peor, si otra cosa que la muerte me separa de ti».",
+   "map": [
+    {
+     "w": "Donde",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "mueras",
+     "h": [
+      1
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "moriré",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "allí",
+     "h": [
+      3
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "seré sepultada",
+     "h": [
+      4
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "el SEÑOR",
+     "h": [
+      7
+     ],
+     "i": 10,
+     "n": 2
+    },
+    {
+     "w": "me",
+     "h": [
+      8
+     ],
+     "i": 12,
+     "n": 1
+    },
+    {
+     "w": "haga",
+     "h": [
+      6
+     ],
+     "i": 13,
+     "n": 1
+    },
+    {
+     "w": "así",
+     "h": [
+      5
+     ],
+     "i": 14,
+     "n": 1
+    },
+    {
+     "w": "y aún",
+     "h": [
+      9,
+      10
+     ],
+     "i": 15,
+     "n": 2
+    },
+    {
+     "w": "si",
+     "h": [
+      11
+     ],
+     "i": 18,
+     "n": 1
+    },
+    {
+     "w": "la muerte",
+     "h": [
+      12
+     ],
+     "i": 22,
+     "n": 2
+    },
+    {
+     "w": "me separa",
+     "h": [
+      13
+     ],
+     "i": 24,
+     "n": 2
+    },
+    {
+     "w": "de",
+     "h": [
+      14,
+      15
+     ],
+     "i": 26,
+     "n": 1
+    }
+   ]
+  },
+  "1:18": {
+   "text": "Cuando Noemí vio que Rut estaba decidida a ir con ella, dejó de insistirle.",
+   "map": [
+    {
+     "w": "vio",
+     "h": [
+      0
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "que",
+     "h": [
+      1
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "Rut",
+     "h": [
+      3
+     ],
+     "i": 4,
+     "n": 1
+    },
+    {
+     "w": "estaba decidida",
+     "h": [
+      2
+     ],
+     "i": 5,
+     "n": 2
+    },
+    {
+     "w": "a ir",
+     "h": [
+      4
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "con",
+     "h": [
+      5
+     ],
+     "i": 9,
+     "n": 1
+    },
+    {
+     "w": "dejó de insistirle",
+     "h": [
+      6,
+      7,
+      8
+     ],
+     "i": 11,
+     "n": 3
+    }
+   ]
+  },
+  "1:19": {
+   "text": "Así que las dos siguieron caminando hasta llegar a Belén. Cuando entraron en Belén, toda la ciudad se conmovió por causa de ellas, y las mujeres decían: «¿No es esta Noemí?».",
+   "map": [
+    {
+     "w": "las dos",
+     "h": [
+      1
+     ],
+     "i": 2,
+     "n": 2
+    },
+    {
+     "w": "siguieron caminando",
+     "h": [
+      0
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "hasta",
+     "h": [
+      2
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "llegar",
+     "h": [
+      3
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "a Belén",
+     "h": [
+      4,
+      5
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "Cuando",
+     "h": [
+      6
+     ],
+     "i": 10,
+     "n": 1
+    },
+    {
+     "w": "entraron",
+     "h": [
+      7
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "en Belén",
+     "h": [
+      8,
+      9
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "toda",
+     "h": [
+      11
+     ],
+     "i": 14,
+     "n": 1
+    },
+    {
+     "w": "la ciudad",
+     "h": [
+      12
+     ],
+     "i": 15,
+     "n": 2
+    },
+    {
+     "w": "se conmovió",
+     "h": [
+      10
+     ],
+     "i": 17,
+     "n": 2
+    },
+    {
+     "w": "por causa de",
+     "h": [
+      13
+     ],
+     "i": 19,
+     "n": 3
+    },
+    {
+     "w": "decían",
+     "h": [
+      14
+     ],
+     "i": 26,
+     "n": 1
+    },
+    {
+     "w": "No es esta",
+     "h": [
+      15
+     ],
+     "i": 27,
+     "n": 3
+    },
+    {
+     "w": "Noemí",
+     "h": [
+      16
+     ],
+     "i": 30,
+     "n": 1
+    }
+   ]
+  },
+  "1:20": {
+   "text": "Ella les respondía: «No me llamen Noemí; llámenme Mara, porque el Todopoderoso me ha llenado de amargura.",
+   "map": [
+    {
+     "w": "les",
+     "h": [
+      1
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "respondía",
+     "h": [
+      0
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "No",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "me",
+     "h": [
+      4
+     ],
+     "i": 4,
+     "n": 1
+    },
+    {
+     "w": "llamen",
+     "h": [
+      3
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "Noemí",
+     "h": [
+      5
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "llámenme",
+     "h": [
+      6,
+      7
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "Mara",
+     "h": [
+      8
+     ],
+     "i": 8,
+     "n": 1
+    },
+    {
+     "w": "porque",
+     "h": [
+      9
+     ],
+     "i": 9,
+     "n": 1
+    },
+    {
+     "w": "el Todopoderoso",
+     "h": [
+      11
+     ],
+     "i": 10,
+     "n": 2
+    },
+    {
+     "w": "me",
+     "h": [
+      12
+     ],
+     "i": 12,
+     "n": 1
+    },
+    {
+     "w": "ha llenado de amargura",
+     "h": [
+      10,
+      13
+     ],
+     "i": 13,
+     "n": 4
+    }
+   ]
+  },
+  "1:21": {
+   "text": "Llena me fui, pero vacía me ha hecho volver el SEÑOR. ¿Por qué me llaman Noemí, si el SEÑOR ha dado testimonio contra mí y el Todopoderoso me ha afligido?».",
+   "map": [
+    {
+     "w": "Llena",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "me fui",
+     "h": [
+      0,
+      2
+     ],
+     "i": 1,
+     "n": 2
+    },
+    {
+     "w": "vacía",
+     "h": [
+      3
+     ],
+     "i": 4,
+     "n": 1
+    },
+    {
+     "w": "ha hecho volver",
+     "h": [
+      4
+     ],
+     "i": 6,
+     "n": 3
+    },
+    {
+     "w": "el SEÑOR",
+     "h": [
+      5
+     ],
+     "i": 9,
+     "n": 2
+    },
+    {
+     "w": "Por qué",
+     "h": [
+      6
+     ],
+     "i": 11,
+     "n": 2
+    },
+    {
+     "w": "me",
+     "h": [
+      8
+     ],
+     "i": 13,
+     "n": 1
+    },
+    {
+     "w": "llaman",
+     "h": [
+      7
+     ],
+     "i": 14,
+     "n": 1
+    },
+    {
+     "w": "Noemí",
+     "h": [
+      9
+     ],
+     "i": 15,
+     "n": 1
+    },
+    {
+     "w": "el SEÑOR",
+     "h": [
+      10
+     ],
+     "i": 17,
+     "n": 2
+    },
+    {
+     "w": "ha dado testimonio",
+     "h": [
+      11
+     ],
+     "i": 19,
+     "n": 3
+    },
+    {
+     "w": "contra",
+     "h": [
+      12
+     ],
+     "i": 22,
+     "n": 1
+    },
+    {
+     "w": "el Todopoderoso",
+     "h": [
+      13
+     ],
+     "i": 25,
+     "n": 2
+    },
+    {
+     "w": "me",
+     "h": [
+      15
+     ],
+     "i": 27,
+     "n": 1
+    },
+    {
+     "w": "ha afligido",
+     "h": [
+      14
+     ],
+     "i": 28,
+     "n": 2
+    }
+   ]
+  },
+  "1:22": {
+   "text": "Así volvió Noemí, y con ella Rut la moabita, su nuera, que volvía de los campos de Moab. Llegaron a Belén al comienzo de la cosecha de la cebada.",
+   "map": [
+    {
+     "w": "volvió",
+     "h": [
+      0
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "Noemí",
+     "h": [
+      1
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "y con ella",
+     "h": [
+      5
+     ],
+     "i": 3,
+     "n": 3
+    },
+    {
+     "w": "Rut",
+     "h": [
+      2
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "la moabita",
+     "h": [
+      3
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "su nuera",
+     "h": [
+      4
+     ],
+     "i": 9,
+     "n": 2
+    },
+    {
+     "w": "que volvía",
+     "h": [
+      6
+     ],
+     "i": 11,
+     "n": 2
+    },
+    {
+     "w": "de los campos",
+     "h": [
+      7
+     ],
+     "i": 13,
+     "n": 3
+    },
+    {
+     "w": "de Moab",
+     "h": [
+      8
+     ],
+     "i": 16,
+     "n": 2
+    },
+    {
+     "w": "Llegaron",
+     "h": [
+      9,
+      10
+     ],
+     "i": 18,
+     "n": 1
+    },
+    {
+     "w": "a Belén",
+     "h": [
+      11,
+      12
+     ],
+     "i": 19,
+     "n": 2
+    },
+    {
+     "w": "al comienzo",
+     "h": [
+      13
+     ],
+     "i": 21,
+     "n": 2
+    },
+    {
+     "w": "de la cosecha",
+     "h": [
+      14
+     ],
+     "i": 23,
+     "n": 3
+    },
+    {
+     "w": "de la cebada",
+     "h": [
+      15
+     ],
+     "i": 26,
+     "n": 3
+    }
+   ]
+  },
+  "2:1": {
+   "text": "Noemí tenía un pariente por parte de su esposo, un hombre de gran valía, de la familia de Elimelec, que se llamaba Booz.",
+   "map": [
+    {
+     "w": "Noemí",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "un pariente",
+     "h": [
+      2
+     ],
+     "i": 2,
+     "n": 2
+    },
+    {
+     "w": "por parte de su esposo",
+     "h": [
+      1
+     ],
+     "i": 4,
+     "n": 5
+    },
+    {
+     "w": "de gran valía",
+     "h": [
+      3,
+      4
+     ],
+     "i": 11,
+     "n": 3
+    },
+    {
+     "w": "de la familia",
+     "h": [
+      5
+     ],
+     "i": 14,
+     "n": 3
+    },
+    {
+     "w": "de Elimelec",
+     "h": [
+      6
+     ],
+     "i": 17,
+     "n": 2
+    },
+    {
+     "w": "que se llamaba",
+     "h": [
+      7
+     ],
+     "i": 19,
+     "n": 3
+    },
+    {
+     "w": "Booz",
+     "h": [
+      8
+     ],
+     "i": 22,
+     "n": 1
+    }
+   ]
+  },
+  "2:2": {
+   "text": "Y Rut la moabita dijo a Noemí: «Déjame ir al campo a recoger espigas detrás de aquel ante cuyos ojos yo halle favor». Noemí le respondió: «Ve, hija mía».",
+   "map": [
+    {
+     "w": "Rut",
+     "h": [
+      1
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "la moabita",
+     "h": [
+      2
+     ],
+     "i": 2,
+     "n": 2
+    },
+    {
+     "w": "dijo",
+     "h": [
+      0
+     ],
+     "i": 4,
+     "n": 1
+    },
+    {
+     "w": "a Noemí",
+     "h": [
+      3,
+      4
+     ],
+     "i": 5,
+     "n": 2
+    },
+    {
+     "w": "Déjame",
+     "h": [
+      6
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "ir",
+     "h": [
+      5
+     ],
+     "i": 8,
+     "n": 1
+    },
+    {
+     "w": "al campo",
+     "h": [
+      7
+     ],
+     "i": 9,
+     "n": 2
+    },
+    {
+     "w": "a recoger",
+     "h": [
+      8
+     ],
+     "i": 11,
+     "n": 2
+    },
+    {
+     "w": "espigas",
+     "h": [
+      9
+     ],
+     "i": 13,
+     "n": 1
+    },
+    {
+     "w": "detrás de",
+     "h": [
+      10
+     ],
+     "i": 14,
+     "n": 2
+    },
+    {
+     "w": "aquel",
+     "h": [
+      11
+     ],
+     "i": 16,
+     "n": 1
+    },
+    {
+     "w": "ante cuyos ojos",
+     "h": [
+      14
+     ],
+     "i": 17,
+     "n": 3
+    },
+    {
+     "w": "halle",
+     "h": [
+      12
+     ],
+     "i": 21,
+     "n": 1
+    },
+    {
+     "w": "favor",
+     "h": [
+      13
+     ],
+     "i": 22,
+     "n": 1
+    },
+    {
+     "w": "le",
+     "h": [
+      16
+     ],
+     "i": 24,
+     "n": 1
+    },
+    {
+     "w": "respondió",
+     "h": [
+      15
+     ],
+     "i": 25,
+     "n": 1
+    },
+    {
+     "w": "Ve",
+     "h": [
+      17
+     ],
+     "i": 26,
+     "n": 1
+    },
+    {
+     "w": "hija mía",
+     "h": [
+      18
+     ],
+     "i": 27,
+     "n": 2
+    }
+   ]
+  },
+  "2:3": {
+   "text": "Ella fue, llegó y se puso a recoger espigas en el campo detrás de los segadores; y dio la casualidad de que aquella parte del campo pertenecía a Booz, que era de la familia de Elimelec.",
+   "map": [
+    {
+     "w": "Ella",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "fue",
+     "h": [
+      0
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "llegó",
+     "h": [
+      1
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "y se puso a recoger espigas",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 6
+    },
+    {
+     "w": "en el campo",
+     "h": [
+      3
+     ],
+     "i": 9,
+     "n": 3
+    },
+    {
+     "w": "detrás de",
+     "h": [
+      4
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "los segadores",
+     "h": [
+      5
+     ],
+     "i": 14,
+     "n": 2
+    },
+    {
+     "w": "y dio",
+     "h": [
+      6
+     ],
+     "i": 16,
+     "n": 2
+    },
+    {
+     "w": "la casualidad de que",
+     "h": [
+      7
+     ],
+     "i": 18,
+     "n": 4
+    },
+    {
+     "w": "aquella parte",
+     "h": [
+      8
+     ],
+     "i": 22,
+     "n": 2
+    },
+    {
+     "w": "del campo",
+     "h": [
+      9
+     ],
+     "i": 24,
+     "n": 2
+    },
+    {
+     "w": "pertenecía a Booz",
+     "h": [
+      10
+     ],
+     "i": 26,
+     "n": 3
+    },
+    {
+     "w": "que era de",
+     "h": [
+      11
+     ],
+     "i": 29,
+     "n": 3
+    },
+    {
+     "w": "la familia de",
+     "h": [
+      12
+     ],
+     "i": 32,
+     "n": 3
+    },
+    {
+     "w": "Elimelec",
+     "h": [
+      13
+     ],
+     "i": 35,
+     "n": 1
+    }
+   ]
+  },
+  "2:4": {
+   "text": "En ese momento llegaba Booz desde Belén, y dijo a los segadores: «¡El SEÑOR esté con ustedes!». Y ellos le respondieron: «¡Que el SEÑOR te bendiga!».",
+   "map": [
+    {
+     "w": "En ese momento llegaba",
+     "h": [
+      0,
+      2
+     ],
+     "i": 0,
+     "n": 4
+    },
+    {
+     "w": "Booz",
+     "h": [
+      1
+     ],
+     "i": 4,
+     "n": 1
+    },
+    {
+     "w": "desde Belén",
+     "h": [
+      3,
+      4
+     ],
+     "i": 5,
+     "n": 2
+    },
+    {
+     "w": "y dijo",
+     "h": [
+      5
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "a los segadores",
+     "h": [
+      6
+     ],
+     "i": 9,
+     "n": 3
+    },
+    {
+     "w": "El SEÑOR",
+     "h": [
+      7
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "esté con",
+     "h": [
+      8
+     ],
+     "i": 14,
+     "n": 2
+    },
+    {
+     "w": "ustedes",
+     "h": [
+      8
+     ],
+     "i": 16,
+     "n": 1
+    },
+    {
+     "w": "Y ellos",
+     "h": [
+      9
+     ],
+     "i": 17,
+     "n": 2
+    },
+    {
+     "w": "le respondieron",
+     "h": [
+      9
+     ],
+     "i": 19,
+     "n": 2
+    },
+    {
+     "w": "Que el SEÑOR",
+     "h": [
+      12
+     ],
+     "i": 21,
+     "n": 3
+    },
+    {
+     "w": "te bendiga",
+     "h": [
+      11
+     ],
+     "i": 24,
+     "n": 2
+    }
+   ]
+  },
+  "2:5": {
+   "text": "Booz preguntó al joven que estaba a cargo de los segadores: «¿De quién es esta muchacha?».",
+   "map": [
+    {
+     "w": "Booz",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "preguntó",
+     "h": [
+      0
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "al joven",
+     "h": [
+      2
+     ],
+     "i": 2,
+     "n": 2
+    },
+    {
+     "w": "que estaba a cargo de",
+     "h": [
+      3,
+      4
+     ],
+     "i": 4,
+     "n": 5
+    },
+    {
+     "w": "los segadores",
+     "h": [
+      5
+     ],
+     "i": 9,
+     "n": 2
+    },
+    {
+     "w": "De quién es",
+     "h": [
+      6
+     ],
+     "i": 11,
+     "n": 3
+    },
+    {
+     "w": "esta",
+     "h": [
+      8
+     ],
+     "i": 14,
+     "n": 1
+    },
+    {
+     "w": "muchacha",
+     "h": [
+      7
+     ],
+     "i": 15,
+     "n": 1
+    }
+   ]
+  },
+  "2:6": {
+   "text": "El joven a cargo de los segadores respondió: «Es la muchacha moabita que volvió con Noemí de los campos de Moab.",
+   "map": [
+    {
+     "w": "El joven",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "a cargo de",
+     "h": [
+      2,
+      3
+     ],
+     "i": 2,
+     "n": 3
+    },
+    {
+     "w": "los segadores",
+     "h": [
+      4
+     ],
+     "i": 5,
+     "n": 2
+    },
+    {
+     "w": "respondió",
+     "h": [
+      0,
+      5
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "Es la muchacha",
+     "h": [
+      6
+     ],
+     "i": 8,
+     "n": 3
+    },
+    {
+     "w": "moabita",
+     "h": [
+      7
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "que",
+     "h": [
+      8
+     ],
+     "i": 12,
+     "n": 1
+    },
+    {
+     "w": "volvió",
+     "h": [
+      9
+     ],
+     "i": 13,
+     "n": 1
+    },
+    {
+     "w": "con",
+     "h": [
+      10
+     ],
+     "i": 14,
+     "n": 1
+    },
+    {
+     "w": "Noemí",
+     "h": [
+      11
+     ],
+     "i": 15,
+     "n": 1
+    },
+    {
+     "w": "de los campos de",
+     "h": [
+      12
+     ],
+     "i": 16,
+     "n": 4
+    },
+    {
+     "w": "Moab",
+     "h": [
+      13
+     ],
+     "i": 20,
+     "n": 1
+    }
+   ]
+  },
+  "2:7": {
+   "text": "Ella me dijo: \"Por favor, déjame recoger espigas y juntarlas entre las gavillas, detrás de los segadores\". Así que vino y ha estado aquí desde la mañana hasta ahora, salvo un breve descanso en la casa».",
+   "map": [
+    {
+     "w": "Ella",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "me dijo",
+     "h": [
+      0
+     ],
+     "i": 1,
+     "n": 2
+    },
+    {
+     "w": "Por favor",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 2
+    },
+    {
+     "w": "déjame recoger espigas",
+     "h": [
+      1
+     ],
+     "i": 5,
+     "n": 3
+    },
+    {
+     "w": "y juntarlas",
+     "h": [
+      3
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "entre las gavillas",
+     "h": [
+      4
+     ],
+     "i": 10,
+     "n": 3
+    },
+    {
+     "w": "detrás de",
+     "h": [
+      5
+     ],
+     "i": 13,
+     "n": 2
+    },
+    {
+     "w": "los segadores",
+     "h": [
+      6
+     ],
+     "i": 15,
+     "n": 2
+    },
+    {
+     "w": "Así que vino",
+     "h": [
+      7
+     ],
+     "i": 17,
+     "n": 3
+    },
+    {
+     "w": "y ha estado aquí",
+     "h": [
+      8
+     ],
+     "i": 20,
+     "n": 4
+    },
+    {
+     "w": "desde",
+     "h": [
+      9
+     ],
+     "i": 24,
+     "n": 1
+    },
+    {
+     "w": "la mañana",
+     "h": [
+      10
+     ],
+     "i": 25,
+     "n": 2
+    },
+    {
+     "w": "hasta",
+     "h": [
+      11
+     ],
+     "i": 27,
+     "n": 1
+    },
+    {
+     "w": "ahora",
+     "h": [
+      12
+     ],
+     "i": 28,
+     "n": 1
+    },
+    {
+     "w": "salvo un breve descanso",
+     "h": [
+      14,
+      16
+     ],
+     "i": 29,
+     "n": 4
+    },
+    {
+     "w": "en la casa",
+     "h": [
+      15
+     ],
+     "i": 33,
+     "n": 3
+    }
+   ]
+  },
+  "2:8": {
+   "text": "Entonces Booz dijo a Rut: «Escucha bien, hija mía. No vayas a recoger espigas a otro campo, ni te vayas de aquí; quédate junto a mis muchachas.",
+   "map": [
+    {
+     "w": "Entonces Booz",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "dijo",
+     "h": [
+      0
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "a Rut",
+     "h": [
+      2,
+      3
+     ],
+     "i": 3,
+     "n": 2
+    },
+    {
+     "w": "Escucha bien",
+     "h": [
+      4,
+      5
+     ],
+     "i": 5,
+     "n": 2
+    },
+    {
+     "w": "hija mía",
+     "h": [
+      6
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "No",
+     "h": [
+      7
+     ],
+     "i": 9,
+     "n": 1
+    },
+    {
+     "w": "vayas",
+     "h": [
+      8
+     ],
+     "i": 10,
+     "n": 1
+    },
+    {
+     "w": "a recoger espigas",
+     "h": [
+      9
+     ],
+     "i": 11,
+     "n": 3
+    },
+    {
+     "w": "a otro",
+     "h": [
+      11
+     ],
+     "i": 14,
+     "n": 2
+    },
+    {
+     "w": "campo",
+     "h": [
+      10
+     ],
+     "i": 16,
+     "n": 1
+    },
+    {
+     "w": "ni",
+     "h": [
+      12,
+      13
+     ],
+     "i": 17,
+     "n": 1
+    },
+    {
+     "w": "te vayas",
+     "h": [
+      14
+     ],
+     "i": 18,
+     "n": 2
+    },
+    {
+     "w": "de aquí",
+     "h": [
+      15
+     ],
+     "i": 20,
+     "n": 2
+    },
+    {
+     "w": "quédate",
+     "h": [
+      16,
+      17
+     ],
+     "i": 22,
+     "n": 1
+    },
+    {
+     "w": "junto a",
+     "h": [
+      18
+     ],
+     "i": 23,
+     "n": 2
+    },
+    {
+     "w": "mis muchachas",
+     "h": [
+      19
+     ],
+     "i": 25,
+     "n": 2
+    }
+   ]
+  },
+  "2:9": {
+   "text": "Fíjate en qué campo siegan y sigue tras ellas. ¿No he ordenado a los muchachos que no te molesten? Y cuando tengas sed, ve a las vasijas y bebe del agua que los muchachos saquen».",
+   "map": [
+    {
+     "w": "Fíjate en",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "qué campo",
+     "h": [
+      1
+     ],
+     "i": 2,
+     "n": 2
+    },
+    {
+     "w": "siegan",
+     "h": [
+      2,
+      3
+     ],
+     "i": 4,
+     "n": 1
+    },
+    {
+     "w": "y sigue",
+     "h": [
+      4
+     ],
+     "i": 5,
+     "n": 2
+    },
+    {
+     "w": "tras ellas",
+     "h": [
+      5
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "No",
+     "h": [
+      6
+     ],
+     "i": 9,
+     "n": 1
+    },
+    {
+     "w": "he ordenado",
+     "h": [
+      7
+     ],
+     "i": 10,
+     "n": 2
+    },
+    {
+     "w": "a los muchachos",
+     "h": [
+      9
+     ],
+     "i": 12,
+     "n": 3
+    },
+    {
+     "w": "que no",
+     "h": [
+      10
+     ],
+     "i": 15,
+     "n": 2
+    },
+    {
+     "w": "te molesten",
+     "h": [
+      11
+     ],
+     "i": 17,
+     "n": 2
+    },
+    {
+     "w": "Y cuando tengas sed",
+     "h": [
+      12
+     ],
+     "i": 19,
+     "n": 4
+    },
+    {
+     "w": "ve",
+     "h": [
+      13
+     ],
+     "i": 23,
+     "n": 1
+    },
+    {
+     "w": "a",
+     "h": [
+      14
+     ],
+     "i": 24,
+     "n": 1
+    },
+    {
+     "w": "las vasijas",
+     "h": [
+      15
+     ],
+     "i": 25,
+     "n": 2
+    },
+    {
+     "w": "y bebe",
+     "h": [
+      16
+     ],
+     "i": 27,
+     "n": 2
+    },
+    {
+     "w": "del agua que",
+     "h": [
+      17
+     ],
+     "i": 29,
+     "n": 3
+    },
+    {
+     "w": "los muchachos",
+     "h": [
+      19
+     ],
+     "i": 32,
+     "n": 2
+    },
+    {
+     "w": "saquen",
+     "h": [
+      18
+     ],
+     "i": 34,
+     "n": 1
+    }
+   ]
+  },
+  "2:10": {
+   "text": "Ella se postró rostro en tierra, inclinándose hasta el suelo, y le dijo: «¿Por qué he hallado favor ante tus ojos, para que te fijes en mí, siendo yo una extranjera?».",
+   "map": [
+    {
+     "w": "Ella",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "se postró",
+     "h": [
+      0,
+      3
+     ],
+     "i": 1,
+     "n": 2
+    },
+    {
+     "w": "rostro",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "en tierra",
+     "h": [
+      4
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "inclinándose hasta el suelo",
+     "h": [
+      3,
+      1,
+      4
+     ],
+     "i": 6,
+     "n": 4
+    },
+    {
+     "w": "y le",
+     "h": [
+      6
+     ],
+     "i": 10,
+     "n": 2
+    },
+    {
+     "w": "dijo",
+     "h": [
+      5
+     ],
+     "i": 12,
+     "n": 1
+    },
+    {
+     "w": "Por qué",
+     "h": [
+      7
+     ],
+     "i": 13,
+     "n": 2
+    },
+    {
+     "w": "he hallado",
+     "h": [
+      8
+     ],
+     "i": 15,
+     "n": 2
+    },
+    {
+     "w": "favor",
+     "h": [
+      9
+     ],
+     "i": 17,
+     "n": 1
+    },
+    {
+     "w": "ante tus ojos",
+     "h": [
+      10
+     ],
+     "i": 18,
+     "n": 3
+    },
+    {
+     "w": "para que te fijes en mí",
+     "h": [
+      11
+     ],
+     "i": 21,
+     "n": 6
+    },
+    {
+     "w": "siendo yo",
+     "h": [
+      12
+     ],
+     "i": 27,
+     "n": 2
+    },
+    {
+     "w": "una extranjera",
+     "h": [
+      13
+     ],
+     "i": 29,
+     "n": 2
+    }
+   ]
+  },
+  "2:11": {
+   "text": "Booz le respondió: «Me han contado con todo detalle lo que has hecho por tu suegra desde la muerte de tu esposo: cómo dejaste a tu padre, a tu madre y la tierra donde naciste, y viniste a un pueblo que antes no conocías.",
+   "map": [
+    {
+     "w": "Booz",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "le",
+     "h": [
+      3
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "respondió",
+     "h": [
+      0,
+      2
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "Me han contado con todo detalle",
+     "h": [
+      4,
+      5,
+      6,
+      7
+     ],
+     "i": 3,
+     "n": 6
+    },
+    {
+     "w": "lo que",
+     "h": [
+      8
+     ],
+     "i": 9,
+     "n": 2
+    },
+    {
+     "w": "has hecho",
+     "h": [
+      9
+     ],
+     "i": 11,
+     "n": 2
+    },
+    {
+     "w": "por tu suegra",
+     "h": [
+      10,
+      11
+     ],
+     "i": 13,
+     "n": 3
+    },
+    {
+     "w": "desde la muerte",
+     "h": [
+      12,
+      13
+     ],
+     "i": 16,
+     "n": 3
+    },
+    {
+     "w": "de tu esposo",
+     "h": [
+      14
+     ],
+     "i": 19,
+     "n": 3
+    },
+    {
+     "w": "cómo dejaste",
+     "h": [
+      15
+     ],
+     "i": 22,
+     "n": 2
+    },
+    {
+     "w": "a tu padre",
+     "h": [
+      16
+     ],
+     "i": 24,
+     "n": 3
+    },
+    {
+     "w": "a tu madre",
+     "h": [
+      17
+     ],
+     "i": 27,
+     "n": 3
+    },
+    {
+     "w": "y la tierra",
+     "h": [
+      18
+     ],
+     "i": 30,
+     "n": 3
+    },
+    {
+     "w": "donde naciste",
+     "h": [
+      19
+     ],
+     "i": 33,
+     "n": 2
+    },
+    {
+     "w": "y viniste",
+     "h": [
+      20
+     ],
+     "i": 35,
+     "n": 2
+    },
+    {
+     "w": "a",
+     "h": [
+      21
+     ],
+     "i": 37,
+     "n": 1
+    },
+    {
+     "w": "un pueblo",
+     "h": [
+      22
+     ],
+     "i": 38,
+     "n": 2
+    },
+    {
+     "w": "que",
+     "h": [
+      23
+     ],
+     "i": 40,
+     "n": 1
+    },
+    {
+     "w": "antes no",
+     "h": [
+      24,
+      26,
+      27
+     ],
+     "i": 41,
+     "n": 2
+    },
+    {
+     "w": "conocías",
+     "h": [
+      25
+     ],
+     "i": 43,
+     "n": 1
+    }
+   ]
+  },
+  "2:12": {
+   "text": "Que el SEÑOR te recompense por lo que has hecho; que recibas un pago completo de parte del SEÑOR, Dios de Israel, bajo cuyas alas has venido a refugiarte».",
+   "map": [
+    {
+     "w": "Que el SEÑOR",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 3
+    },
+    {
+     "w": "te recompense",
+     "h": [
+      0
+     ],
+     "i": 3,
+     "n": 2
+    },
+    {
+     "w": "por lo que has hecho",
+     "h": [
+      2
+     ],
+     "i": 5,
+     "n": 5
+    },
+    {
+     "w": "que recibas",
+     "h": [
+      3
+     ],
+     "i": 10,
+     "n": 2
+    },
+    {
+     "w": "un pago",
+     "h": [
+      4
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "completo",
+     "h": [
+      5
+     ],
+     "i": 14,
+     "n": 1
+    },
+    {
+     "w": "de parte del SEÑOR",
+     "h": [
+      6,
+      7
+     ],
+     "i": 15,
+     "n": 4
+    },
+    {
+     "w": "Dios",
+     "h": [
+      8
+     ],
+     "i": 19,
+     "n": 1
+    },
+    {
+     "w": "de Israel",
+     "h": [
+      9
+     ],
+     "i": 20,
+     "n": 2
+    },
+    {
+     "w": "bajo",
+     "h": [
+      13
+     ],
+     "i": 22,
+     "n": 1
+    },
+    {
+     "w": "cuyas alas",
+     "h": [
+      14
+     ],
+     "i": 23,
+     "n": 2
+    },
+    {
+     "w": "has venido",
+     "h": [
+      11
+     ],
+     "i": 25,
+     "n": 2
+    },
+    {
+     "w": "a refugiarte",
+     "h": [
+      12
+     ],
+     "i": 27,
+     "n": 2
+    }
+   ]
+  },
+  "2:13": {
+   "text": "Ella dijo: «Que yo halle favor ante tus ojos, señor mío, porque me has consolado y has hablado al corazón de tu sierva, aunque yo no soy ni siquiera como una de tus siervas».",
+   "map": [
+    {
+     "w": "Ella dijo",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "Que yo halle",
+     "h": [
+      1
+     ],
+     "i": 2,
+     "n": 3
+    },
+    {
+     "w": "favor",
+     "h": [
+      2
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "ante tus ojos",
+     "h": [
+      3
+     ],
+     "i": 6,
+     "n": 3
+    },
+    {
+     "w": "señor mío",
+     "h": [
+      4
+     ],
+     "i": 9,
+     "n": 2
+    },
+    {
+     "w": "porque",
+     "h": [
+      5
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "me has consolado",
+     "h": [
+      6
+     ],
+     "i": 12,
+     "n": 3
+    },
+    {
+     "w": "y",
+     "h": [
+      7
+     ],
+     "i": 15,
+     "n": 1
+    },
+    {
+     "w": "has hablado",
+     "h": [
+      8
+     ],
+     "i": 16,
+     "n": 2
+    },
+    {
+     "w": "al corazón",
+     "h": [
+      9,
+      10
+     ],
+     "i": 18,
+     "n": 2
+    },
+    {
+     "w": "de tu sierva",
+     "h": [
+      11
+     ],
+     "i": 20,
+     "n": 3
+    },
+    {
+     "w": "aunque yo",
+     "h": [
+      12
+     ],
+     "i": 23,
+     "n": 2
+    },
+    {
+     "w": "no",
+     "h": [
+      13
+     ],
+     "i": 25,
+     "n": 1
+    },
+    {
+     "w": "soy",
+     "h": [
+      14
+     ],
+     "i": 26,
+     "n": 1
+    },
+    {
+     "w": "ni siquiera como una",
+     "h": [
+      15
+     ],
+     "i": 27,
+     "n": 4
+    },
+    {
+     "w": "de tus siervas",
+     "h": [
+      16
+     ],
+     "i": 31,
+     "n": 3
+    }
+   ]
+  },
+  "2:14": {
+   "text": "A la hora de comer, Booz le dijo: «Acércate, come del pan y moja tu bocado en el vino agrio». Ella se sentó al lado de los segadores, y él le ofreció grano tostado. Ella comió hasta quedar satisfecha, y aún le sobró.",
+   "map": [
+    {
+     "w": "A la hora",
+     "h": [
+      3
+     ],
+     "i": 0,
+     "n": 3
+    },
+    {
+     "w": "de comer",
+     "h": [
+      4
+     ],
+     "i": 3,
+     "n": 2
+    },
+    {
+     "w": "Booz",
+     "h": [
+      2
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "le dijo",
+     "h": [
+      0
+     ],
+     "i": 6,
+     "n": 2
+    },
+    {
+     "w": "Acércate",
+     "h": [
+      5,
+      6
+     ],
+     "i": 8,
+     "n": 1
+    },
+    {
+     "w": "come",
+     "h": [
+      7
+     ],
+     "i": 9,
+     "n": 1
+    },
+    {
+     "w": "del",
+     "h": [
+      8
+     ],
+     "i": 10,
+     "n": 1
+    },
+    {
+     "w": "pan",
+     "h": [
+      9
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "y moja",
+     "h": [
+      10
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "tu bocado",
+     "h": [
+      11
+     ],
+     "i": 14,
+     "n": 2
+    },
+    {
+     "w": "en el vino agrio",
+     "h": [
+      12
+     ],
+     "i": 16,
+     "n": 4
+    },
+    {
+     "w": "Ella se sentó",
+     "h": [
+      13
+     ],
+     "i": 20,
+     "n": 3
+    },
+    {
+     "w": "al lado",
+     "h": [
+      14
+     ],
+     "i": 23,
+     "n": 2
+    },
+    {
+     "w": "de los segadores",
+     "h": [
+      15
+     ],
+     "i": 25,
+     "n": 3
+    },
+    {
+     "w": "y él le ofreció",
+     "h": [
+      16
+     ],
+     "i": 28,
+     "n": 4
+    },
+    {
+     "w": "grano tostado",
+     "h": [
+      18
+     ],
+     "i": 32,
+     "n": 2
+    },
+    {
+     "w": "Ella comió",
+     "h": [
+      19
+     ],
+     "i": 34,
+     "n": 2
+    },
+    {
+     "w": "hasta quedar satisfecha",
+     "h": [
+      20
+     ],
+     "i": 36,
+     "n": 3
+    },
+    {
+     "w": "y aún le sobró",
+     "h": [
+      21
+     ],
+     "i": 39,
+     "n": 4
+    }
+   ]
+  },
+  "2:15": {
+   "text": "Cuando ella se levantó para seguir recogiendo, Booz dio órdenes a sus muchachos: «Déjenla recoger incluso entre las gavillas, y no la avergüencen.",
+   "map": [
+    {
+     "w": "Cuando ella se levantó",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 4
+    },
+    {
+     "w": "para seguir recogiendo",
+     "h": [
+      1
+     ],
+     "i": 4,
+     "n": 3
+    },
+    {
+     "w": "Booz",
+     "h": [
+      3
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "dio órdenes",
+     "h": [
+      2
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "a sus muchachos",
+     "h": [
+      5
+     ],
+     "i": 10,
+     "n": 3
+    },
+    {
+     "w": "Déjenla recoger",
+     "h": [
+      10
+     ],
+     "i": 13,
+     "n": 2
+    },
+    {
+     "w": "incluso",
+     "h": [
+      7
+     ],
+     "i": 15,
+     "n": 1
+    },
+    {
+     "w": "entre",
+     "h": [
+      8
+     ],
+     "i": 16,
+     "n": 1
+    },
+    {
+     "w": "las gavillas",
+     "h": [
+      9
+     ],
+     "i": 17,
+     "n": 2
+    },
+    {
+     "w": "y no",
+     "h": [
+      11
+     ],
+     "i": 19,
+     "n": 2
+    },
+    {
+     "w": "la avergüencen",
+     "h": [
+      12
+     ],
+     "i": 21,
+     "n": 2
+    }
+   ]
+  },
+  "2:16": {
+   "text": "Además, saquen para ella algunas espigas de los manojos y déjenlas para que las recoja; y no la reprendan».",
+   "map": [
+    {
+     "w": "Además",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "saquen",
+     "h": [
+      1,
+      2
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "algunas espigas de",
+     "h": [
+      4
+     ],
+     "i": 4,
+     "n": 3
+    },
+    {
+     "w": "los manojos",
+     "h": [
+      5
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "y déjenlas",
+     "h": [
+      6
+     ],
+     "i": 9,
+     "n": 2
+    },
+    {
+     "w": "para que las recoja",
+     "h": [
+      7
+     ],
+     "i": 11,
+     "n": 4
+    },
+    {
+     "w": "y no",
+     "h": [
+      8
+     ],
+     "i": 15,
+     "n": 2
+    },
+    {
+     "w": "la reprendan",
+     "h": [
+      9
+     ],
+     "i": 17,
+     "n": 2
+    }
+   ]
+  },
+  "2:17": {
+   "text": "Así que Rut recogió espigas en el campo hasta la tarde. Luego desgranó lo que había recogido, y fue como un efa de cebada.",
+   "map": [
+    {
+     "w": "Así que Rut recogió espigas",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 5
+    },
+    {
+     "w": "en el campo",
+     "h": [
+      1
+     ],
+     "i": 5,
+     "n": 3
+    },
+    {
+     "w": "hasta",
+     "h": [
+      2
+     ],
+     "i": 8,
+     "n": 1
+    },
+    {
+     "w": "la tarde",
+     "h": [
+      3
+     ],
+     "i": 9,
+     "n": 2
+    },
+    {
+     "w": "Luego desgranó",
+     "h": [
+      4
+     ],
+     "i": 11,
+     "n": 2
+    },
+    {
+     "w": "lo que",
+     "h": [
+      6
+     ],
+     "i": 13,
+     "n": 2
+    },
+    {
+     "w": "había recogido",
+     "h": [
+      7
+     ],
+     "i": 15,
+     "n": 2
+    },
+    {
+     "w": "y fue",
+     "h": [
+      8
+     ],
+     "i": 17,
+     "n": 2
+    },
+    {
+     "w": "como un efa",
+     "h": [
+      9
+     ],
+     "i": 19,
+     "n": 3
+    },
+    {
+     "w": "de cebada",
+     "h": [
+      10
+     ],
+     "i": 22,
+     "n": 2
+    }
+   ]
+  },
+  "2:18": {
+   "text": "Lo tomó y se fue a la ciudad, y su suegra vio lo que había recogido. Rut sacó también lo que le había sobrado después de quedar satisfecha, y se lo dio.",
+   "map": [
+    {
+     "w": "Lo tomó",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "y se fue",
+     "h": [
+      1
+     ],
+     "i": 2,
+     "n": 3
+    },
+    {
+     "w": "a la ciudad",
+     "h": [
+      2
+     ],
+     "i": 5,
+     "n": 3
+    },
+    {
+     "w": "y su suegra",
+     "h": [
+      4
+     ],
+     "i": 8,
+     "n": 3
+    },
+    {
+     "w": "vio",
+     "h": [
+      3
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "lo que",
+     "h": [
+      6
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "había recogido",
+     "h": [
+      7
+     ],
+     "i": 14,
+     "n": 2
+    },
+    {
+     "w": "Rut sacó",
+     "h": [
+      8
+     ],
+     "i": 16,
+     "n": 2
+    },
+    {
+     "w": "lo que",
+     "h": [
+      12
+     ],
+     "i": 19,
+     "n": 2
+    },
+    {
+     "w": "le había sobrado",
+     "h": [
+      13
+     ],
+     "i": 21,
+     "n": 3
+    },
+    {
+     "w": "después de quedar satisfecha",
+     "h": [
+      14
+     ],
+     "i": 24,
+     "n": 4
+    },
+    {
+     "w": "y se lo dio",
+     "h": [
+      9
+     ],
+     "i": 28,
+     "n": 4
+    }
+   ]
+  },
+  "2:19": {
+   "text": "Su suegra le preguntó: «¿Dónde recogiste espigas hoy? ¿Dónde trabajaste? ¡Bendito sea el que se fijó en ti!». Rut le contó a su suegra con quién había trabajado y le dijo: «El hombre con quien trabajé hoy se llama Booz».",
+   "map": [
+    {
+     "w": "Su suegra",
+     "h": [
+      2
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "le",
+     "h": [
+      1
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "preguntó",
+     "h": [
+      0
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "Dónde",
+     "h": [
+      3
+     ],
+     "i": 4,
+     "n": 1
+    },
+    {
+     "w": "recogiste espigas",
+     "h": [
+      4
+     ],
+     "i": 5,
+     "n": 2
+    },
+    {
+     "w": "hoy",
+     "h": [
+      5
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "Dónde",
+     "h": [
+      6
+     ],
+     "i": 8,
+     "n": 1
+    },
+    {
+     "w": "trabajaste",
+     "h": [
+      7
+     ],
+     "i": 9,
+     "n": 1
+    },
+    {
+     "w": "Bendito sea",
+     "h": [
+      8,
+      10
+     ],
+     "i": 10,
+     "n": 2
+    },
+    {
+     "w": "el que se fijó",
+     "h": [
+      9
+     ],
+     "i": 12,
+     "n": 4
+    },
+    {
+     "w": "le",
+     "h": [
+      12
+     ],
+     "i": 19,
+     "n": 1
+    },
+    {
+     "w": "contó",
+     "h": [
+      11
+     ],
+     "i": 20,
+     "n": 1
+    },
+    {
+     "w": "con quién",
+     "h": [
+      14
+     ],
+     "i": 24,
+     "n": 2
+    },
+    {
+     "w": "había trabajado",
+     "h": [
+      15
+     ],
+     "i": 26,
+     "n": 2
+    },
+    {
+     "w": "dijo",
+     "h": [
+      17
+     ],
+     "i": 30,
+     "n": 1
+    },
+    {
+     "w": "El hombre",
+     "h": [
+      19
+     ],
+     "i": 31,
+     "n": 2
+    },
+    {
+     "w": "con quien",
+     "h": [
+      20
+     ],
+     "i": 33,
+     "n": 2
+    },
+    {
+     "w": "trabajé",
+     "h": [
+      21
+     ],
+     "i": 35,
+     "n": 1
+    },
+    {
+     "w": "hoy",
+     "h": [
+      23
+     ],
+     "i": 36,
+     "n": 1
+    },
+    {
+     "w": "se llama",
+     "h": [
+      18
+     ],
+     "i": 37,
+     "n": 2
+    },
+    {
+     "w": "Booz",
+     "h": [
+      24
+     ],
+     "i": 39,
+     "n": 1
+    }
+   ]
+  },
+  "2:20": {
+   "text": "Noemí dijo a su nuera: «¡Que el SEÑOR lo bendiga, pues no ha dejado de mostrar su amor leal a los vivos y a los muertos!». Y añadió Noemí: «Ese hombre es pariente cercano nuestro; es uno de nuestros parientes redentores».",
+   "map": [
+    {
+     "w": "Noemí",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "dijo",
+     "h": [
+      0
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "a su nuera",
+     "h": [
+      2
+     ],
+     "i": 2,
+     "n": 3
+    },
+    {
+     "w": "el SEÑOR",
+     "h": [
+      5
+     ],
+     "i": 6,
+     "n": 2
+    },
+    {
+     "w": "lo",
+     "h": [
+      4
+     ],
+     "i": 8,
+     "n": 1
+    },
+    {
+     "w": "bendiga",
+     "h": [
+      3
+     ],
+     "i": 9,
+     "n": 1
+    },
+    {
+     "w": "pues",
+     "h": [
+      6
+     ],
+     "i": 10,
+     "n": 1
+    },
+    {
+     "w": "no",
+     "h": [
+      7
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "ha dejado de mostrar",
+     "h": [
+      8
+     ],
+     "i": 12,
+     "n": 4
+    },
+    {
+     "w": "su amor leal",
+     "h": [
+      9
+     ],
+     "i": 16,
+     "n": 3
+    },
+    {
+     "w": "a los vivos",
+     "h": [
+      11
+     ],
+     "i": 19,
+     "n": 3
+    },
+    {
+     "w": "a los muertos",
+     "h": [
+      13
+     ],
+     "i": 23,
+     "n": 3
+    },
+    {
+     "w": "Y añadió",
+     "h": [
+      14
+     ],
+     "i": 26,
+     "n": 2
+    },
+    {
+     "w": "Noemí",
+     "h": [
+      16
+     ],
+     "i": 28,
+     "n": 1
+    },
+    {
+     "w": "Ese hombre",
+     "h": [
+      19
+     ],
+     "i": 29,
+     "n": 2
+    },
+    {
+     "w": "es",
+     "h": [
+      21
+     ],
+     "i": 31,
+     "n": 1
+    },
+    {
+     "w": "pariente cercano",
+     "h": [
+      17
+     ],
+     "i": 32,
+     "n": 2
+    },
+    {
+     "w": "nuestro",
+     "h": [
+      18
+     ],
+     "i": 34,
+     "n": 1
+    },
+    {
+     "w": "es uno de nuestros parientes redentores",
+     "h": [
+      20
+     ],
+     "i": 35,
+     "n": 6
+    }
+   ]
+  },
+  "2:21": {
+   "text": "Rut la moabita dijo: «Además me dijo: \"Quédate junto a mis muchachos hasta que terminen toda mi cosecha\"».",
+   "map": [
+    {
+     "w": "Rut",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "la moabita",
+     "h": [
+      2
+     ],
+     "i": 1,
+     "n": 2
+    },
+    {
+     "w": "dijo",
+     "h": [
+      0
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "Además",
+     "h": [
+      3
+     ],
+     "i": 4,
+     "n": 1
+    },
+    {
+     "w": "me",
+     "h": [
+      6
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "dijo",
+     "h": [
+      5
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "Quédate",
+     "h": [
+      11
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "junto a",
+     "h": [
+      7
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "mis muchachos",
+     "h": [
+      8
+     ],
+     "i": 10,
+     "n": 2
+    },
+    {
+     "w": "hasta que",
+     "h": [
+      12
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "terminen",
+     "h": [
+      14
+     ],
+     "i": 14,
+     "n": 1
+    },
+    {
+     "w": "toda",
+     "h": [
+      16
+     ],
+     "i": 15,
+     "n": 1
+    },
+    {
+     "w": "mi cosecha",
+     "h": [
+      17
+     ],
+     "i": 16,
+     "n": 2
+    }
+   ]
+  },
+  "2:22": {
+   "text": "Noemí dijo a Rut, su nuera: «Es bueno, hija mía, que salgas con sus muchachas, para que no te maltraten en otro campo».",
+   "map": [
+    {
+     "w": "Noemí",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "dijo",
+     "h": [
+      0
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "a Rut",
+     "h": [
+      3
+     ],
+     "i": 2,
+     "n": 2
+    },
+    {
+     "w": "su nuera",
+     "h": [
+      4
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "Es bueno",
+     "h": [
+      5
+     ],
+     "i": 6,
+     "n": 2
+    },
+    {
+     "w": "hija mía",
+     "h": [
+      6
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "que",
+     "h": [
+      7
+     ],
+     "i": 10,
+     "n": 1
+    },
+    {
+     "w": "salgas",
+     "h": [
+      8
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "con",
+     "h": [
+      9
+     ],
+     "i": 12,
+     "n": 1
+    },
+    {
+     "w": "sus muchachas",
+     "h": [
+      10
+     ],
+     "i": 13,
+     "n": 2
+    },
+    {
+     "w": "para que no",
+     "h": [
+      11
+     ],
+     "i": 15,
+     "n": 3
+    },
+    {
+     "w": "te",
+     "h": [
+      13
+     ],
+     "i": 18,
+     "n": 1
+    },
+    {
+     "w": "maltraten",
+     "h": [
+      12
+     ],
+     "i": 19,
+     "n": 1
+    },
+    {
+     "w": "en otro",
+     "h": [
+      15
+     ],
+     "i": 20,
+     "n": 2
+    },
+    {
+     "w": "campo",
+     "h": [
+      14
+     ],
+     "i": 22,
+     "n": 1
+    }
+   ]
+  },
+  "2:23": {
+   "text": "Así que Rut se quedó junto a las muchachas de Booz para recoger espigas hasta que terminó la cosecha de la cebada y la del trigo. Y vivía con su suegra.",
+   "map": [
+    {
+     "w": "Así que Rut se quedó",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 5
+    },
+    {
+     "w": "junto a las muchachas",
+     "h": [
+      1
+     ],
+     "i": 5,
+     "n": 4
+    },
+    {
+     "w": "de Booz",
+     "h": [
+      2
+     ],
+     "i": 9,
+     "n": 2
+    },
+    {
+     "w": "para recoger espigas",
+     "h": [
+      3
+     ],
+     "i": 11,
+     "n": 3
+    },
+    {
+     "w": "hasta que",
+     "h": [
+      4
+     ],
+     "i": 14,
+     "n": 2
+    },
+    {
+     "w": "terminó",
+     "h": [
+      5
+     ],
+     "i": 16,
+     "n": 1
+    },
+    {
+     "w": "la cosecha",
+     "h": [
+      6
+     ],
+     "i": 17,
+     "n": 2
+    },
+    {
+     "w": "de la cebada",
+     "h": [
+      7
+     ],
+     "i": 19,
+     "n": 3
+    },
+    {
+     "w": "la del trigo",
+     "h": [
+      8,
+      9
+     ],
+     "i": 23,
+     "n": 3
+    },
+    {
+     "w": "Y vivía",
+     "h": [
+      10
+     ],
+     "i": 26,
+     "n": 2
+    },
+    {
+     "w": "con",
+     "h": [
+      11
+     ],
+     "i": 28,
+     "n": 1
+    },
+    {
+     "w": "su suegra",
+     "h": [
+      12
+     ],
+     "i": 29,
+     "n": 2
+    }
+   ]
+  },
+  "3:1": {
+   "text": "Un día Noemí, su suegra, le dijo: «Hija mía, ¿no debo buscarte un lugar de descanso donde te vaya bien?",
+   "map": [
+    {
+     "w": "Un día Noemí",
+     "h": [
+      2
+     ],
+     "i": 0,
+     "n": 3
+    },
+    {
+     "w": "su suegra",
+     "h": [
+      3
+     ],
+     "i": 3,
+     "n": 2
+    },
+    {
+     "w": "le",
+     "h": [
+      1
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "dijo",
+     "h": [
+      0
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "Hija mía",
+     "h": [
+      4
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "no",
+     "h": [
+      5
+     ],
+     "i": 9,
+     "n": 1
+    },
+    {
+     "w": "buscarte",
+     "h": [
+      6
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "un lugar de descanso",
+     "h": [
+      8
+     ],
+     "i": 12,
+     "n": 4
+    },
+    {
+     "w": "donde",
+     "h": [
+      9
+     ],
+     "i": 16,
+     "n": 1
+    },
+    {
+     "w": "te vaya bien",
+     "h": [
+      10
+     ],
+     "i": 17,
+     "n": 3
+    }
+   ]
+  },
+  "3:2": {
+   "text": "Ahora bien, ¿no es Booz, con cuyas muchachas has estado, pariente nuestro? Mira, esta noche él va a aventar la cebada en la era.",
+   "map": [
+    {
+     "w": "Ahora bien",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "no",
+     "h": [
+      1
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "es Booz",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 2
+    },
+    {
+     "w": "con cuyas",
+     "h": [
+      4
+     ],
+     "i": 5,
+     "n": 2
+    },
+    {
+     "w": "muchachas",
+     "h": [
+      7
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "has estado",
+     "h": [
+      5
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "pariente nuestro",
+     "h": [
+      3
+     ],
+     "i": 10,
+     "n": 2
+    },
+    {
+     "w": "Mira",
+     "h": [
+      8
+     ],
+     "i": 12,
+     "n": 1
+    },
+    {
+     "w": "esta noche",
+     "h": [
+      14
+     ],
+     "i": 13,
+     "n": 2
+    },
+    {
+     "w": "él",
+     "h": [
+      9
+     ],
+     "i": 15,
+     "n": 1
+    },
+    {
+     "w": "va a aventar",
+     "h": [
+      10
+     ],
+     "i": 16,
+     "n": 3
+    },
+    {
+     "w": "la cebada",
+     "h": [
+      13
+     ],
+     "i": 19,
+     "n": 2
+    },
+    {
+     "w": "en la era",
+     "h": [
+      12
+     ],
+     "i": 21,
+     "n": 3
+    }
+   ]
+  },
+  "3:3": {
+   "text": "Lávate, perfúmate, ponte tu manto y baja a la era; pero no dejes que él sepa que estás allí hasta que haya terminado de comer y de beber.",
+   "map": [
+    {
+     "w": "Lávate",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "perfúmate",
+     "h": [
+      1
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "ponte",
+     "h": [
+      2
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "a la era",
+     "h": [
+      4
+     ],
+     "i": 7,
+     "n": 3
+    },
+    {
+     "w": "pero no",
+     "h": [
+      5
+     ],
+     "i": 10,
+     "n": 2
+    },
+    {
+     "w": "él",
+     "h": [
+      7
+     ],
+     "i": 14,
+     "n": 1
+    },
+    {
+     "w": "sepa",
+     "h": [
+      6
+     ],
+     "i": 15,
+     "n": 1
+    },
+    {
+     "w": "hasta que",
+     "h": [
+      8
+     ],
+     "i": 19,
+     "n": 2
+    },
+    {
+     "w": "haya terminado",
+     "h": [
+      9
+     ],
+     "i": 21,
+     "n": 2
+    },
+    {
+     "w": "de comer",
+     "h": [
+      10
+     ],
+     "i": 23,
+     "n": 2
+    },
+    {
+     "w": "de beber",
+     "h": [
+      11
+     ],
+     "i": 26,
+     "n": 2
+    }
+   ]
+  },
+  "3:4": {
+   "text": "Cuando se acueste, fíjate en el lugar donde se acuesta; luego ve, descubre sus pies y acuéstate allí. Él te dirá lo que debes hacer».",
+   "map": [
+    {
+     "w": "Cuando se acueste",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 3
+    },
+    {
+     "w": "fíjate",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "en el lugar",
+     "h": [
+      4
+     ],
+     "i": 4,
+     "n": 3
+    },
+    {
+     "w": "donde",
+     "h": [
+      5
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "se acuesta",
+     "h": [
+      6
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "luego",
+     "h": [
+      0
+     ],
+     "i": 10,
+     "n": 1
+    },
+    {
+     "w": "ve",
+     "h": [
+      8
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "descubre",
+     "h": [
+      9
+     ],
+     "i": 12,
+     "n": 1
+    },
+    {
+     "w": "sus pies",
+     "h": [
+      10
+     ],
+     "i": 13,
+     "n": 2
+    },
+    {
+     "w": "y acuéstate",
+     "h": [
+      8
+     ],
+     "i": 15,
+     "n": 2
+    },
+    {
+     "w": "allí",
+     "h": [
+      7
+     ],
+     "i": 17,
+     "n": 1
+    },
+    {
+     "w": "Él",
+     "h": [
+      11
+     ],
+     "i": 18,
+     "n": 1
+    },
+    {
+     "w": "te dirá",
+     "h": [
+      12
+     ],
+     "i": 19,
+     "n": 2
+    },
+    {
+     "w": "lo que",
+     "h": [
+      15
+     ],
+     "i": 21,
+     "n": 2
+    },
+    {
+     "w": "debes hacer",
+     "h": [
+      16
+     ],
+     "i": 23,
+     "n": 2
+    }
+   ]
+  },
+  "3:5": {
+   "text": "Rut le respondió: «Haré todo lo que me dices».",
+   "map": [
+    {
+     "w": "le",
+     "h": [
+      1
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "respondió",
+     "h": [
+      0
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "Haré",
+     "h": [
+      5
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "todo",
+     "h": [
+      2
+     ],
+     "i": 4,
+     "n": 1
+    },
+    {
+     "w": "lo que",
+     "h": [
+      3
+     ],
+     "i": 5,
+     "n": 2
+    },
+    {
+     "w": "me dices",
+     "h": [
+      4
+     ],
+     "i": 7,
+     "n": 2
+    }
+   ]
+  },
+  "3:6": {
+   "text": "Bajó, pues, a la era e hizo todo lo que su suegra le había mandado.",
+   "map": [
+    {
+     "w": "Bajó",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "a la era",
+     "h": [
+      1
+     ],
+     "i": 2,
+     "n": 3
+    },
+    {
+     "w": "e hizo",
+     "h": [
+      2
+     ],
+     "i": 5,
+     "n": 2
+    },
+    {
+     "w": "todo",
+     "h": [
+      3
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "lo que",
+     "h": [
+      4
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "su suegra",
+     "h": [
+      6
+     ],
+     "i": 10,
+     "n": 2
+    },
+    {
+     "w": "había mandado",
+     "h": [
+      5
+     ],
+     "i": 13,
+     "n": 2
+    }
+   ]
+  },
+  "3:7": {
+   "text": "Booz comió y bebió, y con el corazón contento se fue a acostar junto al montón de grano. Entonces ella llegó en silencio, le descubrió los pies y se acostó.",
+   "map": [
+    {
+     "w": "Booz",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "comió",
+     "h": [
+      0
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "y bebió",
+     "h": [
+      2
+     ],
+     "i": 2,
+     "n": 2
+    },
+    {
+     "w": "y con el corazón",
+     "h": [
+      4
+     ],
+     "i": 4,
+     "n": 4
+    },
+    {
+     "w": "contento",
+     "h": [
+      3
+     ],
+     "i": 8,
+     "n": 1
+    },
+    {
+     "w": "se fue",
+     "h": [
+      5
+     ],
+     "i": 9,
+     "n": 2
+    },
+    {
+     "w": "a acostar",
+     "h": [
+      6
+     ],
+     "i": 11,
+     "n": 2
+    },
+    {
+     "w": "junto al montón de grano",
+     "h": [
+      7,
+      8
+     ],
+     "i": 13,
+     "n": 5
+    },
+    {
+     "w": "llegó",
+     "h": [
+      9
+     ],
+     "i": 20,
+     "n": 1
+    },
+    {
+     "w": "en silencio",
+     "h": [
+      10
+     ],
+     "i": 21,
+     "n": 2
+    },
+    {
+     "w": "le descubrió",
+     "h": [
+      11
+     ],
+     "i": 23,
+     "n": 2
+    },
+    {
+     "w": "los pies",
+     "h": [
+      12
+     ],
+     "i": 25,
+     "n": 2
+    },
+    {
+     "w": "y se acostó",
+     "h": [
+      13
+     ],
+     "i": 27,
+     "n": 3
+    }
+   ]
+  },
+  "3:8": {
+   "text": "A medianoche, el hombre se sobresaltó, se dio vuelta, y vio que había una mujer acostada a sus pies.",
+   "map": [
+    {
+     "w": "A medianoche",
+     "h": [
+      1,
+      2
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "el hombre",
+     "h": [
+      4
+     ],
+     "i": 2,
+     "n": 2
+    },
+    {
+     "w": "se sobresaltó",
+     "h": [
+      3
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "se dio vuelta",
+     "h": [
+      5
+     ],
+     "i": 6,
+     "n": 3
+    },
+    {
+     "w": "y",
+     "h": [
+      0
+     ],
+     "i": 9,
+     "n": 1
+    },
+    {
+     "w": "vio que había",
+     "h": [
+      6
+     ],
+     "i": 10,
+     "n": 3
+    },
+    {
+     "w": "una mujer",
+     "h": [
+      7
+     ],
+     "i": 13,
+     "n": 2
+    },
+    {
+     "w": "acostada",
+     "h": [
+      8
+     ],
+     "i": 15,
+     "n": 1
+    },
+    {
+     "w": "a sus pies",
+     "h": [
+      9
+     ],
+     "i": 16,
+     "n": 3
+    }
+   ]
+  },
+  "3:9": {
+   "text": "«¿Quién eres?», le preguntó. Ella respondió: «Soy Rut, tu sierva. Extiende el ala de tu manto sobre tu sierva, porque tú eres pariente redentor».",
+   "map": [
+    {
+     "w": "Quién",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "eres",
+     "h": [
+      2
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "le preguntó",
+     "h": [
+      0
+     ],
+     "i": 2,
+     "n": 2
+    },
+    {
+     "w": "Ella respondió",
+     "h": [
+      3
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "Soy",
+     "h": [
+      4
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "Rut",
+     "h": [
+      5
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "tu sierva",
+     "h": [
+      6
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "Extiende",
+     "h": [
+      7
+     ],
+     "i": 10,
+     "n": 1
+    },
+    {
+     "w": "el ala de tu manto",
+     "h": [
+      8
+     ],
+     "i": 11,
+     "n": 5
+    },
+    {
+     "w": "sobre",
+     "h": [
+      9
+     ],
+     "i": 16,
+     "n": 1
+    },
+    {
+     "w": "tu sierva",
+     "h": [
+      10
+     ],
+     "i": 17,
+     "n": 2
+    },
+    {
+     "w": "porque",
+     "h": [
+      11
+     ],
+     "i": 19,
+     "n": 1
+    },
+    {
+     "w": "tú",
+     "h": [
+      13
+     ],
+     "i": 20,
+     "n": 1
+    },
+    {
+     "w": "eres pariente redentor",
+     "h": [
+      12
+     ],
+     "i": 21,
+     "n": 3
+    }
+   ]
+  },
+  "3:10": {
+   "text": "Él dijo: «¡Que el SEÑOR te bendiga, hija mía! Este último acto de amor leal es mayor que el primero, porque no has ido tras los jóvenes, sean pobres o ricos.",
+   "map": [
+    {
+     "w": "Él dijo",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "Que el SEÑOR",
+     "h": [
+      3
+     ],
+     "i": 2,
+     "n": 3
+    },
+    {
+     "w": "te bendiga",
+     "h": [
+      1
+     ],
+     "i": 5,
+     "n": 2
+    },
+    {
+     "w": "hija mía",
+     "h": [
+      4
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "último",
+     "h": [
+      7
+     ],
+     "i": 10,
+     "n": 1
+    },
+    {
+     "w": "acto de amor leal",
+     "h": [
+      6
+     ],
+     "i": 11,
+     "n": 4
+    },
+    {
+     "w": "es mayor",
+     "h": [
+      5
+     ],
+     "i": 15,
+     "n": 2
+    },
+    {
+     "w": "que el primero",
+     "h": [
+      9
+     ],
+     "i": 17,
+     "n": 3
+    },
+    {
+     "w": "no",
+     "h": [
+      10
+     ],
+     "i": 21,
+     "n": 1
+    },
+    {
+     "w": "has ido",
+     "h": [
+      11
+     ],
+     "i": 22,
+     "n": 2
+    },
+    {
+     "w": "tras",
+     "h": [
+      12
+     ],
+     "i": 24,
+     "n": 1
+    },
+    {
+     "w": "los jóvenes",
+     "h": [
+      13
+     ],
+     "i": 25,
+     "n": 2
+    },
+    {
+     "w": "sean pobres",
+     "h": [
+      14,
+      15
+     ],
+     "i": 27,
+     "n": 2
+    },
+    {
+     "w": "o",
+     "h": [
+      16
+     ],
+     "i": 29,
+     "n": 1
+    },
+    {
+     "w": "ricos",
+     "h": [
+      17
+     ],
+     "i": 30,
+     "n": 1
+    }
+   ]
+  },
+  "3:11": {
+   "text": "Ahora, hija mía, no tengas miedo. Haré por ti todo lo que me pidas, porque todos en la ciudad saben que eres una mujer de valía.",
+   "map": [
+    {
+     "w": "Ahora",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "hija mía",
+     "h": [
+      1
+     ],
+     "i": 1,
+     "n": 2
+    },
+    {
+     "w": "no tengas miedo",
+     "h": [
+      2,
+      3
+     ],
+     "i": 3,
+     "n": 3
+    },
+    {
+     "w": "Haré",
+     "h": [
+      7
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "todo",
+     "h": [
+      4
+     ],
+     "i": 9,
+     "n": 1
+    },
+    {
+     "w": "lo que",
+     "h": [
+      5
+     ],
+     "i": 10,
+     "n": 2
+    },
+    {
+     "w": "me pidas",
+     "h": [
+      6
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "porque",
+     "h": [
+      9
+     ],
+     "i": 14,
+     "n": 1
+    },
+    {
+     "w": "todos",
+     "h": [
+      11
+     ],
+     "i": 15,
+     "n": 1
+    },
+    {
+     "w": "en la ciudad",
+     "h": [
+      12
+     ],
+     "i": 16,
+     "n": 3
+    },
+    {
+     "w": "saben",
+     "h": [
+      10
+     ],
+     "i": 19,
+     "n": 1
+    },
+    {
+     "w": "que",
+     "h": [
+      14
+     ],
+     "i": 20,
+     "n": 1
+    },
+    {
+     "w": "eres",
+     "h": [
+      17
+     ],
+     "i": 21,
+     "n": 1
+    },
+    {
+     "w": "una mujer",
+     "h": [
+      15
+     ],
+     "i": 22,
+     "n": 2
+    },
+    {
+     "w": "de valía",
+     "h": [
+      16
+     ],
+     "i": 24,
+     "n": 2
+    }
+   ]
+  },
+  "3:12": {
+   "text": "Es cierto que soy pariente redentor; pero hay otro redentor más cercano que yo.",
+   "map": [
+    {
+     "w": "Es cierto",
+     "h": [
+      2
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "que",
+     "h": [
+      1
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "soy",
+     "h": [
+      5
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "pariente redentor",
+     "h": [
+      4
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "pero",
+     "h": [
+      6
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "hay",
+     "h": [
+      7
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "otro redentor",
+     "h": [
+      8
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "más cercano",
+     "h": [
+      9
+     ],
+     "i": 10,
+     "n": 2
+    },
+    {
+     "w": "que yo",
+     "h": [
+      10
+     ],
+     "i": 12,
+     "n": 2
+    }
+   ]
+  },
+  "3:13": {
+   "text": "Quédate esta noche, y mañana, si él quiere redimirte, que lo haga; está bien. Pero si no quiere redimirte, ¡vive el SEÑOR que yo te redimiré! Quédate acostada hasta la mañana».",
+   "map": [
+    {
+     "w": "Quédate",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "esta noche",
+     "h": [
+      1
+     ],
+     "i": 1,
+     "n": 2
+    },
+    {
+     "w": "y mañana",
+     "h": [
+      3,
+      2
+     ],
+     "i": 3,
+     "n": 2
+    },
+    {
+     "w": "si",
+     "h": [
+      4
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "él quiere redimirte",
+     "h": [
+      5
+     ],
+     "i": 6,
+     "n": 3
+    },
+    {
+     "w": "que lo haga",
+     "h": [
+      7
+     ],
+     "i": 9,
+     "n": 3
+    },
+    {
+     "w": "está bien",
+     "h": [
+      6
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "Pero si",
+     "h": [
+      8
+     ],
+     "i": 14,
+     "n": 2
+    },
+    {
+     "w": "no",
+     "h": [
+      9
+     ],
+     "i": 16,
+     "n": 1
+    },
+    {
+     "w": "quiere",
+     "h": [
+      10
+     ],
+     "i": 17,
+     "n": 1
+    },
+    {
+     "w": "redimirte",
+     "h": [
+      11
+     ],
+     "i": 18,
+     "n": 1
+    },
+    {
+     "w": "vive",
+     "h": [
+      14
+     ],
+     "i": 19,
+     "n": 1
+    },
+    {
+     "w": "el SEÑOR",
+     "h": [
+      15
+     ],
+     "i": 20,
+     "n": 2
+    },
+    {
+     "w": "que yo",
+     "h": [
+      13
+     ],
+     "i": 22,
+     "n": 2
+    },
+    {
+     "w": "te redimiré",
+     "h": [
+      12
+     ],
+     "i": 24,
+     "n": 2
+    },
+    {
+     "w": "Quédate acostada",
+     "h": [
+      16
+     ],
+     "i": 26,
+     "n": 2
+    },
+    {
+     "w": "hasta",
+     "h": [
+      17
+     ],
+     "i": 28,
+     "n": 1
+    },
+    {
+     "w": "la mañana",
+     "h": [
+      18
+     ],
+     "i": 29,
+     "n": 2
+    }
+   ]
+  },
+  "3:14": {
+   "text": "Ella se quedó acostada a sus pies hasta la mañana, y se levantó antes de que se pudiera reconocer a nadie, porque Booz pensaba: «Que no se sepa que una mujer vino a la era».",
+   "map": [
+    {
+     "w": "se quedó acostada",
+     "h": [
+      0
+     ],
+     "i": 1,
+     "n": 3
+    },
+    {
+     "w": "hasta",
+     "h": [
+      1
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "la mañana",
+     "h": [
+      2
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "y se levantó",
+     "h": [
+      3
+     ],
+     "i": 10,
+     "n": 3
+    },
+    {
+     "w": "antes de que se pudiera reconocer",
+     "h": [
+      4
+     ],
+     "i": 13,
+     "n": 6
+    },
+    {
+     "w": "a nadie",
+     "h": [
+      5,
+      7
+     ],
+     "i": 19,
+     "n": 2
+    },
+    {
+     "w": "porque Booz pensaba",
+     "h": [
+      8
+     ],
+     "i": 21,
+     "n": 3
+    },
+    {
+     "w": "Que no",
+     "h": [
+      9
+     ],
+     "i": 24,
+     "n": 2
+    },
+    {
+     "w": "se sepa",
+     "h": [
+      10
+     ],
+     "i": 26,
+     "n": 2
+    },
+    {
+     "w": "que",
+     "h": [
+      11
+     ],
+     "i": 28,
+     "n": 1
+    },
+    {
+     "w": "una mujer",
+     "h": [
+      13
+     ],
+     "i": 29,
+     "n": 2
+    },
+    {
+     "w": "vino",
+     "h": [
+      12
+     ],
+     "i": 31,
+     "n": 1
+    },
+    {
+     "w": "a la era",
+     "h": [
+      14
+     ],
+     "i": 32,
+     "n": 3
+    }
+   ]
+  },
+  "3:15": {
+   "text": "Luego le dijo: «Trae el manto que llevas puesto y sujétalo». Ella lo sujetó, y él midió seis medidas de cebada y se las cargó encima. Después él se fue a la ciudad.",
+   "map": [
+    {
+     "w": "Luego le dijo",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 3
+    },
+    {
+     "w": "Trae",
+     "h": [
+      1
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "el manto",
+     "h": [
+      2
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "que llevas puesto",
+     "h": [
+      3,
+      4
+     ],
+     "i": 6,
+     "n": 3
+    },
+    {
+     "w": "y sujétalo",
+     "h": [
+      5
+     ],
+     "i": 9,
+     "n": 2
+    },
+    {
+     "w": "Ella lo sujetó",
+     "h": [
+      7
+     ],
+     "i": 11,
+     "n": 3
+    },
+    {
+     "w": "y él midió",
+     "h": [
+      9
+     ],
+     "i": 14,
+     "n": 3
+    },
+    {
+     "w": "seis",
+     "h": [
+      10
+     ],
+     "i": 17,
+     "n": 1
+    },
+    {
+     "w": "medidas de cebada",
+     "h": [
+      11
+     ],
+     "i": 18,
+     "n": 3
+    },
+    {
+     "w": "y se las cargó encima",
+     "h": [
+      12,
+      13
+     ],
+     "i": 21,
+     "n": 5
+    },
+    {
+     "w": "Después él se fue",
+     "h": [
+      14
+     ],
+     "i": 26,
+     "n": 4
+    },
+    {
+     "w": "a la ciudad",
+     "h": [
+      15
+     ],
+     "i": 30,
+     "n": 3
+    }
+   ]
+  },
+  "3:16": {
+   "text": "Cuando Rut llegó a donde estaba su suegra, esta le preguntó: «¿Cómo te fue, hija mía?». Y Rut le contó todo lo que aquel hombre había hecho por ella.",
+   "map": [
+    {
+     "w": "Cuando Rut llegó",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 3
+    },
+    {
+     "w": "a donde estaba",
+     "h": [
+      1
+     ],
+     "i": 3,
+     "n": 3
+    },
+    {
+     "w": "su suegra",
+     "h": [
+      2
+     ],
+     "i": 6,
+     "n": 2
+    },
+    {
+     "w": "esta le preguntó",
+     "h": [
+      3
+     ],
+     "i": 8,
+     "n": 3
+    },
+    {
+     "w": "Cómo te fue",
+     "h": [
+      4,
+      5
+     ],
+     "i": 11,
+     "n": 3
+    },
+    {
+     "w": "hija mía",
+     "h": [
+      6
+     ],
+     "i": 14,
+     "n": 2
+    },
+    {
+     "w": "Y Rut le contó",
+     "h": [
+      7
+     ],
+     "i": 16,
+     "n": 4
+    },
+    {
+     "w": "todo",
+     "h": [
+      10
+     ],
+     "i": 20,
+     "n": 1
+    },
+    {
+     "w": "lo que",
+     "h": [
+      11
+     ],
+     "i": 21,
+     "n": 2
+    },
+    {
+     "w": "aquel hombre",
+     "h": [
+      14
+     ],
+     "i": 23,
+     "n": 2
+    },
+    {
+     "w": "había hecho",
+     "h": [
+      12
+     ],
+     "i": 25,
+     "n": 2
+    }
+   ]
+  },
+  "3:17": {
+   "text": "Y añadió: «Me dio estas seis medidas de cebada, pues me dijo: \"No vuelvas a tu suegra con las manos vacías\"».",
+   "map": [
+    {
+     "w": "Y añadió",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "Me dio",
+     "h": [
+      4
+     ],
+     "i": 2,
+     "n": 2
+    },
+    {
+     "w": "estas",
+     "h": [
+      3
+     ],
+     "i": 4,
+     "n": 1
+    },
+    {
+     "w": "seis",
+     "h": [
+      1
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "medidas de cebada",
+     "h": [
+      2
+     ],
+     "i": 6,
+     "n": 3
+    },
+    {
+     "w": "pues me dijo",
+     "h": [
+      7
+     ],
+     "i": 9,
+     "n": 3
+    },
+    {
+     "w": "No",
+     "h": [
+      8
+     ],
+     "i": 12,
+     "n": 1
+    },
+    {
+     "w": "vuelvas",
+     "h": [
+      9
+     ],
+     "i": 13,
+     "n": 1
+    },
+    {
+     "w": "a",
+     "h": [
+      11
+     ],
+     "i": 14,
+     "n": 1
+    },
+    {
+     "w": "tu suegra",
+     "h": [
+      12
+     ],
+     "i": 15,
+     "n": 2
+    },
+    {
+     "w": "con las manos vacías",
+     "h": [
+      10
+     ],
+     "i": 17,
+     "n": 4
+    }
+   ]
+  },
+  "3:18": {
+   "text": "Noemí le dijo: «Quédate tranquila, hija mía, hasta que sepas cómo termina el asunto, porque ese hombre no descansará hasta resolverlo hoy mismo».",
+   "map": [
+    {
+     "w": "Noemí le dijo",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 3
+    },
+    {
+     "w": "Quédate tranquila",
+     "h": [
+      1
+     ],
+     "i": 3,
+     "n": 2
+    },
+    {
+     "w": "hija mía",
+     "h": [
+      2
+     ],
+     "i": 5,
+     "n": 2
+    },
+    {
+     "w": "hasta que",
+     "h": [
+      3,
+      4
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "sepas",
+     "h": [
+      5
+     ],
+     "i": 9,
+     "n": 1
+    },
+    {
+     "w": "cómo",
+     "h": [
+      6
+     ],
+     "i": 10,
+     "n": 1
+    },
+    {
+     "w": "termina",
+     "h": [
+      7
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "el asunto",
+     "h": [
+      8
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "porque",
+     "h": [
+      9
+     ],
+     "i": 14,
+     "n": 1
+    },
+    {
+     "w": "ese hombre",
+     "h": [
+      12
+     ],
+     "i": 15,
+     "n": 2
+    },
+    {
+     "w": "no",
+     "h": [
+      10
+     ],
+     "i": 17,
+     "n": 1
+    },
+    {
+     "w": "descansará",
+     "h": [
+      11
+     ],
+     "i": 18,
+     "n": 1
+    },
+    {
+     "w": "hasta",
+     "h": [
+      13,
+      14
+     ],
+     "i": 19,
+     "n": 1
+    },
+    {
+     "w": "resolverlo",
+     "h": [
+      15,
+      16
+     ],
+     "i": 20,
+     "n": 1
+    },
+    {
+     "w": "hoy mismo",
+     "h": [
+      17
+     ],
+     "i": 21,
+     "n": 2
+    }
+   ]
+  },
+  "4:1": {
+   "text": "Booz subió a la puerta de la ciudad y se sentó allí. En ese momento pasaba el pariente redentor de quien Booz había hablado, y Booz le dijo: «Ven, fulano, siéntate aquí». Él se acercó y se sentó.",
+   "map": [
+    {
+     "w": "Booz",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "subió",
+     "h": [
+      1
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "a la puerta de la ciudad",
+     "h": [
+      2
+     ],
+     "i": 2,
+     "n": 6
+    },
+    {
+     "w": "y se sentó",
+     "h": [
+      3
+     ],
+     "i": 8,
+     "n": 3
+    },
+    {
+     "w": "allí",
+     "h": [
+      4
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "En ese momento",
+     "h": [
+      5
+     ],
+     "i": 12,
+     "n": 3
+    },
+    {
+     "w": "pasaba",
+     "h": [
+      7
+     ],
+     "i": 15,
+     "n": 1
+    },
+    {
+     "w": "el pariente redentor",
+     "h": [
+      6
+     ],
+     "i": 16,
+     "n": 3
+    },
+    {
+     "w": "de quien",
+     "h": [
+      8
+     ],
+     "i": 19,
+     "n": 2
+    },
+    {
+     "w": "Booz",
+     "h": [
+      10
+     ],
+     "i": 21,
+     "n": 1
+    },
+    {
+     "w": "había hablado",
+     "h": [
+      9
+     ],
+     "i": 22,
+     "n": 2
+    },
+    {
+     "w": "y Booz le dijo",
+     "h": [
+      11
+     ],
+     "i": 24,
+     "n": 4
+    },
+    {
+     "w": "Ven",
+     "h": [
+      12
+     ],
+     "i": 28,
+     "n": 1
+    },
+    {
+     "w": "fulano",
+     "h": [
+      15,
+      16
+     ],
+     "i": 29,
+     "n": 1
+    },
+    {
+     "w": "siéntate",
+     "h": [
+      13
+     ],
+     "i": 30,
+     "n": 1
+    },
+    {
+     "w": "aquí",
+     "h": [
+      14
+     ],
+     "i": 31,
+     "n": 1
+    },
+    {
+     "w": "Él se acercó",
+     "h": [
+      17
+     ],
+     "i": 32,
+     "n": 3
+    },
+    {
+     "w": "y se sentó",
+     "h": [
+      18
+     ],
+     "i": 35,
+     "n": 3
+    }
+   ]
+  },
+  "4:2": {
+   "text": "Luego Booz tomó a diez hombres de los ancianos de la ciudad y les dijo: «Siéntense aquí». Y ellos se sentaron.",
+   "map": [
+    {
+     "w": "tomó",
+     "h": [
+      0
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "a diez",
+     "h": [
+      1
+     ],
+     "i": 3,
+     "n": 2
+    },
+    {
+     "w": "hombres",
+     "h": [
+      2
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "de los ancianos",
+     "h": [
+      3
+     ],
+     "i": 6,
+     "n": 3
+    },
+    {
+     "w": "de la ciudad",
+     "h": [
+      4
+     ],
+     "i": 9,
+     "n": 3
+    },
+    {
+     "w": "dijo",
+     "h": [
+      5
+     ],
+     "i": 14,
+     "n": 1
+    },
+    {
+     "w": "Siéntense",
+     "h": [
+      6
+     ],
+     "i": 15,
+     "n": 1
+    },
+    {
+     "w": "aquí",
+     "h": [
+      7
+     ],
+     "i": 16,
+     "n": 1
+    },
+    {
+     "w": "se sentaron",
+     "h": [
+      8
+     ],
+     "i": 19,
+     "n": 2
+    }
+   ]
+  },
+  "4:3": {
+   "text": "Entonces dijo al pariente redentor: «Noemí, que ha vuelto de los campos de Moab, está vendiendo la parcela de tierra que pertenecía a nuestro hermano Elimelec.",
+   "map": [
+    {
+     "w": "dijo",
+     "h": [
+      0
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "al pariente redentor",
+     "h": [
+      1
+     ],
+     "i": 2,
+     "n": 3
+    },
+    {
+     "w": "Noemí",
+     "h": [
+      8
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "ha vuelto",
+     "h": [
+      9
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "de los campos",
+     "h": [
+      10
+     ],
+     "i": 9,
+     "n": 3
+    },
+    {
+     "w": "de Moab",
+     "h": [
+      11
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "está vendiendo",
+     "h": [
+      7
+     ],
+     "i": 14,
+     "n": 2
+    },
+    {
+     "w": "la parcela",
+     "h": [
+      2
+     ],
+     "i": 16,
+     "n": 2
+    },
+    {
+     "w": "de tierra",
+     "h": [
+      3
+     ],
+     "i": 18,
+     "n": 2
+    },
+    {
+     "w": "que",
+     "h": [
+      4
+     ],
+     "i": 20,
+     "n": 1
+    },
+    {
+     "w": "a nuestro hermano",
+     "h": [
+      5
+     ],
+     "i": 22,
+     "n": 3
+    },
+    {
+     "w": "Elimelec",
+     "h": [
+      6
+     ],
+     "i": 25,
+     "n": 1
+    }
+   ]
+  },
+  "4:4": {
+   "text": "Pensé informarte y decirte: \"Cómprala en presencia de los que están sentados aquí y de los ancianos de mi pueblo\". Si la vas a redimir, redímela; pero si no, dímelo para que yo lo sepa, porque nadie más que tú tiene el derecho de redimirla, y yo vengo después de ti». Él respondió: «Yo la redimiré».",
+   "map": [
+    {
+     "w": "Pensé",
+     "h": [
+      0,
+      1
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "informarte",
+     "h": [
+      2,
+      3
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "y decirte",
+     "h": [
+      4
+     ],
+     "i": 2,
+     "n": 2
+    },
+    {
+     "w": "Cómprala",
+     "h": [
+      5
+     ],
+     "i": 4,
+     "n": 1
+    },
+    {
+     "w": "en presencia de",
+     "h": [
+      6
+     ],
+     "i": 5,
+     "n": 3
+    },
+    {
+     "w": "los que están sentados aquí",
+     "h": [
+      7
+     ],
+     "i": 8,
+     "n": 5
+    },
+    {
+     "w": "y",
+     "h": [
+      8
+     ],
+     "i": 13,
+     "n": 1
+    },
+    {
+     "w": "de los ancianos",
+     "h": [
+      9
+     ],
+     "i": 14,
+     "n": 3
+    },
+    {
+     "w": "de mi pueblo",
+     "h": [
+      10
+     ],
+     "i": 17,
+     "n": 3
+    },
+    {
+     "w": "Si",
+     "h": [
+      11
+     ],
+     "i": 20,
+     "n": 1
+    },
+    {
+     "w": "la vas a redimir",
+     "h": [
+      12
+     ],
+     "i": 21,
+     "n": 4
+    },
+    {
+     "w": "redímela",
+     "h": [
+      13
+     ],
+     "i": 25,
+     "n": 1
+    },
+    {
+     "w": "pero si",
+     "h": [
+      14
+     ],
+     "i": 26,
+     "n": 2
+    },
+    {
+     "w": "no",
+     "h": [
+      15,
+      16
+     ],
+     "i": 28,
+     "n": 1
+    },
+    {
+     "w": "dímelo",
+     "h": [
+      17
+     ],
+     "i": 29,
+     "n": 1
+    },
+    {
+     "w": "porque",
+     "h": [
+      19
+     ],
+     "i": 35,
+     "n": 1
+    },
+    {
+     "w": "nadie más",
+     "h": [
+      20
+     ],
+     "i": 36,
+     "n": 2
+    },
+    {
+     "w": "que tú",
+     "h": [
+      21
+     ],
+     "i": 38,
+     "n": 2
+    },
+    {
+     "w": "tiene el derecho de redimirla",
+     "h": [
+      22
+     ],
+     "i": 40,
+     "n": 5
+    },
+    {
+     "w": "y yo",
+     "h": [
+      23
+     ],
+     "i": 45,
+     "n": 2
+    },
+    {
+     "w": "vengo después de ti",
+     "h": [
+      24
+     ],
+     "i": 47,
+     "n": 4
+    },
+    {
+     "w": "respondió",
+     "h": [
+      25
+     ],
+     "i": 52,
+     "n": 1
+    },
+    {
+     "w": "Yo",
+     "h": [
+      26
+     ],
+     "i": 53,
+     "n": 1
+    },
+    {
+     "w": "la redimiré",
+     "h": [
+      27
+     ],
+     "i": 54,
+     "n": 2
+    }
+   ]
+  },
+  "4:5": {
+   "text": "Booz le dijo: «El día que compres el campo de manos de Noemí, también adquieres a Rut la moabita, la viuda del difunto, para mantener el nombre del difunto sobre su heredad».",
+   "map": [
+    {
+     "w": "Booz",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "dijo",
+     "h": [
+      0
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "El día",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 2
+    },
+    {
+     "w": "compres",
+     "h": [
+      3
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "el campo",
+     "h": [
+      4
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "de manos de",
+     "h": [
+      5
+     ],
+     "i": 9,
+     "n": 3
+    },
+    {
+     "w": "Noemí",
+     "h": [
+      6
+     ],
+     "i": 12,
+     "n": 1
+    },
+    {
+     "w": "a Rut",
+     "h": [
+      7,
+      8
+     ],
+     "i": 15,
+     "n": 2
+    },
+    {
+     "w": "la moabita",
+     "h": [
+      9
+     ],
+     "i": 17,
+     "n": 2
+    },
+    {
+     "w": "la viuda",
+     "h": [
+      10
+     ],
+     "i": 19,
+     "n": 2
+    },
+    {
+     "w": "del difunto",
+     "h": [
+      11
+     ],
+     "i": 21,
+     "n": 2
+    },
+    {
+     "w": "para mantener",
+     "h": [
+      12
+     ],
+     "i": 23,
+     "n": 2
+    },
+    {
+     "w": "el nombre",
+     "h": [
+      13
+     ],
+     "i": 25,
+     "n": 2
+    },
+    {
+     "w": "del difunto",
+     "h": [
+      14
+     ],
+     "i": 27,
+     "n": 2
+    },
+    {
+     "w": "sobre",
+     "h": [
+      15
+     ],
+     "i": 29,
+     "n": 1
+    },
+    {
+     "w": "su heredad",
+     "h": [
+      16
+     ],
+     "i": 30,
+     "n": 2
+    }
+   ]
+  },
+  "4:6": {
+   "text": "El pariente redentor respondió: «Entonces no puedo redimirla, porque perjudicaría mi propia heredad. Redímela tú; toma tú mi derecho de redención, porque yo no puedo hacerlo».",
+   "map": [
+    {
+     "w": "El pariente redentor",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 3
+    },
+    {
+     "w": "respondió",
+     "h": [
+      0
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "no",
+     "h": [
+      2
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "puedo",
+     "h": [
+      3
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "redimirla",
+     "h": [
+      17
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "porque",
+     "h": [
+      14
+     ],
+     "i": 8,
+     "n": 1
+    },
+    {
+     "w": "perjudicaría",
+     "h": [
+      5,
+      6
+     ],
+     "i": 9,
+     "n": 1
+    },
+    {
+     "w": "mi propia heredad",
+     "h": [
+      8
+     ],
+     "i": 10,
+     "n": 3
+    },
+    {
+     "w": "Redímela",
+     "h": [
+      9
+     ],
+     "i": 13,
+     "n": 1
+    },
+    {
+     "w": "tú",
+     "h": [
+      11
+     ],
+     "i": 14,
+     "n": 1
+    },
+    {
+     "w": "mi derecho de redención",
+     "h": [
+      13
+     ],
+     "i": 17,
+     "n": 4
+    },
+    {
+     "w": "no",
+     "h": [
+      15
+     ],
+     "i": 23,
+     "n": 1
+    },
+    {
+     "w": "puedo",
+     "h": [
+      16
+     ],
+     "i": 24,
+     "n": 1
+    }
+   ]
+  },
+  "4:7": {
+   "text": "Antiguamente, en Israel, para confirmar cualquier asunto de redención o de intercambio, uno se quitaba la sandalia y se la daba al otro. Así se daba validez a un acuerdo en Israel.",
+   "map": [
+    {
+     "w": "Antiguamente",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "en Israel",
+     "h": [
+      2
+     ],
+     "i": 1,
+     "n": 2
+    },
+    {
+     "w": "para confirmar",
+     "h": [
+      7
+     ],
+     "i": 3,
+     "n": 2
+    },
+    {
+     "w": "cualquier",
+     "h": [
+      8
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "asunto",
+     "h": [
+      9
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "de redención",
+     "h": [
+      3,
+      4
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "de intercambio",
+     "h": [
+      5,
+      6
+     ],
+     "i": 10,
+     "n": 2
+    },
+    {
+     "w": "uno",
+     "h": [
+      11
+     ],
+     "i": 12,
+     "n": 1
+    },
+    {
+     "w": "se quitaba",
+     "h": [
+      10
+     ],
+     "i": 13,
+     "n": 2
+    },
+    {
+     "w": "la sandalia",
+     "h": [
+      12
+     ],
+     "i": 15,
+     "n": 2
+    },
+    {
+     "w": "se la daba",
+     "h": [
+      13
+     ],
+     "i": 18,
+     "n": 3
+    },
+    {
+     "w": "al otro",
+     "h": [
+      14
+     ],
+     "i": 21,
+     "n": 2
+    },
+    {
+     "w": "Así",
+     "h": [
+      15
+     ],
+     "i": 23,
+     "n": 1
+    },
+    {
+     "w": "se daba validez a un acuerdo",
+     "h": [
+      16
+     ],
+     "i": 24,
+     "n": 6
+    },
+    {
+     "w": "en Israel",
+     "h": [
+      17
+     ],
+     "i": 30,
+     "n": 2
+    }
+   ]
+  },
+  "4:8": {
+   "text": "Así que el pariente redentor dijo a Booz: «Cómprala tú». Y se quitó la sandalia.",
+   "map": [
+    {
+     "w": "el pariente redentor",
+     "h": [
+      1
+     ],
+     "i": 2,
+     "n": 3
+    },
+    {
+     "w": "dijo",
+     "h": [
+      0
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "a Booz",
+     "h": [
+      2
+     ],
+     "i": 6,
+     "n": 2
+    },
+    {
+     "w": "Cómprala",
+     "h": [
+      3
+     ],
+     "i": 8,
+     "n": 1
+    },
+    {
+     "w": "se quitó",
+     "h": [
+      5
+     ],
+     "i": 11,
+     "n": 2
+    },
+    {
+     "w": "la sandalia",
+     "h": [
+      6
+     ],
+     "i": 13,
+     "n": 2
+    }
+   ]
+  },
+  "4:9": {
+   "text": "Entonces Booz dijo a los ancianos y a todo el pueblo: «Ustedes son hoy testigos de que he adquirido de manos de Noemí todo lo que pertenecía a Elimelec y todo lo que pertenecía a Quelión y a Mahlón.",
+   "map": [
+    {
+     "w": "Booz",
+     "h": [
+      1
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "dijo",
+     "h": [
+      0
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "a los ancianos",
+     "h": [
+      2
+     ],
+     "i": 3,
+     "n": 3
+    },
+    {
+     "w": "y",
+     "h": [
+      3
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "el pueblo",
+     "h": [
+      4
+     ],
+     "i": 9,
+     "n": 2
+    },
+    {
+     "w": "Ustedes",
+     "h": [
+      6
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "hoy",
+     "h": [
+      7
+     ],
+     "i": 13,
+     "n": 1
+    },
+    {
+     "w": "testigos",
+     "h": [
+      5
+     ],
+     "i": 14,
+     "n": 1
+    },
+    {
+     "w": "de que",
+     "h": [
+      8
+     ],
+     "i": 15,
+     "n": 2
+    },
+    {
+     "w": "he adquirido",
+     "h": [
+      9
+     ],
+     "i": 17,
+     "n": 2
+    },
+    {
+     "w": "de manos de",
+     "h": [
+      19
+     ],
+     "i": 19,
+     "n": 3
+    },
+    {
+     "w": "Noemí",
+     "h": [
+      20
+     ],
+     "i": 22,
+     "n": 1
+    },
+    {
+     "w": "todo",
+     "h": [
+      11
+     ],
+     "i": 23,
+     "n": 1
+    },
+    {
+     "w": "lo que",
+     "h": [
+      12
+     ],
+     "i": 24,
+     "n": 2
+    },
+    {
+     "w": "pertenecía a Elimelec",
+     "h": [
+      13
+     ],
+     "i": 26,
+     "n": 3
+    },
+    {
+     "w": "y",
+     "h": [
+      14
+     ],
+     "i": 29,
+     "n": 1
+    },
+    {
+     "w": "todo",
+     "h": [
+      15
+     ],
+     "i": 30,
+     "n": 1
+    },
+    {
+     "w": "lo que",
+     "h": [
+      16
+     ],
+     "i": 31,
+     "n": 2
+    },
+    {
+     "w": "pertenecía a Quelión",
+     "h": [
+      17
+     ],
+     "i": 33,
+     "n": 3
+    },
+    {
+     "w": "a Mahlón",
+     "h": [
+      18
+     ],
+     "i": 37,
+     "n": 2
+    }
+   ]
+  },
+  "4:10": {
+   "text": "Además, he adquirido como esposa a Rut la moabita, viuda de Mahlón, para mantener el nombre del difunto sobre su heredad, para que su nombre no desaparezca de entre sus hermanos ni de la puerta de su ciudad. Ustedes son hoy testigos».",
+   "map": [
+    {
+     "w": "Además",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "he adquirido",
+     "h": [
+      6
+     ],
+     "i": 1,
+     "n": 2
+    },
+    {
+     "w": "como esposa",
+     "h": [
+      8
+     ],
+     "i": 3,
+     "n": 2
+    },
+    {
+     "w": "a Rut",
+     "h": [
+      2
+     ],
+     "i": 5,
+     "n": 2
+    },
+    {
+     "w": "la moabita",
+     "h": [
+      3
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "viuda",
+     "h": [
+      4
+     ],
+     "i": 9,
+     "n": 1
+    },
+    {
+     "w": "de Mahlón",
+     "h": [
+      5
+     ],
+     "i": 10,
+     "n": 2
+    },
+    {
+     "w": "para mantener",
+     "h": [
+      9
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "el nombre",
+     "h": [
+      10
+     ],
+     "i": 14,
+     "n": 2
+    },
+    {
+     "w": "del difunto",
+     "h": [
+      11
+     ],
+     "i": 16,
+     "n": 2
+    },
+    {
+     "w": "sobre",
+     "h": [
+      12
+     ],
+     "i": 18,
+     "n": 1
+    },
+    {
+     "w": "su heredad",
+     "h": [
+      13
+     ],
+     "i": 19,
+     "n": 2
+    },
+    {
+     "w": "para que",
+     "h": [
+      14
+     ],
+     "i": 21,
+     "n": 2
+    },
+    {
+     "w": "su nombre",
+     "h": [
+      16
+     ],
+     "i": 23,
+     "n": 2
+    },
+    {
+     "w": "no",
+     "h": [
+      14
+     ],
+     "i": 25,
+     "n": 1
+    },
+    {
+     "w": "desaparezca",
+     "h": [
+      15
+     ],
+     "i": 26,
+     "n": 1
+    },
+    {
+     "w": "de entre",
+     "h": [
+      18
+     ],
+     "i": 27,
+     "n": 2
+    },
+    {
+     "w": "sus hermanos",
+     "h": [
+      19
+     ],
+     "i": 29,
+     "n": 2
+    },
+    {
+     "w": "ni de",
+     "h": [
+      20
+     ],
+     "i": 31,
+     "n": 2
+    },
+    {
+     "w": "la puerta",
+     "h": [
+      20
+     ],
+     "i": 33,
+     "n": 2
+    },
+    {
+     "w": "de su ciudad",
+     "h": [
+      21
+     ],
+     "i": 35,
+     "n": 3
+    },
+    {
+     "w": "Ustedes",
+     "h": [
+      23
+     ],
+     "i": 38,
+     "n": 1
+    },
+    {
+     "w": "hoy",
+     "h": [
+      24
+     ],
+     "i": 40,
+     "n": 1
+    },
+    {
+     "w": "testigos",
+     "h": [
+      22
+     ],
+     "i": 41,
+     "n": 1
+    }
+   ]
+  },
+  "4:11": {
+   "text": "Todo el pueblo que estaba a la puerta, y los ancianos, dijeron: «Somos testigos. Que el SEÑOR haga a la mujer que entra en tu casa como a Raquel y a Lea, las dos que edificaron la casa de Israel. Que muestres tu valía en Efrata y que tu nombre sea famoso en Belén.",
+   "map": [
+    {
+     "w": "Todo",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "el pueblo",
+     "h": [
+      2
+     ],
+     "i": 1,
+     "n": 2
+    },
+    {
+     "w": "que estaba",
+     "h": [
+      3
+     ],
+     "i": 3,
+     "n": 2
+    },
+    {
+     "w": "a la puerta",
+     "h": [
+      4
+     ],
+     "i": 5,
+     "n": 3
+    },
+    {
+     "w": "y los ancianos",
+     "h": [
+      5
+     ],
+     "i": 8,
+     "n": 3
+    },
+    {
+     "w": "dijeron",
+     "h": [
+      0
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "Somos testigos",
+     "h": [
+      6
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "el SEÑOR",
+     "h": [
+      8
+     ],
+     "i": 15,
+     "n": 2
+    },
+    {
+     "w": "haga",
+     "h": [
+      7
+     ],
+     "i": 17,
+     "n": 1
+    },
+    {
+     "w": "a la mujer",
+     "h": [
+      10
+     ],
+     "i": 18,
+     "n": 3
+    },
+    {
+     "w": "que entra",
+     "h": [
+      11
+     ],
+     "i": 21,
+     "n": 2
+    },
+    {
+     "w": "en",
+     "h": [
+      12
+     ],
+     "i": 23,
+     "n": 1
+    },
+    {
+     "w": "tu casa",
+     "h": [
+      13
+     ],
+     "i": 24,
+     "n": 2
+    },
+    {
+     "w": "como a Raquel",
+     "h": [
+      14
+     ],
+     "i": 26,
+     "n": 3
+    },
+    {
+     "w": "y a Lea",
+     "h": [
+      15
+     ],
+     "i": 29,
+     "n": 3
+    },
+    {
+     "w": "las dos",
+     "h": [
+      18
+     ],
+     "i": 32,
+     "n": 2
+    },
+    {
+     "w": "que",
+     "h": [
+      16
+     ],
+     "i": 34,
+     "n": 1
+    },
+    {
+     "w": "edificaron",
+     "h": [
+      17
+     ],
+     "i": 35,
+     "n": 1
+    },
+    {
+     "w": "la casa",
+     "h": [
+      20
+     ],
+     "i": 36,
+     "n": 2
+    },
+    {
+     "w": "de Israel",
+     "h": [
+      21
+     ],
+     "i": 38,
+     "n": 2
+    },
+    {
+     "w": "Que muestres tu valía",
+     "h": [
+      22,
+      23
+     ],
+     "i": 40,
+     "n": 4
+    },
+    {
+     "w": "en Efrata",
+     "h": [
+      24
+     ],
+     "i": 44,
+     "n": 2
+    },
+    {
+     "w": "tu nombre",
+     "h": [
+      26
+     ],
+     "i": 48,
+     "n": 2
+    },
+    {
+     "w": "sea famoso",
+     "h": [
+      25
+     ],
+     "i": 50,
+     "n": 2
+    },
+    {
+     "w": "en Belén",
+     "h": [
+      27,
+      28
+     ],
+     "i": 52,
+     "n": 2
+    }
+   ]
+  },
+  "4:12": {
+   "text": "Y por los hijos que el SEÑOR te dé de esta joven, que tu casa sea como la casa de Fares, el hijo que Tamar dio a Judá».",
+   "map": [
+    {
+     "w": "por",
+     "h": [
+      8
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "los hijos",
+     "h": [
+      9
+     ],
+     "i": 2,
+     "n": 2
+    },
+    {
+     "w": "que",
+     "h": [
+      10
+     ],
+     "i": 4,
+     "n": 1
+    },
+    {
+     "w": "el SEÑOR",
+     "h": [
+      12
+     ],
+     "i": 5,
+     "n": 2
+    },
+    {
+     "w": "te",
+     "h": [
+      13
+     ],
+     "i": 7,
+     "n": 1
+    },
+    {
+     "w": "dé",
+     "h": [
+      11
+     ],
+     "i": 8,
+     "n": 1
+    },
+    {
+     "w": "de",
+     "h": [
+      14
+     ],
+     "i": 9,
+     "n": 1
+    },
+    {
+     "w": "esta",
+     "h": [
+      16
+     ],
+     "i": 10,
+     "n": 1
+    },
+    {
+     "w": "joven",
+     "h": [
+      15
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "tu casa",
+     "h": [
+      1
+     ],
+     "i": 13,
+     "n": 2
+    },
+    {
+     "w": "sea",
+     "h": [
+      0
+     ],
+     "i": 15,
+     "n": 1
+    },
+    {
+     "w": "como la casa",
+     "h": [
+      2
+     ],
+     "i": 16,
+     "n": 3
+    },
+    {
+     "w": "de Fares",
+     "h": [
+      3
+     ],
+     "i": 19,
+     "n": 2
+    },
+    {
+     "w": "que",
+     "h": [
+      4
+     ],
+     "i": 23,
+     "n": 1
+    },
+    {
+     "w": "Tamar",
+     "h": [
+      6
+     ],
+     "i": 24,
+     "n": 1
+    },
+    {
+     "w": "dio",
+     "h": [
+      5
+     ],
+     "i": 25,
+     "n": 1
+    },
+    {
+     "w": "a Judá",
+     "h": [
+      7
+     ],
+     "i": 26,
+     "n": 2
+    }
+   ]
+  },
+  "4:13": {
+   "text": "Así que Booz tomó a Rut, y ella llegó a ser su esposa. Él se unió a ella, y el SEÑOR le concedió concebir, y dio a luz un hijo.",
+   "map": [
+    {
+     "w": "Booz",
+     "h": [
+      1
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "tomó",
+     "h": [
+      0
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "a Rut",
+     "h": [
+      3
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "llegó a ser",
+     "h": [
+      4
+     ],
+     "i": 8,
+     "n": 3
+    },
+    {
+     "w": "su",
+     "h": [
+      5
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "esposa",
+     "h": [
+      6
+     ],
+     "i": 12,
+     "n": 1
+    },
+    {
+     "w": "se unió",
+     "h": [
+      7
+     ],
+     "i": 14,
+     "n": 2
+    },
+    {
+     "w": "a ella",
+     "h": [
+      8
+     ],
+     "i": 16,
+     "n": 2
+    },
+    {
+     "w": "el SEÑOR",
+     "h": [
+      10
+     ],
+     "i": 19,
+     "n": 2
+    },
+    {
+     "w": "le",
+     "h": [
+      11
+     ],
+     "i": 21,
+     "n": 1
+    },
+    {
+     "w": "concedió",
+     "h": [
+      9
+     ],
+     "i": 22,
+     "n": 1
+    },
+    {
+     "w": "concebir",
+     "h": [
+      12
+     ],
+     "i": 23,
+     "n": 1
+    },
+    {
+     "w": "dio a luz",
+     "h": [
+      13
+     ],
+     "i": 25,
+     "n": 3
+    },
+    {
+     "w": "un hijo",
+     "h": [
+      14
+     ],
+     "i": 28,
+     "n": 2
+    }
+   ]
+  },
+  "4:14": {
+   "text": "Entonces las mujeres dijeron a Noemí: «¡Bendito sea el SEÑOR, que no te ha dejado hoy sin un redentor! Que su nombre sea famoso en Israel.",
+   "map": [
+    {
+     "w": "las mujeres",
+     "h": [
+      1
+     ],
+     "i": 1,
+     "n": 2
+    },
+    {
+     "w": "dijeron",
+     "h": [
+      0
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "a Noemí",
+     "h": [
+      2,
+      3
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "Bendito sea",
+     "h": [
+      4
+     ],
+     "i": 6,
+     "n": 2
+    },
+    {
+     "w": "el SEÑOR",
+     "h": [
+      5
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "que",
+     "h": [
+      6
+     ],
+     "i": 10,
+     "n": 1
+    },
+    {
+     "w": "no",
+     "h": [
+      7
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "te",
+     "h": [
+      9
+     ],
+     "i": 12,
+     "n": 1
+    },
+    {
+     "w": "ha dejado",
+     "h": [
+      8
+     ],
+     "i": 13,
+     "n": 2
+    },
+    {
+     "w": "hoy",
+     "h": [
+      11
+     ],
+     "i": 15,
+     "n": 1
+    },
+    {
+     "w": "sin un redentor",
+     "h": [
+      10
+     ],
+     "i": 16,
+     "n": 3
+    },
+    {
+     "w": "su nombre",
+     "h": [
+      13
+     ],
+     "i": 20,
+     "n": 2
+    },
+    {
+     "w": "sea famoso",
+     "h": [
+      12
+     ],
+     "i": 22,
+     "n": 2
+    },
+    {
+     "w": "en Israel",
+     "h": [
+      14
+     ],
+     "i": 24,
+     "n": 2
+    }
+   ]
+  },
+  "4:15": {
+   "text": "Él te hará volver a la vida y te sostendrá en tu vejez, porque lo ha dado a luz tu nuera, que te ama y que vale para ti más que siete hijos».",
+   "map": [
+    {
+     "w": "te hará volver a la vida",
+     "h": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "i": 1,
+     "n": 6
+    },
+    {
+     "w": "te sostendrá",
+     "h": [
+      4
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "en tu vejez",
+     "h": [
+      6
+     ],
+     "i": 10,
+     "n": 3
+    },
+    {
+     "w": "porque",
+     "h": [
+      7
+     ],
+     "i": 13,
+     "n": 1
+    },
+    {
+     "w": "ha dado a luz",
+     "h": [
+      11
+     ],
+     "i": 15,
+     "n": 4
+    },
+    {
+     "w": "tu nuera",
+     "h": [
+      8
+     ],
+     "i": 19,
+     "n": 2
+    },
+    {
+     "w": "que",
+     "h": [
+      9
+     ],
+     "i": 21,
+     "n": 1
+    },
+    {
+     "w": "te ama",
+     "h": [
+      10
+     ],
+     "i": 22,
+     "n": 2
+    },
+    {
+     "w": "y que",
+     "h": [
+      12
+     ],
+     "i": 24,
+     "n": 2
+    },
+    {
+     "w": "vale",
+     "h": [
+      14
+     ],
+     "i": 26,
+     "n": 1
+    },
+    {
+     "w": "para ti",
+     "h": [
+      15
+     ],
+     "i": 27,
+     "n": 2
+    },
+    {
+     "w": "más que",
+     "h": [
+      16
+     ],
+     "i": 29,
+     "n": 2
+    },
+    {
+     "w": "siete",
+     "h": [
+      16
+     ],
+     "i": 31,
+     "n": 1
+    },
+    {
+     "w": "hijos",
+     "h": [
+      17
+     ],
+     "i": 32,
+     "n": 1
+    }
+   ]
+  },
+  "4:16": {
+   "text": "Noemí tomó al niño, lo puso en su regazo y se encargó de criarlo.",
+   "map": [
+    {
+     "w": "Noemí",
+     "h": [
+      1
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "tomó",
+     "h": [
+      0
+     ],
+     "i": 1,
+     "n": 1
+    },
+    {
+     "w": "al niño",
+     "h": [
+      3
+     ],
+     "i": 2,
+     "n": 2
+    },
+    {
+     "w": "puso",
+     "h": [
+      4
+     ],
+     "i": 5,
+     "n": 1
+    },
+    {
+     "w": "en su regazo",
+     "h": [
+      5
+     ],
+     "i": 6,
+     "n": 3
+    },
+    {
+     "w": "se encargó de criarlo",
+     "h": [
+      6,
+      7,
+      8
+     ],
+     "i": 10,
+     "n": 4
+    }
+   ]
+  },
+  "4:17": {
+   "text": "Las vecinas le pusieron un nombre, diciendo: «¡A Noemí le ha nacido un hijo!». Y lo llamaron Obed. Él fue el padre de Isaí, padre de David.",
+   "map": [
+    {
+     "w": "Las vecinas",
+     "h": [
+      2
+     ],
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "le",
+     "h": [
+      1
+     ],
+     "i": 2,
+     "n": 1
+    },
+    {
+     "w": "pusieron",
+     "h": [
+      0
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "un nombre",
+     "h": [
+      3
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "diciendo",
+     "h": [
+      4
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "A Noemí",
+     "h": [
+      7
+     ],
+     "i": 7,
+     "n": 2
+    },
+    {
+     "w": "le ha nacido",
+     "h": [
+      5
+     ],
+     "i": 9,
+     "n": 3
+    },
+    {
+     "w": "un hijo",
+     "h": [
+      6
+     ],
+     "i": 12,
+     "n": 2
+    },
+    {
+     "w": "lo",
+     "h": [
+      1
+     ],
+     "i": 15,
+     "n": 1
+    },
+    {
+     "w": "llamaron",
+     "h": [
+      8
+     ],
+     "i": 16,
+     "n": 1
+    },
+    {
+     "w": "Obed",
+     "h": [
+      10
+     ],
+     "i": 17,
+     "n": 1
+    },
+    {
+     "w": "Él",
+     "h": [
+      11
+     ],
+     "i": 18,
+     "n": 1
+    },
+    {
+     "w": "el padre",
+     "h": [
+      12
+     ],
+     "i": 20,
+     "n": 2
+    },
+    {
+     "w": "de Isaí",
+     "h": [
+      13
+     ],
+     "i": 22,
+     "n": 2
+    },
+    {
+     "w": "padre",
+     "h": [
+      14
+     ],
+     "i": 24,
+     "n": 1
+    },
+    {
+     "w": "de David",
+     "h": [
+      15
+     ],
+     "i": 25,
+     "n": 2
+    }
+   ]
+  },
+  "4:18": {
+   "text": "Estos son los descendientes de Fares: Fares fue el padre de Hezrón;",
+   "map": [
+    {
+     "w": "Estos",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "son los descendientes",
+     "h": [
+      1
+     ],
+     "i": 1,
+     "n": 3
+    },
+    {
+     "w": "de Fares",
+     "h": [
+      2
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "Fares",
+     "h": [
+      3
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "fue el padre",
+     "h": [
+      4
+     ],
+     "i": 7,
+     "n": 3
+    },
+    {
+     "w": "de Hezrón",
+     "h": [
+      6
+     ],
+     "i": 10,
+     "n": 2
+    }
+   ]
+  },
+  "4:19": {
+   "text": "Hezrón fue el padre de Ram; Ram fue el padre de Aminadab;",
+   "map": [
+    {
+     "w": "Hezrón",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "fue el padre",
+     "h": [
+      1
+     ],
+     "i": 1,
+     "n": 3
+    },
+    {
+     "w": "de Ram",
+     "h": [
+      3
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "Ram",
+     "h": [
+      4
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "fue el padre",
+     "h": [
+      5
+     ],
+     "i": 7,
+     "n": 3
+    },
+    {
+     "w": "de Aminadab",
+     "h": [
+      7
+     ],
+     "i": 10,
+     "n": 2
+    }
+   ]
+  },
+  "4:20": {
+   "text": "Aminadab fue el padre de Naasón; Naasón fue el padre de Salmón;",
+   "map": [
+    {
+     "w": "Aminadab",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "fue el padre",
+     "h": [
+      1
+     ],
+     "i": 1,
+     "n": 3
+    },
+    {
+     "w": "de Naasón",
+     "h": [
+      3
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "Naasón",
+     "h": [
+      4
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "fue el padre",
+     "h": [
+      5
+     ],
+     "i": 7,
+     "n": 3
+    },
+    {
+     "w": "de Salmón",
+     "h": [
+      7
+     ],
+     "i": 10,
+     "n": 2
+    }
+   ]
+  },
+  "4:21": {
+   "text": "Salmón fue el padre de Booz; Booz fue el padre de Obed;",
+   "map": [
+    {
+     "w": "Salmón",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "fue el padre",
+     "h": [
+      1
+     ],
+     "i": 1,
+     "n": 3
+    },
+    {
+     "w": "de Booz",
+     "h": [
+      3
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "Booz",
+     "h": [
+      4
+     ],
+     "i": 6,
+     "n": 1
+    },
+    {
+     "w": "fue el padre",
+     "h": [
+      5
+     ],
+     "i": 7,
+     "n": 3
+    },
+    {
+     "w": "de Obed",
+     "h": [
+      7
+     ],
+     "i": 10,
+     "n": 2
+    }
+   ]
+  },
+  "4:22": {
+   "text": "Obed fue el padre de Isaí, e Isaí fue el padre de David.",
+   "map": [
+    {
+     "w": "Obed",
+     "h": [
+      0
+     ],
+     "i": 0,
+     "n": 1
+    },
+    {
+     "w": "fue el padre",
+     "h": [
+      1
+     ],
+     "i": 1,
+     "n": 3
+    },
+    {
+     "w": "de Isaí",
+     "h": [
+      3
+     ],
+     "i": 4,
+     "n": 2
+    },
+    {
+     "w": "e Isaí",
+     "h": [
+      4
+     ],
+     "i": 6,
+     "n": 2
+    },
+    {
+     "w": "fue el padre",
+     "h": [
+      5
+     ],
+     "i": 8,
+     "n": 3
+    },
+    {
+     "w": "de David",
+     "h": [
+      7
+     ],
+     "i": 11,
+     "n": 2
+    }
+   ]
+  }
+ }
+}
