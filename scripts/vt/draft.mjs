@@ -32,6 +32,11 @@ const words = originalWords(book);
 const language = book < 39 ? "hebreo" : "griego";
 const PROMPT_VERSION = "vt-draft-1";
 const CHUNK = 25;
+const DRAFT_SCHEMA = {
+  type: "object",
+  properties: { verses: { type: "array", items: { type: "object", properties: { ref: { type: "string" }, text: { type: "string" }, notes: { type: "array", items: { type: "object", properties: { type: { type: "string" }, text: { type: "string" } }, required: ["type", "text"] } } }, required: ["ref", "text", "notes"] } } },
+  required: ["verses"],
+};
 
 const system = `Eres el traductor de la Versión Testigo, una traducción abierta de la Biblia al español hecha directamente desde el ${language}.
 
@@ -40,7 +45,7 @@ Reglas:
 - Escribe tu propia redacción. No reproduzcas la redacción de ninguna Biblia publicada (Reina-Valera 1960, NVI, LBLA, NBLA, NTV, DHH, TLA, BLP u otras), aunque la recuerdes.
 - Sigue la guía de estilo y el glosario al pie de la letra.
 - Añade notas breves solo cuando ayuden de verdad (tipos: alternativa, texto, significado, medida).
-- Responde únicamente con JSON: {"verses":[{"ref":"c:v","text":"...","notes":[{"type":"...","text":"..."}]}]}
+- Entrega el resultado con la herramienta submit: un elemento por versículo, con ref ("c:v"), text y notes.
 
 GUÍA DE ESTILO:
 ${style}`;
@@ -81,7 +86,7 @@ for (let i = 0; i < refs.length; i += CHUNK) {
     .filter(Boolean)
     .join("\n\n");
   process.stdout.write(`${OSIS[book]} ${chunk[0]}–${chunk[chunk.length - 1]}… `);
-  const out = await claudeJSON({ system, prompt, model, maxTokens: 8000 });
+  const out = await claudeJSON({ system, prompt, model, schema: DRAFT_SCHEMA, maxTokens: 8000 });
   for (const v of out.verses ?? []) if (chunk.includes(v.ref)) drafted.set(v.ref, { ref: v.ref, text: v.text.trim(), notes: v.notes ?? [] });
   const missing = chunk.filter((r) => !drafted.has(r));
   console.log(missing.length ? `missing ${missing.join(", ")}` : "ok");

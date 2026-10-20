@@ -107,6 +107,24 @@ for (const ref of [...publicRefs, ...privateRefs]) {
 }
 
 // --- AI: back-translation + benchmark against the BSB ---------------------------
+const CHECK_SCHEMA = {
+  type: "object",
+  properties: {
+    verses: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          ref: { type: "string" },
+          back: { type: "string" },
+          issues: { type: "array", items: { type: "object", properties: { severity: { type: "string", enum: ["error", "warn", "info"] }, message: { type: "string" } }, required: ["severity", "message"] } },
+        },
+        required: ["ref", "back", "issues"],
+      },
+    },
+  },
+  required: ["verses"],
+};
 if (useAI) {
   const bsb = translationVerses("bsb", book);
   const model = process.env.VT_CHECK_MODEL ?? MODEL();
@@ -115,7 +133,7 @@ if (useAI) {
 2. Compare the meaning of the draft with the original-language words and with the Berean Standard Bible (BSB), a trusted reference.
 3. Report only real differences in MEANING: something added, left out, mistranslated, or a choice the BSB and most scholars would dispute. Not style.
 Severity: "error" = wrong meaning, "warn" = questionable or missing nuance, "info" = defensible difference worth a note.
-Reply only with JSON: {"verses":[{"ref":"c:v","back":"...","issues":[{"severity":"...","message":"..."}]}]}`;
+Submit the result with the submit tool: one entry per verse with ref ("c:v"), back (the back-translation) and issues (empty if none).`;
   const refs = draft.verses.map((v) => v.ref);
   for (let i = 0; i < refs.length; i += 15) {
     const chunk = refs.slice(i, i + 15);
@@ -126,7 +144,7 @@ Reply only with JSON: {"verses":[{"ref":"c:v","back":"...","issues":[{"severity"
       })
       .join("\n\n");
     process.stdout.write(`benchmark ${chunk[0]}–${chunk[chunk.length - 1]}… `);
-    const out = await claudeJSON({ system, prompt, model, maxTokens: 6000 });
+    const out = await claudeJSON({ system, prompt, model, schema: CHECK_SCHEMA, maxTokens: 8000 });
     for (const v of out.verses ?? []) {
       if (!chunk.includes(v.ref)) continue;
       add(v.ref, "backtranslation", "info", v.back, { model });

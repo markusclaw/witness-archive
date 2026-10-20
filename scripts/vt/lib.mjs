@@ -110,21 +110,41 @@ export async function supabase() {
   return createClient(url, key, { auth: { persistSession: false, autoRefreshToken: false } });
 }
 
-/** One Claude call that must answer with a JSON object. */
-export async function claudeJSON({ system, prompt, model, maxTokens = 2000 }) {
+/**
+ * One Claude call that must answer with structured data. The answer comes
+ * back through a forced tool call, so it is always valid JSON matching
+ * `schema` (free text can break on stray quotation marks). Retries twice.
+ */
+export async function claudeJSON({ system, prompt, model, schema, maxTokens = 2000 }) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) throw new Error("Set ANTHROPIC_API_KEY in .env.local.");
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: { "content-type": "application/json", "x-api-key": apiKey, "anthropic-version": "2023-06-01" },
-    body: JSON.stringify({ model, max_tokens: maxTokens, system, messages: [{ role: "user", content: prompt }] }),
-  });
-  if (!res.ok) throw new Error(`Anthropic API ${res.status}: ${(await res.text()).slice(0, 300)}`);
-  const body = await res.json();
-  const text = body.content?.map((c) => c.text ?? "").join("") ?? "";
-  const m = text.match(/\{[\s\S]*\}/);
-  if (!m) throw new Error(`No JSON in model reply: ${text.slice(0, 200)}`);
-  return JSON.parse(m[0]);
+  let lastError;
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      const res = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: { "content-type": "application/json", "x-api-key": apiKey, "anthropic-version": "2023-06-01" },
+        body: JSON.stringify({
+          model,
+          max_tokens: maxTokens,
+          system,
+          messages: [{ role: "user", content: prompt }],
+          tools: [{ name: "submit", description: "Submit the result.", input_schema: schema }],
+          tool_choice: { type: "tool", name: "submit" },
+        }),
+      });
+      if (!res.ok) throw new Error(`Anthropic API ${res.status}: ${(await res.text()).slice(0, 300)}`);
+      const body = await res.json();
+      const call = body.content?.find((c) => c.type === "tool_use");
+      if (!call) throw new Error("The model did not return a result.");
+      if (body.stop_reason === "max_tokens") throw new Error("The answer was cut off (max_tokens).");
+      return call.input;
+    } catch (e) {
+      lastError = e;
+      if (attempt < 3) process.stdout.write(`(retrying: ${e.message.slice(0, 80)}) `);
+    }
+  }
+  throw lastError;
 }
 
 export const MODEL = () => process.env.VT_MODEL ?? process.env.ANTHROPIC_MODEL ?? "claude-sonnet-4-5";
