@@ -7,10 +7,11 @@ export default function SiteFooter() {
     <footer className="site-footer mt-12 border-t border-ink-700 bg-ink-950 sm:mt-24">
       {/* Phones: the tab bar already carries the sections, so the footer is one quiet line. */}
       <div className="flex items-center justify-between gap-4 px-5 py-5 text-xs text-parchment-700 sm:hidden">
-        <span>&copy; {new Date().getFullYear()} Witness Archive</span>
-        <span className="flex gap-4">
+        <span className="whitespace-nowrap">&copy; {new Date().getFullYear()}</span>
+        <span className="flex gap-4 whitespace-nowrap">
           <Link href="/about" className="hover:text-gold-300">About</Link>
           <Link href="/archive" className="hover:text-gold-300">Collections</Link>
+          <Link href="/bible/vt" className="hover:text-gold-300" lang="es">Versión Testigo</Link>
         </span>
       </div>
       <div className="mx-auto hidden max-w-6xl gap-10 px-5 py-14 sm:grid md:grid-cols-[1.5fr_1fr_1fr]">
@@ -45,6 +46,11 @@ export default function SiteFooter() {
             <li><Link href="/about" className="text-parchment-300 hover:text-gold-300">About the project</Link></li>
             <li><Link href="/submit" className="text-parchment-300 hover:text-gold-300">Write your testimony</Link></li>
             <li><Link href="/auth" className="text-parchment-300 hover:text-gold-300">Sign in</Link></li>
+            <li>
+              <Link href="/bible/vt" className="text-parchment-300 hover:text-gold-300" lang="es">Versión Testigo</Link>
+              <span className="ml-2 rounded border border-gold-500/40 px-1 text-[0.6rem] uppercase tracking-wider text-gold-400">Borrador</span>
+            </li>
+            <li><Link href="/bible/copyright" className="text-parchment-300 hover:text-gold-300">Bible texts &amp; copyright</Link></li>
           </ul>
         </div>
       </div>
