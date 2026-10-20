@@ -18,18 +18,21 @@ export default function WordCard({
   language,
   at,
   onClose,
+  readerLang,
 }: {
   word: OriginalWord;
   language: "he" | "el";
   at: { book: number; chapter: number; verse: number };
   onClose: () => void;
+  /** Language for the card and its examples; defaults to the reader's own. */
+  readerLang?: string;
 }) {
   const [info, setInfo] = useState<WordInfo | null | undefined>(undefined);
   const [lang, setLang] = useState("en");
   const ui = UI[lang] ?? UI.en;
 
   useEffect(() => {
-    const l = readerLanguage();
+    const l = readerLang ?? readerLanguage();
     queueMicrotask(() => setLang(l));
     if (!word.s) {
       queueMicrotask(() => setInfo(null));
@@ -44,7 +47,7 @@ export default function WordCard({
     return () => {
       cancelled = true;
     };
-  }, [word.s, at.book, at.chapter, at.verse, language]);
+  }, [word.s, at.book, at.chapter, at.verse, language, readerLang]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();

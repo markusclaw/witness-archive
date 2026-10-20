@@ -8,43 +8,8 @@ import { originalFor } from "@/lib/scripture";
 
 export const VT = "vt";
 
-export type VtStatus = "draft" | "reviewed" | "approved";
-
-export interface VtNote {
-  type: string;
-  text: string;
-}
-
-export interface VtVerse {
-  chapter: number;
-  verse: number;
-  text: string;
-  notes: VtNote[];
-  status: VtStatus;
-  revision_id: string | null;
-  updated_at: string;
-}
-
-export interface VtRevision {
-  id: string;
-  chapter: number;
-  verse: number;
-  text: string;
-  kind: "ai_draft" | "edit" | "review" | "approval";
-  author: string;
-  comment: string | null;
-  created_at: string;
-}
-
-export interface VtCheck {
-  revision_id: string;
-  chapter: number;
-  verse: number;
-  kind: string;
-  severity: "info" | "warn" | "error";
-  message: string;
-  resolved: boolean;
-}
+export * from "@/lib/vt-shared";
+import type { VtCheck, VtRevision, VtStatus, VtVerse } from "@/lib/vt-shared";
 
 /** Verses per book and status, for the progress table. */
 export async function getVtProgress(): Promise<{ book: number; draft: number; reviewed: number; approved: number; chapters: number[] }[]> {
@@ -85,6 +50,21 @@ export async function getVtChapter(book: number, chapter: number) {
   };
 }
 
-export const STATUS_LABEL: Record<VtStatus, string> = { draft: "Borrador", reviewed: "Revisado", approved: "Aprobado" };
-export const KIND_LABEL: Record<VtRevision["kind"], string> = { ai_draft: "Borrador de IA", edit: "Corrección", review: "Revisión", approval: "Aprobación" };
-export const NOTE_LABEL: Record<string, string> = { alternativa: "Alternativa", texto: "Texto", significado: "Significado", medida: "Medida" };
+
+/** A whole book of the VT for the reading page, with the original words of each verse. */
+export async function getVtBook(book: number) {
+  const { getChapterWords } = await import("@/lib/bible");
+  const { data, error } = await createServerSupabase()
+    .from("translation_verses")
+    .select("chapter, verse, text, notes, status, revision_id, updated_at")
+    .eq("translation", VT)
+    .eq("book", book)
+    .order("chapter")
+    .order("verse")
+    .limit(3000);
+  if (error) console.error("getVtBook:", error.message);
+  const verses = (data ?? []) as VtVerse[];
+  const chapterNums = [...new Set(verses.map((v) => v.chapter))];
+  const words = await Promise.all(chapterNums.map((c) => getChapterWords(book, c)));
+  return chapterNums.map((c, i) => ({ chapter: c, verses: verses.filter((v) => v.chapter === c), words: words[i] }));
+}

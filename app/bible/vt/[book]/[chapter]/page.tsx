@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BOOKS, bookBySlug, bookSlug } from "@/lib/scripture";
 import { KIND_LABEL, NOTE_LABEL, STATUS_LABEL, getVtChapter, type VtCheck } from "@/lib/vt";
+import { getChapterWords } from "@/lib/bible";
+import OriginalWords from "@/components/OriginalWords";
 
 export const dynamic = "force-dynamic";
 
@@ -29,7 +31,7 @@ export default async function VtChapterPage({ params }: { params: Params }) {
   const b = bookBySlug(p.book);
   const chapter = Number(p.chapter);
   if (!b || !Number.isInteger(chapter) || chapter < 1 || chapter > b.chapters) notFound();
-  const { verses, revisions, checks, original, bsb } = await getVtChapter(b.index, chapter);
+  const [{ verses, revisions, checks, original, bsb }, words] = await Promise.all([getVtChapter(b.index, chapter), getChapterWords(b.index, chapter)]);
   if (!verses.length) notFound();
   const name = b.names.es;
   const he = b.index < 39;
@@ -46,7 +48,7 @@ export default async function VtChapterPage({ params }: { params: Params }) {
         {chapter < b.chapters && <Link href={`/bible/vt/${bookSlug(b)}/${chapter + 1}`} className="text-parchment-500 hover:text-parchment-100">{name} {chapter + 1} →</Link>}
       </div>
       <p className="mt-4 text-sm leading-relaxed text-parchment-500">
-        Para cada versículo: el texto actual y su estado, las notas del traductor, el {he ? "hebreo" : "griego"} original, la Berean Standard Bible como referencia, las comprobaciones automáticas y el historial completo.
+        Para cada versículo: el texto actual y su estado, las notas del traductor, el {he ? "hebreo" : "griego"} original (toca cualquier palabra para ver su raíz y significado), la Berean Standard Bible como referencia, las comprobaciones automáticas y el historial completo.
       </p>
 
       <ol className="mt-10 space-y-6">
@@ -71,7 +73,11 @@ export default async function VtChapterPage({ params }: { params: Params }) {
                 </ul>
               )}
 
-              {original.get(v.verse) && (
+              {words[v.verse]?.length ? (
+                <p className={`mt-4 text-parchment-100 ${he ? "text-right text-xl" : ""}`} dir={he ? "rtl" : "ltr"}>
+                  <OriginalWords words={words[v.verse]} language={he ? "he" : "el"} at={{ book: b.index, chapter, verse: v.verse }} readerLang="es" />
+                </p>
+              ) : original.get(v.verse) && (
                 <p className={`mt-4 text-parchment-100 ${he ? "verse-he text-right text-xl" : "verse-el"}`} lang={he ? "he" : "el"} dir={he ? "rtl" : "ltr"}>{original.get(v.verse)}</p>
               )}
               {bsb.get(v.verse) && (
