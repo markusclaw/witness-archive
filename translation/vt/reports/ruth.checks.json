@@ -1,8 +1,8 @@
 {
   "book": 7,
   "draftAuthor": "ai:claude-opus-5-5",
-  "created": "2026-10-19T18:09:02.177Z",
-  "ai": false,
+  "created": "2026-10-20T06:49:50.640Z",
+  "ai": true,
   "echo": [
     {
       "name": "Reina-Valera 1909",
@@ -133,6 +133,706 @@
       "data": {
         "reference": "Reina-Valera 1909",
         "length": 11
+      }
+    },
+    {
+      "ref": "1:1",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "In the days when the judges governed, there was famine in the land. And a man from Bethlehem of Judah went to live as a foreigner in the fields of Moab, he with his wife and his two sons.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "1:2",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "The man was called Elimelech; his wife, Naomi; and his two sons, Mahlon and Chilion. They were Ephrathites, from Bethlehem of Judah. They arrived at the fields of Moab and stayed there.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "1:3",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "But Elimelech, the husband of Naomi, died, and she was left with her two sons.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "1:4",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "They married Moabite women; one was called Orpah and the other, Ruth. They lived there about ten years.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "1:5",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "Then the two also died, Mahlon and Chilion, and the woman was left without her two boys and without her husband.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "1:5",
+      "kind": "benchmark",
+      "severity": "info",
+      "message": "The draft uses 'muchachos' (boys) for H3206 (yeled, children/sons), while BSB uses 'sons'. Both are defensible translations, though 'sons' is more common in English Bible translations.",
+      "data": {
+        "model": "claude-sonnet-4-5",
+        "bsb": "both Mahlon and Chilion also died, and Naomi was left without her two sons and without her husband."
+      }
+    },
+    {
+      "ref": "1:6",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "Then she arose with her daughters-in-law to return from the fields of Moab, because in the fields of Moab she had heard that the LORD had come to the aid of his people and had given them bread.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "1:7",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "So she left the place where she had lived, and her two daughters-in-law with her, and they set out on the road to return to the land of Judah.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "1:8",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "But Naomi said to her two daughters-in-law: 'Go, let each one return to her mother's house. May the LORD show you loyal love, as you have shown it with those who died and with me.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "1:9",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "May the LORD grant you to find rest, each in the house of a husband.' And she kissed them; but they raised their voice and wept,",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "1:10",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "and they said to her: 'No; we will return with you to your people.'",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "1:11",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "But Naomi responded: 'Return, my daughters. Why are you going to come with me? Do I still have sons in my womb who can become your husbands?",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "1:12",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "Return, my daughters, go, because I am already too old to have a husband. And even if I said: \"I still have hope,\" and even if this very night I had a husband and gave birth to sons,",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "1:13",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "would you wait for them until they grew up? Would you remain unmarried for them? No, my daughters; my bitterness is much greater than yours, because the hand of the LORD has risen up against me.'",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "1:13",
+      "kind": "benchmark",
+      "severity": "warn",
+      "message": "The phrase 'mi amargura es mucho mayor que la de ustedes' (my bitterness is much greater than yours) appears to misinterpret the Hebrew. The text says 'it grieves me very much for your sakes' (mar-li me'od mikkem), meaning Naomi's grief is because of what has happened to them, not that her bitterness is greater than theirs.",
+      "data": {
+        "model": "claude-sonnet-4-5",
+        "bsb": "would you wait for them to grow up? Would you refrain from having husbands? No, my daughters, it grieves me very much for your sakes that the hand of the LORD has gone out against me.”"
+      }
+    },
+    {
+      "ref": "1:14",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "They raised their voice again and wept. Then Orpah kissed her mother-in-law, but Ruth clung to her.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "1:15",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "Naomi said to her: 'Look, your sister-in-law returns to her people and to her gods. Return you also with your sister-in-law.'",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "1:16",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "But Ruth answered: 'Do not ask me to leave you and to turn back without you. Where you go, I will go; where you spend the night, there I will spend it. Your people will be my people, and your God will be my God.'",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "1:17",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "Where you die, I will die, and there I will be buried. May the LORD do so to me, and even worse, if anything other than death separates me from you.'",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "1:18",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "When Naomi saw that Ruth was determined to go with her, she stopped insisting on her.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "1:19",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "So the two of them kept walking until they arrived at Bethlehem. When they entered Bethlehem, the whole city was stirred because of them, and the women were saying: 'Is this not Naomi?'",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "1:20",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "She answered them: 'Do not call me Naomi; call me Mara, because the Almighty has filled me with bitterness.'",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "1:20",
+      "kind": "benchmark",
+      "severity": "warn",
+      "message": "The draft says 'has filled me with bitterness' (me ha llenado de amargura) which is interpretive. The Hebrew הֵמַר (hēmar) means 'has dealt bitterly' or 'has made bitter,' not 'has filled with bitterness.' The BSB has 'has dealt quite bitterly with me.'",
+      "data": {
+        "model": "claude-sonnet-4-5",
+        "bsb": "“Do not call me Naomi,” she replied. “Call me Mara, because the Almighty has dealt quite bitterly with me."
+      }
+    },
+    {
+      "ref": "1:21",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "I went away full, but the LORD has made me return empty. Why do you call me Naomi, if the LORD has testified against me and the Almighty has afflicted me?'",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "1:22",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "So Naomi returned, and with her Ruth the Moabitess, her daughter-in-law, who was returning from the fields of Moab. They arrived in Bethlehem at the beginning of the barley harvest.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "2:1",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "Naomi had a relative on her husband's side, a man of great valor, from the family of Elimelech, who was named Boaz.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "2:2",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "And Ruth the Moabitess said to Naomi: 'Let me go to the field to gather ears of grain behind the one in whose eyes I find favor.' Naomi answered her: 'Go, my daughter.'",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "2:3",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "She went, arrived and began to gather ears of grain in the field behind the harvesters; and it happened by chance that that part of the field belonged to Boaz, who was from the family of Elimelech.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "2:4",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "At that moment Boaz was arriving from Bethlehem, and he said to the harvesters: 'May the LORD be with you!' And they answered him: 'May the LORD bless you!'",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "2:5",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "Boaz asked the young man who was in charge of the harvesters: 'Whose girl is this?'",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "2:6",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "The young man in charge of the harvesters answered: 'She is the Moabite girl who returned with Naomi from the fields of Moab.'",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "2:7",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "She said to me: 'Please let me gather ears of grain and gather them among the sheaves, behind the harvesters.' So she came and has been here from morning until now, except for a brief rest in the house.'",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "2:8",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "Then Boaz said to Ruth: 'Listen well, my daughter. Do not go to gather ears of grain in another field, and do not leave here; stay close to my girls.'",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "3:1",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "One day Naomi, her mother-in-law, said to her: 'My daughter, should I not seek for you a resting place where it may go well with you?'",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "3:2",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "Now then, is not Boaz, with whose young women you have been, our relative? Look, tonight he is going to winnow the barley at the threshing floor.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "3:3",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "Wash yourself, perfume yourself, put your cloak on yourself and go down to the threshing floor; but do not let him know that you are there until he has finished eating and drinking.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "3:3",
+      "kind": "benchmark",
+      "severity": "info",
+      "message": "The draft uses 'ponte tu manto' (put on your cloak) while the Hebrew שִׂמְתְּ שִׂמְלֹתַיִךְ and BSB have 'wear your best clothes.' The Hebrew can refer to garments/clothes generally, and the draft's rendering as a single cloak/mantle may be too narrow.",
+      "data": {
+        "model": "claude-sonnet-4-5",
+        "bsb": "Therefore wash yourself, put on perfume, and wear your best clothes. Go down to the threshing floor, but do not let the man know you are there until he has finished eating and drinking."
+      }
+    },
+    {
+      "ref": "3:4",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "When he lies down, note the place where he lies down; then go, uncover his feet and lie down there. He will tell you what you should do.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "3:5",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "Ruth answered her: 'I will do everything you tell me.'",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "3:6",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "So she went down to the threshing floor and did everything her mother-in-law had commanded her.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "3:7",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "Boaz ate and drank, and with a contented heart he went to lie down beside the pile of grain. Then she arrived in silence, uncovered his feet, and lay down.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "3:8",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "At midnight, the man was startled, turned around, and saw that there was a woman lying at his feet.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "3:9",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "'Who are you?' he asked. She answered: 'I am Ruth, your servant. Spread the wing of your cloak over your servant, because you are kinsman-redeemer.'",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "3:10",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "He said: 'May the LORD bless you, my daughter! This last act of loyal love is greater than the first, because you have not gone after the young men, whether poor or rich.'",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "3:11",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "Now, my daughter, do not be afraid. I will do for you everything you ask of me, because everyone in the city knows that you are a woman of worth.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "3:12",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "It is true that I am kinsman-redeemer; but there is another redeemer closer than I.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "3:13",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "Stay tonight, and tomorrow, if he wants to redeem you, let him do it; it is well. But if he does not want to redeem you, as the LORD lives, I will redeem you! Stay lying down until morning.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "3:14",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "She stayed lying down at his feet until morning, and she got up before anyone could be recognized, because Boaz thought: 'Let it not be known that a woman came to the threshing floor.'",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "3:14",
+      "kind": "benchmark",
+      "severity": "info",
+      "message": "The draft has 'porque Booz pensaba' (because Boaz thought), presenting it as Boaz's internal reasoning. The Hebrew וַיֹּאמֶר can mean 'he said' and the BSB renders it as direct speech 'Then Boaz said.' The draft's interpretation as thought rather than speech is a plausible reading but differs from the BSB.",
+      "data": {
+        "model": "claude-sonnet-4-5",
+        "bsb": "So she lay down at his feet until morning, but she got up before anyone else could recognize her. Then Boaz said, “Do not let it be known that a woman came to the threshing floor.”"
+      }
+    },
+    {
+      "ref": "3:15",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "Then he said to her: 'Bring the cloak you are wearing and hold it.' She held it, and he measured six measures of barley and loaded them on her. Then he went to the city.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "3:15",
+      "kind": "benchmark",
+      "severity": "warn",
+      "message": "The draft has 'él se fue a la ciudad' (he went to the city), but the Hebrew וַיָּבֹא הָעִיר can mean 'he went to the city' or 'she went to the city' depending on context. The BSB has 'Then he went into the city' but many scholars and versions read this as Ruth going to the city (as indicated by verse 16 where Ruth arrives at Naomi). The subject is ambiguous in the Hebrew.",
+      "data": {
+        "model": "claude-sonnet-4-5",
+        "bsb": "And he told her, “Bring the shawl you are wearing and hold it out.” When she did so, he shoveled six measures of barley into her shawl. Then he went into the city."
+      }
+    },
+    {
+      "ref": "3:16",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "When Ruth arrived to where her mother-in-law was, she asked her, \"How did it go, my daughter?\" And Ruth told her all that that man had done for her.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "3:17",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "And she added: \"He gave me these six measures of barley, for he said to me: 'Do not return to your mother-in-law with empty hands.'\"",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "3:18",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "Naomi said to her: \"Stay calm, my daughter, until you know how the matter ends, because that man will not rest until he resolves it today.\"",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "4:1",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "Boaz went up to the gate of the city and sat down there. At that moment the kinsman-redeemer of whom Boaz had spoken was passing by, and Boaz said to him: \"Come, so-and-so, sit down here.\" He came near and sat down.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "4:2",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "Then Boaz took ten men from the elders of the city and said to them: \"Sit down here.\" And they sat down.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "4:3",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "Then he said to the kinsman-redeemer: \"Naomi, who has returned from the fields of Moab, is selling the parcel of land that belonged to our brother Elimelech.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "4:4",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "I thought to inform you and say to you: 'Buy it in the presence of those who are seated here and of the elders of my people.' If you are going to redeem it, redeem it; but if not, tell me so that I may know, because no one but you has the right to redeem it, and I come after you.\" He responded: \"I will redeem it.\"",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "4:5",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "Boaz said to him: \"The day you buy the field from the hands of Naomi, you also acquire Ruth the Moabitess, the widow of the deceased, to maintain the name of the deceased on his inheritance.\"",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "4:6",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "The kinsman-redeemer responded: \"Then I cannot redeem it, because I would harm my own inheritance. Redeem it yourself; take my right of redemption, because I cannot do it.\"",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "4:7",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "Formerly, in Israel, to confirm any matter of redemption or of exchange, one would take off his sandal and give it to the other. Thus validity was given to an agreement in Israel.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "4:8",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "So the kinsman-redeemer said to Boaz: \"Buy it yourself.\" And he took off his sandal.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "4:9",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "Then Boaz said to the elders and all the people: \"You are today witnesses that I have acquired from the hands of Naomi all that belonged to Elimelech and all that belonged to Chilion and to Mahlon.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "4:10",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "Moreover, I have acquired as wife Ruth the Moabitess, widow of Mahlon, to maintain the name of the deceased on his inheritance, so that his name will not disappear from among his brothers nor from the gate of his city. You are today witnesses.\"",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "4:11",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "All the people that was at the gate, and the elders, said: \"We are witnesses. May the LORD make the woman who enters your house like Rachel and like Leah, the two who built the house of Israel. May you show your valor in Ephrathah and may your name be famous in Bethlehem.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "4:12",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "And by the children that the LORD gives you from this young woman, may your house be like the house of Perez, the son that Tamar gave to Judah.\"",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "4:13",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "So Boaz took Ruth, and she became his wife. He joined himself to her, and the LORD granted her to conceive, and she gave birth to a son.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "4:14",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "Then the women said to Naomi, 'Blessed be the LORD, who has not left you today without a redeemer! May his name be famous in Israel.'",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "4:15",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "He will make you return to life and will sustain you in your old age, because your daughter-in-law who loves you has given birth to him, and she is worth to you more than seven sons.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "4:16",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "Naomi took the child, put him in her lap, and took charge of raising him.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "4:16",
+      "kind": "benchmark",
+      "severity": "info",
+      "message": "\"se encargó de criarlo\" (took charge of raising him) is more specific than the Hebrew אֹמֶנֶת which means \"nurse\" or \"caretaker.\" The BSB has \"became a nurse to him,\" which is closer to the Hebrew sense of nursing/caring without specifying raising or upbringing as the primary focus.",
+      "data": {
+        "model": "claude-sonnet-4-5",
+        "bsb": "And Naomi took the child, placed him on her lap, and became a nurse to him."
+      }
+    },
+    {
+      "ref": "4:17",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "The neighbor women gave him a name, saying, 'A son has been born to Naomi!' And they called him Obed. He was the father of Jesse, father of David.",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "4:18",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "These are the descendants of Perez: Perez was the father of Hezron;",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "4:19",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "Hezron was the father of Ram; Ram was the father of Amminadab;",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "4:20",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "Amminadab was the father of Nahshon; Nahshon was the father of Salmon;",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "4:21",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "Salmon was the father of Boaz; Boaz was the father of Obed;",
+      "data": {
+        "model": "claude-sonnet-4-5"
+      }
+    },
+    {
+      "ref": "4:22",
+      "kind": "backtranslation",
+      "severity": "info",
+      "message": "Obed was the father of Jesse, and Jesse was the father of David.",
+      "data": {
+        "model": "claude-sonnet-4-5"
       }
     }
   ]
