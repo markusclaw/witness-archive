@@ -17,7 +17,7 @@
  */
 import { writeFileSync, existsSync, readFileSync, mkdirSync } from "node:fs";
 import path from "node:path";
-import { OSIS, MODEL, bookIndex, claudeJSON, draftPath, lexiconEntry, loadGlossary, loadStyle, originalWords } from "./lib.mjs";
+import { EDITION, OSIS, MODEL, TRANSLATION, bookIndex, claudeJSON, draftPath, lexiconEntry, loadGlossary, loadStyle, originalWords } from "./lib.mjs";
 
 const [bookArg, chapterArg] = process.argv.slice(2);
 if (!bookArg) {
@@ -30,7 +30,7 @@ const style = loadStyle();
 const glossary = loadGlossary();
 const words = originalWords(book);
 const language = book < 39 ? "hebreo" : "griego";
-const PROMPT_VERSION = "vt-draft-1";
+const PROMPT_VERSION = `${TRANSLATION}-draft-1`;
 const CHUNK = 25;
 const DRAFT_SCHEMA = {
   type: "object",
@@ -38,7 +38,8 @@ const DRAFT_SCHEMA = {
   required: ["verses"],
 };
 
-const system = `Eres el traductor de la Versión Testigo, una traducción abierta de la Biblia al español hecha directamente desde el ${language}.
+const SYSTEM = {
+  es: `Eres el traductor de la Versión Testigo, una traducción abierta de la Biblia al español hecha directamente desde el ${language}.
 
 Reglas:
 - Traduce SOLO a partir de las palabras en ${language} que se te dan. Las glosas en inglés son ayudas de diccionario, no una traducción que seguir.
@@ -48,7 +49,20 @@ Reglas:
 - Entrega el resultado con la herramienta submit: un elemento por versículo, con ref ("c:v"), text y notes.
 
 GUÍA DE ESTILO:
-${style}`;
+${style}`,
+  en: `You are the translator of the Open Bible Translation, an open English Bible translated directly from the ${book < 39 ? "Hebrew" : "Greek"}.
+
+Rules:
+- Translate ONLY from the original-language words you are given. The English glosses are dictionary aids, not a translation to follow.
+- Write your own wording. Do not reproduce the wording of any copyrighted Bible (ESV, NIV, NASB, NKJV, NLT, CSB, NRSV, NET or others), even where you remember it. Avoid runs of more than a few words that match them.
+- Follow the style guide and the glossary exactly.
+- Add short notes only where they truly help (types: alternative, text, meaning, measure).
+- Submit the result with the submit tool: one item per verse, with ref ("c:v"), text and notes.
+
+STYLE GUIDE:
+${style}`,
+};
+const system = SYSTEM[EDITION.language];
 
 function packet(ref) {
   const list = words.get(ref) ?? [];
@@ -78,9 +92,9 @@ for (let i = 0; i < refs.length; i += CHUNK) {
   const chunk = refs.slice(i, i + CHUNK);
   const before = refs.slice(Math.max(0, i - 4), i).map((r) => drafted.get(r)).filter(Boolean);
   const prompt = [
-    `Libro: ${OSIS[book]}. Traduce estos versículos.`,
-    `Nombres propios (grafía obligatoria): ${names}.`,
-    before.length ? `Contexto (ya traducido):\n${before.map((v) => `${v.ref} ${v.text}`).join("\n")}` : "",
+    EDITION.language === "es" ? `Libro: ${OSIS[book]}. Traduce estos versículos.` : `Book: ${OSIS[book]}. Translate these verses.`,
+    EDITION.language === "es" ? `Nombres propios (grafía obligatoria): ${names}.` : `Proper names (required spelling): ${names}.`,
+    before.length ? `${EDITION.language === "es" ? "Contexto (ya traducido)" : "Context (already translated)"}:\n${before.map((v) => `${v.ref} ${v.text}`).join("\n")}` : "",
     chunk.map(packet).join("\n\n"),
   ]
     .filter(Boolean)
@@ -94,7 +108,7 @@ for (let i = 0; i < refs.length; i += CHUNK) {
 
 const order = [...words.keys()];
 const result = {
-  translation: "vt",
+  translation: TRANSLATION,
   book,
   kind: "ai_draft",
   author: `ai:${model}`,

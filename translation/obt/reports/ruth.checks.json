@@ -1,0 +1,520 @@
+{
+  "book": 7,
+  "draftAuthor": "ai:claude-opus-5-5",
+  "created": "2026-10-20T07:26:40.992Z",
+  "ai": false,
+  "echo": [
+    {
+      "name": "King James Version",
+      "copyrighted": false,
+      "versesWithLongRuns": 4,
+      "longest": {
+        "length": 10,
+        "words": "of moab he and his wife and his two sons",
+        "ref": "1:1"
+      }
+    },
+    {
+      "name": "World English Bible",
+      "copyrighted": false,
+      "versesWithLongRuns": 15,
+      "longest": {
+        "length": 13,
+        "words": "where you die i will die and there i will be buried may",
+        "ref": "1:17"
+      }
+    },
+    {
+      "name": "Berean Standard Bible",
+      "copyrighted": false,
+      "versesWithLongRuns": 29,
+      "longest": {
+        "length": 15,
+        "words": "where you die i will die and there i will be buried may the lord",
+        "ref": "1:17"
+      }
+    }
+  ],
+  "checks": [
+    {
+      "ref": "1:1",
+      "kind": "echo",
+      "severity": "info",
+      "message": "10 words in a row identical to King James Version: «of moab he and his wife and his two sons» (public domain — allowed).",
+      "data": {
+        "reference": "King James Version",
+        "length": 10
+      }
+    },
+    {
+      "ref": "1:5",
+      "kind": "echo",
+      "severity": "info",
+      "message": "8 words in a row identical to King James Version: «both of them and the woman was left» (public domain — allowed).",
+      "data": {
+        "reference": "King James Version",
+        "length": 8
+      }
+    },
+    {
+      "ref": "1:7",
+      "kind": "echo",
+      "severity": "info",
+      "message": "9 words in a row identical to King James Version: «her two daughters in law with her and they» (public domain — allowed).",
+      "data": {
+        "reference": "King James Version",
+        "length": 9
+      }
+    },
+    {
+      "ref": "1:14",
+      "kind": "echo",
+      "severity": "info",
+      "message": "8 words in a row identical to King James Version: «orpah kissed her mother in law but ruth» (public domain — allowed).",
+      "data": {
+        "reference": "King James Version",
+        "length": 8
+      }
+    },
+    {
+      "ref": "1:11",
+      "kind": "echo",
+      "severity": "info",
+      "message": "10 words in a row identical to World English Bible: «with me do i still have sons in my womb» (public domain — allowed).",
+      "data": {
+        "reference": "World English Bible",
+        "length": 10
+      }
+    },
+    {
+      "ref": "1:14",
+      "kind": "echo",
+      "severity": "info",
+      "message": "9 words in a row identical to World English Bible: «then orpah kissed her mother in law but ruth» (public domain — allowed).",
+      "data": {
+        "reference": "World English Bible",
+        "length": 9
+      }
+    },
+    {
+      "ref": "1:16",
+      "kind": "echo",
+      "severity": "info",
+      "message": "11 words in a row identical to World English Bible: «your people will be my people and your god my god» (public domain — allowed).",
+      "data": {
+        "reference": "World English Bible",
+        "length": 11
+      }
+    },
+    {
+      "ref": "1:17",
+      "kind": "echo",
+      "severity": "info",
+      "message": "13 words in a row identical to World English Bible: «where you die i will die and there i will be buried may» (public domain — allowed).",
+      "data": {
+        "reference": "World English Bible",
+        "length": 13
+      }
+    },
+    {
+      "ref": "1:18",
+      "kind": "echo",
+      "severity": "info",
+      "message": "8 words in a row identical to World English Bible: «was determined to go with her she stopped» (public domain — allowed).",
+      "data": {
+        "reference": "World English Bible",
+        "length": 8
+      }
+    },
+    {
+      "ref": "1:20",
+      "kind": "echo",
+      "severity": "info",
+      "message": "13 words in a row identical to World English Bible: «them don t call me naomi call me mara for the almighty has» (public domain — allowed).",
+      "data": {
+        "reference": "World English Bible",
+        "length": 13
+      }
+    },
+    {
+      "ref": "2:9",
+      "kind": "echo",
+      "severity": "info",
+      "message": "8 words in a row identical to World English Bible: «you when you are thirsty go to the» (public domain — allowed).",
+      "data": {
+        "reference": "World English Bible",
+        "length": 8
+      }
+    },
+    {
+      "ref": "2:11",
+      "kind": "echo",
+      "severity": "info",
+      "message": "10 words in a row identical to World English Bible: «what you have done for your mother in law since» (public domain — allowed).",
+      "data": {
+        "reference": "World English Bible",
+        "length": 10
+      }
+    },
+    {
+      "ref": "2:20",
+      "kind": "echo",
+      "severity": "info",
+      "message": "8 words in a row identical to World English Bible: «naomi said to her daughter in law may» (public domain — allowed).",
+      "data": {
+        "reference": "World English Bible",
+        "length": 8
+      }
+    },
+    {
+      "ref": "2:22",
+      "kind": "echo",
+      "severity": "info",
+      "message": "9 words in a row identical to World English Bible: «naomi said to ruth her daughter in law it» (public domain — allowed).",
+      "data": {
+        "reference": "World English Bible",
+        "length": 9
+      }
+    },
+    {
+      "ref": "3:1",
+      "kind": "echo",
+      "severity": "info",
+      "message": "10 words in a row identical to World English Bible: «naomi her mother in law said to her my daughter» (public domain — allowed).",
+      "data": {
+        "reference": "World English Bible",
+        "length": 10
+      }
+    },
+    {
+      "ref": "3:3",
+      "kind": "echo",
+      "severity": "info",
+      "message": "10 words in a row identical to World English Bible: «and go down to the threshing floor but don t» (public domain — allowed).",
+      "data": {
+        "reference": "World English Bible",
+        "length": 10
+      }
+    },
+    {
+      "ref": "3:6",
+      "kind": "echo",
+      "severity": "info",
+      "message": "8 words in a row identical to World English Bible: «she went down to the threshing floor and» (public domain — allowed).",
+      "data": {
+        "reference": "World English Bible",
+        "length": 8
+      }
+    },
+    {
+      "ref": "3:17",
+      "kind": "echo",
+      "severity": "info",
+      "message": "8 words in a row identical to World English Bible: «he gave me these six measures of barley» (public domain — allowed).",
+      "data": {
+        "reference": "World English Bible",
+        "length": 8
+      }
+    },
+    {
+      "ref": "4:1",
+      "kind": "echo",
+      "severity": "info",
+      "message": "9 words in a row identical to World English Bible: «and sit down he came over and sat down» (public domain — allowed).",
+      "data": {
+        "reference": "World English Bible",
+        "length": 9
+      }
+    },
+    {
+      "ref": "1:2",
+      "kind": "echo",
+      "severity": "info",
+      "message": "13 words in a row identical to Berean Standard Bible: «the man s name was elimelech his wife s name was naomi and» (public domain — allowed).",
+      "data": {
+        "reference": "Berean Standard Bible",
+        "length": 13
+      }
+    },
+    {
+      "ref": "1:7",
+      "kind": "echo",
+      "severity": "info",
+      "message": "9 words in a row identical to Berean Standard Bible: «she left the place where she had been living» (public domain — allowed).",
+      "data": {
+        "reference": "Berean Standard Bible",
+        "length": 9
+      }
+    },
+    {
+      "ref": "1:13",
+      "kind": "echo",
+      "severity": "info",
+      "message": "10 words in a row identical to Berean Standard Bible: «would you wait for them to grow up would you» (public domain — allowed).",
+      "data": {
+        "reference": "Berean Standard Bible",
+        "length": 10
+      }
+    },
+    {
+      "ref": "1:16",
+      "kind": "echo",
+      "severity": "info",
+      "message": "9 words in a row identical to Berean Standard Bible: «your people will be my people and your god» (public domain — allowed).",
+      "data": {
+        "reference": "Berean Standard Bible",
+        "length": 9
+      }
+    },
+    {
+      "ref": "1:17",
+      "kind": "echo",
+      "severity": "info",
+      "message": "15 words in a row identical to Berean Standard Bible: «where you die i will die and there i will be buried may the lord» (public domain — allowed).",
+      "data": {
+        "reference": "Berean Standard Bible",
+        "length": 15
+      }
+    },
+    {
+      "ref": "1:18",
+      "kind": "echo",
+      "severity": "info",
+      "message": "13 words in a row identical to Berean Standard Bible: «when naomi saw that ruth was determined to go with her she stopped» (public domain — allowed).",
+      "data": {
+        "reference": "Berean Standard Bible",
+        "length": 13
+      }
+    },
+    {
+      "ref": "1:21",
+      "kind": "echo",
+      "severity": "info",
+      "message": "12 words in a row identical to Berean Standard Bible: «i went away full but the lord has brought me back empty» (public domain — allowed).",
+      "data": {
+        "reference": "Berean Standard Bible",
+        "length": 12
+      }
+    },
+    {
+      "ref": "2:1",
+      "kind": "echo",
+      "severity": "info",
+      "message": "10 words in a row identical to Berean Standard Bible: «naomi had a relative on her husband s side a» (public domain — allowed).",
+      "data": {
+        "reference": "Berean Standard Bible",
+        "length": 10
+      }
+    },
+    {
+      "ref": "2:7",
+      "kind": "echo",
+      "severity": "info",
+      "message": "9 words in a row identical to Berean Standard Bible: «please let me glean and gather among the sheaves» (public domain — allowed).",
+      "data": {
+        "reference": "Berean Standard Bible",
+        "length": 9
+      }
+    },
+    {
+      "ref": "2:9",
+      "kind": "echo",
+      "severity": "info",
+      "message": "8 words in a row identical to Berean Standard Bible: «i have ordered the young men not to» (public domain — allowed).",
+      "data": {
+        "reference": "Berean Standard Bible",
+        "length": 8
+      }
+    },
+    {
+      "ref": "2:11",
+      "kind": "echo",
+      "severity": "info",
+      "message": "10 words in a row identical to Berean Standard Bible: «how you left your father and mother and the land» (public domain — allowed).",
+      "data": {
+        "reference": "Berean Standard Bible",
+        "length": 10
+      }
+    },
+    {
+      "ref": "2:14",
+      "kind": "echo",
+      "severity": "info",
+      "message": "14 words in a row identical to Berean Standard Bible: «at mealtime boaz said to her come over here have some bread and dip» (public domain — allowed).",
+      "data": {
+        "reference": "Berean Standard Bible",
+        "length": 14
+      }
+    },
+    {
+      "ref": "2:19",
+      "kind": "echo",
+      "severity": "info",
+      "message": "9 words in a row identical to Berean Standard Bible: «her mother in law asked her where did you» (public domain — allowed).",
+      "data": {
+        "reference": "Berean Standard Bible",
+        "length": 9
+      }
+    },
+    {
+      "ref": "2:20",
+      "kind": "echo",
+      "severity": "info",
+      "message": "8 words in a row identical to Berean Standard Bible: «naomi said to her daughter in law may» (public domain — allowed).",
+      "data": {
+        "reference": "Berean Standard Bible",
+        "length": 8
+      }
+    },
+    {
+      "ref": "2:21",
+      "kind": "echo",
+      "severity": "info",
+      "message": "10 words in a row identical to Berean Standard Bible: «told me stay with my young men until they have» (public domain — allowed).",
+      "data": {
+        "reference": "Berean Standard Bible",
+        "length": 10
+      }
+    },
+    {
+      "ref": "3:4",
+      "kind": "echo",
+      "severity": "info",
+      "message": "8 words in a row identical to Berean Standard Bible: «the place where he lies then go in» (public domain — allowed).",
+      "data": {
+        "reference": "Berean Standard Bible",
+        "length": 8
+      }
+    },
+    {
+      "ref": "3:6",
+      "kind": "echo",
+      "severity": "info",
+      "message": "8 words in a row identical to Berean Standard Bible: «she went down to the threshing floor and» (public domain — allowed).",
+      "data": {
+        "reference": "Berean Standard Bible",
+        "length": 8
+      }
+    },
+    {
+      "ref": "3:10",
+      "kind": "echo",
+      "severity": "info",
+      "message": "8 words in a row identical to Berean Standard Bible: «said may the lord bless you my daughter» (public domain — allowed).",
+      "data": {
+        "reference": "Berean Standard Bible",
+        "length": 8
+      }
+    },
+    {
+      "ref": "3:14",
+      "kind": "echo",
+      "severity": "info",
+      "message": "8 words in a row identical to Berean Standard Bible: «that a woman came to the threshing floor» (public domain — allowed).",
+      "data": {
+        "reference": "Berean Standard Bible",
+        "length": 8
+      }
+    },
+    {
+      "ref": "3:17",
+      "kind": "echo",
+      "severity": "info",
+      "message": "8 words in a row identical to Berean Standard Bible: «he gave me these six measures of barley» (public domain — allowed).",
+      "data": {
+        "reference": "Berean Standard Bible",
+        "length": 8
+      }
+    },
+    {
+      "ref": "4:3",
+      "kind": "echo",
+      "severity": "info",
+      "message": "10 words in a row identical to Berean Standard Bible: «the piece of land that belonged to our brother elimelech» (public domain — allowed).",
+      "data": {
+        "reference": "Berean Standard Bible",
+        "length": 10
+      }
+    },
+    {
+      "ref": "4:13",
+      "kind": "echo",
+      "severity": "info",
+      "message": "8 words in a row identical to Berean Standard Bible: «conceive and she gave birth to a son» (public domain — allowed).",
+      "data": {
+        "reference": "Berean Standard Bible",
+        "length": 8
+      }
+    },
+    {
+      "ref": "4:15",
+      "kind": "echo",
+      "severity": "info",
+      "message": "9 words in a row identical to Berean Standard Bible: «your daughter in law who loves you and is» (public domain — allowed).",
+      "data": {
+        "reference": "Berean Standard Bible",
+        "length": 9
+      }
+    },
+    {
+      "ref": "4:17",
+      "kind": "echo",
+      "severity": "info",
+      "message": "8 words in a row identical to Berean Standard Bible: «him obed he became the father of jesse» (public domain — allowed).",
+      "data": {
+        "reference": "Berean Standard Bible",
+        "length": 8
+      }
+    },
+    {
+      "ref": "4:18",
+      "kind": "echo",
+      "severity": "info",
+      "message": "8 words in a row identical to Berean Standard Bible: «of perez perez was the father of hezron» (public domain — allowed).",
+      "data": {
+        "reference": "Berean Standard Bible",
+        "length": 8
+      }
+    },
+    {
+      "ref": "4:19",
+      "kind": "echo",
+      "severity": "info",
+      "message": "12 words in a row identical to Berean Standard Bible: «hezron was the father of ram ram was the father of amminadab» (public domain — allowed).",
+      "data": {
+        "reference": "Berean Standard Bible",
+        "length": 12
+      }
+    },
+    {
+      "ref": "4:20",
+      "kind": "echo",
+      "severity": "info",
+      "message": "12 words in a row identical to Berean Standard Bible: «amminadab was the father of nahshon nahshon was the father of salmon» (public domain — allowed).",
+      "data": {
+        "reference": "Berean Standard Bible",
+        "length": 12
+      }
+    },
+    {
+      "ref": "4:21",
+      "kind": "echo",
+      "severity": "info",
+      "message": "12 words in a row identical to Berean Standard Bible: «salmon was the father of boaz boaz was the father of obed» (public domain — allowed).",
+      "data": {
+        "reference": "Berean Standard Bible",
+        "length": 12
+      }
+    },
+    {
+      "ref": "4:22",
+      "kind": "echo",
+      "severity": "info",
+      "message": "13 words in a row identical to Berean Standard Bible: «obed was the father of jesse and jesse was the father of david» (public domain — allowed).",
+      "data": {
+        "reference": "Berean Standard Bible",
+        "length": 13
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "version": "0.1",
+  "status": "proposed — needs committee sign-off",
+  "terms": [
+    { "strongs": "H3068", "lemma": "יהוה", "es": ["LORD"], "severity": "error", "note": "The divine name: always «the LORD» in capitals. Never «Jehovah» or «Yahweh» in the text." },
+    { "strongs": "H7706", "lemma": "שַׁדַּי", "es": ["Almighty"], "severity": "error", "note": "Shaddai: «the Almighty»." },
+    { "strongs": "H2617", "lemma": "חֶסֶד", "es": ["loyal love"], "severity": "warn", "note": "Covenant loyalty shown in action: «loyal love» everywhere so readers can follow the theme." },
+    { "strongs": "H1350", "lemma": "גָּאַל", "es": ["redeem", "redemption"], "severity": "warn", "note": "Noun «family redeemer» / «redeemer», verb «redeem», «right of redemption»." },
+    { "strongs": "H3671", "lemma": "כָּנָף", "es": ["wing"], "severity": "warn", "note": "Ruth 2:12 (God's wings) and 3:9 (the wing of Boaz's cloak) are the same word." },
+    { "strongs": "H2428", "lemma": "חַיִל", "es": ["worth"], "severity": "warn", "note": "Ruth 2:1, 3:11, 4:11: «worth» links Boaz and Ruth." },
+    { "strongs": "H7387", "lemma": "רֵיקָם", "es": ["empty"], "severity": "warn", "note": "Naomi came back empty (1:21); Ruth must not go back empty (3:17)." },
+    { "strongs": "H4496", "lemma": "מְנוּחָה", "es": ["rest"], "severity": "info", "note": "Rest / a secure home (1:9, 3:1)." },
+    { "strongs": "H4494", "lemma": "מָנוֹחַ", "es": ["rest"], "severity": "info", "note": "Rest / a secure home (3:1)." },
+    { "strongs": "H7725", "lemma": "שׁוּב", "es": ["return", "back", "came", "went"], "severity": "info", "note": "The key verb of Ruth 1: «return» / «go back»." }
+  ],
+  "names": [
+    { "es": "Naomi", "avoid": ["Noemi", "Naomí"] },
+    { "es": "Orpah", "avoid": ["Orpa\\b", "Orfa"] },
+    { "es": "Elimelech", "avoid": ["Elimelec\\b"] },
+    { "es": "Chilion", "avoid": ["Kilion", "Quelión"] },
+    { "es": "Amminadab", "avoid": ["Aminadab"] },
+    { "es": "Nahshon", "avoid": ["Nahson", "Naasón"] }
+  ],
+  "forbidden": [
+    { "pattern": "\\bbehold\\b|\\bthee\\b|\\bthou\\b|\\bthy\\b|\\bunto\\b", "message": "Archaism — use contemporary English." },
+    { "pattern": "Jehovah|Yahweh|\\bYHWH\\b", "message": "The divine name is «the LORD»." }
+  ]
+}

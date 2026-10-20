@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import { BIBLE_UI, BOOKS, TRANSLATION_FOR_LANGUAGE, VERSIONS, bookBySlug, bookSlug, originalFor, translationFor } from "@/lib/scripture";
 import { getChapter, getChapterWords, usableVersion } from "@/lib/bible";
 import { esvEnabled } from "@/lib/esv";
+import { editionFor, originalName } from "@/lib/editions";
 import { BibleLanguagePicker, BibleLanguageSync, OriginalToggle } from "@/components/BibleLanguage";
 import ChapterText from "@/components/ChapterText";
 import { ChapterTitle, MobileChapterBar, TextSizeButton, TextSizeInit } from "@/components/ReaderChrome";
@@ -106,12 +107,15 @@ export default async function ChapterPage({ params, searchParams }: { params: Pa
         </span>
       </div>
 
-      {translation.draft && (
-        <div className="mt-6 rounded-xl border border-gold-500/40 bg-gold-500/5 px-4 py-3 text-sm leading-relaxed text-parchment-300" lang="es">
-          <strong className="text-gold-300">Borrador · {translation.name.replace(/ \(borrador\)$/, "")}.</strong> Traducido del {b.index < 39 ? "hebreo" : "griego"} con ayuda de IA; todavía no ha sido revisado por especialistas.{" "}
-          <Link href={`/bible/vt/${bookSlug(b)}/${chapter}`} className="text-gold-400 underline-offset-2 hover:underline">Ver notas, revisiones e historial de cada versículo →</Link>
-        </div>
-      )}
+      {translation.draft && editionFor(translation.code) && (() => {
+        const e = editionFor(translation.code)!;
+        return (
+          <div className="mt-6 rounded-xl border border-gold-500/40 bg-gold-500/5 px-4 py-3 text-sm leading-relaxed text-parchment-300" lang={e.lang}>
+            <strong className="text-gold-300">{e.ui.banner.draft}</strong> {e.ui.banner.body(originalName(e, b.index))}{" "}
+            <Link href={`${e.path}/${bookSlug(b)}/${chapter}`} className="text-gold-400 underline-offset-2 hover:underline">{e.ui.banner.link}</Link>
+          </div>
+        );
+      })()}
 
       <div className="mt-10">
         {verses.length ? (

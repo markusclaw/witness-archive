@@ -30,7 +30,7 @@ export default async function VtProjectPage() {
       <p className="eyebrow mt-6">Proyecto piloto · borrador</p>
       <h1 className="font-display mt-2 text-4xl text-parchment-50 sm:text-5xl">Versión Testigo</h1>
       <p className="mt-4 text-lg leading-relaxed text-parchment-300">
-        Una traducción abierta de la Biblia al español, hecha directamente desde el hebreo y el griego, con ayuda de inteligencia artificial y bajo revisión humana. Cada versículo muestra su historial completo: el borrador, las correcciones, quién las hizo y por qué.
+        La edición en español de la <Link href="/bible/obt/about" className="text-gold-400 hover:text-gold-300" lang="en">Open Bible Translation</Link>: una traducción abierta de la Biblia, hecha directamente desde el hebreo y el griego, con ayuda de inteligencia artificial y bajo revisión humana. Cada versículo muestra su historial completo: el borrador, las correcciones, quién las hizo y por qué.
       </p>
       <p className="mt-3 text-sm text-parchment-500">
         «Ustedes son hoy testigos» — Rut 4:9

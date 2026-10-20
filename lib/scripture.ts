@@ -61,6 +61,7 @@ export const VERSIONS: Record<string, TranslationInfo[]> = {
     { code: "bsb", name: "Berean Standard Bible", abbr: "BSB", credit: "public domain" },
     { code: "esv", name: "English Standard Version", abbr: "ESV", live: true, credit: "ESV® · © 2001 Crossway · used by permission" },
     { code: "kjv", name: "King James Version", abbr: "KJV", credit: "public domain" },
+    { code: "obt", name: "Open Bible Translation (draft)", abbr: "OBT", credit: "draft under review", hidden: true, draft: true, books: [7] },
   ],
   es: [
     { code: "rv1909", name: "Reina-Valera 1909", abbr: "RV1909", credit: "dominio público" },

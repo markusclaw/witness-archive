@@ -18,12 +18,12 @@
  *              English, compares it with the Berean Standard Bible and the
  *              original, and reports differences in meaning.
  *
- * Writes translation/vt/reports/<book>.checks.json (import.mjs uploads it)
+ * Add --t obt for the English edition. Writes translation/<edition>/reports/<book>.checks.json (import.mjs uploads it)
  * and a readable translation/vt/reports/<book>.md.
  */
 import { writeFileSync, mkdirSync } from "node:fs";
 import path from "node:path";
-import { OSIS, MODEL, bookIndex, claudeJSON, lexiconEntry, loadDraft, loadGlossary, originalWords, referenceTexts, slug, translationVerses, vtDir, words } from "./lib.mjs";
+import { EDITION, OSIS, MODEL, TRANSLATION, bookIndex, claudeJSON, lexiconEntry, loadDraft, loadGlossary, originalWords, referenceTexts, slug, translationVerses, vtDir, words } from "./lib.mjs";
 
 const args = process.argv.slice(2);
 const bookArg = args.find((a) => !a.startsWith("--"));
@@ -87,7 +87,8 @@ function longestRun(a, b) {
   return { length: best, words: best ? a.slice(at - best, at).join(" ") : "" };
 }
 
-const publicRefs = [{ name: "Reina-Valera 1909", copyrighted: false, verses: translationVerses("rv1909", book) }];
+const PUBLIC_NAMES = { rv1909: "Reina-Valera 1909", kjv: "King James Version", web: "World English Bible", bsb: "Berean Standard Bible" };
+const publicRefs = EDITION.publicRefs.map((code) => ({ name: PUBLIC_NAMES[code] ?? code, copyrighted: false, verses: translationVerses(code, book) }));
 const privateRefs = referenceTexts(book);
 const echoSummary = [];
 for (const ref of [...publicRefs, ...privateRefs]) {
@@ -128,12 +129,13 @@ const CHECK_SCHEMA = {
 if (useAI) {
   const bsb = translationVerses("bsb", book);
   const model = process.env.VT_CHECK_MODEL ?? MODEL();
-  const system = `You review a draft Spanish Bible translation made directly from the ${book < 39 ? "Hebrew" : "Greek"}. For each verse:
-1. Translate the Spanish draft back into English as literally as possible (do not look at or copy the BSB for this).
+  const spanish = EDITION.language === "es";
+  const system = `You review a draft ${EDITION.languageName} Bible translation made directly from the ${book < 39 ? "Hebrew" : "Greek"}. For each verse:
+${spanish ? "1. Translate the Spanish draft back into English as literally as possible (do not look at or copy the BSB for this)." : "1. Leave \"back\" as an empty string (the draft is already in English)."}
 2. Compare the meaning of the draft with the original-language words and with the Berean Standard Bible (BSB), a trusted reference.
-3. Report only real differences in MEANING: something added, left out, mistranslated, or a choice the BSB and most scholars would dispute. Not style.
+3. Report only real differences in MEANING: something added, left out, mistranslated, or a choice the BSB and most scholars would dispute. Not style.${spanish ? "" : " Do not flag a difference just because the wording differs from the BSB — the draft is meant to be worded independently."}
 Severity: "error" = wrong meaning, "warn" = questionable or missing nuance, "info" = defensible difference worth a note.
-Submit the result with the submit tool: one entry per verse with ref ("c:v"), back (the back-translation) and issues (empty if none).`;
+Submit the result with the submit tool: one entry per verse with ref ("c:v"), back and issues (empty if none).`;
   const refs = draft.verses.map((v) => v.ref);
   for (let i = 0; i < refs.length; i += 15) {
     const chunk = refs.slice(i, i + 15);
@@ -147,7 +149,7 @@ Submit the result with the submit tool: one entry per verse with ref ("c:v"), ba
     const out = await claudeJSON({ system, prompt, model, schema: CHECK_SCHEMA, maxTokens: 8000 });
     for (const v of out.verses ?? []) {
       if (!chunk.includes(v.ref)) continue;
-      add(v.ref, "backtranslation", "info", v.back, { model });
+      if (v.back?.trim()) add(v.ref, "backtranslation", "info", v.back, { model });
       for (const issue of v.issues ?? []) add(v.ref, "benchmark", ["error", "warn", "info"].includes(issue.severity) ? issue.severity : "warn", issue.message, { model, bsb: bsb.get(v.ref) });
     }
     console.log("ok");
@@ -162,7 +164,7 @@ writeFileSync(file, JSON.stringify({ book, draftAuthor: draft.author, created: n
 
 const count = (s) => checks.filter((c) => c.severity === s && c.kind !== "backtranslation").length;
 const md = [
-  `# Versión Testigo — ${OSIS[book]}: check report`,
+  `# ${EDITION.name} — ${OSIS[book]}: check report`,
   "",
   `Draft by \`${draft.author}\` on ${draft.created}. Checked ${new Date().toISOString().slice(0, 10)}${useAI ? " with back-translation and BSB comparison" : " (rule checks only; run with --ai for the BSB comparison)"}.`,
   "",
@@ -182,4 +184,4 @@ const md = [
   }),
 ].join("\n");
 writeFileSync(path.join(outDir, `${slug(book)}.md`), md + "\n");
-console.log(`${count("error")} errors, ${count("warn")} warnings, ${count("info")} notes → translation/vt/reports/${slug(book)}.md`);
+console.log(`${count("error")} errors, ${count("warn")} warnings, ${count("info")} notes → translation/${TRANSLATION}/reports/${slug(book)}.md`);

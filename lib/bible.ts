@@ -34,8 +34,8 @@ export async function getPassage(ref: Reference, language: string, version?: str
   const labelLang = language === "orig" ? "en" : t.language;
   const chapterEnd = ref.chapterEnd ?? ref.chapter;
 
-  if (t.code === "vt") {
-    let q = createServerSupabase().from("translation_verses").select("chapter, verse, text").eq("translation", "vt").eq("book", ref.book).gte("chapter", ref.chapter).lte("chapter", chapterEnd).order("chapter").order("verse");
+  if (t.draft) {
+    let q = createServerSupabase().from("translation_verses").select("chapter, verse, text").eq("translation", t.code).eq("book", ref.book).gte("chapter", ref.chapter).lte("chapter", chapterEnd).order("chapter").order("verse");
     if (ref.verse != null && ref.chapterEnd == null) q = q.gte("verse", ref.verse).lte("verse", ref.verseEnd ?? ref.verse);
     const { data } = await q;
     if (!data?.length) return getPassage(ref, language, null);
@@ -96,8 +96,8 @@ export async function getPassage(ref: Reference, language: string, version?: str
 /** A whole chapter in the translation for a reader language. Empty when not seeded. */
 export async function getChapter(book: number, chapter: number, language: string, version?: string | null): Promise<{ translation: TranslationInfo & { language: string }; verses: { verse: number; text: string }[] }> {
   const t = translationFor(language, book, usableVersion(version));
-  if (t.code === "vt") {
-    const { data } = await createServerSupabase().from("translation_verses").select("verse, text").eq("translation", "vt").eq("book", book).eq("chapter", chapter).order("verse");
+  if (t.draft) {
+    const { data } = await createServerSupabase().from("translation_verses").select("verse, text").eq("translation", t.code).eq("book", book).eq("chapter", chapter).order("verse");
     if (data?.length) return { translation: t, verses: data as { verse: number; text: string }[] };
     return getChapter(book, chapter, language, null);
   }

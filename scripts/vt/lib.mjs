@@ -8,9 +8,22 @@ import { gunzipSync } from "node:zlib";
 import path from "node:path";
 
 export const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..", "..");
-export const vtDir = path.join(root, "translation", "vt");
+/**
+ * Which edition to work on: --t vt (Spanish, Versión Testigo — the default)
+ * or --t obt (English, Open Bible Translation). The flag is removed from
+ * process.argv so the scripts' own argument parsing doesn't see it.
+ */
+const tIndex = process.argv.indexOf("--t");
+export const TRANSLATION = tIndex >= 0 ? process.argv[tIndex + 1] : "vt";
+if (tIndex >= 0) process.argv.splice(tIndex, 2);
+export const EDITIONS = {
+  vt: { language: "es", languageName: "Spanish", name: "Versión Testigo", publicRefs: ["rv1909"] },
+  obt: { language: "en", languageName: "English", name: "Open Bible Translation", publicRefs: ["kjv", "web", "bsb"] },
+};
+export const EDITION = EDITIONS[TRANSLATION];
+if (!EDITION) throw new Error(`Unknown edition "${TRANSLATION}" — use --t vt or --t obt.`);
+export const vtDir = path.join(root, "translation", TRANSLATION);
 export const dataDir = path.join(root, "scripts", "bible-data");
-export const TRANSLATION = "vt";
 
 // .env.local, without extra packages (same as the seed scripts).
 const envFile = path.join(root, ".env.local");

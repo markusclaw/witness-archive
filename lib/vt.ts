@@ -12,8 +12,8 @@ export * from "@/lib/vt-shared";
 import type { VtCheck, VtRevision, VtStatus, VtVerse } from "@/lib/vt-shared";
 
 /** Verses per book and status, for the progress table. */
-export async function getVtProgress(): Promise<{ book: number; draft: number; reviewed: number; approved: number; chapters: number[] }[]> {
-  const { data, error } = await createServerSupabase().from("translation_verses").select("book, chapter, status").eq("translation", VT).limit(40000);
+export async function getVtProgress(translation: string = VT): Promise<{ book: number; draft: number; reviewed: number; approved: number; chapters: number[] }[]> {
+  const { data, error } = await createServerSupabase().from("translation_verses").select("book, chapter, status").eq("translation", translation).limit(40000);
   if (error) console.error("getVtProgress:", error.message);
   const by = new Map<number, { book: number; draft: number; reviewed: number; approved: number; chapters: Set<number> }>();
   for (const r of data ?? []) {
@@ -26,12 +26,12 @@ export async function getVtProgress(): Promise<{ book: number; draft: number; re
 }
 
 /** Everything the chapter review page shows. */
-export async function getVtChapter(book: number, chapter: number) {
+export async function getVtChapter(book: number, chapter: number, translation: string = VT) {
   const db = createServerSupabase();
   const [verses, revisions, checks, original, bsb] = await Promise.all([
-    db.from("translation_verses").select("chapter, verse, text, notes, status, revision_id, updated_at").eq("translation", VT).eq("book", book).eq("chapter", chapter).order("verse"),
-    db.from("translation_revisions").select("id, chapter, verse, text, kind, author, comment, created_at").eq("translation", VT).eq("book", book).eq("chapter", chapter).order("created_at").limit(5000),
-    db.from("translation_checks").select("revision_id, chapter, verse, kind, severity, message, resolved").eq("translation", VT).eq("book", book).eq("chapter", chapter).limit(5000),
+    db.from("translation_verses").select("chapter, verse, text, notes, status, revision_id, updated_at").eq("translation", translation).eq("book", book).eq("chapter", chapter).order("verse"),
+    db.from("translation_revisions").select("id, chapter, verse, text, kind, author, comment, created_at").eq("translation", translation).eq("book", book).eq("chapter", chapter).order("created_at").limit(5000),
+    db.from("translation_checks").select("revision_id, chapter, verse, kind, severity, message, resolved").eq("translation", translation).eq("book", book).eq("chapter", chapter).limit(5000),
     db.from("bible_verses").select("verse, text").eq("translation", originalFor(book).code).eq("book", book).eq("chapter", chapter).order("verse"),
     db.from("bible_verses").select("verse, text").eq("translation", "bsb").eq("book", book).eq("chapter", chapter).order("verse"),
   ]);
@@ -52,12 +52,12 @@ export async function getVtChapter(book: number, chapter: number) {
 
 
 /** A whole book of the VT for the reading page, with the original words of each verse. */
-export async function getVtBook(book: number) {
+export async function getVtBook(book: number, translation: string = VT) {
   const { getChapterWords } = await import("@/lib/bible");
   const { data, error } = await createServerSupabase()
     .from("translation_verses")
     .select("chapter, verse, text, notes, status, revision_id, updated_at")
-    .eq("translation", VT)
+    .eq("translation", translation)
     .eq("book", book)
     .order("chapter")
     .order("verse")

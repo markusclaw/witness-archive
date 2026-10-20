@@ -12,7 +12,7 @@ export default function SiteFooter() {
         <span className="flex gap-4 whitespace-nowrap">
           <Link href="/about" className="hover:text-gold-300">About</Link>
           <Link href="/archive" className="hover:text-gold-300">Collections</Link>
-          <Link href="/bible/vt" className="hover:text-gold-300" lang="es">Versión Testigo</Link>
+          <Link href="/bible/obt" className="hover:text-gold-300">Open Bible</Link>
         </span>
       </div>
       <div className="mx-auto hidden max-w-6xl gap-10 px-5 py-14 sm:grid md:grid-cols-[1.5fr_1fr_1fr]">
@@ -48,8 +48,8 @@ export default function SiteFooter() {
             <li><Link href="/submit" className="text-parchment-300 hover:text-gold-300">Write your testimony</Link></li>
             <li><Link href="/auth" className="text-parchment-300 hover:text-gold-300">Sign in</Link></li>
             <li>
-              <Link href="/bible/vt" className="text-parchment-300 hover:text-gold-300" lang="es">Versión Testigo</Link>
-              <span className="ml-2 rounded border border-gold-500/40 px-1 text-[0.6rem] uppercase tracking-wider text-gold-400">Borrador</span>
+              <Link href="/bible/obt" className="text-parchment-300 hover:text-gold-300">Open Bible Translation</Link>
+              <span className="ml-2 rounded border border-gold-500/40 px-1 text-[0.6rem] uppercase tracking-wider text-gold-400">Draft</span>
             </li>
 
           </ul>

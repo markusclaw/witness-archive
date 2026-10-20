@@ -1,4 +1,4 @@
-# Versión Testigo (VT)
+# Versión Testigo (VT) — Spanish edition of the Open Bible Translation
 
 An open Spanish translation of the Bible made directly from the Hebrew and
 Greek, drafted with AI and reviewed by people, with every verse's history
