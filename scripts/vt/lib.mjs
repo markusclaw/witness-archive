@@ -172,3 +172,17 @@ export function words(s) {
     .split(/\s+/)
     .filter(Boolean);
 }
+
+/**
+ * Notes compared by content. Supabase (jsonb) stores object keys in its own
+ * order, so {type, text} comes back as {text, type}; compare with sorted keys.
+ */
+export function canonical(value) {
+  if (Array.isArray(value)) return `[${value.map(canonical).join(",")}]`;
+  if (value && typeof value === "object") return `{${Object.keys(value).sort().map((k) => `${JSON.stringify(k)}:${canonical(value[k])}`).join(",")}}`;
+  return JSON.stringify(value ?? null);
+}
+
+export function sameNotes(a, b) {
+  return canonical(a ?? []) === canonical(b ?? []);
+}

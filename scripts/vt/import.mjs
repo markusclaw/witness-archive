@@ -12,7 +12,7 @@
  */
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
-import { OSIS, TRANSLATION, bookIndex, loadDraft, slug, supabase, vtDir } from "./lib.mjs";
+import { OSIS, TRANSLATION, bookIndex, loadDraft, sameNotes, slug, supabase, vtDir } from "./lib.mjs";
 
 const args = process.argv.slice(2);
 const bookArg = args.find((a) => !a.startsWith("--"));
@@ -47,7 +47,7 @@ for (const v of draft.verses) {
   const [chapter, verse] = v.ref.split(":").map(Number);
   const existing = now.get(v.ref);
   const prior = lastDraft.get(v.ref);
-  if (prior && prior.text === v.text && JSON.stringify(prior.notes ?? []) === JSON.stringify(v.notes ?? [])) {
+  if (prior && prior.text === v.text && sameNotes(prior.notes, v.notes)) {
     // Already imported: just refresh its automatic checks (e.g. after check.mjs --ai).
     same++;
     const mine = (report?.checks ?? []).filter((c) => c.ref === v.ref);
