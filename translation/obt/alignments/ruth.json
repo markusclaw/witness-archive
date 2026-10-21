@@ -2,7 +2,7 @@
  "translation": "obt",
  "book": 7,
  "author": "ai:claude-sonnet-4-5",
- "created": "2026-10-20",
+ "created": "2026-10-21",
  "verses": {
   "1:1": {
    "text": "In the time when the judges governed, a famine came over the land. A man from Bethlehem in Judah went to live as a foreigner in the fields of Moab, he and his wife and his two sons.",
@@ -6950,13 +6950,20 @@
      "n": 3
     },
     {
-     "w": "he had spoken about",
+     "w": "he",
      "h": [
-      8,
-      9
+      10
      ],
      "i": 17,
-     "n": 4
+     "n": 1
+    },
+    {
+     "w": "had spoken about",
+     "h": [
+      9
+     ],
+     "i": 18,
+     "n": 3
     },
     {
      "w": "was passing by",
@@ -6983,12 +6990,20 @@
      "n": 1
     },
     {
-     "w": "Come over here",
+     "w": "Come over",
      "h": [
       12
      ],
      "i": 26,
-     "n": 3
+     "n": 2
+    },
+    {
+     "w": "here",
+     "h": [
+      14
+     ],
+     "i": 28,
+     "n": 1
     },
     {
      "w": "So-and-so",
@@ -7029,12 +7044,12 @@
    "text": "Boaz also gathered ten of the town's elders and asked them to be seated, and they sat down.",
    "map": [
     {
-     "w": "gathered",
+     "w": "Boaz also gathered",
      "h": [
       0
      ],
-     "i": 2,
-     "n": 1
+     "i": 0,
+     "n": 3
     },
     {
      "w": "ten",
@@ -7061,20 +7076,13 @@
      "n": 1
     },
     {
-     "w": "and asked them",
+     "w": "and asked them to be seated",
      "h": [
-      5
-     ],
-     "i": 8,
-     "n": 3
-    },
-    {
-     "w": "to be seated",
-     "h": [
+      5,
       6
      ],
-     "i": 11,
-     "n": 3
+     "i": 8,
+     "n": 6
     },
     {
      "w": "and they sat down",
@@ -7203,8 +7211,7 @@
      "h": [
       1,
       2,
-      3,
-      4
+      3
      ],
      "i": 1,
      "n": 7
@@ -7282,22 +7289,36 @@
      "n": 2
     },
     {
-     "w": "If not",
+     "w": "If",
      "h": [
-      14,
-      15,
-      16
+      14
      ],
      "i": 31,
-     "n": 2
+     "n": 1
     },
     {
-     "w": "tell me",
+     "w": "not",
+     "h": [
+      15
+     ],
+     "i": 32,
+     "n": 1
+    },
+    {
+     "w": "tell",
      "h": [
       17
      ],
      "i": 33,
-     "n": 2
+     "n": 1
+    },
+    {
+     "w": "me",
+     "h": [
+      18
+     ],
+     "i": 34,
+     "n": 1
     },
     {
      "w": "for",
@@ -7366,7 +7387,7 @@
    ]
   },
   "4:5": {
-   "text": "Boaz said, \"The day you buy the field from Naomi, you are also taking on Ruth the Moabite, the dead man's widow, so that the dead man's name stays with his land.\"",
+   "text": "Boaz said, \"The day you buy the field from Naomi, you also acquire Ruth the Moabite, the dead man's widow, so that the dead man's name stays with his land.\"",
    "map": [
     {
      "w": "Boaz",
@@ -7425,11 +7446,19 @@
      "n": 1
     },
     {
+     "w": "you also acquire",
+     "h": [
+      3
+     ],
+     "i": 10,
+     "n": 3
+    },
+    {
      "w": "Ruth",
      "h": [
       8
      ],
-     "i": 15,
+     "i": 13,
      "n": 1
     },
     {
@@ -7437,7 +7466,7 @@
      "h": [
       9
      ],
-     "i": 16,
+     "i": 14,
      "n": 2
     },
     {
@@ -7445,7 +7474,7 @@
      "h": [
       11
      ],
-     "i": 18,
+     "i": 16,
      "n": 3
     },
     {
@@ -7453,23 +7482,23 @@
      "h": [
       10
      ],
-     "i": 21,
+     "i": 19,
      "n": 1
     },
     {
-     "w": "the dead man's",
+     "w": "so that the dead man's",
      "h": [
       14
      ],
-     "i": 24,
-     "n": 3
+     "i": 20,
+     "n": 5
     },
     {
      "w": "name",
      "h": [
       13
      ],
-     "i": 27,
+     "i": 25,
      "n": 1
     },
     {
@@ -7477,7 +7506,7 @@
      "h": [
       12
      ],
-     "i": 28,
+     "i": 26,
      "n": 1
     },
     {
@@ -7485,7 +7514,7 @@
      "h": [
       15
      ],
-     "i": 29,
+     "i": 27,
      "n": 1
     },
     {
@@ -7493,7 +7522,7 @@
      "h": [
       16
      ],
-     "i": 30,
+     "i": 28,
      "n": 2
     }
    ]
@@ -7502,11 +7531,17 @@
    "text": "\"In that case I can't redeem it,\" the family redeemer replied, \"or I would put my own estate at risk. You redeem it—take over my right—because I am unable to.\"",
    "map": [
     {
+     "w": "In that case I",
+     "h": [
+      2
+     ],
+     "i": 0,
+     "n": 4
+    },
+    {
      "w": "can't",
      "h": [
-      2,
-      3,
-      16
+      3
      ],
      "i": 4,
      "n": 1
@@ -7514,7 +7549,7 @@
     {
      "w": "redeem it",
      "h": [
-      17
+      4
      ],
      "i": 5,
      "n": 2
@@ -7536,11 +7571,19 @@
      "n": 1
     },
     {
-     "w": "or I would",
+     "w": "or",
      "h": [
       5
      ],
      "i": 11,
+     "n": 1
+    },
+    {
+     "w": "I would put",
+     "h": [
+      6
+     ],
+     "i": 12,
      "n": 3
     },
     {
@@ -7552,14 +7595,6 @@
      "n": 3
     },
     {
-     "w": "at risk",
-     "h": [
-      6
-     ],
-     "i": 18,
-     "n": 2
-    },
-    {
      "w": "You",
      "h": [
       11
@@ -7568,20 +7603,20 @@
      "n": 1
     },
     {
-     "w": "redeem it",
+     "w": "redeem",
      "h": [
       9
      ],
      "i": 21,
-     "n": 2
+     "n": 1
     },
     {
-     "w": "right",
+     "w": "take over my right",
      "h": [
       13
      ],
-     "i": 26,
-     "n": 1
+     "i": 23,
+     "n": 4
     },
     {
      "w": "because",
@@ -7589,6 +7624,30 @@
       14
      ],
      "i": 27,
+     "n": 1
+    },
+    {
+     "w": "am",
+     "h": [
+      15
+     ],
+     "i": 29,
+     "n": 1
+    },
+    {
+     "w": "unable",
+     "h": [
+      16
+     ],
+     "i": 30,
+     "n": 1
+    },
+    {
+     "w": "to",
+     "h": [
+      17
+     ],
+     "i": 31,
      "n": 1
     }
    ]
@@ -7645,12 +7704,20 @@
      "n": 2
     },
     {
-     "w": "or exchange",
+     "w": "or",
+     "h": [
+      5
+     ],
+     "i": 11,
+     "n": 1
+    },
+    {
+     "w": "exchange",
      "h": [
       6
      ],
-     "i": 11,
-     "n": 2
+     "i": 12,
+     "n": 1
     },
     {
      "w": "a man",
@@ -7746,12 +7813,20 @@
      "n": 2
     },
     {
-     "w": "Buy it yourself",
+     "w": "Buy it",
      "h": [
       3
      ],
      "i": 7,
-     "n": 3
+     "n": 2
+    },
+    {
+     "w": "yourself",
+     "h": [
+      4
+     ],
+     "i": 9,
+     "n": 1
     },
     {
      "w": "and he took off",
@@ -7783,12 +7858,12 @@
      "n": 1
     },
     {
-     "w": "addressed",
+     "w": "then addressed",
      "h": [
       0
      ],
-     "i": 2,
-     "n": 1
+     "i": 1,
+     "n": 2
     },
     {
      "w": "the elders",
@@ -7855,20 +7930,13 @@
      "n": 3
     },
     {
-     "w": "from",
+     "w": "from Naomi",
      "h": [
-      19
-     ],
-     "i": 17,
-     "n": 1
-    },
-    {
-     "w": "Naomi",
-     "h": [
+      19,
       20
      ],
-     "i": 18,
-     "n": 1
+     "i": 17,
+     "n": 2
     },
     {
      "w": "everything",
@@ -7879,20 +7947,20 @@
      "n": 1
     },
     {
-     "w": "that",
+     "w": "that belonged to",
      "h": [
       12
      ],
      "i": 20,
-     "n": 1
+     "n": 3
     },
     {
-     "w": "belonged to Elimelech",
+     "w": "Elimelech",
      "h": [
       13
      ],
-     "i": 21,
-     "n": 3
+     "i": 23,
+     "n": 1
     },
     {
      "w": "and everything",
@@ -7903,20 +7971,20 @@
      "n": 2
     },
     {
-     "w": "that",
+     "w": "that belonged to",
      "h": [
       16
      ],
      "i": 26,
-     "n": 1
+     "n": 3
     },
     {
-     "w": "belonged to Chilion",
+     "w": "Chilion",
      "h": [
       17
      ],
-     "i": 27,
-     "n": 3
+     "i": 29,
+     "n": 1
     },
     {
      "w": "and Mahlon",
@@ -7934,8 +8002,7 @@
     {
      "w": "I have also",
      "h": [
-      0,
-      6
+      0
      ],
      "i": 0,
      "n": 3
@@ -8006,20 +8073,13 @@
      "n": 1
     },
     {
-     "w": "stays",
+     "w": "stays with",
      "h": [
-      9
-     ],
-     "i": 19,
-     "n": 1
-    },
-    {
-     "w": "with",
-     "h": [
+      9,
       12
      ],
-     "i": 20,
-     "n": 1
+     "i": 19,
+     "n": 2
     },
     {
      "w": "his land",
@@ -8123,12 +8183,20 @@
      "n": 2
     },
     {
-     "w": "at the gate",
+     "w": "at",
+     "h": [
+      3
+     ],
+     "i": 3,
+     "n": 1
+    },
+    {
+     "w": "the gate",
      "h": [
       4
      ],
-     "i": 3,
-     "n": 3
+     "i": 4,
+     "n": 2
     },
     {
      "w": "and the elders",
@@ -8173,6 +8241,7 @@
     {
      "w": "your home",
      "h": [
+      12,
       13
      ],
      "i": 16,
@@ -8181,18 +8250,11 @@
     {
      "w": "may the LORD",
      "h": [
+      7,
       8
      ],
      "i": 18,
      "n": 3
-    },
-    {
-     "w": "make",
-     "h": [
-      7
-     ],
-     "i": 21,
-     "n": 1
     },
     {
      "w": "like Rachel",
@@ -8300,6 +8362,7 @@
     {
      "w": "Through the children",
      "h": [
+      8,
       9
      ],
      "i": 0,
@@ -8330,21 +8393,13 @@
      "n": 1
     },
     {
-     "w": "by",
+     "w": "by this",
      "h": [
-      8,
-      14
-     ],
-     "i": 7,
-     "n": 1
-    },
-    {
-     "w": "this",
-     "h": [
+      14,
       16
      ],
-     "i": 8,
-     "n": 1
+     "i": 7,
+     "n": 2
     },
     {
      "w": "young woman",
@@ -8530,6 +8585,7 @@
     {
      "w": "Naomi",
      "h": [
+      2,
       3
      ],
      "i": 3,
@@ -8576,13 +8632,20 @@
      "n": 2
     },
     {
-     "w": "left you",
+     "w": "left",
      "h": [
-      8,
-      9
+      8
      ],
      "i": 11,
-     "n": 2
+     "n": 1
+    },
+    {
+     "w": "you",
+     "h": [
+      9
+     ],
+     "i": 12,
+     "n": 1
     },
     {
      "w": "without a family redeemer",
@@ -8619,7 +8682,7 @@
    ]
   },
   "4:15": {
-   "text": "He will bring you back to life and care for you when you are old. Your daughter-in-law, who loves you and is worth more to you than seven sons, is his mother.\"",
+   "text": "He will bring you back to life and care for you when you are old. Your daughter-in-law, who loves you and is worth more to you than seven sons, has borne him.\"",
    "map": [
     {
      "w": "He will bring you back to life",
@@ -8674,29 +8737,23 @@
      "n": 2
     },
     {
-     "w": "and is",
+     "w": "and is worth more",
      "h": [
       12,
-      14
-     ],
-     "i": 20,
-     "n": 2
-    },
-    {
-     "w": "worth more to you",
-     "h": [
+      13,
+      14,
       15
      ],
-     "i": 22,
+     "i": 20,
      "n": 4
     },
     {
-     "w": "than seven",
+     "w": "to you than seven",
      "h": [
       16
      ],
-     "i": 26,
-     "n": 2
+     "i": 24,
+     "n": 4
     },
     {
      "w": "sons",
@@ -8707,12 +8764,12 @@
      "n": 1
     },
     {
-     "w": "is his mother",
+     "w": "has borne",
      "h": [
       11
      ],
      "i": 29,
-     "n": 3
+     "n": 2
     }
    ]
   },
@@ -8816,6 +8873,7 @@
     {
      "w": "has a son",
      "h": [
+      5,
       6
      ],
      "i": 8,
@@ -8836,6 +8894,14 @@
      ],
      "i": 13,
      "n": 3
+    },
+    {
+     "w": "him",
+     "h": [
+      9
+     ],
+     "i": 16,
+     "n": 1
     },
     {
      "w": "Obed",
@@ -8923,20 +8989,20 @@
      "n": 1
     },
     {
-     "w": "was the father of",
+     "w": "was the father",
      "h": [
       4
      ],
      "i": 8,
-     "n": 4
+     "n": 3
     },
     {
-     "w": "Hezron",
+     "w": "of Hezron",
      "h": [
       6
      ],
-     "i": 12,
-     "n": 1
+     "i": 11,
+     "n": 2
     }
    ]
   },
@@ -8952,20 +9018,20 @@
      "n": 1
     },
     {
-     "w": "was the father of",
+     "w": "was the father",
      "h": [
       1
      ],
      "i": 1,
-     "n": 4
+     "n": 3
     },
     {
-     "w": "Ram",
+     "w": "of Ram",
      "h": [
       3
      ],
-     "i": 5,
-     "n": 1
+     "i": 4,
+     "n": 2
     },
     {
      "w": "Ram",
@@ -8976,20 +9042,20 @@
      "n": 1
     },
     {
-     "w": "was the father of",
+     "w": "was the father",
      "h": [
       5
      ],
      "i": 7,
-     "n": 4
+     "n": 3
     },
     {
-     "w": "Amminadab",
+     "w": "of Amminadab",
      "h": [
       7
      ],
-     "i": 11,
-     "n": 1
+     "i": 10,
+     "n": 2
     }
    ]
   },
@@ -9005,20 +9071,20 @@
      "n": 1
     },
     {
-     "w": "was the father of",
+     "w": "was the father",
      "h": [
       1
      ],
      "i": 1,
-     "n": 4
+     "n": 3
     },
     {
-     "w": "Nahshon",
+     "w": "of Nahshon",
      "h": [
       3
      ],
-     "i": 5,
-     "n": 1
+     "i": 4,
+     "n": 2
     },
     {
      "w": "Nahshon",
@@ -9029,20 +9095,20 @@
      "n": 1
     },
     {
-     "w": "was the father of",
+     "w": "was the father",
      "h": [
       5
      ],
      "i": 7,
-     "n": 4
+     "n": 3
     },
     {
-     "w": "Salmon",
+     "w": "of Salmon",
      "h": [
       7
      ],
-     "i": 11,
-     "n": 1
+     "i": 10,
+     "n": 2
     }
    ]
   },
@@ -9058,20 +9124,20 @@
      "n": 1
     },
     {
-     "w": "was the father of",
+     "w": "was the father",
      "h": [
       1
      ],
      "i": 1,
-     "n": 4
+     "n": 3
     },
     {
-     "w": "Boaz",
+     "w": "of Boaz",
      "h": [
       3
      ],
-     "i": 5,
-     "n": 1
+     "i": 4,
+     "n": 2
     },
     {
      "w": "Boaz",
@@ -9082,20 +9148,20 @@
      "n": 1
     },
     {
-     "w": "was the father of",
+     "w": "was the father",
      "h": [
       5
      ],
      "i": 7,
-     "n": 4
+     "n": 3
     },
     {
-     "w": "Obed",
+     "w": "of Obed",
      "h": [
       7
      ],
-     "i": 11,
-     "n": 1
+     "i": 10,
+     "n": 2
     }
    ]
   },
@@ -9111,44 +9177,44 @@
      "n": 1
     },
     {
-     "w": "was the father of",
+     "w": "was the father",
      "h": [
       1
      ],
      "i": 1,
-     "n": 4
+     "n": 3
     },
     {
-     "w": "Jesse",
+     "w": "of Jesse",
      "h": [
       3
      ],
-     "i": 5,
-     "n": 1
+     "i": 4,
+     "n": 2
     },
     {
-     "w": "Jesse",
+     "w": "and Jesse",
      "h": [
       4
      ],
-     "i": 7,
-     "n": 1
+     "i": 6,
+     "n": 2
     },
     {
-     "w": "was the father of",
+     "w": "was the father",
      "h": [
       5
      ],
      "i": 8,
-     "n": 4
+     "n": 3
     },
     {
-     "w": "David",
+     "w": "of David",
      "h": [
       7
      ],
-     "i": 12,
-     "n": 1
+     "i": 11,
+     "n": 2
     }
    ]
   }

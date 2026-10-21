@@ -2,7 +2,7 @@
  "translation": "vt",
  "book": 7,
  "author": "ai:claude-sonnet-4-5",
- "created": "2026-10-20",
+ "created": "2026-10-21",
  "verses": {
   "1:1": {
    "text": "En los días en que gobernaban los jueces, hubo hambre en el país. Y un hombre de Belén de Judá se fue a vivir como forastero en los campos de Moab, él con su esposa y sus dos hijos.",
@@ -16,12 +16,20 @@
      "n": 3
     },
     {
-     "w": "en que gobernaban",
+     "w": "en que",
+     "h": [
+      0
+     ],
+     "i": 3,
+     "n": 2
+    },
+    {
+     "w": "gobernaban",
      "h": [
       2
      ],
-     "i": 3,
-     "n": 3
+     "i": 5,
+     "n": 1
     },
     {
      "w": "los jueces",
@@ -324,12 +332,12 @@
      "n": 1
     },
     {
-     "w": "ella",
+     "w": "y ella",
      "h": [
       5
      ],
-     "i": 8,
-     "n": 1
+     "i": 7,
+     "n": 2
     },
     {
      "w": "quedó",
@@ -462,12 +470,12 @@
    "text": "Luego murieron también los dos, Mahlón y Quelión, y la mujer quedó sin sus dos muchachos y sin su esposo.",
    "map": [
     {
-     "w": "Luego murieron",
+     "w": "murieron",
      "h": [
       0
      ],
-     "i": 0,
-     "n": 2
+     "i": 1,
+     "n": 1
     },
     {
      "w": "también",
@@ -643,20 +651,20 @@
      "n": 2
     },
     {
-     "w": "había venido en ayuda",
+     "w": "había venido en ayuda de",
      "h": [
       11
      ],
      "i": 25,
-     "n": 4
+     "n": 5
     },
     {
-     "w": "de su pueblo",
+     "w": "su pueblo",
      "h": [
       14
      ],
-     "i": 29,
-     "n": 3
+     "i": 30,
+     "n": 2
     },
     {
      "w": "había dado",
@@ -680,12 +688,12 @@
    "text": "Así que salió del lugar donde había vivido, y sus dos nueras con ella, y emprendieron el camino para volver a la tierra de Judá.",
    "map": [
     {
-     "w": "Así que salió",
+     "w": "salió",
      "h": [
       0
      ],
-     "i": 0,
-     "n": 3
+     "i": 2,
+     "n": 1
     },
     {
      "w": "del lugar",
@@ -737,20 +745,13 @@
      "n": 2
     },
     {
-     "w": "y emprendieron",
+     "w": "y emprendieron el camino",
      "h": [
-      9
-     ],
-     "i": 14,
-     "n": 2
-    },
-    {
-     "w": "el camino",
-     "h": [
+      9,
       10
      ],
-     "i": 16,
-     "n": 2
+     "i": 14,
+     "n": 4
     },
     {
      "w": "para volver",
@@ -790,12 +791,12 @@
    "text": "Pero Noemí dijo a sus dos nueras: «Vayan, vuelva cada una a la casa de su madre. Que el SEÑOR les muestre amor leal, como ustedes lo han mostrado con los que murieron y conmigo.",
    "map": [
     {
-     "w": "Pero Noemí",
+     "w": "Noemí",
      "h": [
       1
      ],
-     "i": 0,
-     "n": 2
+     "i": 1,
+     "n": 1
     },
     {
      "w": "dijo",
@@ -886,12 +887,12 @@
      "n": 1
     },
     {
-     "w": "ustedes lo han mostrado",
+     "w": "han mostrado",
      "h": [
       13
      ],
-     "i": 25,
-     "n": 4
+     "i": 27,
+     "n": 2
     },
     {
      "w": "con",
@@ -1064,12 +1065,12 @@
      "n": 1
     },
     {
-     "w": "a tu pueblo",
+     "w": "tu pueblo",
      "h": [
       5
      ],
-     "i": 7,
-     "n": 3
+     "i": 8,
+     "n": 2
     }
    ]
   },
@@ -1165,28 +1166,21 @@
      "n": 3
     },
     {
-     "w": "que puedan llegar a ser",
+     "w": "llegar a ser",
      "h": [
       11
      ],
-     "i": 19,
-     "n": 5
+     "i": 21,
+     "n": 3
     },
     {
-     "w": "sus",
+     "w": "sus esposos",
      "h": [
-      12
-     ],
-     "i": 24,
-     "n": 1
-    },
-    {
-     "w": "esposos",
-     "h": [
+      12,
       13
      ],
-     "i": 25,
-     "n": 1
+     "i": 24,
+     "n": 2
     }
    ]
   },
@@ -1226,12 +1220,12 @@
      "n": 1
     },
     {
-     "w": "ya soy demasiado vieja",
+     "w": "demasiado vieja",
      "h": [
       4
      ],
-     "i": 5,
-     "n": 4
+     "i": 7,
+     "n": 2
     },
     {
      "w": "para tener",
@@ -1250,14 +1244,6 @@
      "n": 1
     },
     {
-     "w": "Y aunque",
-     "h": [
-      7
-     ],
-     "i": 12,
-     "n": 2
-    },
-    {
      "w": "dijera",
      "h": [
       8
@@ -1266,13 +1252,12 @@
      "n": 1
     },
     {
-     "w": "Todavía tengo",
+     "w": "tengo",
      "h": [
-      9,
-      10
+      9
      ],
-     "i": 15,
-     "n": 2
+     "i": 16,
+     "n": 1
     },
     {
      "w": "esperanza",
@@ -1283,12 +1268,12 @@
      "n": 1
     },
     {
-     "w": "y aunque",
+     "w": "y",
      "h": [
       12
      ],
      "i": 18,
-     "n": 2
+     "n": 1
     },
     {
      "w": "esta misma noche",
@@ -1344,25 +1329,26 @@
    "text": "¿los esperarían ustedes hasta que crecieran? ¿Se quedarían sin casarse por ellos? No, hijas mías; mi amargura es mucho mayor que la de ustedes, porque la mano del SEÑOR se ha levantado contra mí».",
    "map": [
     {
-     "w": "los",
-     "h": [
-      0
-     ],
-     "i": 0,
-     "n": 1
-    },
-    {
-     "w": "esperarían",
+     "w": "los esperarían",
      "h": [
       1
      ],
-     "i": 1,
+     "i": 0,
+     "n": 2
+    },
+    {
+     "w": "ustedes",
+     "h": [
+      0
+     ],
+     "i": 2,
      "n": 1
     },
     {
      "w": "hasta que",
      "h": [
-      2
+      2,
+      3
      ],
      "i": 3,
      "n": 2
@@ -1417,13 +1403,20 @@
      "n": 2
     },
     {
-     "w": "mi amargura",
+     "w": "mi",
      "h": [
-      13,
       14
      ],
      "i": 15,
-     "n": 2
+     "n": 1
+    },
+    {
+     "w": "amargura",
+     "h": [
+      13
+     ],
+     "i": 16,
+     "n": 1
     },
     {
      "w": "mucho mayor",
@@ -1487,12 +1480,20 @@
    "text": "Ellas volvieron a alzar la voz y a llorar. Luego Orfa besó a su suegra, pero Rut se aferró a ella.",
    "map": [
     {
-     "w": "volvieron a alzar",
+     "w": "volvieron a",
+     "h": [
+      3
+     ],
+     "i": 1,
+     "n": 2
+    },
+    {
+     "w": "alzar",
      "h": [
       0
      ],
-     "i": 1,
-     "n": 3
+     "i": 3,
+     "n": 1
     },
     {
      "w": "la voz",
@@ -1503,12 +1504,12 @@
      "n": 2
     },
     {
-     "w": "y a llorar",
+     "w": "llorar",
      "h": [
       2
      ],
-     "i": 6,
-     "n": 3
+     "i": 8,
+     "n": 1
     },
     {
      "w": "Orfa",
@@ -1564,12 +1565,12 @@
    "text": "Noemí le dijo: «Mira, tu cuñada vuelve a su pueblo y a sus dioses. Vuelve tú también con tu cuñada».",
    "map": [
     {
-     "w": "dijo",
+     "w": "le dijo",
      "h": [
       0
      ],
-     "i": 2,
-     "n": 1
+     "i": 1,
+     "n": 2
     },
     {
      "w": "Mira",
@@ -1596,22 +1597,36 @@
      "n": 1
     },
     {
-     "w": "a su pueblo",
+     "w": "a",
      "h": [
-      4,
-      5
+      4
      ],
      "i": 7,
-     "n": 3
+     "n": 1
     },
     {
-     "w": "y a sus dioses",
+     "w": "su pueblo",
      "h": [
-      6,
-      7
+      5
+     ],
+     "i": 8,
+     "n": 2
+    },
+    {
+     "w": "y a",
+     "h": [
+      6
      ],
      "i": 10,
-     "n": 4
+     "n": 2
+    },
+    {
+     "w": "sus dioses",
+     "h": [
+      7
+     ],
+     "i": 12,
+     "n": 2
     },
     {
      "w": "Vuelve",
@@ -1675,20 +1690,28 @@
      "n": 2
     },
     {
-     "w": "que te deje",
+     "w": "te",
      "h": [
       5
      ],
-     "i": 6,
-     "n": 3
+     "i": 7,
+     "n": 1
     },
     {
-     "w": "y que me vuelva",
+     "w": "deje",
+     "h": [
+      5
+     ],
+     "i": 8,
+     "n": 1
+    },
+    {
+     "w": "me vuelva",
      "h": [
       6
      ],
-     "i": 9,
-     "n": 4
+     "i": 11,
+     "n": 2
     },
     {
      "w": "atrás",
@@ -1734,8 +1757,7 @@
     {
      "w": "donde",
      "h": [
-      13,
-      14
+      13
      ],
      "i": 22,
      "n": 1
@@ -1749,12 +1771,12 @@
      "n": 3
     },
     {
-     "w": "la pasaré yo",
+     "w": "allí la pasaré yo",
      "h": [
       15
      ],
-     "i": 28,
-     "n": 3
+     "i": 27,
+     "n": 4
     },
     {
      "w": "Tu pueblo",
@@ -1773,12 +1795,12 @@
      "n": 2
     },
     {
-     "w": "y tu Dios",
+     "w": "tu Dios",
      "h": [
       18
      ],
-     "i": 36,
-     "n": 3
+     "i": 37,
+     "n": 2
     },
     {
      "w": "mi Dios",
@@ -1818,12 +1840,12 @@
      "n": 1
     },
     {
-     "w": "allí",
+     "w": "y allí",
      "h": [
       3
      ],
-     "i": 6,
-     "n": 1
+     "i": 5,
+     "n": 2
     },
     {
      "w": "seré sepultada",
@@ -1832,6 +1854,14 @@
      ],
      "i": 7,
      "n": 2
+    },
+    {
+     "w": "Que",
+     "h": [
+      5
+     ],
+     "i": 9,
+     "n": 1
     },
     {
      "w": "el SEÑOR",
@@ -1860,7 +1890,7 @@
     {
      "w": "así",
      "h": [
-      5
+      9
      ],
      "i": 14,
      "n": 1
@@ -1868,7 +1898,6 @@
     {
      "w": "y aún",
      "h": [
-      9,
       10
      ],
      "i": 15,
@@ -1899,13 +1928,13 @@
      "n": 2
     },
     {
-     "w": "de",
+     "w": "de ti",
      "h": [
       14,
       15
      ],
      "i": 26,
-     "n": 1
+     "n": 2
     }
    ]
   },
@@ -1929,14 +1958,6 @@
      "n": 1
     },
     {
-     "w": "Rut",
-     "h": [
-      3
-     ],
-     "i": 4,
-     "n": 1
-    },
-    {
      "w": "estaba decidida",
      "h": [
       2
@@ -1953,22 +1974,29 @@
      "n": 2
     },
     {
-     "w": "con",
+     "w": "con ella",
      "h": [
       5
      ],
      "i": 9,
-     "n": 1
+     "n": 2
     },
     {
-     "w": "dejó de insistirle",
+     "w": "dejó de",
      "h": [
-      6,
+      6
+     ],
+     "i": 11,
+     "n": 2
+    },
+    {
+     "w": "insistirle",
+     "h": [
       7,
       8
      ],
-     "i": 11,
-     "n": 3
+     "i": 13,
+     "n": 1
     }
    ]
   },
@@ -2017,20 +2045,13 @@
      "n": 2
     },
     {
-     "w": "Cuando",
+     "w": "Cuando entraron",
      "h": [
-      6
-     ],
-     "i": 10,
-     "n": 1
-    },
-    {
-     "w": "entraron",
-     "h": [
+      6,
       7
      ],
-     "i": 11,
-     "n": 1
+     "i": 10,
+     "n": 2
     },
     {
      "w": "en Belén",
@@ -2066,12 +2087,12 @@
      "n": 2
     },
     {
-     "w": "por causa de",
+     "w": "por causa de ellas",
      "h": [
       13
      ],
      "i": 19,
-     "n": 3
+     "n": 4
     },
     {
      "w": "decían",
@@ -2100,7 +2121,7 @@
    ]
   },
   "1:20": {
-   "text": "Ella les respondía: «No me llamen Noemí; llámenme Mara, porque el Todopoderoso me ha llenado de amargura.",
+   "text": "Ella les respondía: «No me llamen Noemí; llámenme Mara, porque el Todopoderoso ha hecho muy amarga mi vida.",
    "map": [
     {
      "w": "les",
@@ -2127,20 +2148,12 @@
      "n": 1
     },
     {
-     "w": "me",
-     "h": [
-      4
-     ],
-     "i": 4,
-     "n": 1
-    },
-    {
-     "w": "llamen",
+     "w": "me llamen",
      "h": [
       3
      ],
-     "i": 5,
-     "n": 1
+     "i": 4,
+     "n": 2
     },
     {
      "w": "Noemí",
@@ -2153,8 +2166,7 @@
     {
      "w": "llámenme",
      "h": [
-      6,
-      7
+      6
      ],
      "i": 7,
      "n": 1
@@ -2184,21 +2196,20 @@
      "n": 2
     },
     {
-     "w": "me",
+     "w": "ha hecho",
      "h": [
-      12
+      10
      ],
      "i": 12,
-     "n": 1
+     "n": 2
     },
     {
-     "w": "ha llenado de amargura",
+     "w": "muy",
      "h": [
-      10,
       13
      ],
-     "i": 13,
-     "n": 4
+     "i": 14,
+     "n": 1
     }
    ]
   },
@@ -2216,27 +2227,26 @@
     {
      "w": "me fui",
      "h": [
-      0,
       2
      ],
      "i": 1,
      "n": 2
     },
     {
-     "w": "vacía",
+     "w": "pero vacía",
      "h": [
       3
      ],
-     "i": 4,
-     "n": 1
+     "i": 3,
+     "n": 2
     },
     {
-     "w": "ha hecho volver",
+     "w": "me ha hecho volver",
      "h": [
       4
      ],
-     "i": 6,
-     "n": 3
+     "i": 5,
+     "n": 4
     },
     {
      "w": "el SEÑOR",
@@ -2255,20 +2265,12 @@
      "n": 2
     },
     {
-     "w": "me",
-     "h": [
-      8
-     ],
-     "i": 13,
-     "n": 1
-    },
-    {
-     "w": "llaman",
+     "w": "me llaman",
      "h": [
       7
      ],
-     "i": 14,
-     "n": 1
+     "i": 13,
+     "n": 2
     },
     {
      "w": "Noemí",
@@ -2295,36 +2297,28 @@
      "n": 3
     },
     {
-     "w": "contra",
+     "w": "contra mí",
      "h": [
       12
      ],
      "i": 22,
-     "n": 1
+     "n": 2
     },
     {
-     "w": "el Todopoderoso",
+     "w": "y el Todopoderoso",
      "h": [
       13
      ],
-     "i": 25,
-     "n": 2
+     "i": 24,
+     "n": 3
     },
     {
-     "w": "me",
-     "h": [
-      15
-     ],
-     "i": 27,
-     "n": 1
-    },
-    {
-     "w": "ha afligido",
+     "w": "me ha afligido",
      "h": [
       14
      ],
-     "i": 28,
-     "n": 2
+     "i": 27,
+     "n": 3
     }
    ]
   },
@@ -2332,12 +2326,12 @@
    "text": "Así volvió Noemí, y con ella Rut la moabita, su nuera, que volvía de los campos de Moab. Llegaron a Belén al comienzo de la cosecha de la cebada.",
    "map": [
     {
-     "w": "volvió",
+     "w": "Así volvió",
      "h": [
       0
      ],
-     "i": 1,
-     "n": 1
+     "i": 0,
+     "n": 2
     },
     {
      "w": "Noemí",
@@ -2406,7 +2400,6 @@
     {
      "w": "Llegaron",
      "h": [
-      9,
       10
      ],
      "i": 18,
