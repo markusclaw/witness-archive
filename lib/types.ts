@@ -50,8 +50,8 @@ export interface ExtractedDetails {
   source: string | null;
   description: string | null;
   category: string | null;
-  experienced: { date: string; precision: DatePrecision; evidence: string } | null;
-  location: { text: string; city: string | null; region: string | null; country: string | null; country_code: string | null; evidence: string } | null;
+  experienced: { date: string; precision: DatePrecision; evidence: string; confidence?: "high" | "low" } | null;
+  location: { text: string; city: string | null; region: string | null; country: string | null; country_code: string | null; evidence: string; confidence?: "high" | "low" } | null;
 }
 
 /** The subset a member edits; everything else is derived or server-managed. */

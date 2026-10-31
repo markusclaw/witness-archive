@@ -476,12 +476,12 @@ export default function TestimonyEditor({ existing, continueSeries }: Props) {
         setCategory(json.category);
         markSuggested("category");
       }
-      if (!experiencedOn && json.experienced) {
+      if (!experiencedOn && json.experienced && json.experienced.confidence !== "low") {
         setExperiencedOn(json.experienced.date);
         setPrecision(json.experienced.precision);
         markSuggested("experienced");
       }
-      if (!locationText.trim() && !locationCity.trim() && !locationCountry.trim() && json.location) {
+      if (!locationText.trim() && !locationCity.trim() && !locationCountry.trim() && json.location && json.location.confidence !== "low") {
         applyLocation(json.location);
         markSuggested("location");
       }
