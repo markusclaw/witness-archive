@@ -15,10 +15,10 @@ interface AnthropicResponse {
   error?: { message?: string };
 }
 
-export async function callClaude(opts: { system: string; user: string; maxTokens: number; timeoutMs?: number }): Promise<string> {
+export async function callClaude(opts: { system: string; user: string; maxTokens: number; timeoutMs?: number; model?: string }): Promise<string> {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) throw new ClaudeError("The assistant is not configured on this server.", "not_configured");
-  const model = process.env.ANTHROPIC_MODEL ?? "claude-sonnet-4-5";
+  const model = opts.model ?? process.env.ANTHROPIC_MODEL ?? "claude-sonnet-4-5";
   let res: Response;
   try {
     res = await fetch(process.env.ANTHROPIC_API_URL ?? "https://api.anthropic.com/v1/messages", {

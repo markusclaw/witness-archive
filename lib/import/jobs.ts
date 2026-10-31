@@ -6,7 +6,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { extractYouTubeId } from "@/lib/youtube";
 import { fetchVideoMeta, type VideoMeta } from "@/lib/video-meta";
-import { formatLongText } from "@/lib/ai/format";
+import { formatLongText, importFormatModel } from "@/lib/ai/format";
 import { extractDetails } from "@/lib/ai/extract";
 import { categoryByName } from "@/lib/categories";
 import { isSupportedLanguage } from "@/lib/languages";
@@ -230,7 +230,8 @@ async function runJob(admin: SupabaseClient, job: ImportJobRow, ownerId: string)
   }
 
   // 3. Readable text, then the catalog details.
-  const formatted = (await formatLongText(transcript.text)).formatted;
+  const { formatted, fallbacks } = await formatLongText(transcript.text, { model: importFormatModel() });
+  if (fallbacks) console.warn("import: formatting fell back to the default model", job.youtube_id, fallbacks);
   const details = await extractDetails(formatted, { video: { title: meta?.title, channel: meta?.author, publishedAt: meta?.publishedAt, description: meta?.description } });
 
   // 4. Publish.
