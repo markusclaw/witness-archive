@@ -87,10 +87,12 @@ Results:
 ### POST /imports/run
 
 ```json
-{ "max": 3, "seconds": 240 }
+{ "max": 1, "seconds": 240 }
 ```
 
 Both fields are optional. Returns `processed` (one entry per video) and `remaining`.
+
+Process **one video per call** (the default) and let each request run for up to 10 minutes. If you disconnect while a video is processing, the work is cut off. The job is retried after 15 minutes, and after 3 cut-offs it is marked `failed` with `reason_code: "timeout"`.
 
 ### GET /imports
 

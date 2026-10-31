@@ -4,8 +4,10 @@ import { processNext, type ProcessResult } from "@/lib/import/jobs";
 export const dynamic = "force-dynamic";
 
 /**
- * POST /api/v1/imports/run { "max"?: 1–10 (default 3), "seconds"?: 30–600 (default 240) }
+ * POST /api/v1/imports/run { "max"?: 1–10 (default 1), "seconds"?: 30–600 (default 240) }
  * Processes queued videos one after another and returns what happened.
+ * Keep the default of one video per call and wait up to 10 minutes for the
+ * response: if the caller disconnects mid-video, the work is cut off.
  * A new video is only started while the time budget lasts. Call repeatedly
  * (or from a scheduler) until remaining.queued is 0.
  */
@@ -14,7 +16,7 @@ export async function POST(req: Request) {
   if (caller instanceof Response) return caller;
   if (!process.env.ANTHROPIC_API_KEY) return apiError(503, "not_configured", "ANTHROPIC_API_KEY is not set on the server.");
   const body = (await req.json().catch(() => ({}))) as { max?: unknown; seconds?: unknown };
-  const max = Math.min(10, Math.max(1, Number(body.max) || 3));
+  const max = Math.min(10, Math.max(1, Number(body.max) || 1));
   const seconds = Math.min(600, Math.max(30, Number(body.seconds) || 240));
 
   const started = Date.now();

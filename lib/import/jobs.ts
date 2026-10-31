@@ -356,6 +356,7 @@ export function jobView(j: ImportJobRow, testimony: TestimonyRef | null = null) 
     batch_id: j.batch_id,
     created_at: j.created_at,
     updated_at: j.updated_at,
+    started_at: j.started_at,
     finished_at: j.finished_at,
     testimony,
   };
