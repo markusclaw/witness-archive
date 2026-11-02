@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { OPEN_BIBLE_REPO } from "@/lib/editions";
 import { BOOKS, bookSlug } from "@/lib/scripture";
 import { getVtProgress } from "@/lib/vt";
 
@@ -111,7 +112,14 @@ export default async function VtProjectPage() {
       <section className="mt-12 space-y-3 text-sm leading-relaxed text-parchment-500">
         <h2 className="eyebrow mb-1">Textos de partida y licencia</h2>
         <p>Antiguo Testamento: Códice de Leningrado (Westminster Leningrad Codex), dominio público. Nuevo Testamento: SBL Greek New Testament (CC BY 4.0). Referencia de contraste: Berean Standard Bible (dominio público).</p>
-        <p>La licencia de la Versión Testigo se definirá antes de su publicación. La intención es que sea libre para leer, citar, compartir e imprimir.</p>
+        <p>
+          La Versión Testigo se publica bajo la licencia{" "}
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es" className="text-gold-400 hover:text-gold-300" target="_blank" rel="noopener noreferrer">Creative Commons Atribución-CompartirIgual 4.0</a>. Cualquiera puede leerla, citarla, compartirla, imprimirla, adaptarla y usarla, también en aplicaciones y a través de la API, siempre que dé crédito a la Versión Testigo (Open Bible Translation) y mantenga las versiones modificadas bajo la misma licencia.
+        </p>
+        <p>
+          El texto, la guía de estilo, el glosario y el historial se publican abiertamente en{" "}
+          <a href={OPEN_BIBLE_REPO} className="text-gold-400 hover:text-gold-300" target="_blank" rel="noopener noreferrer">{OPEN_BIBLE_REPO.replace("https://", "")}</a>, con una API JSON gratuita.
+        </p>
       </section>
     </main>
   );

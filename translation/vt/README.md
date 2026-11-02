@@ -62,7 +62,7 @@ translation:
 
 ## Open decisions
 
-- License (public domain vs. CC BY-SA) — must be settled before publishing.
+- ~~License~~ — decided: CC BY-SA 4.0 (same as Open Source Bible).
 - Review committee: who, credentials, theological position.
 - Style guide v0.1 sign-off (especially «el SEÑOR», «amor leal», «de valía»).
 - Final name check against existing Spanish Bibles.

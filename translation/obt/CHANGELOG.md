@@ -1,5 +1,11 @@
 # Open Bible Translation (English) — changelog
 
+## 0.2 — Mark (New Testament)
+
+- STYLE.md §8: New Testament rules (SBL Greek, bracketed and missing verses, κύριος = Lord, Χριστός = the Messiah, Mark's «immediately», Aramaic words, names).
+- Glossary 0.2: Greek key terms and Mark's names; names can now apply to specific books.
+- License decided: CC BY-SA 4.0.
+
 ## 2026-10-20 — Ruth, AI draft 2
 
 After the BSB comparison: 4:5 "acquire" (keeps the legal force of קָנָה) and

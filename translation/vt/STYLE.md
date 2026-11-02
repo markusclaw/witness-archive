@@ -76,3 +76,70 @@ Each verse may carry short translator notes:
 `alternativa` (another defensible rendering), `texto` (textual variant),
 `significado` (meaning of a name or idiom), `medida`. Notes are part of the
 published translation and of the review.
+
+## 10. El Nuevo Testamento (desde Marcos)
+
+**Texto de partida.** Nuevo Testamento Griego SBL. Los pasajes que los
+editores ponen entre dobles corchetes ⟦ ⟧ son añadidos posteriores que
+aparecen en muchos manuscritos: el final breve dentro de Marcos 16:8 y Marcos
+16:9–20. Tradúcelos, y pon una nota de tipo `texto` al comienzo de cada uno:
+«Los manuscritos más antiguos terminan en 16:8. Este pasaje aparece en la
+mayoría de los manuscritos posteriores». Los versículos que el texto SBL no
+incluye (Marcos 7:16; 9:44, 46; 11:26; 15:28) no se traducen. El versículo
+anterior a cada uno lleva una nota de tipo `texto`: «Algunos manuscritos
+posteriores añaden el versículo N». Aunque recuerdes cómo dice ese versículo,
+no lo añadas.
+
+**Nombres y títulos de Dios y de Jesús.**
+
+| Griego | Traducción | Nota |
+|---|---|---|
+| κύριος (G2962) | Señor (de Dios o de Jesús); señor, amo, dueño (de personas) | No «SEÑOR» en mayúsculas, ni siquiera en citas del Antiguo Testamento. Pon una nota de tipo `significado` donde la cita tenga en hebreo el nombre divino. |
+| Χριστός (G5547) | el Mesías | En los evangelios es un título («el ungido»). En Marcos 1:1, añade una nota: «Mesías (en griego *Jristós*, "Cristo") significa "ungido"». |
+| υἱὸς τοῦ ἀνθρώπου | el Hijo del Hombre | |
+| υἱὸς θεοῦ | el Hijo de Dios | |
+| πνεῦμα ἅγιον | el Espíritu Santo | |
+| διδάσκαλε / ῥαββί | Maestro / Rabí | Usa «Rabí» donde el griego tiene la palabra aramea. |
+
+**Términos clave.** Tradúcelos siempre igual; el glosario tiene la lista
+completa.
+
+- βασιλεία τοῦ θεοῦ: el reino de Dios
+- εὐαγγέλιον: las buenas noticias (en 1:1, añade una nota: «o *evangelio*»)
+- ἀμὴν λέγω ὑμῖν: «En verdad les digo»
+- πνεῦμα ἀκάθαρτον: espíritu impuro; δαιμόνιον: demonio
+- βαπτίζω / βάπτισμα: bautizar / bautismo
+- μετανοέω: arrepentirse
+- πίστις / πιστεύω: fe / creer
+- ἐξουσία: autoridad
+- γραμματεῖς: los escribas (en la primera aparición, añade una nota: «expertos en la ley de Moisés»)
+
+**El «enseguida» de Marcos.** εὐθύς (G2117, 42 veces) es una marca del estilo
+de Marcos y le da ritmo al relato. Tradúcelo «enseguida», «al instante» o «de
+inmediato», sin omitirlo.
+
+**Arameo.** Conserva las palabras arameas que cita Marcos y luego da el
+significado que él mismo aporta:
+
+- *Talita cum* (5:41)
+- *Efatá* (7:34)
+- *Corbán* (7:11)
+- *Abba* (14:36)
+- *Eloí, Eloí, ¿lemá sabactani?* (15:34)
+- *Rabuni* (10:51)
+- *Boanerges* (3:17)
+- *Gólgota* (15:22)
+
+**Nombres.** Usa las formas tradicionales en español:
+
+- Jesús, Juan, Simón, Pedro, Andrés, Santiago (el apóstol; nunca «Jacobo»),
+  Zebedeo, Leví, Alfeo, Felipe, Bartolomé, Mateo, Tomás, Tadeo, Judas
+  Iscariote, Simón el Zelote (Καναναῖος, con una nota de tipo `significado`)
+- María Magdalena, Salomé, José (Ἰωσῆς), Jairo, Bartimeo, Timeo, José de
+  Arimatea, Simón de Cirene, Alejandro, Rufo
+- Herodes, Herodías, Pilato, Barrabás, César, Elías, Moisés, Isaías, David,
+  Abiatar, Abraham, Isaac, Jacob (el patriarca), Beelzebú, Satanás, Legión
+- Galilea, Capernaúm, Nazaret, Judea, Jerusalén, el Jordán, Idumea, Tiro,
+  Sidón, Decápolis, Genesaret, los gerasenos, Betsaida, Dalmanuta, Cesarea de
+  Filipo, Jericó, Betfagé, Betania, Getsemaní
+- fariseos, saduceos, herodianos, sirofenicia

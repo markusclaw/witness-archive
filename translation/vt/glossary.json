@@ -1,35 +1,494 @@
 {
-  "version": "0.1",
+  "version": "0.2",
   "status": "proposed — needs committee sign-off",
   "terms": [
-    { "strongs": "H3068", "lemma": "יהוה", "es": ["SEÑOR"], "severity": "error", "note": "The divine name: always «el SEÑOR» in capitals. Never «Jehová» or «Yahvé» in the text." },
-    { "strongs": "H7706", "lemma": "שַׁדַּי", "es": ["Todopoderoso"], "severity": "error", "note": "Shaddai: «el Todopoderoso»." },
-    { "strongs": "H2617", "lemma": "חֶסֶד", "es": ["amor leal"], "severity": "warn", "note": "Covenant loyalty shown in action. «amor leal» everywhere so readers can follow the theme; alternatives go in notes." },
-    { "strongs": "H1350", "lemma": "גָּאַל", "es": ["redent", "redim", "redenci"], "severity": "warn", "note": "Kinsman-redeemer: noun «pariente redentor» / «redentor», verb «redimir», «derecho de redención»." },
-    { "strongs": "H3671", "lemma": "כָּנָף", "es": ["ala"], "severity": "warn", "note": "Ruth 2:12 (God's wings) and 3:9 (the corner of Boaz's cloak) are the same word: keep «ala» in both." },
-    { "strongs": "H2428", "lemma": "חַיִל", "es": ["valía"], "severity": "warn", "note": "Ruth 2:1, 3:11, 4:11: «de valía» links Boaz and Ruth." },
-    { "strongs": "H7387", "lemma": "רֵיקָם", "es": ["vací"], "severity": "warn", "note": "«vacía(s)»: Naomi came back empty (1:21); Ruth must not go back empty (3:17)." },
-    { "strongs": "H4496", "lemma": "מְנוּחָה", "es": ["descanso"], "severity": "info", "note": "Rest / a secure home (1:9, 3:1)." },
-    { "strongs": "H4494", "lemma": "מָנוֹחַ", "es": ["descanso"], "severity": "info", "note": "Rest / a secure home (3:1)." },
-    { "strongs": "H1692", "lemma": "דָּבַק", "es": ["aferr", "junto a"], "severity": "info", "note": "To cling / stay close: «aferrarse» (1:14) or «quedarse junto a» (2:8, 2:21, 2:23)." },
-    { "strongs": "H7725", "lemma": "שׁוּב", "es": ["volv", "vuelv", "volver"], "severity": "info", "note": "The key verb of Ruth 1 (twelve times): «volver» wherever it means return." }
+    {
+      "strongs": "H3068",
+      "lemma": "יהוה",
+      "es": [
+        "SEÑOR"
+      ],
+      "severity": "error",
+      "note": "The divine name: always «el SEÑOR» in capitals. Never «Jehová» or «Yahvé» in the text."
+    },
+    {
+      "strongs": "H7706",
+      "lemma": "שַׁדַּי",
+      "es": [
+        "Todopoderoso"
+      ],
+      "severity": "error",
+      "note": "Shaddai: «el Todopoderoso»."
+    },
+    {
+      "strongs": "H2617",
+      "lemma": "חֶסֶד",
+      "es": [
+        "amor leal"
+      ],
+      "severity": "warn",
+      "note": "Covenant loyalty shown in action. «amor leal» everywhere so readers can follow the theme; alternatives go in notes."
+    },
+    {
+      "strongs": "H1350",
+      "lemma": "גָּאַל",
+      "es": [
+        "redent",
+        "redim",
+        "redenci"
+      ],
+      "severity": "warn",
+      "note": "Kinsman-redeemer: noun «pariente redentor» / «redentor», verb «redimir», «derecho de redención»."
+    },
+    {
+      "strongs": "H3671",
+      "lemma": "כָּנָף",
+      "es": [
+        "ala"
+      ],
+      "severity": "warn",
+      "note": "Ruth 2:12 (God's wings) and 3:9 (the corner of Boaz's cloak) are the same word: keep «ala» in both."
+    },
+    {
+      "strongs": "H2428",
+      "lemma": "חַיִל",
+      "es": [
+        "valía"
+      ],
+      "severity": "warn",
+      "note": "Ruth 2:1, 3:11, 4:11: «de valía» links Boaz and Ruth."
+    },
+    {
+      "strongs": "H7387",
+      "lemma": "רֵיקָם",
+      "es": [
+        "vací"
+      ],
+      "severity": "warn",
+      "note": "«vacía(s)»: Naomi came back empty (1:21); Ruth must not go back empty (3:17)."
+    },
+    {
+      "strongs": "H4496",
+      "lemma": "מְנוּחָה",
+      "es": [
+        "descanso"
+      ],
+      "severity": "info",
+      "note": "Rest / a secure home (1:9, 3:1)."
+    },
+    {
+      "strongs": "H4494",
+      "lemma": "מָנוֹחַ",
+      "es": [
+        "descanso"
+      ],
+      "severity": "info",
+      "note": "Rest / a secure home (3:1)."
+    },
+    {
+      "strongs": "H1692",
+      "lemma": "דָּבַק",
+      "es": [
+        "aferr",
+        "junto a"
+      ],
+      "severity": "info",
+      "note": "To cling / stay close: «aferrarse» (1:14) or «quedarse junto a» (2:8, 2:21, 2:23)."
+    },
+    {
+      "strongs": "H7725",
+      "lemma": "שׁוּב",
+      "es": [
+        "volv",
+        "vuelv",
+        "volver"
+      ],
+      "severity": "info",
+      "note": "The key verb of Ruth 1 (twelve times): «volver» wherever it means return."
+    },
+    {
+      "strongs": "G2098",
+      "lemma": "εὐαγγέλιον",
+      "es": [
+        "buenas noticias",
+        "buena noticia"
+      ],
+      "severity": "warn",
+      "note": "«las buenas noticias»; nota «o evangelio» en 1:1."
+    },
+    {
+      "strongs": "G5547",
+      "lemma": "Χριστός",
+      "es": [
+        "Mesías"
+      ],
+      "severity": "warn",
+      "note": "Título en los evangelios: «el Mesías»."
+    },
+    {
+      "strongs": "G932",
+      "lemma": "βασιλεία",
+      "es": [
+        "reino"
+      ],
+      "severity": "warn",
+      "note": "«el reino de Dios»."
+    },
+    {
+      "strongs": "G2117",
+      "lemma": "εὐθύς",
+      "es": [
+        "enseguida",
+        "en seguida",
+        "al instante",
+        "de inmediato",
+        "inmediatamente"
+      ],
+      "severity": "warn",
+      "note": "El «enseguida» de Marcos — no omitirlo."
+    },
+    {
+      "strongs": "G281",
+      "lemma": "ἀμήν",
+      "es": [
+        "En verdad"
+      ],
+      "severity": "warn",
+      "note": "«En verdad les digo»."
+    },
+    {
+      "strongs": "G169",
+      "lemma": "ἀκάθαρτος",
+      "es": [
+        "impur"
+      ],
+      "severity": "warn",
+      "note": "«espíritu impuro»."
+    },
+    {
+      "strongs": "G1140",
+      "lemma": "δαιμόνιον",
+      "es": [
+        "demonio"
+      ],
+      "severity": "warn",
+      "note": "«demonio(s)»."
+    },
+    {
+      "strongs": "G907",
+      "lemma": "βαπτίζω",
+      "es": [
+        "bautiz"
+      ],
+      "severity": "warn",
+      "note": "«bautizar» (o «lavar» en 7:4, con nota)."
+    },
+    {
+      "strongs": "G908",
+      "lemma": "βάπτισμα",
+      "es": [
+        "bautismo"
+      ],
+      "severity": "warn",
+      "note": "«bautismo»."
+    },
+    {
+      "strongs": "G3340",
+      "lemma": "μετανοέω",
+      "es": [
+        "arrepent"
+      ],
+      "severity": "warn",
+      "note": "«arrepentirse»."
+    },
+    {
+      "strongs": "G1849",
+      "lemma": "ἐξουσία",
+      "es": [
+        "autoridad"
+      ],
+      "severity": "warn",
+      "note": "«autoridad»."
+    },
+    {
+      "strongs": "G1122",
+      "lemma": "γραμματεύς",
+      "es": [
+        "escriba"
+      ],
+      "severity": "warn",
+      "note": "«los escribas»; nota en la primera aparición."
+    },
+    {
+      "strongs": "G4102",
+      "lemma": "πίστις",
+      "es": [
+        "fe"
+      ],
+      "severity": "info",
+      "note": "«fe»."
+    },
+    {
+      "strongs": "G4100",
+      "lemma": "πιστεύω",
+      "es": [
+        "cre",
+        "confi",
+        "fe"
+      ],
+      "severity": "info",
+      "note": "«creer»."
+    },
+    {
+      "strongs": "G4567",
+      "lemma": "Σατανᾶς",
+      "es": [
+        "Satanás"
+      ],
+      "severity": "error",
+      "note": "«Satanás»."
+    },
+    {
+      "strongs": "G4982",
+      "lemma": "σῴζω",
+      "es": [
+        "salv",
+        "san",
+        "bien",
+        "libr"
+      ],
+      "severity": "info",
+      "note": "«salvar» o «sanar» según el contexto; nota cuando estén presentes ambos sentidos."
+    }
   ],
   "names": [
-    { "es": "Noemí", "avoid": ["Noemi\\b", "Naomi", "Nohemí"] },
-    { "es": "Rut", "avoid": ["Ruth"] },
-    { "es": "Orfa", "avoid": ["Orpa"] },
-    { "es": "Booz", "avoid": ["Boaz", "Booz\\u0301"] },
-    { "es": "Elimelec", "avoid": ["Elimelech", "Elimélec"] },
-    { "es": "Mahlón", "avoid": ["Mahlon\\b", "Majlón"] },
-    { "es": "Quelión", "avoid": ["Kilión", "Quilión", "Chilion"] },
-    { "es": "Belén", "avoid": ["Belen\\b", "Bethlehem", "Bet Lejem"] },
-    { "es": "Isaí", "avoid": ["Jesé", "Isai\\b"] },
-    { "es": "Hezrón", "avoid": ["Esrom", "Jezrón"] },
-    { "es": "Naasón", "avoid": ["Najsón"] }
+    {
+      "es": "Noemí",
+      "avoid": [
+        "Noemi\\b",
+        "Naomi",
+        "Nohemí"
+      ],
+      "books": [
+        7
+      ]
+    },
+    {
+      "es": "Rut",
+      "avoid": [
+        "Ruth"
+      ],
+      "books": [
+        7
+      ]
+    },
+    {
+      "es": "Orfa",
+      "avoid": [
+        "Orpa"
+      ],
+      "books": [
+        7
+      ]
+    },
+    {
+      "es": "Booz",
+      "avoid": [
+        "Boaz",
+        "Booz\\u0301"
+      ],
+      "books": [
+        7
+      ]
+    },
+    {
+      "es": "Elimelec",
+      "avoid": [
+        "Elimelech",
+        "Elimélec"
+      ],
+      "books": [
+        7
+      ]
+    },
+    {
+      "es": "Mahlón",
+      "avoid": [
+        "Mahlon\\b",
+        "Majlón"
+      ],
+      "books": [
+        7
+      ]
+    },
+    {
+      "es": "Quelión",
+      "avoid": [
+        "Kilión",
+        "Quilión",
+        "Chilion"
+      ],
+      "books": [
+        7
+      ]
+    },
+    {
+      "es": "Belén",
+      "avoid": [
+        "Belen\\b",
+        "Bethlehem",
+        "Bet Lejem"
+      ],
+      "books": [
+        7
+      ]
+    },
+    {
+      "es": "Isaí",
+      "avoid": [
+        "Jesé",
+        "Isai\\b"
+      ],
+      "books": [
+        7
+      ]
+    },
+    {
+      "es": "Hezrón",
+      "avoid": [
+        "Esrom",
+        "Jezrón"
+      ],
+      "books": [
+        7
+      ]
+    },
+    {
+      "es": "Naasón",
+      "avoid": [
+        "Najsón"
+      ],
+      "books": [
+        7
+      ]
+    },
+    {
+      "es": "Santiago",
+      "avoid": [
+        "Jacobo"
+      ],
+      "books": [
+        40
+      ]
+    },
+    {
+      "es": "Capernaúm",
+      "avoid": [
+        "Cafarnaúm",
+        "Capernaum\\b",
+        "Cafarnaum"
+      ],
+      "books": [
+        40
+      ]
+    },
+    {
+      "es": "Getsemaní",
+      "avoid": [
+        "Getsemani\\b",
+        "Gethsemaní"
+      ],
+      "books": [
+        40
+      ]
+    },
+    {
+      "es": "Beelzebú",
+      "avoid": [
+        "Beelzebul",
+        "Belcebú"
+      ],
+      "books": [
+        40
+      ]
+    },
+    {
+      "es": "Gólgota",
+      "avoid": [
+        "Golgota\\b",
+        "Gólgotha"
+      ],
+      "books": [
+        40
+      ]
+    },
+    {
+      "es": "Bartimeo",
+      "avoid": [
+        "Bartimaeus"
+      ],
+      "books": [
+        40
+      ]
+    },
+    {
+      "es": "Iscariote",
+      "avoid": [
+        "Iscariot\\b"
+      ],
+      "books": [
+        40
+      ]
+    },
+    {
+      "es": "gerasenos",
+      "avoid": [
+        "gadarenos",
+        "gergesenos"
+      ],
+      "books": [
+        40
+      ]
+    },
+    {
+      "es": "Mesías",
+      "avoid": [
+        "\\bCristo\\b(?! \\()"
+      ],
+      "books": [
+        40
+      ]
+    },
+    {
+      "es": "Pilato",
+      "avoid": [
+        "Pilatos"
+      ],
+      "books": [
+        40
+      ]
+    }
   ],
   "forbidden": [
-    { "pattern": "\\bvosotr|\\bos\\s|habéis|tenéis|estáis|\\bsois\\b", "message": "Use «ustedes», not «vosotros»." },
-    { "pattern": "Jehová|Yahv[eé]|Yahweh", "message": "The divine name is «el SEÑOR»." },
-    { "pattern": "\\bhe aquí\\b|\\bempero\\b", "message": "Archaism — use contemporary Spanish." }
+    {
+      "pattern": "\\bvosotr|\\bos\\s|habéis|tenéis|estáis|\\bsois\\b",
+      "message": "Use «ustedes», not «vosotros»."
+    },
+    {
+      "pattern": "Jehová|Yahv[eé]|Yahweh",
+      "message": "The divine name is «el SEÑOR»."
+    },
+    {
+      "pattern": "\\bhe aquí\\b|\\bempero\\b",
+      "message": "Archaism — use contemporary Spanish."
+    },
+    {
+      "pattern": "(?<!\\p{L})SEÑOR(?!\\p{L})",
+      "message": "En el Nuevo Testamento κύριος es «Señor», no «SEÑOR».",
+      "books": [
+        40
+      ],
+      "caseSensitive": true
+    }
   ]
 }

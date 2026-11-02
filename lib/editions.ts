@@ -6,6 +6,9 @@
 
 export type EditionCode = "obt" | "vt";
 
+/** The open repository (text, style guides, glossaries, JSON API). */
+export const OPEN_BIBLE_REPO = "https://github.com/markusclaw/open-bible-translation";
+
 export interface Edition {
   code: EditionCode;
   /** Reader language. */
@@ -35,6 +38,10 @@ export interface Edition {
     reviewLink: string;
     readerLink: string;
     otherEdition: string;
+    contents: string;
+    contentsIntro: string;
+    verses: (n: number) => string;
+    backToContents: string;
     status: Record<"draft" | "reviewed" | "approved", string>;
     kind: Record<"ai_draft" | "edit" | "review" | "approval", string>;
     noteType: Record<string, string>;
@@ -87,6 +94,10 @@ export const EDITIONS: Record<EditionCode, Edition> = {
       reviewLink: "Verse-by-verse review",
       readerLink: "Open in the reader",
       otherEdition: "Leer en español: Versión Testigo",
+      contents: "Contents",
+      contentsIntro: "The books translated so far. Each is an unreviewed draft, made directly from the Hebrew or Greek and checked line by line.",
+      verses: (n) => `${n} verses`,
+      backToContents: "← Contents",
       status: { draft: "Draft", reviewed: "Reviewed", approved: "Approved" },
       kind: { ai_draft: "AI draft", edit: "Correction", review: "Review", approval: "Approval" },
       noteType: { alternative: "Alternative", text: "Text", meaning: "Meaning", measure: "Measure" },
@@ -138,6 +149,10 @@ export const EDITIONS: Record<EditionCode, Edition> = {
       reviewLink: "Revisión versículo por versículo",
       readerLink: "Abrir en el lector",
       otherEdition: "Read in English: Open Bible Translation",
+      contents: "Contenido",
+      contentsIntro: "Los libros traducidos hasta ahora. Cada uno es un borrador sin revisar, hecho directamente desde el hebreo o el griego y revisado línea por línea por las comprobaciones automáticas.",
+      verses: (n) => `${n} versículos`,
+      backToContents: "← Contenido",
       status: { draft: "Borrador", reviewed: "Revisado", approved: "Aprobado" },
       kind: { ai_draft: "Borrador de IA", edit: "Corrección", review: "Revisión", approval: "Aprobación" },
       noteType: { alternativa: "Alternativa", texto: "Texto", significado: "Significado", medida: "Medida" },

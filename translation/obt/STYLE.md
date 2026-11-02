@@ -58,3 +58,69 @@ As in the Spanish guide: render by context and don't add or remove gendered
 language; keep ancient units with a modern equivalent in a note (an ephah —
 about 20 liters / 5 gallons); dialogue in "double quotes" with 'single'
 inside; notes typed `alternative`, `text`, `meaning`, `measure`.
+
+## 8. The New Testament (from Mark onward)
+
+**Source.** SBL Greek New Testament. Passages the SBL editors put in double
+brackets ⟦ ⟧ are later additions found in many manuscripts: the shorter ending
+inside Mark 16:8, and Mark 16:9–20. Translate them, and put a `text` note at
+the start of each: "The earliest manuscripts end at 16:8. This passage is found
+in most later manuscripts." Verses that the SBL text leaves out entirely (Mark
+7:16; 9:44, 46; 11:26; 15:28) are not translated. The verse before each one
+gets a `text` note: "Some later manuscripts add verse N." If you remember the
+verse's wording, don't add it.
+
+**Names and titles of God and Jesus.**
+
+| Greek | Rendering | Note |
+|---|---|---|
+| κύριος (G2962) | Lord (of God or Jesus); lord, master, owner (of people) | Not "LORD" in capitals, even in Old Testament quotations. Add a `meaning` note where a quotation has the divine name in Hebrew. |
+| Χριστός (G5547) | the Messiah | In the Gospels it is a title ("the anointed one"). At Mark 1:1, add a note: "Messiah (Greek *Christos*, 'Christ') means 'anointed one.'" |
+| υἱὸς τοῦ ἀνθρώπου | the Son of Man | |
+| υἱὸς θεοῦ | the Son of God | |
+| πνεῦμα ἅγιον | the Holy Spirit | |
+| διδάσκαλε / ῥαββί | Teacher / Rabbi | Keep "Rabbi" where the Greek has the Aramaic word. |
+
+**Key terms.** Render these the same way throughout, so readers can follow
+them; the glossary has the full list.
+
+- βασιλεία τοῦ θεοῦ: the kingdom of God
+- εὐαγγέλιον: the good news (at 1:1, add a note: "or *gospel*")
+- ἀμὴν λέγω ὑμῖν: "Truly I tell you"
+- πνεῦμα ἀκάθαρτον: unclean spirit; δαιμόνιον: demon
+- βαπτίζω / βάπτισμα: baptize / baptism
+- μετανοέω: repent
+- πίστις / πιστεύω: faith / believe
+- ἐξουσία: authority
+- γραμματεῖς: the scribes (at the first occurrence, add a note: "experts in the law of Moses")
+
+**Mark's "immediately."** εὐθύς (G2117, 42 times) is a mark of Mark's style
+and gives the story its pace. Render it "immediately", "at once" or "right
+away", and don't drop it. Where it only joins events ("and then"), you may
+write "just then" and add a `meaning` note.
+
+**Aramaic.** Keep the Aramaic words Mark quotes, then give the meaning he
+supplies:
+
+- *Talitha koum* (5:41)
+- *Ephphatha* (7:34)
+- *Corban* (7:11)
+- *Abba* (14:36)
+- *Eloi, Eloi, lema sabachthani* (15:34)
+- *Rabbouni* (10:51)
+- *Boanerges* (3:17)
+- *Golgotha* (15:22)
+
+**Names.** Use standard English forms:
+
+- Jesus, John, Simon, Peter, Andrew, James, Zebedee, Levi, Alphaeus, Philip,
+  Bartholomew, Matthew, Thomas, Thaddaeus, Judas Iscariot, Simon the Zealot
+  (Καναναῖος — with a `meaning` note)
+- Mary Magdalene, Salome, Joses, Jairus, Bartimaeus, Timaeus, Joseph of
+  Arimathea, Simon of Cyrene, Alexander, Rufus
+- Herod, Herodias, Pilate, Barabbas, Caesar, Elijah, Moses, Isaiah, David,
+  Abiathar, Abraham, Isaac, Jacob, Beelzebul, Satan, Legion
+- Galilee, Capernaum, Nazareth, Judea, Jerusalem, the Jordan, Idumea, Tyre,
+  Sidon, the Decapolis, Gennesaret, the Gerasenes, Bethsaida, Dalmanutha,
+  Caesarea Philippi, Jericho, Bethphage, Bethany, Gethsemane
+- Pharisees, Sadducees, Herodians, Syrophoenician

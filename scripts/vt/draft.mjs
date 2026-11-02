@@ -71,7 +71,8 @@ function packet(ref) {
     const lex = w.strongs ? lexiconEntry(w.strongs) : null;
     if (w.strongs) seen.add(w.strongs);
     const gloss = lex ? `${lex.lemma} (${lex.translit}): ${(lex.definition || "").slice(0, 90)} | ${(lex.kjv || "").slice(0, 60)}` : "";
-    return `  ${w.text}  [${w.strongs ?? "-"} ${w.morph}]  ${gloss}`;
+    // SBLGNT marks variant readings with ⸀⸁⸂⸃⸄⸅ — not part of the text. Double brackets ⟦ ⟧ are kept (see STYLE.md).
+    return `  ${w.text.replace(/[⸀⸁⸂⸃⸄⸅]/g, "")}  [${w.strongs ?? "-"} ${w.morph}]  ${gloss}`;
   });
   const terms = glossary.terms.filter((t) => seen.has(t.strongs)).map((t) => `  ${t.strongs} ${t.lemma} → ${t.es.join(" / ")}: ${t.note}`);
   return `### ${ref}\n${lines.join("\n")}${terms.length ? `\n  Glosario:\n${terms.join("\n")}` : ""}`;
@@ -87,7 +88,21 @@ if (!refs.length) {
   process.exit(1);
 }
 
-const names = glossary.names.map((n) => n.es).join(", ");
+const names = glossary.names.filter((n) => !n.books || n.books.includes(book)).map((n) => n.es).join(", ");
+
+/** Verse numbers missing from the source text inside a chapter (e.g. Mark 7:16), keyed by the verse before them. */
+const gaps = new Map();
+{
+  const byChapter = new Map();
+  for (const r of words.keys()) {
+    const [c, v] = r.split(":").map(Number);
+    byChapter.set(c, [...(byChapter.get(c) ?? []), v]);
+  }
+  for (const [c, vs] of byChapter) {
+    vs.sort((a, b) => a - b);
+    for (let i = 1; i < vs.length; i++) for (let m = vs[i - 1] + 1; m < vs[i]; m++) gaps.set(`${c}:${vs[i - 1]}`, [...(gaps.get(`${c}:${vs[i - 1]}`) ?? []), m]);
+  }
+}
 for (let i = 0; i < refs.length; i += CHUNK) {
   const chunk = refs.slice(i, i + CHUNK);
   const before = refs.slice(Math.max(0, i - 4), i).map((r) => drafted.get(r)).filter(Boolean);
@@ -95,6 +110,15 @@ for (let i = 0; i < refs.length; i += CHUNK) {
     EDITION.language === "es" ? `Libro: ${OSIS[book]}. Traduce estos versículos.` : `Book: ${OSIS[book]}. Translate these verses.`,
     EDITION.language === "es" ? `Nombres propios (grafía obligatoria): ${names}.` : `Proper names (required spelling): ${names}.`,
     before.length ? `${EDITION.language === "es" ? "Contexto (ya traducido)" : "Context (already translated)"}:\n${before.map((v) => `${v.ref} ${v.text}`).join("\n")}` : "",
+    ...chunk
+      .filter((r) => gaps.has(r))
+      .map((r) => {
+        const [c] = r.split(":");
+        const missing = gaps.get(r).map((m) => `${c}:${m}`).join(", ");
+        return EDITION.language === "es"
+          ? `Aviso: el texto griego SBL no incluye ${missing}. No lo traduzcas; añade a ${r} una nota de tipo texto (ver la guía de estilo).`
+          : `Note: the SBL Greek text does not include ${missing}. Don't translate it; add a text note to ${r} (see the style guide).`;
+      }),
     chunk.map(packet).join("\n\n"),
   ]
     .filter(Boolean)

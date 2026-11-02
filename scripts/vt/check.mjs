@@ -55,14 +55,14 @@ for (const v of draft.verses) {
     const ok = t.es.some((e) => (e !== e.toLowerCase() ? v.text.includes(e) : fold(v.text).includes(fold(e))));
     if (!ok) add(v.ref, "glossary", t.severity, `${t.strongs} ${t.lemma} should be rendered «${t.es.join("» / «")}».`, { strongs: t.strongs });
   }
-  for (const n of glossary.names) {
+  for (const n of glossary.names.filter((n) => !n.books || n.books.includes(book))) {
     for (const bad of n.avoid) {
       const m = v.text.match(new RegExp(bad, "u"));
       if (m) add(v.ref, "names", "error", `Spell «${n.es}», not «${m[0]}».`);
     }
   }
-  for (const f of glossary.forbidden) {
-    if (new RegExp(f.pattern, "iu").test(v.text)) add(v.ref, "style", "error", f.message);
+  for (const f of glossary.forbidden.filter((f) => !f.books || f.books.includes(book))) {
+    if (new RegExp(f.pattern, f.caseSensitive ? "u" : "iu").test(v.text)) add(v.ref, "style", "error", f.message);
   }
 }
 

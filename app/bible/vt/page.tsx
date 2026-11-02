@@ -4,8 +4,8 @@ import EditionHome from "@/components/edition/EditionHome";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Rut — Versión Testigo",
-  description: "El libro de Rut en la Versión Testigo, la edición en español de la Open Bible Translation, traducida desde el hebreo.",
+  title: "Versión Testigo",
+  description: "La edición en español de la Open Bible Translation, traducida directamente del hebreo y el griego — borrador en desarrollo.",
   // In progress: shared by link, not listed in search engines yet.
   robots: { index: false, follow: false },
 };

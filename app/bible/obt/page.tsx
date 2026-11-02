@@ -4,8 +4,8 @@ import EditionHome from "@/components/edition/EditionHome";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Ruth — Open Bible Translation",
-  description: "The book of Ruth in the Open Bible Translation, an open English translation made directly from the Hebrew.",
+  title: "Open Bible Translation",
+  description: "An open English Bible translated directly from the Hebrew and Greek — draft in progress.",
   // In progress: shared by link, not listed in search engines yet.
   robots: { index: false, follow: false },
 };

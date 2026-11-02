@@ -4,6 +4,12 @@ Changes to the style guide, the glossary and the drafting prompt. Changes to
 individual verses are recorded in the database (`translation_revisions`) and
 shown on each verse's review page.
 
+## 0.2 — Marcos (Nuevo Testamento)
+
+- STYLE.md §10: reglas del Nuevo Testamento (griego SBL, versículos entre corchetes y ausentes, κύριος = Señor, Χριστός = el Mesías, el «enseguida» de Marcos, palabras arameas, nombres).
+- Glosario 0.2: términos griegos clave y nombres de Marcos; los nombres pueden aplicarse a libros concretos.
+- Licencia decidida: CC BY-SA 4.0.
+
 ## 2026-10-20 — Ruth, AI draft 2
 
 After the BSB comparison: 1:20 reworded («ha hecho muy amarga mi vida», keeping

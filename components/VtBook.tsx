@@ -103,7 +103,7 @@ export default function VtBook({ edition: code, book, slug, layout, chapters }: 
             </button>
           </p>
         )}
-        <nav className="mt-6 flex justify-center gap-2" aria-label={ui.chapters}>
+        <nav className="mx-auto mt-6 flex max-w-md flex-wrap justify-center gap-2" aria-label={ui.chapters}>
           {chapters.map((c) => (
             <a key={c.chapter} href={`#c${c.chapter}`} className="font-display flex h-9 w-9 items-center justify-center rounded-full border border-ink-600 text-parchment-300 hover:border-gold-500/60 hover:text-gold-300">
               {c.chapter}

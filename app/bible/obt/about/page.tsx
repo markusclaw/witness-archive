@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { OPEN_BIBLE_REPO } from "@/lib/editions";
 import { BOOKS, bookSlug } from "@/lib/scripture";
 import { getVtProgress } from "@/lib/vt";
 
@@ -111,7 +112,14 @@ export default async function ObtAboutPage() {
       <section className="mt-12 space-y-3 text-sm leading-relaxed text-parchment-500">
         <h2 className="eyebrow mb-1">Source texts and license</h2>
         <p>Old Testament: Westminster Leningrad Codex, public domain. New Testament: SBL Greek New Testament (CC BY 4.0). Reference for comparison: Berean Standard Bible (public domain).</p>
-        <p>The license will be settled before publication. The intent is for it to be free to read, quote, share and print.</p>
+        <p>
+          The Open Bible Translation is licensed under{" "}
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/" className="text-gold-400 hover:text-gold-300" target="_blank" rel="noopener noreferrer">Creative Commons Attribution-ShareAlike 4.0</a>. Anyone may read, quote, share, print, adapt and build on it, including in apps and through the API, as long as they credit the Open Bible Translation and keep changed versions under the same license.
+        </p>
+        <p>
+          The text, style guide, glossary and history are published openly at{" "}
+          <a href={OPEN_BIBLE_REPO} className="text-gold-400 hover:text-gold-300" target="_blank" rel="noopener noreferrer">{OPEN_BIBLE_REPO.replace("https://", "")}</a>, with a free JSON API.
+        </p>
       </section>
     </main>
   );
