@@ -7,7 +7,7 @@
  *   node scripts/vt/export.mjs ~/code/open-bible-translation
  *
  * What it writes (the "v1" API — once pushed to GitHub it is served free at
- * https://cdn.jsdelivr.net/gh/markusclaw/open-bible-translation@main/v1/...):
+ * https://cdn.jsdelivr.net/gh/gregindeed/open-bible-translation@main/v1/...):
  *
  *   v1/editions.json                 every edition and its books
  *   v1/<edition>/<book>.json         a whole book
@@ -25,7 +25,7 @@ import path from "node:path";
 import os from "node:os";
 import { EDITIONS, OSIS, root, supabase } from "./lib.mjs";
 
-const REPO = "markusclaw/open-bible-translation";
+const REPO = "gregindeed/open-bible-translation";
 const CDN = `https://cdn.jsdelivr.net/gh/${REPO}@main`;
 const LICENSE_URL = "https://creativecommons.org/licenses/by-sa/4.0/";
 const out = path.resolve((process.argv[2] ?? path.join(root, "..", "open-bible-translation")).replace(/^~(?=$|\/)/, os.homedir()));
@@ -38,8 +38,8 @@ for (const m of readFileSync(path.join(root, "lib", "scripture.ts"), "utf8").mat
 }
 
 const ATTRIBUTION = {
-  obt: "Open Bible Translation (OBT), github.com/markusclaw/open-bible-translation — CC BY-SA 4.0",
-  vt: "Versión Testigo (VT), edición en español de la Open Bible Translation, github.com/markusclaw/open-bible-translation — CC BY-SA 4.0",
+  obt: "Open Bible Translation (OBT), github.com/gregindeed/open-bible-translation — CC BY-SA 4.0",
+  vt: "Versión Testigo (VT), edición en español de la Open Bible Translation, github.com/gregindeed/open-bible-translation — CC BY-SA 4.0",
 };
 const SOURCES = {
   ot: "Westminster Leningrad Codex (public domain)",

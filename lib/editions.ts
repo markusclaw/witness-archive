@@ -7,7 +7,7 @@
 export type EditionCode = "obt" | "vt";
 
 /** The open repository (text, style guides, glossaries, JSON API). */
-export const OPEN_BIBLE_REPO = "https://github.com/markusclaw/open-bible-translation";
+export const OPEN_BIBLE_REPO = "https://github.com/gregindeed/open-bible-translation";
 
 export interface Edition {
   code: EditionCode;
