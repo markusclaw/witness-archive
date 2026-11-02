@@ -11,6 +11,7 @@ export default function SiteFooter() {
         <span className="whitespace-nowrap">&copy; {new Date().getFullYear()}</span>
         <span className="flex gap-4 whitespace-nowrap">
           <Link href="/about" className="hover:text-gold-300">About</Link>
+          <Link href="/questions" className="hover:text-gold-300">Questions</Link>
           <Link href="/archive" className="hover:text-gold-300">Collections</Link>
           <Link href="/bible/obt" className="hover:text-gold-300">Open Bible</Link>
         </span>
@@ -22,8 +23,8 @@ export default function SiteFooter() {
             <span className="font-display text-lg text-parchment-50">Witness Archive</span>
           </div>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-parchment-500">
-            A living record of encounters with the supernatural, gathered from scattered corners of the
-            internet into one place where they can be found, heard, and discussed.
+            Answers to life&apos;s hardest questions, from the people who lived them — first-hand testimonies
+            of the supernatural, gathered into one place where they can be found, heard, and discussed.
           </p>
         </div>
 
@@ -44,6 +45,7 @@ export default function SiteFooter() {
           <p className="eyebrow mb-4">Archive</p>
           <ul className="space-y-2 text-sm">
             <li><Link href="/archive" className="text-parchment-300 hover:text-gold-300">Browse all</Link></li>
+            <li><Link href="/questions" className="text-parchment-300 hover:text-gold-300">Life&apos;s hardest questions</Link></li>
             <li><Link href="/about" className="text-parchment-300 hover:text-gold-300">About the project</Link></li>
             <li><Link href="/submit" className="text-parchment-300 hover:text-gold-300">Write your testimony</Link></li>
             <li><Link href="/auth" className="text-parchment-300 hover:text-gold-300">Sign in</Link></li>

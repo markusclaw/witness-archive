@@ -12,6 +12,7 @@ import { categoryByName } from "@/lib/categories";
 import { isSupportedLanguage } from "@/lib/languages";
 import { absoluteUrl, testimonyPath } from "@/lib/seo";
 import { resolveTranscript } from "@/lib/import/transcript";
+import { tagQuestions } from "@/lib/ai/questions";
 import type { ExtractedDetails } from "@/lib/types";
 
 export type JobStatus = "queued" | "processing" | "published" | "duplicate" | "skipped" | "failed" | "blocked";
@@ -261,6 +262,14 @@ async function runJob(admin: SupabaseClient, job: ImportJobRow, ownerId: string)
     .single();
   if (error || !inserted) throw new Error(`insert testimony: ${error?.message ?? "no row"}`);
   const ref = testimonyRef(inserted);
+
+  // Which of the archive's questions it speaks to. Best effort: untagged rows are picked up by /questions/tag.
+  try {
+    const questions = await tagQuestions({ title: built.row.title, description: built.row.description, category: built.row.category, content: formatted });
+    await admin.from("testimonies").update({ questions }).eq("id", inserted.id);
+  } catch (err) {
+    console.warn("import: question tagging failed", job.youtube_id, err instanceof Error ? err.message : err);
+  }
   return finish(
     admin,
     job,

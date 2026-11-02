@@ -4,6 +4,7 @@ import { getAllTestimonies } from "@/lib/queries";
 import { absoluteUrl, collectionPath, localizedTestimonyPath, testimonyPath } from "@/lib/seo";
 import { createServerSupabase } from "@/lib/supabase-server";
 import { BOOKS, bookSlug } from "@/lib/scripture";
+import { QUESTIONS, questionPath } from "@/lib/questions";
 
 export const dynamic = "force-dynamic";
 
@@ -14,6 +15,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages: MetadataRoute.Sitemap = [
     { url: absoluteUrl("/"), lastModified: latest, changeFrequency: "daily", priority: 1 },
     { url: absoluteUrl("/archive"), lastModified: latest, changeFrequency: "daily", priority: 0.9 },
+    { url: absoluteUrl("/questions"), lastModified: latest, changeFrequency: "weekly", priority: 0.9 },
+    ...QUESTIONS.map((q) => ({ url: absoluteUrl(questionPath(q.slug)), lastModified: latest, changeFrequency: "weekly" as const, priority: 0.9 })),
     { url: absoluteUrl("/about"), changeFrequency: "monthly", priority: 0.5 },
     { url: absoluteUrl("/ask"), changeFrequency: "monthly", priority: 0.6 },
     { url: absoluteUrl("/pray"), changeFrequency: "daily", priority: 0.7 },

@@ -35,7 +35,8 @@ export default function Analytics({ id }: { id: string }) {
     if (!window.gtag) return;
     const query = searchParams.toString();
     window.gtag("event", "page_view", {
-      page_path: query ? `${pathname}?${query}` : pathname,
+      // page_location (not page_path + query): GA4 adds the query itself, so sending it here doubled it in reports.
+      page_location: `${window.location.origin}${pathname}${query ? `?${query}` : ""}`,
       page_title: document.title,
       ...(isInternal() ? { traffic_type: "internal" } : {}),
     });

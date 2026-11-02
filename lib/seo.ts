@@ -2,9 +2,9 @@ import type { Testimony } from "@/lib/types";
 
 export const SITE_NAME = "Witness Archive";
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://witnessarchive.org").replace(/\/$/, "");
-export const SITE_TAGLINE = "Testimonies of the Supernatural";
+export const SITE_TAGLINE = "Answers to Life's Hardest Questions";
 export const SITE_DESCRIPTION =
-  "A curated archive of first-hand testimonies from people whose lives were changed by encounters with heaven, hell, healing, angels, and the divine — searchable, credited, and open to discussion.";
+  "Answers to life's hardest questions — what happens when we die, is hell real, does God still heal — from first-hand testimonies of people who experienced heaven, hell, healing, angels and the divine. Searchable, credited, and open to discussion.";
 export const DEFAULT_OG_IMAGE = "/og-default.png";
 
 export function absoluteUrl(path: string): string {

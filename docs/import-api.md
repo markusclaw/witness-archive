@@ -143,3 +143,15 @@ Errors look like `{ "error": { "code": "…", "message": "…" } }`.
 
 - Tokens: `node scripts/api-token.mjs create --email … --name muse`, plus `list` and `revoke <id>`.
 - Status and review page: `/me/imports`, for site admins and token owners.
+
+## Questions
+
+Every imported testimony is tagged automatically with up to 3 of the site's
+questions (see `lib/questions.ts`).
+
+- **POST /questions/tag** `{ "limit"?: 10 }`: tags published testimonies that
+  aren't tagged yet. Repeat until `remaining` is 0. Useful after testimonies
+  are added by hand.
+- **POST /questions/summarize** `{ "slug"?: "…", "force"?: false }`: rewrites
+  the "What witnesses report" section for the next question whose testimonies
+  changed. Repeat until `summarized` is null. Run it after a batch of imports.

@@ -7,6 +7,8 @@ import Comments from "@/components/Comments";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import OwnerBar from "@/components/OwnerBar";
 import SeriesNav from "@/components/SeriesNav";
+import { questionBySlug, questionPath, questionText } from "@/lib/questions";
+import { getTestimonyQuestions } from "@/lib/question-queries";
 import ShareButton from "@/components/ShareButton";
 import TestimonyCard from "@/components/TestimonyCard";
 import TranslatedContent from "@/components/TranslatedContent";
@@ -94,14 +96,16 @@ export default async function TestimonyArticle({ param, lang, prefixed = false }
   const actual = prefixed ? `/${lang}/testimony/${param}` : `/testimony/${param}`;
   if (actual !== expected) permanentRedirect(expected);
 
-  const [related, parts, authorProfile, retellings] = await Promise.all([
+  const [related, parts, authorProfile, retellings, questionSlugs] = await Promise.all([
     getRelatedTestimonies(testimony.category, testimony.series_id, 3),
     getSeriesParts(testimony.series_id),
     testimony.is_anonymous ? Promise.resolve(null) : getProfile(testimony.author_id),
     getRetellings(testimony.id),
+    getTestimonyQuestions(testimony.id),
     // Keeps the "testimonies that mention this passage" index fresh; a no-op when the text hasn't changed.
     syncScriptureIndex(testimony),
   ]);
+  const questions = questionSlugs.map((s) => questionBySlug(s)).filter((q): q is NonNullable<typeof q> => !!q);
 
   const ui = language.ui;
   const isTranslated = lang !== testimony.language;
@@ -294,6 +298,19 @@ export default async function TestimonyArticle({ param, lang, prefixed = false }
         </div>
 
         <TranslatedContent testimony={testimony} lang={lang} initial={translation} meta={metaRow} between={between} hideDescription={isTruncatedExcerpt(testimony.description, testimony.content)} audio={audio ? { id: testimony.id, language: lang, title: shown.title, src: audio.url, href: localizedTestimonyPath(testimony, lang), artwork: youtubeThumbnail(testimony.video_url, "hq") } : null} />
+
+        {questions.length > 0 && (
+          <aside aria-label="Questions this testimony speaks to" className="mt-10">
+            <p className="eyebrow mb-3">{lang === "es" ? "Este testimonio responde a" : lang === "pt" ? "Este testemunho responde a" : "This testimony speaks to"}</p>
+            <div className="flex flex-wrap gap-2">
+              {questions.map((q) => (
+                <Link key={q.slug} href={questionPath(q.slug)} className="rounded-full border border-gold-500/30 px-3 py-1 text-sm text-parchment-200 transition hover:border-gold-500/60 hover:text-gold-300">
+                  {questionText(q, lang)}
+                </Link>
+              ))}
+            </div>
+          </aside>
+        )}
 
         {!testimony.is_anonymous && testimony.author_bio && (
           <aside className="mt-10 flex gap-4 rounded-xl border border-ink-600 bg-ink-900/60 p-5">

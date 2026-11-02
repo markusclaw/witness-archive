@@ -1,7 +1,8 @@
 import Link from "next/link";
 import TestimonyCard from "@/components/TestimonyCard";
 import AskBox from "@/components/AskBox";
-import { SUGGESTED_QUESTIONS } from "@/lib/ask";
+import { QUESTIONS, questionPath } from "@/lib/questions";
+import { getQuestionCounts } from "@/lib/question-queries";
 import { CATEGORIES } from "@/lib/categories";
 import { getCategoryCounts, getRecentTestimonies, getTrending } from "@/lib/queries";
 import type { Metadata } from "next";
@@ -11,7 +12,7 @@ export const metadata: Metadata = { alternates: { canonical: "/" } };
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const [recent, counts, trending] = await Promise.all([getRecentTestimonies(3), getCategoryCounts(), getTrending(7, 3)]);
+  const [recent, counts, trending, qCounts] = await Promise.all([getRecentTestimonies(3), getCategoryCounts(), getTrending(7, 3), getQuestionCounts()]);
   const total = Object.values(counts).reduce((a, b) => a + b, 0);
 
   return (
@@ -19,27 +20,25 @@ export default async function Home() {
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="mx-auto max-w-6xl px-5 pb-20 pt-24 text-center sm:pt-32">
-          <p className="eyebrow fade-up mb-6">A record of the unexplainable</p>
+          <p className="eyebrow fade-up mb-6">Testimonies of the supernatural</p>
           <h1 className="font-display fade-up mx-auto max-w-4xl text-5xl font-light leading-[1.05] tracking-tight text-parchment-50 sm:text-7xl">
-            They came back <em className="text-gold-400 not-italic">changed.</em>
-            <br />
-            These are their words.
+            Answers to life&apos;s <em className="text-gold-400 not-italic">hardest</em> questions.
+            <span className="mt-4 block text-3xl text-parchment-300 sm:text-4xl">From the people who lived them.</span>
           </h1>
           <p className="fade-up mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-parchment-300">
-            Witness Archive gathers first-hand testimonies of heaven, hell, healing, and divine encounter —
-            stories scattered across the internet — into one place where they can be found, heard, and
-            discussed with care.
+            What happens when we die? Is hell real? Does God still heal? Witness Archive gathers first-hand testimonies
+            of heaven, hell, healing and divine encounter — and lets the people who went through it answer, in their own words.
           </p>
           <div className="fade-up mx-auto mt-10 max-w-2xl">
             <AskBox />
             <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
-              {SUGGESTED_QUESTIONS.slice(0, 3).map((s) => (
-                <Link key={s} href={`/ask?q=${encodeURIComponent(s)}`} className="rounded-full border border-ink-600 px-3 py-1 text-xs text-parchment-500 transition hover:border-gold-500/40 hover:text-parchment-100">
-                  {s}
+              {QUESTIONS.slice(0, 6).map((q) => (
+                <Link key={q.slug} href={questionPath(q.slug)} className="rounded-full border border-ink-600 px-3 py-1 text-xs text-parchment-500 transition hover:border-gold-500/40 hover:text-parchment-100">
+                  {q.short}
                 </Link>
               ))}
-              <Link href="/archive" className="rounded-full px-3 py-1 text-xs text-gold-400 hover:text-gold-300">
-                Browse all →
+              <Link href="/questions" className="rounded-full px-3 py-1 text-xs text-gold-400 hover:text-gold-300">
+                All questions →
               </Link>
             </div>
           </div>
@@ -50,6 +49,27 @@ export default async function Home() {
           )}
         </div>
         <div className="hairline mx-auto max-w-4xl" />
+      </section>
+
+      {/* Questions */}
+      <section className="mx-auto max-w-6xl px-5 pt-20">
+        <div className="mb-10 flex items-end justify-between gap-6">
+          <div>
+            <p className="eyebrow mb-3">Start with a question</p>
+            <h2 className="font-display text-3xl text-parchment-50 sm:text-4xl">What people come here asking</h2>
+          </div>
+          <Link href="/questions" className="hidden text-sm text-gold-400 hover:text-gold-300 sm:block">
+            All questions →
+          </Link>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {QUESTIONS.map((q) => (
+            <Link key={q.slug} href={questionPath(q.slug)} className="card group flex items-baseline justify-between gap-4 px-5 py-4">
+              <span className="font-display text-lg text-parchment-50 group-hover:text-gold-300">{q.q}</span>
+              {qCounts[q.slug] ? <span className="shrink-0 text-xs text-parchment-700">{qCounts[q.slug]}</span> : null}
+            </Link>
+          ))}
+        </div>
       </section>
 
       {/* Recent */}

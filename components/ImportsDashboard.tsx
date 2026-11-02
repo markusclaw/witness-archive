@@ -102,6 +102,46 @@ export default function ImportsDashboard() {
     setBusy(null);
   };
 
+  const tagAll = async () => {
+    setBusy("tag");
+    let total = 0;
+    for (let round = 0; round < 100; round++) {
+      const res = await authedFetch("/api/v1/questions/tag", { method: "POST", body: JSON.stringify({ limit: 10 }) });
+      const json = (await res.json().catch(() => ({}))) as { tagged?: unknown[]; remaining?: number; error?: { message?: string } };
+      if (!res.ok) {
+        setMessage(json.error?.message ?? "Tagging failed.");
+        break;
+      }
+      total += json.tagged?.length ?? 0;
+      setMessage(`Tagged ${total} testimonies with questions — ${json.remaining ?? 0} left…`);
+      if (!json.remaining || !json.tagged?.length) {
+        setMessage(`Done: tagged ${total} testimonies with questions.`);
+        break;
+      }
+    }
+    setBusy(null);
+  };
+
+  const summarizeAll = async () => {
+    setBusy("summarize");
+    const done: string[] = [];
+    for (let round = 0; round < 20; round++) {
+      setMessage(`Writing "What witnesses report"${done.length ? ` — done: ${done.length}` : ""}…`);
+      const res = await authedFetch("/api/v1/questions/summarize", { method: "POST", body: "{}" });
+      const json = (await res.json().catch(() => ({}))) as { summarized?: string | null; error?: { message?: string } };
+      if (!res.ok) {
+        setMessage(json.error?.message ?? "Summaries failed.");
+        break;
+      }
+      if (!json.summarized) {
+        setMessage(done.length ? `Updated ${done.length} question pages.` : "All question pages are up to date.");
+        break;
+      }
+      done.push(json.summarized);
+    }
+    setBusy(null);
+  };
+
   const queueUrls = async () => {
     const list = urls.split(/\s+/).filter(Boolean);
     if (!list.length) return;
@@ -145,6 +185,12 @@ export default function ImportsDashboard() {
           </button>
           <button type="button" className="btn btn-ghost" onClick={runOne} disabled={!!busy}>
             {busy === "run" ? "Processing…" : "Process next video"}
+          </button>
+          <button type="button" className="btn btn-ghost" onClick={tagAll} disabled={!!busy}>
+            {busy === "tag" ? "Tagging…" : "Tag questions"}
+          </button>
+          <button type="button" className="btn btn-ghost" onClick={summarizeAll} disabled={!!busy}>
+            {busy === "summarize" ? "Writing…" : "Refresh question pages"}
           </button>
         </div>
         {message && <p className="text-sm text-parchment-500">{message}</p>}
